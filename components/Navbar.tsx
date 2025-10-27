@@ -40,7 +40,7 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-red-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                className="text-black-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200"
               >
                 {item.label}
               </Link>
@@ -80,10 +80,15 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-red-600 hover:text-red-800 block px-3 py-2 rounded-md text-base font-medium"
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                    item.label === '2025 Season'
+                      ? 'text-red-600 hover:text-red-800 font-semibold bg-red-50'
+                      : 'text-gray-900 hover:text-gray-600'
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
+                  {item.label === '2025 Season' && <span className="ml-1.5 text-xs">🔥</span>}
                 </Link>
               ))}
               <button className="w-full text-left bg-red-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition-colors duration-200">
