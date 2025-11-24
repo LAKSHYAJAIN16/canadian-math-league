@@ -1,173 +1,114 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { Award, Users, Globe, BookOpen } from 'lucide-react'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-const AboutPage = () => {
-  const values = [
-    {
-      icon: Award,
-      title: 'Excellence',
-      description: 'We strive for the highest standards in mathematical education and competition.',
-    },
-    {
-      icon: Users,
-      title: 'Inclusivity',
-      description: 'We welcome students from all backgrounds and skill levels to participate.',
-    },
-    {
-      icon: Globe,
-      title: 'National Reach',
-      description: 'Connecting students across all provinces and territories of Canada.',
-    },
-    {
-      icon: BookOpen,
-      title: 'Education',
-      description: 'Fostering a love for mathematics through engaging competitions and resources.',
-    },
-  ]
+interface TeamMember {
+  id: number;
+  name: string;
+  position: string;
+  image: string;
+}
 
+const teamMembers: TeamMember[] = [
+  {
+    id: 1,
+    name: 'Lakshya Jain',
+    position: 'Organizer',
+    image: '/team/lakshya-jain.jpg',
+  },
+  {
+    id: 2,
+    name: 'Eric Chen',
+    position: 'Problem Setter',
+    image: '/team/eric-chen.jpg',
+  },
+  {
+    id: 3,
+    name: 'Gautam Korrepati',
+    position: 'Problem Setter',
+    image: '/team/gautam-korrepati.jpg',
+  },
+];
+
+export default function AboutPage() {
   return (
-    <div className="min-h-screen py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <div className="min-h-screen bg-white">
+      {/* Letter Section */}
+      <div className="max-w-4xl mx-auto px-4 py-16 md:py-24 -mt-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="bg-white p-8 md:p-12 rounded-lg shadow-lg border border-gray-100"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            About Canadian Math League
+          <div className="text-right mb-8">
+            <p className="text-gray-500">November 23, 2024</p>
+          </div>
+          
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+            Dear Canadian Students,
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Established in 1999, the Canadian Math League has been at the forefront of 
-            mathematical education and competition in Canada for over two decades.
-          </p>
-        </motion.div>
-
-        {/* Mission Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Our Mission</h2>
-            <p className="text-lg text-gray-700 text-center max-w-4xl mx-auto leading-relaxed">
-              To inspire and nurture mathematical talent across Canada by providing challenging, 
-              engaging, and accessible mathematics competitions that develop problem-solving skills, 
-              critical thinking, and a lifelong appreciation for mathematics.
+          
+          <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+            <div className="space-y-1">
+              <div className="text-2xl font-medium text-red-600">You deserve more.</div>
+            </div>
+            
+            <p>
+              While students in other countries have access to world-class math competitions that challenge and inspire, Canadian students have been left behind. We're here to change that.
             </p>
-          </div>
-        </motion.section>
-
-        {/* Values Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Our Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="h-8 w-8 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600">
-                  {value.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* History Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our History</h2>
-              <div className="space-y-4 text-gray-700">
-                <p>
-                  Founded in 1999 by a group of passionate mathematics educators, 
-                  the Canadian Math League began as a small regional competition 
-                  with just 50 participating students.
-                </p>
-                <p>
-                  Over the years, we have grown to become Canada's premier mathematics 
-                  competition organization, now serving over 10,000 students annually 
-                  across all provinces and territories.
-                </p>
-                <p>
-                  Our competitions have helped launch the careers of numerous mathematicians, 
-                  engineers, and scientists who continue to make significant contributions 
-                  to their fields.
-                </p>
-              </div>
-            </div>
-            <div className="bg-gray-100 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Milestones</h3>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
-                    1
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">1999</div>
-                    <div className="text-gray-600">Founded with 50 students</div>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
-                    2
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">2005</div>
-                    <div className="text-gray-600">Expanded to all provinces</div>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
-                    3
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">2015</div>
-                    <div className="text-gray-600">Launched online platform</div>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
-                    4
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">2024</div>
-                    <div className="text-gray-600">10,000+ active participants</div>
-                  </div>
-                </div>
+            
+            <p>
+              The Canadian Math League was founded on a simple but powerful idea: <span className="font-medium">Canadian students deserve the same opportunities to excel in mathematics as their global peers.</span>
+            </p>
+            
+            <p>
+              Our mission is to build a world-class math competition ecosystem right here in Canada. We're creating competitions that don't just test what you've learned, but inspire you to push the boundaries of your mathematical understanding.
+            </p>
+            
+            <p>
+              <span className="font-medium">Why settle for less when you can compete with the best?</span> Our competitions are designed by mathematicians and educators who understand what it takes to develop true mathematical excellence.
+            </p>
+            
+            <p>
+              This is more than just about winning. It's about joining a community of passionate problem-solvers. It's about discovering the beauty and power of mathematics. It's about showing the world what Canadian students are truly capable of.
+            </p>
+            
+            <p>
+              The future of Canadian mathematics is in your hands. We're here to help you shape it.
+            </p>
+            
+            <div className="mt-8">
+              <p className="font-medium">Sincerely,</p>
+              <p className="text-xl font-bold text-gray-900 mt-2 mb-8">The Canadian Math League Team</p>
+              
+              {/* Team Members */}
+              <div className="flex flex-wrap justify-center gap-8 mt-8">
+                {teamMembers.map((member) => {
+                  const initials = member.name.split(' ').map(n => n[0]).join('');
+                  return (
+                    <motion.div 
+                      key={member.id}
+                      className="relative group w-16 h-16 mx-auto"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center">
+                        <span className="text-red-700 font-bold text-xl">{initials}</span>
+                      </div>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white shadow-md rounded-lg p-2 min-w-max z-10">
+                        <div className="font-semibold text-sm text-gray-800 whitespace-nowrap">{member.name}</div>
+                        <div className="text-xs text-gray-600">{member.position}</div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
-        </motion.section>
+        </motion.div>
       </div>
     </div>
-  )
+  );
 }
-
-export default AboutPage

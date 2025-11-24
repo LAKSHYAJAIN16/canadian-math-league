@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="60" rx="8" fill="#D52B1E"/>
+  <path d="M20 20L40 40M40 20L20 40" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <text x="60" y="35" font-family="Arial" font-size="20" font-weight="bold" fill="white">Canadian Open</text>
+</svg>

@@ -1,9 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Season2025Page = () => {
   const [activeTab, setActiveTab] = useState('Brackets')
+  const [showAnimation, setShowAnimation] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+    setShowAnimation(true)
+  }, [])
+  const animationComplete = useRef(false)
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -36,8 +45,125 @@ const Season2025Page = () => {
     return () => clearInterval(timer)
   }, [])
 
+  // Hide animation after it completes
+  useEffect(() => {
+    if (animationComplete.current) return;
+    
+    const timer = setTimeout(() => {
+      setShowAnimation(false)
+      animationComplete.current = true
+    }, 3000) // Total animation duration
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {isClient && (
+      <AnimatePresence>
+        {showAnimation && (
+          <motion.div 
+            className="fixed inset-0 bg-gradient-to-br from-red-900 via-black to-red-900 z-50 flex items-center justify-center overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Animated background elements */}
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full bg-red-600/20"
+                initial={{
+                  width: Math.random() * 100 + 100,
+                  height: Math.random() * 100 + 100,
+                  x: 0,
+                  y: 0,
+                  opacity: 0
+                }}
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0, 0.3, 0],
+                  rotate: [0, 180]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: i * 0.2
+                }}
+              />
+            ))}
+            
+            <motion.div
+              className="relative z-10 text-center"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ 
+                scale: [0.5, 1.1, 1],
+                opacity: [0, 1, 1, 0.8],
+                y: [100, -20, 0]
+              }}
+              exit={{ 
+                scale: 1.2,
+                opacity: 0,
+                transition: { duration: 0.5 }
+              }}
+              transition={{ 
+                duration: 2.5,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+            >
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <motion.h1 
+                  className="text-7xl md:text-9xl font-extrabold text-red-500 tracking-tight"
+                  style={{
+                    textShadow: '0 0 20px rgba(239, 68, 68, 0.8)',
+                    WebkitTextStroke: '2px rgba(255, 255, 255, 0.1)'
+                  }}
+                >
+                  2025
+                </motion.h1>
+                <motion.div 
+                  className="text-3xl md:text-5xl font-bold text-red-300 mt-6 tracking-widest"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: [0, 1, 1, 0],
+                    y: [20, 0, 0, -20],
+                    textShadow: ['0 0 5px rgba(239, 68, 68, 0)', '0 0 10px rgba(239, 68, 68, 0.8)', '0 0 15px rgba(239, 68, 68, 0.8)']
+                  }}
+                  transition={{ 
+                    duration: 2.5,
+                    times: [0, 0.2, 0.8, 1],
+                    delay: 0.3
+                  }}
+                >
+                  SEASON
+                </motion.div>
+              </motion.div>
+              
+              <motion.div 
+                className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"
+                initial={{ width: 0 }}
+                animate={{ width: '12rem' }}
+                transition={{ duration: 1, delay: 1 }}
+              />
+            </motion.div>
+            
+            <motion.div 
+              className="absolute bottom-8 left-0 right-0 text-center text-red-300/50 text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1] }}
+              transition={{ delay: 1.5 }}
+            >
+              Canadian Math League
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <div className="mb-8 text-center">
@@ -104,45 +230,77 @@ const Season2025Page = () => {
                       
                       {/* Group A */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group A</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group A</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 1</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 2</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 3</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 4</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Western Tech<sup className="ml-0.5 text-[0.7em] font-bold">1</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Vancouver College<sup className="ml-0.5 text-[0.7em] font-bold">8</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            St. George's<sup className="ml-0.5 text-[0.7em] font-bold">13</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            West Point Grey<sup className="ml-0.5 text-[0.7em] font-bold">16</sup>
+                          </div>
                         </div>
                       </div>
 
                       {/* Group B */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group B</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group B</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 5</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 6</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 7</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 8</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            York House<sup className="ml-0.5 text-[0.7em] font-bold">4</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Crofton House<sup className="ml-0.5 text-[0.7em] font-bold">5</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            St. John's<sup className="ml-0.5 text-[0.7em] font-bold">12</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Little Flower<sup className="ml-0.5 text-[0.7em] font-bold">9</sup>
+                          </div>
                         </div>
                       </div>
 
                       {/* Group C */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group C</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group C</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 9</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 10</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 11</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 12</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            St. Michaels<sup className="ml-0.5 text-[0.7em] font-bold">3</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Upper Canada<sup className="ml-0.5 text-[0.7em] font-bold">6</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Havergal<sup className="ml-0.5 text-[0.7em] font-bold">11</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Branksome<sup className="ml-0.5 text-[0.7em] font-bold">14</sup>
+                          </div>
                         </div>
                       </div>
 
                       {/* Group D */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group D</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group D</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 13</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 14</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 15</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 16</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            UCC<sup className="ml-0.5 text-[0.7em] font-bold">2</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Crescent<sup className="ml-0.5 text-[0.7em] font-bold">7</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            TFS<sup className="ml-0.5 text-[0.7em] font-bold">10</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            UTS<sup className="ml-0.5 text-[0.7em] font-bold">15</sup>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -225,45 +383,77 @@ const Season2025Page = () => {
                       
                       {/* Group E */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group E</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group E</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 17</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 18</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 19</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 20</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Bayview<sup className="ml-0.5 text-[0.7em] font-bold">1</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Marc Garneau<sup className="ml-0.5 text-[0.7em] font-bold">8</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            A.Y. Jackson<sup className="ml-0.5 text-[0.7em] font-bold">13</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Woburn<sup className="ml-0.5 text-[0.7em] font-bold">16</sup>
+                          </div>
                         </div>
                       </div>
 
                       {/* Group F */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group F</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group F</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 21</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 22</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 23</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 24</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Richmond Hill<sup className="ml-0.5 text-[0.7em] font-bold">4</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Unionville<sup className="ml-0.5 text-[0.7em] font-bold">5</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Pierre Elliott<sup className="ml-0.5 text-[0.7em] font-bold">12</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Bur Oak<sup className="ml-0.5 text-[0.7em] font-bold">9</sup>
+                          </div>
                         </div>
                       </div>
 
                       {/* Group G */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group G</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group G</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 25</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 26</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 27</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 28</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Earl Haig<sup className="ml-0.5 text-[0.7em] font-bold">3</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Northview<sup className="ml-0.5 text-[0.7em] font-bold">6</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            William Lyon<sup className="ml-0.5 text-[0.7em] font-bold">11</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Abbey Park<sup className="ml-0.5 text-[0.7em] font-bold">14</sup>
+                          </div>
                         </div>
                       </div>
 
                       {/* Group H */}
                       <div className="bg-gray-50 p-2 rounded border">
-                        <h4 className="text-xs font-medium text-center mb-1">Group H</h4>
+                        <h4 className="text-xs font-bold text-center mb-1">Group H</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 29</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 30</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 31</div>
-                          <div className="bg-white p-1 rounded text-xs text-center">Team 32</div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            White Oaks<sup className="ml-0.5 text-[0.7em] font-bold">2</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Waterloo<sup className="ml-0.5 text-[0.7em] font-bold">7</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            Centennial<sup className="ml-0.5 text-[0.7em] font-bold">10</sup>
+                          </div>
+                          <div className="bg-white p-1 rounded text-xs text-center">
+                            John Fraser<sup className="ml-0.5 text-[0.7em] font-bold">15</sup>
+                          </div>
                         </div>
                       </div>
                     </div>

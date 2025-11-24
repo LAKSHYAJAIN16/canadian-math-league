@@ -1,10 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Trophy, Users, BookOpen, Target } from 'lucide-react'
-import { EquationHeading, MathBackground, MathSymbol, EquationDivider } from '../components/MathComponents'
+import { ArrowRight, Trophy, Users, BookOpen, Target, Calendar, Award, Clock, CheckCircle } from 'lucide-react'
+import Link from 'next/link'
 
 const HomePage = () => {
+  const stats = [
+    { number: '10,000+', label: 'Students' },
+    { number: '500+', label: 'Schools' },
+    { number: '13', label: 'Provinces' },
+    { number: '25+', label: 'Years' },
+  ]
+
   const features = [
     {
       icon: Trophy,
@@ -13,185 +20,147 @@ const HomePage = () => {
     },
     {
       icon: Users,
-      title: 'Community',
+      title: 'Thriving Community',
       description: 'Connect with like-minded students and mathematics enthusiasts',
     },
     {
       icon: BookOpen,
-      title: 'Resources',
+      title: 'Premium Resources',
       description: 'Access comprehensive study materials and practice problems',
     },
-    {
-      icon: Target,
-      title: 'Excellence',
-      description: 'Develop problem-solving skills and mathematical reasoning',
-    },
-  ]
-
-  const stats = [
-    { number: '10,000+', label: 'Students' },
-    { number: '500+', label: 'Schools' },
-    { number: '13', label: 'Provinces' },
-    { number: '25+', label: 'Years' },
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-red-50 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-red-50 to-white py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <motion.p
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-sm md:text-base text-red-600 font-medium mb-4"
+              transition={{ delay: 0.1 }}
+              className="flex flex-col items-center mb-4"
             >
-              Powered by CMS
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6"
-            >
-              <EquationHeading level={1} className="text-4xl md:text-6xl">
-                A Math Contest Like No Other
-              </EquationHeading>
+              <p className="text-xs font-medium text-gray-500 mb-1">In partnership with</p>
+              <img 
+                src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png" 
+                alt="Canadian Mathematical Society" 
+                className="h-10 w-auto object-contain"
+              />
             </motion.div>
             
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+            >
+              Canada's Premier <span className="text-red-600">Math Tournament</span>
+            </motion.h1>
+            
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
+              transition={{ delay: 0.3 }}
+              className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
             >
-              Inspiring mathematical excellence across Canada through competitive mathematics, 
-              fostering problem-solving skills and mathematical thinking in students nationwide.
+              Join thousands of students across Canada in our prestigious math competitions.
+              Develop problem-solving skills, compete with top talent, and achieve mathematical excellence.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors duration-200 flex items-center justify-center"
+              <Link 
+                href="/2025-season" 
+                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 transition-colors"
               >
-                Join Competition
+                Register Now
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-red-600 text-red-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-red-50 transition-colors duration-200"
+              </Link>
+              <Link 
+                href="/about" 
+                className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition-colors"
               >
                 Learn More
-              </motion.button>
+              </Link>
             </motion.div>
           </div>
         </div>
-
-        {/* Floating Math Symbols */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {['π', '∑', '∫', '∞', '√', '∆'].map((symbol, index) => (
-            <motion.div
-              key={symbol}
-              className="absolute text-4xl text-red-200 font-math font-bold"
-              initial={{ 
-                opacity: 0.3
-              }}
-              animate={{
-                y: [0, -20, 0],
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 10 + index * 2,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{
-                left: `${10 + index * 15}%`,
-                top: `${20 + index * 10}%`,
-              }}
-            >
-              {symbol}
-            </motion.div>
-          ))}
-        </div>
       </section>
 
-      {/* Sponsors Section */}
-      <section className="py-12 bg-gray-100 overflow-hidden">
+      {/* Sponsors Ticker */}
+      <section className="py-6 bg-white border-t border-b border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-8"
-          >
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">Proudly Supported By</h3>
-            <p className="text-gray-600">Our valued partners and sponsors</p>
-          </motion.div>
+          <div className="text-center mb-4">
+            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Proudly Supported By</p>
+          </div>
           
-          {/* Rolling Sponsors */}
-          <div className="relative">
-            <div className="flex animate-scroll space-x-12 items-center">
-              {/* First set of sponsors */}
-              <div className="flex space-x-12 items-center min-w-full">
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="h-8 w-auto" />
+          <div className="relative w-full overflow-hidden">
+            <div className="flex w-[200%] animate-marquee whitespace-nowrap">
+              {[
+                { name: 'Google', logo: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' },
+                { name: 'Microsoft', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg' },
+                { name: 'Apple', logo: 'https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png' },
+                { name: 'Amazon', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
+                { name: 'Meta', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg' },
+                { name: 'Netflix', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg' },
+              ].map((sponsor, index) => (
+                <div key={index} className="inline-flex items-center mx-8 h-12">
+                  <img 
+                    src={sponsor.logo} 
+                    alt={sponsor.name}
+                    className="h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" className="h-8 w-auto" />
+              ))}
+              {/* Duplicate for seamless loop */}
+              {[
+                { name: 'Google', logo: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' },
+                { name: 'Microsoft', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg' },
+                { name: 'Apple', logo: 'https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png' },
+                { name: 'Amazon', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
+                { name: 'Meta', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg' },
+                { name: 'Netflix', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg' },
+              ].map((sponsor, index) => (
+                <div key={`dup-${index}`} className="inline-flex items-center mx-8 h-12">
+                  <img 
+                    src={sponsor.logo} 
+                    alt={sponsor.name}
+                    className="h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" className="h-10 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" className="h-8 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" className="h-6 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" className="h-8 w-auto" />
-                </div>
-              </div>
-              
-              {/* Duplicate set for seamless loop */}
-              <div className="flex space-x-12 items-center min-w-full">
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="h-8 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" className="h-8 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" className="h-10 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" className="h-8 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" className="h-6 w-auto" />
-                </div>
-                <div className="flex-shrink-0 bg-white p-6 rounded-lg shadow-sm h-20 w-40 flex items-center justify-center">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" className="h-8 w-auto" />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
+        <style jsx global>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+            display: flex;
+            align-items: center;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+          @media (max-width: 768px) {
+            .animate-marquee {
+              animation-duration: 20s;
+            }
+          }
+        `}</style>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -199,84 +168,78 @@ const HomePage = () => {
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2 font-math">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <p className="text-3xl font-bold text-red-600">{stat.number}</p>
+                <p className="text-gray-600">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <EquationDivider symbol="∴" />
-
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <EquationHeading level={2} className="text-3xl md:text-4xl mb-4">
-              Why Choose Canada's Premier Math Competition?
-            </EquationHeading>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Join Canadian Math League?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive support for students passionate about mathematics
+              Experience the best in mathematical competition and education
             </p>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="bg-red-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-red-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => {
+              const Icon = feature.icon
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-4">
+                    <Icon className="h-6 w-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-red-600">
+      <section className="bg-red-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            <EquationHeading level={2} className="text-3xl md:text-4xl text-white mb-4">
-              Ready to Challenge Yourself?
-            </EquationHeading>
-            <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of students across Canada in our next mathematics competition
+            <h2 className="text-3xl font-bold mb-6">Ready to Test Your Skills?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              Join students from across Canada in our upcoming competitions and take your mathematical abilities to the next level.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-red-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
-            >
-              Register Now
-            </motion.button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/register" 
+                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-600 bg-white hover:bg-gray-100 md:py-4 md:text-lg md:px-10 transition-colors"
+              >
+                Register Now
+              </Link>
+              <Link 
+                href="/contact" 
+                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white/10 md:py-4 md:text-lg md:px-10 transition-colors"
+              >
+                Contact Us
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
