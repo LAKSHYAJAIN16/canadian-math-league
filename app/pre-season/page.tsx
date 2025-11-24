@@ -2,7 +2,7 @@
 'use client'
 
 import Image from 'next/image'
-
+import Emmanuel from '../emmauel.jpg'
 const problemSets = [
   {
     id: 1,
@@ -45,7 +45,7 @@ export default function PreSeasonPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Pre-Season 2025</h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Prepare for the upcoming season with our weekly problem sets. New problems every Monday!
+            Prepare for the upcoming season with our problem sets.
           </p>
         </div>
 
@@ -58,13 +58,13 @@ export default function PreSeasonPage() {
                     <h2 className="text-2xl font-semibold text-gray-900 mb-4">About Our Problem Sets</h2>
                     <div className="prose prose-blue max-w-none text-gray-700 space-y-4">
                       <p>
-                        The Canadian Math League is extremely grateful to Dr. Emmanuel Sackeyfio for creating these problem sets to help students prepare for mathematical challenges. These problems are designed to develop problem-solving skills and mathematical thinking.
+                        The Canadian Math League is extremely grateful to Emmanuel Sackeyfio for creating these problem sets to help students prepare for mathematical challenges. These problems are designed to develop problem-solving skills and mathematical thinking.
                       </p>
                       <p>
-                        We've carefully selected problems from various mathematical areas including algebra, number theory, geometry, and combinatorics. These problems are designed to be engaging and thought-provoking, helping students develop a deeper understanding of mathematical concepts beyond standard curriculum.
+                        We've carefully selected problems from various mathematical areas including algebra, number theory, geometry, and combinatorics. These problems are designed to be engaging and thought-provoking, while also helping students understand the format of the questions for the tournament.
                       </p>
                       <p>
-                        Solutions are typically posted one week after the problem sets are released. We encourage students to attempt the problems before checking the solutions to maximize learning.
+                        Solutions are available for all of the problem sets. We encourage students to attempt the problems before checking the solutions to maximize learning.
                       </p>
                       <p className="font-medium text-blue-800">
                         Thank you, Emmanuel!
@@ -74,17 +74,16 @@ export default function PreSeasonPage() {
                   <div className="w-full md:w-auto flex flex-col items-center">
                     <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-blue-300 shadow-lg">
                       <Image
-                        src="https://this-person-does-not-exist.com/img/avatar-genfb239b52507ebf268d0387859af88aee.jpg"
+                        src={Emmanuel}
                         alt="Dr. Emmanuel Sackeyfio"
                         width={224}
                         height={224}
                         className="h-full w-full object-cover"
-                        priority
                       />
                     </div>
                     <div className="text-center mt-4">
-                      <p className="text-lg font-semibold text-gray-900">Dr. Emmanuel Sackeyfio</p>
-                      <p className="text-sm text-gray-600">Problem Set Curator</p>
+                      <p className="text-lg font-semibold text-gray-900">Emmanuel Sackeyfio</p>
+                      <p className="text-sm text-gray-600">MSc candidate, University of Torontos</p>
                     </div>
                   </div>
                 </div>

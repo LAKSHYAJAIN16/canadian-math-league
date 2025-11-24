@@ -17,7 +17,7 @@ const Navbar = () => {
     { 
       label: 'Pre-Season',
       subItems: [
-        { href: '/pre-season', label: 'Weekly Problem Sets' },
+        { href: '/pre-season', label: 'Sample Problem Sets' },
         { href: '/pre-season/other-resources', label: 'Other Resources' },
       ]
     },

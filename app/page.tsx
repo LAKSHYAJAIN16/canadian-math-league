@@ -76,7 +76,7 @@ const HomePage = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link 
-                href="/2025-season" 
+                href="/register" 
                 className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 transition-colors"
               >
                 Register Now
