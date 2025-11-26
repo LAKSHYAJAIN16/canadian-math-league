@@ -13,11 +13,31 @@ interface FormStatus {
   message: string;
 }
 
+interface TeamMember {
+  name: string;
+  email: string;
+}
+
+interface Team {
+  id: number;
+  members: TeamMember[];
+}
+
+interface FormData {
+  schoolName: string;
+  province: string;
+  teacherName: string;
+  teacherEmail: string;
+  teacherPhone: string;
+  numberOfTeams: number;
+  teams: Team[];
+}
+
 export default function RegisterPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<FormStatus | null>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     // School Information
     schoolName: '',
     province: '',
@@ -32,7 +52,7 @@ export default function RegisterPage() {
     teams: [
       {
         id: 1,
-        members: Array(5).fill({ name: '', email: '' })
+        members: Array.from({ length: 5 }, () => ({ name: '', email: '' }))
       }
     ]
   });
@@ -43,7 +63,7 @@ export default function RegisterPage() {
     // Handle team member changes
     if (name.startsWith('team-')) {
       const [_, teamIndex, memberIndex, field] = name.split('-');
-      const updatedTeams = [...formData.teams];
+      const updatedTeams: Team[] = [...formData.teams];
       updatedTeams[parseInt(teamIndex)].members[parseInt(memberIndex)][field as 'name' | 'email'] = value;
       
       setFormData(prev => ({
@@ -58,14 +78,14 @@ export default function RegisterPage() {
       const numTeams = parseInt(value) || 1;
       const currentTeamCount = formData.teams.length;
       
-      let updatedTeams = [...formData.teams];
+      let updatedTeams: Team[] = [...formData.teams];
       
       // Add or remove teams based on the new count
       if (numTeams > currentTeamCount) {
         for (let i = currentTeamCount; i < numTeams; i++) {
           updatedTeams.push({
             id: i + 1,
-            members: Array(5).fill({ name: '', email: '' })
+            members: Array.from({ length: 5 }, () => ({ name: '', email: '' }))
           });
         }
       } else if (numTeams < currentTeamCount) {

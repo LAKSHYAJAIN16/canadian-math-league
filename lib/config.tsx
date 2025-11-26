@@ -1,7 +1,6 @@
 import { FirebaseApp, initializeApp, getApps } from "firebase/app";
-import { Firestore, getFirestore, collection, addDoc, serverTimestamp, DocumentData, CollectionReference } from 'firebase/firestore';
+import { Firestore, getFirestore, collection, addDoc, serverTimestamp, DocumentData, CollectionReference, getDoc, doc } from 'firebase/firestore';
 import { Analytics, getAnalytics, isSupported } from "firebase/analytics";
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -14,6 +13,15 @@ const firebaseConfig = {
   measurementId: "G-HBMM36S8BT"
 };
 
+// Add this helper function at the top of the file, before createTeamsFromSubmission
+const generateRandomPassword = (length = 5): string => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+};
 // Initialize Firebase
 let app: FirebaseApp | undefined;
 let analytics: Analytics | undefined;
@@ -69,6 +77,68 @@ const submitForm = async (formData: Omit<FormSubmission, 'submittedAt'>): Promis
     console.error('Error adding document: ', error);
     throw error;
   }
+};
+
+// Add this interface at the top of the file with other interfaces
+export interface TeamMember {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface Team {
+  id: string;
+  members: TeamMember[];
+}
+
+export interface TeamDocument {
+  createdAt: Date;
+  formSubmissionId: string;
+  teacherEmail: string;
+  teacherPassword: string;
+  teacherPhone: string;
+  schoolName: string;
+  schoolAddress: string;
+  province: string;
+  teams: Team[];
+}
+
+// Add this function at the bottom of the file, before the last export
+export const createTeamsFromSubmission = async (submissionId: string): Promise<string> => {
+  if (!db) throw new Error('Database not initialized');
+  
+  // Get the form submission
+  const submissionDoc = await getDoc(doc(db, 'form_submissions', submissionId));
+  if (!submissionDoc.exists()) {
+    throw new Error('Form submission not found');
+  }
+  const submissionData = submissionDoc.data() as FormSubmission;
+
+  // Create team document
+  // Generate a random 5-letter password
+  const teacherPassword = generateRandomPassword(9);
+  const teamDoc: Omit<TeamDocument, 'id'> = {
+    createdAt: new Date(),
+    formSubmissionId: submissionId,
+    teacherEmail: submissionData.teacherEmail,
+    teacherPhone: submissionData.teacherPhone,
+    schoolName: submissionData.schoolName,
+    teacherPassword,
+    schoolAddress: '', // Empty as per requirements
+    province: submissionData.province,
+    teams: submissionData.teams.map(team => ({
+      id: `team-${Math.random().toString(36).substr(2, 9)}`, // Generate unique team ID
+      members: team.members.map(member => ({
+        id: `member-${Math.random().toString(36).substr(2, 9)}`, // Generate unique member ID
+        name: member.name,
+        email: member.email,
+      }))
+    }))
+  };
+
+  // Add to teams collection
+  const docRef = await addDoc(collection(db, 'teams'), teamDoc);
+  return docRef.id;
 };
 
 export { db, collection, addDoc, serverTimestamp, submitForm };
