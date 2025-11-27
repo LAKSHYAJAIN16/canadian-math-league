@@ -41,11 +41,17 @@ export default function PlatformLayout({
           <NavLink href="/platform/dashboard" icon="dashboard">
             Dashboard
           </NavLink>
-          <NavLink href="/platform/details" icon="details">
-            Details
+          <NavLink href="/platform/student-details" icon="people">
+            Student Details
           </NavLink>
-          <NavLink href="/platform/competition" icon="competition">
-            Competition
+          <NavLink href="/platform/results" icon="bar_chart">
+            Results
+          </NavLink>
+          <NavLink href="/platform/certificates" icon="verified">
+            Certificates
+          </NavLink>
+          <NavLink href="/platform/faq" icon="help_outline">
+            FAQ
           </NavLink>
         </nav>
 

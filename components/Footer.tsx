@@ -2,8 +2,30 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const Footer = () => {
+  const pathname = usePathname()
+
+  // Hide footer on dashboard page
+ if (pathname === '/platform/dashboard') {
+    return null;
+  }
+  if (pathname === '/platform/login') {
+    return null;
+  }
+  if(pathname === "/platform/student-details") {
+    return null;
+  }
+   if(pathname === "/platform/faq") {
+    return null;
+  }
+   if(pathname === "/platform/certificates") {
+    return null;
+  }
+  if(pathname=="/join") {
+    return null;
+  }
   return (
     <footer className="bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

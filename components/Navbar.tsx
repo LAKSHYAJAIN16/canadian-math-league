@@ -1,14 +1,35 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
+  // Show only logo on dashboard page
+  if (pathname === '/platform/dashboard') {
+    return null;
+  }
+  if (pathname === '/platform/login') {
+    return null;
+  }
+  if(pathname === "/platform/student-details") {
+    return null;
+  }
+   if(pathname === "/platform/faq") {
+    return null;
+  }
+   if(pathname === "/platform/certificates") {
+    return null;
+  }
+  if(pathname=="/join") {
+    return null;
+  }
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/format', label: 'Format' },
@@ -77,9 +98,10 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = '/register'}
               className="bg-red-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors duration-200"
             >
-              Join Now
+              Register
             </motion.button>
           </div>
 
@@ -141,8 +163,8 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              <button className="w-full text-left bg-red-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition-colors duration-200">
-                Join Now
+              <button className="w-full text-left bg-red-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition-colors duration-200" onClick={() => window.location.href = '/register'}>
+                Register
               </button>
             </div>
           </motion.div>
