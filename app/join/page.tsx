@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { collection, query, where, getDocs, doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/config';
 
 export default function JoinPage() {
@@ -10,14 +10,26 @@ export default function JoinPage() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams();
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    // Check for URL parameter on component mount
+    useEffect(() => {
+        const code = searchParams.get('code');
+        if (code) {
+            setJoinCode(code);
+            // Auto-submit if code is provided in URL
+            handleSubmit({ preventDefault: () => { } } as React.FormEvent, code);
+        }
+    }, [searchParams]);
+
+    const handleSubmit = async (e: React.FormEvent, codeFromUrl?: string) => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
 
         try {
-            const memberId = `member-${joinCode.trim()}`;
+            const codeToUse = codeFromUrl || joinCode;
+            const memberId = `member-${codeToUse.trim()}`;
             console.log('Searching for member:', memberId);
 
             // First, get all team documents
@@ -35,7 +47,7 @@ export default function JoinPage() {
                         if (team.members && Array.isArray(team.members)) {
                             const member = team.members.find(m => m.id === memberId);
                             if (member) {
-                                foundTeam = doc;
+                                foundTeam = team;
                                 foundMember = member;
                             }
                         }
@@ -52,11 +64,12 @@ export default function JoinPage() {
             // Store member ID in localStorage for session management
             localStorage.setItem('studentAuth', JSON.stringify({
                 memberId,
-                teamId: foundTeam.id
+                teamId: foundTeam.id,
+                name: foundMember.name // Add the member's name
             }));
 
-            // Redirect to student dashboard
-            router.push('/student/dashboard');
+            // Redirect to competition page
+            router.push('/o/competition');
 
         } catch (error) {
             console.error('Error joining team:', error);
@@ -102,7 +115,6 @@ export default function JoinPage() {
                                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Enter your join code"
                                     autoComplete="off"
-                                    autoCapitalize="characters"
                                 />
                             </div>
                         </div>

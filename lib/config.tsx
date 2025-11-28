@@ -28,20 +28,18 @@ let analytics: Analytics | undefined;
 let db: Firestore | undefined;
 
 // Initialize Firebase only on the client side
-if (typeof window !== 'undefined') {
-  if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    // Only initialize analytics in browser environment
-    isSupported().then(yes => {
-      if (yes) {
-        analytics = getAnalytics(app);
-      }
-    });
-  } else {
-    app = getApps()[0];
-    db = getFirestore(app);
-  }
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  // Only initialize analytics in browser environment
+  isSupported().then(yes => {
+    if (yes) {
+      analytics = getAnalytics(app);
+    }
+  });
+} else {
+  app = getApps()[0];
+  db = getFirestore(app);
 }
 
 // Type for form submission data
@@ -66,7 +64,7 @@ const submitForm = async (formData: Omit<FormSubmission, 'submittedAt'>): Promis
   if (!db) {
     throw new Error('Firestore is not initialized');
   }
-  
+
   try {
     const docRef = await addDoc(collection(db, 'form_submissions') as CollectionReference<DocumentData>, {
       ...formData,
@@ -106,7 +104,7 @@ export interface TeamDocument {
 // Add this function at the bottom of the file, before the last export
 export const createTeamsFromSubmission = async (submissionId: string): Promise<string> => {
   if (!db) throw new Error('Database not initialized');
-  
+
   // Get the form submission
   const submissionDoc = await getDoc(doc(db, 'form_submissions', submissionId));
   if (!submissionDoc.exists()) {

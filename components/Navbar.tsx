@@ -18,24 +18,30 @@ const Navbar = () => {
   if (pathname === '/platform/login') {
     return null;
   }
-  if(pathname === "/platform/student-details") {
+  if (pathname === "/platform/student-details") {
     return null;
   }
-   if(pathname === "/platform/faq") {
+  if (pathname === "/o/competition") {
     return null;
   }
-   if(pathname === "/platform/certificates") {
+  if (pathname === "/platform/faq") {
     return null;
   }
-  if(pathname=="/join") {
+  if (pathname === "/platform/certificates") {
     return null;
   }
+  if (pathname == "/join") {
+    return null;
+  }
+  if (pathname === "/o/team-competition") {
+    return null;
+  } 
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/format', label: 'Format' },
     { href: '/2025-season', label: '2025 Season' },
     { href: '/about', label: 'About' },
-    { 
+    {
       label: 'Pre-Season',
       subItems: [
         { href: '/pre-season', label: 'Sample Problem Sets' },
@@ -132,11 +138,10 @@ const Navbar = () => {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                        item.label === '2025 Season'
+                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${item.label === '2025 Season'
                           ? 'text-red-600 hover:text-red-800 font-semibold bg-red-50'
                           : 'text-gray-900 hover:text-gray-600'
-                      }`}
+                        }`}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}

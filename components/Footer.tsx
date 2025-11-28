@@ -8,22 +8,28 @@ const Footer = () => {
   const pathname = usePathname()
 
   // Hide footer on dashboard page
- if (pathname === '/platform/dashboard') {
+  if (pathname === '/platform/dashboard') {
     return null;
   }
   if (pathname === '/platform/login') {
     return null;
   }
-  if(pathname === "/platform/student-details") {
+  if (pathname === "/platform/student-details") {
     return null;
   }
-   if(pathname === "/platform/faq") {
+  if (pathname === "/platform/faq") {
     return null;
   }
-   if(pathname === "/platform/certificates") {
+  if (pathname === "/platform/certificates") {
     return null;
   }
-  if(pathname=="/join") {
+  if (pathname == "/join") {
+    return null;
+  }
+  if (pathname === "/o/competition") {
+    return null;
+  }
+  if (pathname === "/o/team-competition") {
     return null;
   }
   return (

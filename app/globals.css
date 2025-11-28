@@ -168,3 +168,23 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+/* Add smooth transitions for question changes */
+.question-transition-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.question-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.question-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.question-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
+}

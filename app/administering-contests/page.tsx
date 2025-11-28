@@ -130,7 +130,7 @@ const timelineSections = [
 ]
 
 export default function AdministeringContestsPage() {
-  const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
+  const [selectedEvent, setSelectedEvent] = useState<string | null>("registering")
 
   const renderContent = () => {
     if (!selectedEvent) {
@@ -363,7 +363,7 @@ export default function AdministeringContestsPage() {
           </div>
           
           {/* Content Panel */}
-          <div className="lg:w-1/2 lg:pl-8 mt-8 lg:mt-0">
+          <div className="lg:-ml-[20%] lg:pl-8 mt-8 lg:mt-0">
             <div className="sticky top-8">
               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 {renderContent()}
