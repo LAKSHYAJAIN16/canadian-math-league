@@ -93,8 +93,7 @@ export default function StudentDetailsPage() {
   return (
     <div className="space-y-8 p-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Student Details</h1>
-        <p className="mt-1 text-sm text-gray-600">View student information for {teamData.schoolName}</p>
+        <h1 className="text-2xl font-bold text-gray-900">Student Join Codes</h1>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -103,7 +102,7 @@ export default function StudentDetailsPage() {
             // Remove 'member-' prefix if it exists
             const cleanId = member.id ? member.id.replace(/^member-/, '') : '';
             return (
-              <div 
+              <div
                 key={`${team.id}-${member.id || index}`}
                 className="bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow"
               >
@@ -136,6 +135,10 @@ export default function StudentDetailsPage() {
             );
           })
         )}
+      </div>
+      <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-300">
+        <h3 className="text-lg font-medium text-yellow-800 mb-3">Confused?</h3>
+        <p>We understand. It's a lot to take in. Click <a href="/administering-contests" className="text-blue-600">here</a> to learn more.</p>
       </div>
     </div>
   );

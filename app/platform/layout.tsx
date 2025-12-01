@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +11,8 @@ export default function PlatformLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isLoginPage = pathname === '/platform/login';
 
   useEffect(() => {
     // Check if user is logged in
@@ -19,6 +21,14 @@ export default function PlatformLayout({
       router.push('/platform/login');
     }
   }, [router]);
+
+  if (isLoginPage) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -42,7 +52,7 @@ export default function PlatformLayout({
             Dashboard
           </NavLink>
           <NavLink href="/platform/student-details" icon="people">
-            Student Details
+            Student Codes
           </NavLink>
           <NavLink href="/platform/results" icon="bar_chart">
             Results

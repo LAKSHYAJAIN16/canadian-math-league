@@ -53,7 +53,7 @@ export default function CommunityPage() {
                 <li>Community outreach and promotion</li>
               </ul>
               <a
-                href="mailto:volunteer@canadianmathleague.ca"
+                href="https://forms.gle/gJHJ6ZPJZpf3hZwC7"
                 className="inline-block bg-green-500 text-white font-medium px-5 py-2 rounded-lg hover:bg-green-600 transition"
               >
                 Volunteer Now

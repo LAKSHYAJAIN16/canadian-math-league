@@ -7,10 +7,80 @@ const Season2025Page = () => {
   const [activeTab, setActiveTab] = useState('Brackets')
   const [showAnimation, setShowAnimation] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const [location, setLocation] = useState<{
+    city?: string;
+    region?: string;
+    country_name?: string;
+    timezone?: string;
+    isOntario?: boolean;
+  }>({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  // Format time in a specific timezone
+  const formatTime = (time: string, fromTZ: string, toTZ: string) => {
+    const [timeStr, period] = time.split(' ');
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    
+    // Create date in the source timezone
+    const date = new Date();
+    date.setHours(period === 'PM' && hours !== 12 ? hours + 12 : hours, minutes, 0, 0);
+    
+    // Convert to target timezone
+    return date.toLocaleTimeString('en-US', {
+      timeZone: toTZ,
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+  
+  // Helper to render time based on user's location
+  const renderTime = (estTime: string) => {
+    // Default to EST if there's an error or still loading
+    const isOntario = isLoading || error || location.region === 'Ontario';
+    const primaryTime = isOntario ? estTime : formatTime(estTime, 'America/Toronto', 'America/Vancouver');
+    const secondaryTime = isOntario ? formatTime(estTime, 'America/Toronto', 'America/Vancouver') : estTime;
+    const primaryTZ = isOntario ? 'EST' : 'PST';
+    const secondaryTZ = isOntario ? 'PST' : 'EST';
+    
+    return (
+      <>
+        <div className="font-semibold text-gray-800">{primaryTime} ({primaryTZ})</div>
+        <div className="text-sm text-gray-500">{secondaryTime} ({secondaryTZ})</div>
+      </>
+    );
+  };
+
+  const fetchLocation = async () => {
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      if (!response.ok) {
+        throw new Error('Failed to fetch location data');
+      }
+      const data = await response.json();
+      const isOntario = data.region === 'Ontario';
+      setLocation({
+        city: data.city,
+        region: data.region,
+        country_name: data.country_name,
+        timezone: data.timezone,
+        isOntario
+      });
+      setIsOntario(isOntario);
+    } catch (err) {
+      console.error('Error fetching location:', err);
+      setError('Could not determine your location');
+      setIsOntario(true); // Default to Ontario/EST if location fetch fails
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setIsClient(true)
-    setShowAnimation(true)
+    setIsClient(true);
+    setShowAnimation(true);
+    fetchLocation();
   }, [])
   const animationComplete = useRef(false)
   const [timeLeft, setTimeLeft] = useState({
@@ -21,6 +91,17 @@ const Season2025Page = () => {
   })
 
   const tabs = ['Brackets', 'Schedule', 'Leaderboard', 'Statistics', 'Qualifying']
+  
+  const [isOntario, setIsOntario] = useState(false);
+  
+  // Set timezone based on location
+  useEffect(() => {
+    if (location.region === 'Ontario') {
+      setIsOntario(true);
+    } else if (location.region) {
+      setIsOntario(false);
+    }
+  }, [location]);
 
   useEffect(() => {
     // Set target date to December 12, 2025 (first day of season)
@@ -247,16 +328,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group A</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Western Tech<sup className="ml-0.5 text-[0.7em] font-bold">1</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Vancouver College<sup className="ml-0.5 text-[0.7em] font-bold">8</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            St. George's<sup className="ml-0.5 text-[0.7em] font-bold">13</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            West Point Grey<sup className="ml-0.5 text-[0.7em] font-bold">16</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -266,16 +347,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group B</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            York House<sup className="ml-0.5 text-[0.7em] font-bold">4</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Crofton House<sup className="ml-0.5 text-[0.7em] font-bold">5</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            St. John's<sup className="ml-0.5 text-[0.7em] font-bold">12</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Little Flower<sup className="ml-0.5 text-[0.7em] font-bold">9</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -285,16 +366,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group C</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            St. Michaels<sup className="ml-0.5 text-[0.7em] font-bold">3</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Upper Canada<sup className="ml-0.5 text-[0.7em] font-bold">6</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Havergal<sup className="ml-0.5 text-[0.7em] font-bold">11</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Branksome<sup className="ml-0.5 text-[0.7em] font-bold">14</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -304,16 +385,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group D</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            UCC<sup className="ml-0.5 text-[0.7em] font-bold">2</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Crescent<sup className="ml-0.5 text-[0.7em] font-bold">7</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            TFS<sup className="ml-0.5 text-[0.7em] font-bold">10</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            UTS<sup className="ml-0.5 text-[0.7em] font-bold">15</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -400,16 +481,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group E</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Bayview<sup className="ml-0.5 text-[0.7em] font-bold">1</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Marc Garneau<sup className="ml-0.5 text-[0.7em] font-bold">8</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            A.Y. Jackson<sup className="ml-0.5 text-[0.7em] font-bold">13</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Woburn<sup className="ml-0.5 text-[0.7em] font-bold">16</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -419,16 +500,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group F</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Richmond Hill<sup className="ml-0.5 text-[0.7em] font-bold">4</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Unionville<sup className="ml-0.5 text-[0.7em] font-bold">5</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Pierre Elliott<sup className="ml-0.5 text-[0.7em] font-bold">12</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Bur Oak<sup className="ml-0.5 text-[0.7em] font-bold">9</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -438,16 +519,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group G</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Earl Haig<sup className="ml-0.5 text-[0.7em] font-bold">3</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Northview<sup className="ml-0.5 text-[0.7em] font-bold">6</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            William Lyon<sup className="ml-0.5 text-[0.7em] font-bold">11</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Abbey Park<sup className="ml-0.5 text-[0.7em] font-bold">14</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -457,16 +538,16 @@ const Season2025Page = () => {
                         <h4 className="text-xs font-bold text-center mb-1">Group H</h4>
                         <div className="space-y-0.5">
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            White Oaks<sup className="ml-0.5 text-[0.7em] font-bold">2</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Waterloo<sup className="ml-0.5 text-[0.7em] font-bold">7</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            Centennial<sup className="ml-0.5 text-[0.7em] font-bold">10</sup>
+                            TBA*
                           </div>
                           <div className="bg-white p-1 rounded text-xs text-center">
-                            John Fraser<sup className="ml-0.5 text-[0.7em] font-bold">15</sup>
+                            TBA*
                           </div>
                         </div>
                       </div>
@@ -487,7 +568,7 @@ const Season2025Page = () => {
 
           {activeTab === 'Qualifying' && (
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Qualifying Rounds</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Qualifying</h2>
               <div className="space-y-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-800 mb-3">Regional Qualification</h3>
@@ -579,24 +660,27 @@ const Season2025Page = () => {
                 <div className="space-y-6">
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex justify-between items-center">
-                      <div className="font-semibold text-gray-800">11:00 AM (EST)</div>
-                      <div className="text-sm text-gray-500">8:00 AM (PST)</div>
+                      {renderTime('11:00 AM')}
                     </div>
                     <div className="text-gray-600 mt-1">Individual Round</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex justify-between items-center">
-                      <div className="font-semibold text-gray-800">12:00 PM (EST)</div>
-                      <div className="text-sm text-gray-500">9:00 AM (PST)</div>
+                      {renderTime('12:00 PM')}
                     </div>
                     <div className="text-gray-600 mt-1">Team Round (Power 5)</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex justify-between items-center">
-                      <div className="font-semibold text-gray-800">1:00 PM (EST)</div>
-                      <div className="text-sm text-gray-500">10:00 AM (PST)</div>
+                      {renderTime('1:00 PM')}
                     </div>
                     <div className="text-gray-600 mt-1">Team Rush</div>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                    <div className="flex justify-between items-center">
+                      {renderTime('2:00 PM')}
+                    </div>
+                    <div className="text-gray-600 mt-1">Final Round</div>
                   </div>
                 </div>
                 <div className="mt-4 text-sm text-gray-500">

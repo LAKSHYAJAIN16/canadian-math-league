@@ -407,9 +407,6 @@ export default function RegisterPage() {
                   {isSubmitting ? 'Submitting...' : 'Submit Registration'}
                 </button>
               </div>
-              <p className="mt-3 text-center text-sm text-gray-500">
-                By registering, you agree to our terms and conditions.
-              </p>
             </form>
           </div>
         </motion.div>

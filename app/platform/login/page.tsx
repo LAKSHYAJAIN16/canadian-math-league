@@ -59,10 +59,10 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:px-6 lg:px-8">
-            <div className="w-full max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="min-h-screen bg-white flex items-center justify-center p-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-5xl bg-gray-50 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
                 {/* Logo Section */}
-                <div className="p-8 md:p-12 flex items-center justify-center bg-gray-50 md:w-1/2">
+                <div className="p-8 md:p-12 flex items-center justify-center bg-white md:w-1/2">
                     <div className="w-full max-w-xs">
                         <Image
                             src="/logo.png"
@@ -79,9 +79,9 @@ export default function LoginPage() {
                 <div className="hidden md:block border-l border-gray-200"></div>
 
                 {/* Login Form Section */}
-                <div className="p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
+                <div className="bg-white p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
                     <div className="sm:mx-auto">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                        <h2 className="text-center text-2xl font-bold text-gray-900 mb-2">
                             Teacher Login
                         </h2>
                         <p className="text-sm text-gray-600 mb-6">

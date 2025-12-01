@@ -22,6 +22,85 @@ interface TeamData {
   teams: Team[];
 }
 
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isContestStarted: false
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      // December 15, 2025 11:00 AM Eastern Time (ET)
+      // Note: This will use the user's local timezone
+      const contestDate = new Date('December 15, 2025 11:00:00 EST').getTime();
+      const now = new Date().getTime();
+      const distance = contestDate - now;
+      
+      if (distance < 0) {
+        return {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+          isContestStarted: true
+        };
+      }
+      
+      return {
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        isContestStarted: false
+      };
+    };
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    // Initial call
+    setTimeLeft(calculateTimeLeft());
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="bg-white p-6 rounded-lg shadow">
+      <h2 className="text-lg font-medium text-gray-900 mb-4">Time to Group Stage</h2>
+      <div className="text-left">
+        {timeLeft.isContestStarted ? (
+          <div className="text-2xl font-bold text-green-600">
+            Group Stage is Live!
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 gap-2 text-center">
+            <div>
+              <div className="text-2xl font-bold text-red-600">{timeLeft.days}</div>
+              <div className="text-xs text-gray-500">days</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-red-600">{timeLeft.hours}</div>
+              <div className="text-xs text-gray-500">hours</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-red-600">{timeLeft.minutes}</div>
+              <div className="text-xs text-gray-500">minutes</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-red-600">{timeLeft.seconds}</div>
+              <div className="text-xs text-gray-500">seconds</div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function DashboardPage() {
   const router = useRouter();
   const [teamData, setTeamData] = useState<TeamData | null>(null);
@@ -147,7 +226,7 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-600">Welcome back to {teamData.schoolName}, {teamData.teacherName}</p>
+        <p className="mt-1 text-sm text-gray-600">Welcome back, {teamData.schoolName}!</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -157,9 +236,6 @@ export default function DashboardPage() {
           <div className="space-y-2">
             <p className="text-sm text-gray-600">
               <span className="font-medium">School:</span> {teamData.schoolName}
-            </p>
-            <p className="text-sm text-gray-600">
-              <span className="font-medium">Teacher:</span> {teamData.teacherName}
             </p>
             <p className="text-sm text-gray-600">
               <span className="font-medium">Email:</span> {teamData.teacherEmail}
@@ -181,18 +257,8 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Quick Actions Card */}
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">Quick Actions</h2>
-          <div className="space-y-3">
-            <button className="w-full text-sm text-indigo-600 hover:text-indigo-800 transition-colors text-left">
-              Download Team Roster
-            </button>
-            <button className="w-full text-sm text-indigo-600 hover:text-indigo-800 transition-colors text-left">
-              Update Contact Information
-            </button>
-          </div>
-        </div>
+        {/* Countdown Timer Card */}
+        <CountdownTimer />
       </div>
 
       {/* Teams List */}
