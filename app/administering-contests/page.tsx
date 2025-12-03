@@ -96,11 +96,115 @@ const SetupContent = () => (
 )
 
 const IndividualRoundContent = () => (
-  <div className="space-y-6">
+  <div className="space-y-6 w-full">
     <h2 className="text-2xl font-bold text-gray-900">Individual Round</h2>
+
+    {/* Requirements Section */}
+    <div className="bg-blue-50 px-4 py-3 rounded-lg border border-blue-100">
+      <h3 className="text-md font-semibold text-blue-800 mb-3">Details</h3>
+      <div className="flex flex-wrap gap-6 text-sm text-blue-700">
+        <span className="flex items-center">
+          <svg className="h-4 w-4 text-blue-500 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          45 minutes
+        </span>
+        <span className="flex items-center">
+          <svg className="h-4 w-4 text-blue-500 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          20 questions
+        </span>
+        <span className="flex items-center">
+          <svg className="h-4 w-4 text-blue-500 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          No calculator
+        </span>
+        <span className="flex items-center">
+          <svg className="h-4 w-4 text-blue-500 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          One person
+        </span>
+      </div>
+    </div>
+
     <p className="text-gray-600">
-      Students work independently on challenging problems. 30 minutes duration. No calculators allowed.
+      After the timer hits zero, a new screen will open up on each contestant's screen with the rules for the individual round
     </p>
+    <div>
+      <img src="/pages/rules_ind.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Teacher login page" />
+      <p className="text-center text-xs mt-1 text-gray-400">The rules that are on each contestant's screen.</p>
+    </div>
+    <p className="text-gray-600">
+      We advise going through the rules with all of the participants, but they're pretty self-explanatory.
+    </p>
+    <p className="text-gray-600">
+      Eventually, the rules page will also close and the contest interface will open.
+    </p>
+    <div>
+      <img src="/pages/indiv.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Teacher login page" />
+      <p className="text-center text-xs mt-1 text-gray-400">The contest interface for the individual round.</p>
+    </div>
+    <p className="text-gray-600">
+      There will be a submit button on the last question, but if the user fails to submit, the test will auto-submit once the timer hits zero.
+    </p>
+    <p className="text-gray-600">
+      The user will then be redirected to the pages for the subsequent rounds.
+    </p>
+
+    {/* FAQ Section */}
+    {/* FAQ Section */}
+    <div className="bg-green-50 p-6 rounded-lg border border-green-100 mt-8">
+      <h3 className="text-xl font-semibold text-green-800 mb-4">Frequently Asked Questions</h3>
+      <div className="space-y-4">
+        {/* Existing question */}
+        <div className="bg-white border border-green-200 rounded-lg overflow-hidden">
+          <details className="group">
+            <summary className="flex justify-between items-center p-4 cursor-pointer bg-green-50 hover:bg-green-100">
+              <h4 className="font-medium text-green-700">If a student disconnects during the contest, will they lose their progress?</h4>
+              <svg className="w-5 h-5 text-green-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="p-4 pt-2 text-gray-700">
+              <p>No. If a student gets disconnected during the contest, they can simply log back in using their unique code. The system will save their progress, and they can continue from where they left off. The timer will continue running during the disconnection, so we recommend ensuring a stable internet connection before starting.</p>
+            </div>
+          </details>
+        </div>
+
+        {/* New Question 1 */}
+        <div className="bg-white border border-green-200 rounded-lg overflow-hidden">
+          <details className="group">
+            <summary className="flex justify-between items-center p-4 cursor-pointer bg-green-50 hover:bg-green-100">
+              <h4 className="font-medium text-green-700">What if our internet goes out?</h4>
+              <svg className="w-5 h-5 text-green-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="p-4 pt-2 text-gray-700">
+              <p>If your internet connection is lost, don't worry! The system automatically saves all progress. Once your internet is restored, students can log back in and continue from where they left off. Please note that the contest timer will continue running during the internet outage, so we strongly recommend having a backup internet connection available if possible.</p>
+            </div>
+          </details>
+        </div>
+
+        {/* New Question 2 */}
+        <div className="bg-white border border-green-200 rounded-lg overflow-hidden">
+          <details className="group">
+            <summary className="flex justify-between items-center p-4 cursor-pointer bg-green-50 hover:bg-green-100">
+              <h4 className="font-medium text-green-700">The questions aren't loading</h4>
+              <svg className="w-5 h-5 text-green-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="p-4 pt-2 text-gray-700 space-y-2">
+              <p className="pt-2">Please contact support immediately at <a href="mailto:support@canadianmathleague.com" className="text-green-600 hover:underline">support@canadianmathleague.com</a> with details about the issue.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
   </div>
 )
 
@@ -293,8 +397,42 @@ export default function AdministeringContestsPage() {
                     <img src="/pages/join.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Student details" />
                     <p className="text-center text-xs mt-1 text-gray-400">The student should enter their code on the join page.</p>
                   </div>
+                  <p className="text-sm text-gray-500">
+                    After entering their code, they will be redirected to their competition portal.
+                  </p>
+                  <div>
+                    <img src="/pages/student.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Student details" />
+                    <p className="text-center text-xs mt-1 text-gray-400">The student will be redirected to their student portal.</p>
+                  </div>
+                  <p>
+                    After this, they should be all set! Make sure that every student is logged in before the competition starts.
+                  </p>
+
                 </div>
               </details>
+
+              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+                <h3 className="text-lg font-medium text-green-800 mb-4">Checklist</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
+                    <span className="ml-3 text-gray-700">Understand Contest Requirements</span>
+                  </li>
+                  <li className="flex items-start">
+                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
+                    <span className="ml-3 text-gray-700">Login and verify all dashboard details</span>
+                  </li>
+                  <li className="flex items-start">
+                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
+                    <span className="ml-3 text-gray-700">Distribute unique student codes to each participant</span>
+                  </li>
+                  <li className="flex items-start">
+                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
+                    <span className="ml-3 text-gray-700">Make sure each participant is logged in before the contest starts.</span>
+                  </li>
+
+                </ul>
+              </div>
             </div>
           </div>
         );
@@ -334,10 +472,7 @@ export default function AdministeringContestsPage() {
       case 'contest-day-individual':
         return (
           <div className="p-6 w-full">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Individual Round</h2>
-            <p className="text-gray-600">
-              Students work independently on challenging problems. 30 minutes duration. No calculators allowed.
-            </p>
+            <IndividualRoundContent />
           </div>
         );
 

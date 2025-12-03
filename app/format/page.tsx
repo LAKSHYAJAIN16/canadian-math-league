@@ -1,8 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Trophy, Users, Clock, Calendar, Award, ChevronRight, MapPin } from 'lucide-react'
+import { Trophy, Users, Clock, Calendar, Award, ChevronRight, MapPin, Grid3x3Icon, Fingerprint } from 'lucide-react'
 import { useState } from 'react'
+import { FaTeamspeak } from 'react-icons/fa6'
 type TabType = 'group' | 'regional' | 'national'
 
 interface Championship {
@@ -44,13 +45,14 @@ const FormatPage = () => {
     group: {
       title: "Group Stage",
       icon: Users,
+      date: 'December 17, 2025',
+      duration: '1 hour 30 minutes (90 minutes)',
       description: "The initial phase featuring three distinct competitions",
       details: [
         "16 teams per conference (Western & Ontario)",
-        "3 groups of 5-6 teams each per conference",
-        "**Completely free to participate**",
+        "4 groups of 4 teams each per conference",
+        "Completely free to participate",
         "Fully online competition",
-        "Competition dates: January 15-30, 2025"
       ],
       rounds: [
         {
@@ -58,30 +60,43 @@ const FormatPage = () => {
           description: "Individual multiple-choice competition inspired by AMC (American Mathematics Competitions)",
           icon: Award,
           details: [
-            "30 multiple-choice questions",
-            "60-minute time limit",
-            "Each question is worth 1 point",
+            "20 multiple-choice questions",
+            "45 minute time limit",
+            "Each question is worth 10 points",
             "No penalty for incorrect answers"
           ]
         },
         {
           title: "Team Rush",
-          description: "Fast-paced team competition inspired by HMMT (Harvard-MIT Mathematics Tournament)",
+          description: "Team competition that requires collaborative problem solving and teamwork!",
           icon: Clock,
           details: [
-            "30 problems to solve as a team",
-            "30-minute time limit",
-            "Collaborative problem-solving"
+            "10 problems to solve as a team",
+            "30 minute time limit",
+            "Each question is worth 30 points!"
           ]
         },
         {
-          title: "Head-to-Head Matchups",
-          description: "Direct team competition inspired by MATHCOUNTS Countdown Round",
-          icon: Trophy,
+          title: "Capture the Problem",
+          description: "A strategic battle of speed and accuracy where every problem is a territory to conquer!",
+          icon: Grid3x3Icon,
           details: [
-            "Teams compete directly against each other",
-            "Simultaneous problem-solving",
-            "Points awarded for correct solutions"
+            "Each group of teams gets 50 challenging problems arranged in a grid",
+            "Teams 'capture' a problem when they solve it - nobody else can solve it!",
+            'Teams get points for capturing problems!',
+            "20 minute time limit",
+            "500 points up for grabs!"
+          ]
+        },
+        {
+          title: "Head to Head Matchups ",
+          description: "Team vs Team matchups, collaborative problem-solving!",
+          icon: FaTeamspeak,
+          details: [
+            "Two teams get a set of 5 problems.",
+            "Teams have to answer them in 2 minutes.",
+            "Team with the most points wins.",
+            "300 points up for grabs!"
           ]
         }
       ]
@@ -142,10 +157,7 @@ const FormatPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-red-600">
               Tournament Format
             </h1>
-            <div className="h-1 w-16 bg-red-500 rounded-full my-2"></div>
-            <p className="text-xl text-gray-700 max-w-2xl">
-              Experience the premier math competition in Canada, where students showcase their problem-solving skills across multiple rounds of challenging mathematical problems.
-            </p>
+            <div className="h-1 w-64 bg-red-500 rounded-full my-2"></div>
           </div>
         </div>
 

@@ -10,6 +10,7 @@ import { Menu, X } from 'lucide-react'
 const Navbar = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   // Show only logo on dashboard page
   if (pathname === '/platform/dashboard') {
@@ -35,12 +36,25 @@ const Navbar = () => {
   }
   if (pathname === "/o/team-competition") {
     return null;
-  } 
+  }
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: '/format', label: 'Format' },
-    { href: '/2025-season', label: '2025 Season' },
-    { href: '/about', label: 'About' },
+    {
+      label: 'About',
+      subItems: [
+        { href: '/about', label: 'Mission' },
+        { href: '/format', label: 'Format' },
+        { href: '/team', label: 'Team' },
+        { href: '/about/sponsors', label: 'Sponsors' },
+        { href: '/contact', label: 'Contact Us' }
+      ]
+    },
+    {
+      href: '/2025-season',
+      label: '2025 Season',
+      className: '',
+      highlight: true
+    },
     {
       label: 'Pre-Season',
       subItems: [
@@ -74,33 +88,54 @@ const Navbar = () => {
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="text-black-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                    className={`${item.className || 'text-black-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200'}`}
                   >
                     {item.label}
                   </Link>
                 ) : (
                   <>
-                    <button className="text-black-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center">
-                      {item.label}
-                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    <div className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
-                      {item.subItems?.map((subItem) => (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    <div className="relative">
+                      <button
+                        onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
+                        className="text-black-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center"
+                      >
+                        {item.label}
+                        <svg
+                          className={`ml-1 w-4 h-4 transition-transform duration-200 ${openDropdown === item.label ? 'transform rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          {subItem.label}
-                        </Link>
-                      ))}
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div
+                        className={`absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-50 ${openDropdown === item.label ? 'block' : 'hidden'}`}
+                        onMouseLeave={() => setOpenDropdown(null)}
+                      >
+                        {item.subItems?.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            {subItem.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </>
                 )}
               </div>
             ))}
+            <Link
+              href="/administering-contests"
+              className="text-black-600 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors duration-200"
+            >
+              Teacher Portal
+            </Link>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -138,27 +173,41 @@ const Navbar = () => {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${item.label === '2025 Season'
-                          ? 'text-red-600 hover:text-red-800 font-semibold bg-red-50'
-                          : 'text-gray-900 hover:text-gray-600'
+                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${item.highlight
+                        ? 'text-red-600 hover:text-red-800 font-semibold bg-red-50'
+                        : 'text-gray-900 hover:text-gray-600'
                         }`}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
-                      {item.label === '2025 Season' && <span className="ml-1.5 text-xs">🔥</span>}
+                      {item.highlight && <span className="ml-1.5 text-xs">🔥</span>}
                     </Link>
                   ) : (
                     <div className="space-y-1">
-                      <div className="px-3 py-2 text-base font-medium text-gray-900">
+                      <button
+                        onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
+                        className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-900"
+                      >
                         {item.label}
-                      </div>
-                      <div className="pl-4">
+                        <svg
+                          className={`ml-1 w-4 h-4 transition-transform duration-200 ${openDropdown === item.label ? 'transform rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div className={`pl-4 ${openDropdown === item.label ? 'block' : 'hidden'}`}>
                         {item.subItems?.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md"
-                            onClick={() => setIsOpen(false)}
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setOpenDropdown(null);
+                            }}
                           >
                             {subItem.label}
                           </Link>

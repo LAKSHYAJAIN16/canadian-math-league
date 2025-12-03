@@ -30,7 +30,14 @@ const teamMembers: TeamMember[] = [
   },
 ];
 
-const CompetitionLogo = ({ src, alt, isCanadian = false, url }) => {
+interface CompetitionLogoProps {
+  src: string;
+  alt: string;
+  isCanadian?: boolean;
+  url: string;
+}
+
+const CompetitionLogo = ({ src, alt, isCanadian = false, url }: CompetitionLogoProps) => {
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className="block h-full">
       <motion.div
