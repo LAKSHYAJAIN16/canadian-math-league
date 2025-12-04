@@ -9,15 +9,16 @@ type TabType = 'group' | 'regional' | 'national'
 interface Championship {
   title: string;
   location: string;
-  details: string[];
+  details?: string[];
 }
 
 interface CompetitionBase {
   title: string;
   description: string;
-  details: string[];
   icon: any;
   color?: 'red' | 'green';
+  details?: string[];
+  rounds?: Round[];
   championships?: Championship[];
 }
 
@@ -29,7 +30,9 @@ interface OtherCompetition extends CompetitionBase {
   // No rounds for other competition types
 }
 
-type Competition = GroupCompetition | OtherCompetition;
+type Competition = (GroupCompetition | OtherCompetition) & {
+  rounds?: Round[];
+};
 
 interface Round {
   title: string;
@@ -105,44 +108,72 @@ const FormatPage = () => {
       title: "Regional Championships",
       icon: MapPin,
       color: "green" as const,
-      description: "In-person conference finals to determine the best in each region",
-      details: [
-        "Two parallel regional championships",
-        "Single-elimination bracket in each region",
-        "Quarterfinals, Semifinals, and Finals in each region",
-        "Top teams from each region qualify for National Championships"
+      description: "In-person competition featuring individual and team events",
+      rounds: [
+        {
+          title: "Individual Round",
+          description: "AIME-style individual competition with numerical answers",
+          icon: Fingerprint,
+          details: [
+            "15 challenging problems",
+            "1 hour time limit",
+            "AIME-style format with numerical answers only",
+            "Tiebreaker round (points not added to total score)",
+            "Focus on problem-solving under time pressure"
+          ]
+        },
+        {
+          title: "Guts Round",
+          description: "Fast-paced team problem solving inspired by HMMT",
+          icon: Users,
+          details: [
+            "35 total problems divided into 7 sets of 5",
+            "45 minute time limit",
+            "Teams work on one set at a time",
+            "Submit answers immediately after completing each set",
+            "Points awarded based on correct solutions"
+          ]
+        },
+        {
+          title: "Power Guts",
+          description: "Advanced proof-based team challenge",
+          icon: Award,
+          details: [
+            "8 proof-based problems total",
+            "2 problems for each of 4 subject areas",
+            "30 minute time limit",
+            "Emphasis on mathematical rigor and clarity",
+            "Full solutions with proofs required"
+          ]
+        },
+        {
+          title: "MathRoyale",
+          description: "Head-to-head countdown competition similar to MathCounts",
+          icon: Clock,
+          details: [
+            "Fast-paced individual competition",
+            "Competitors race to solve problems first",
+            "Single-elimination bracket format",
+            "Timed problem-solving rounds",
+            "Tests both speed and accuracy"
+          ]
+        }
       ],
       championships: [
         {
           title: "Ontario Championship",
-          location: "In-person in Toronto, ON",
-          details: [
-            "Top teams from Ontario conference",
-            "Single-elimination bracket",
-            "Champion qualifies for Nationals"
-          ]
+          location: "Toronto, ON"
         },
         {
           title: "Western Championship",
-          location: "In-person in Vancouver, BC",
-          details: [
-            "Top teams from Western conference",
-            "Single-elimination bracket",
-            "Champion qualifies for Nationals"
-          ]
+          location: "Vancouver, BC"
         }
       ]
     } as unknown as Competition,
     national: {
       title: "National Championships",
       icon: Trophy,
-      description: "The ultimate showdown of Canada's top math talent",
-      details: [
-        "Top teams from Western and Ontario conferences",
-        "Two-day competition",
-        "Individual and team events",
-        "National champion crowned"
-      ]
+      description: "Details coming soon!"
     }
   }
 
@@ -167,13 +198,12 @@ const FormatPage = () => {
             <button
               key={key}
               onClick={() => setActiveTab(key as TabType)}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                activeTab === key
-                  ? activeTab === 'regional' 
-                    ? 'bg-green-700 text-white' 
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${activeTab === key
+                  ? activeTab === 'regional'
+                    ? 'bg-green-700 text-white'
                     : 'bg-red-700 text-white'
                   : 'bg-white text-gray-700 hover:bg-red-50'
-              }`}
+                }`}
             >
               {comp.title}
             </button>
@@ -197,36 +227,36 @@ const FormatPage = () => {
                   {activeTab === 'group' ? 'Online' : activeTab === 'regional' ? 'Single Elimination' : 'Championship'}
                 </div>
               </div>
-              
+
               {/* Competition Details */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t border-white/20">
                 <div className="flex items-center space-x-2">
                   <Calendar className="h-5 w-5 text-white/80" />
                   <span className="text-white/90">
-                    {activeTab === 'group' 
-                      ? 'Jan 15-30, 2025' 
-                      : activeTab === 'regional' 
-                        ? 'Feb 10-15, 2025' 
-                        : 'Mar 20-21, 2025'}
+                    {activeTab === 'group'
+                      ? 'Dec 17, 2025'
+                      : activeTab === 'regional'
+                        ? 'Jan 18-19, 2026'
+                        : 'TBD'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Users className="h-5 w-5 text-white/80" />
                   <span className="text-white/90">
-                    {activeTab === 'group' 
-                      ? '32 Teams (16 per conference)' 
-                      : activeTab === 'regional' 
-                        ? '16 Teams (8 per conference)' 
-                        : '8 Finalist Teams'}
+                    {activeTab === 'group'
+                      ? '32 Teams (16 per conference)'
+                      : activeTab === 'regional'
+                        ? '12 Teams (6 per conference)'
+                        : '6 Finalist Teams'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Award className="h-5 w-5 text-white/80" />
                   <span className="text-white/90">
-                    {activeTab === 'group' 
-                      ? 'Free to Participate' 
-                      : activeTab === 'regional' 
-                        ? 'Qualification Required' 
+                    {activeTab === 'group'
+                      ? 'Free to Participate'
+                      : activeTab === 'regional'
+                        ? 'Qualification Required'
                         : 'Invitation Only'}
                   </span>
                 </div>
@@ -235,90 +265,143 @@ const FormatPage = () => {
           </div>
           <div className="p-6">
 
-          <p className="text-lg text-gray-700 mb-8 leading-relaxed">{currentCompetition.description}</p>
-          
-          {activeTab === 'regional' && currentCompetition.championships && (
-            <div className="mt-10">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Regional Championships</h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {currentCompetition.championships.map((championship: Championship, index: number) => (
-                  <motion.div
-                    key={championship.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
-                  >
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">{championship.title}</h4>
-                    <div className="flex items-center text-sm text-gray-600 mb-3">
-                      <MapPin className="h-4 w-4 mr-1.5" />
-                      {championship.location}
-                    </div>
-                    <div className="space-y-2">
-                      {championship.details.map((detail: string, i: number) => (
-                        <div key={i} className="flex items-start">
-                          <ChevronRight className="h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                          <span className="text-sm text-gray-700">{detail}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          )}
+            <p className="text-lg text-gray-700 mb-8 leading-relaxed">{currentCompetition.description}</p>
 
-          <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-            <span className="w-1.5 h-6 bg-green-500 rounded-full mr-2"></span>
-            Key Details
-          </h3>
-          <div className="space-y-4 mb-8 pl-4 border-l-2 border-gray-100">
-            {currentCompetition.details.map((detail, index) => (
-              <div key={index} className="flex items-start">
-                <ChevronRight className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                <p className="text-gray-700">{detail}</p>
+            {/* Key Details Section */}
+            {currentCompetition.details && currentCompetition.details.length > 0 && (
+              <div className="mb-10">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                  <span className="w-1.5 h-6 bg-red-500 rounded-full mr-2"></span>
+                  Key Details
+                </h3>
+                <div className="space-y-2 pl-4 border-l-2 border-gray-200">
+                  {currentCompetition.details?.map((detail: string, index: number) => (
+                    <div key={index} className="flex items-start">
+                      <ChevronRight className="h-5 w-5 text-red-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">{detail}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
+            )}
 
-          {/* Rounds for Group Stage */}
-          {activeTab === 'group' && 'rounds' in currentCompetition && (
-            <div className="mt-10">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Rounds</h3>
-              <div className="space-y-6">
-                {('rounds' in currentCompetition ? currentCompetition.rounds : []).map((round, index) => (
-                  <motion.div
-                    key={round.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-gray-50 p-6 rounded-lg border border-gray-200"
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className="bg-white/20 p-3 rounded-xl">
-                        {typeof round.icon === 'function' ? 
-                          <round.icon className="h-5 w-5 text-blue-600" /> : 
-                          <round.icon className="h-5 w-5 text-blue-600" />
-                        }
+            {activeTab === 'regional' && currentCompetition.championships && (
+              <div className="mt-10">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Regional Championships</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  
+                  {currentCompetition.championships.map((championship: Championship, index: number) => (
+                    <motion.div
+                      key={championship.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">{championship.title}</h4>
+                      <div className="flex items-center text-sm text-gray-600 mb-3">
+                        <MapPin className="h-4 w-4 mr-1.5" />
+                        {championship.location}
                       </div>
-                      <h4 className="text-lg font-semibold text-gray-900">
-                        {round.title}
-                      </h4>
-                    </div>
-                    <p className="text-gray-600 text-sm mb-4">{round.description}</p>
-                    <ul className="space-y-2">
-                      {round.details.map((detail, i) => (
-                        <li key={i} className="flex items-start text-sm text-gray-700">
-                          <ChevronRight className="h-4 w-4 text-gray-400 mt-0.5 mr-2 flex-shrink-0" />
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
+                      {championship.details && championship.details.length > 0 && (
+                        <div className="space-y-2">
+                          {championship.details.map((detail: string, i: number) => (
+                            <div key={i} className="flex items-start">
+                              <ChevronRight className="h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                              <span className="text-sm text-gray-700">{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+
+            {/* Rounds Section */}
+            {activeTab === 'group' && 'rounds' in currentCompetition && (
+              <div className="mt-10">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                  <span className="w-1.5 h-6 bg-red-500 rounded-full mr-2"></span>
+                  Rounds
+                </h3>
+                <div className="space-y-6">
+                  {currentCompetition.rounds?.map((round, index) => (
+                    <motion.div
+                      key={round.title}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-gray-50 p-6 rounded-lg border border-gray-200"
+                    >
+                      <div className="flex items-center mb-4">
+                        <div className="bg-white/20 p-3 rounded-xl">
+                          {typeof round.icon === 'function' ?
+                            <round.icon className="h-5 w-5 text-red-600" /> :
+                            <round.icon className="h-5 w-5 text-red-600" />
+                          }
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900">
+                          {round.title}
+                        </h4>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-4">{round.description}</p>
+                      <ul className="space-y-2">
+                        {round.details.map((detail, i) => (
+                          <li key={i} className="flex items-start text-sm text-gray-700">
+                            <ChevronRight className="h-4 w-4 text-gray-400 mt-0.5 mr-2 flex-shrink-0" />
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Regional Rounds Section */}
+            {activeTab === 'regional' && 'rounds' in currentCompetition && (
+              <div className="mt-10">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                  <span className="w-1.5 h-6 bg-green-500 rounded-full mr-2"></span>
+                  Competition Rounds
+                </h3>
+                <div className="space-y-6">
+                  {currentCompetition.rounds?.map((round, index) => (
+                    <motion.div
+                      key={round.title}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-gray-50 p-6 rounded-lg border border-gray-200"
+                    >
+                      <div className="flex items-center mb-4">
+                        <div className="bg-white/20 p-3 rounded-xl">
+                          {typeof round.icon === 'function' ?
+                            <round.icon className="h-5 w-5 text-green-600" /> :
+                            <round.icon className="h-5 w-5 text-green-600" />
+                          }
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900">
+                          {round.title}
+                        </h4>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-4">{round.description}</p>
+                      <ul className="space-y-2">
+                        {round.details.map((detail, i) => (
+                          <li key={i} className="flex items-start text-sm text-gray-700">
+                            <ChevronRight className="h-4 w-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
