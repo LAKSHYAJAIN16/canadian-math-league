@@ -50,7 +50,7 @@ const FormatPage = () => {
       icon: Users,
       date: 'December 17, 2025',
       duration: '1 hour 30 minutes (90 minutes)',
-      description: "The initial phase featuring three distinct competitions",
+      description: "The initial phase featuring four distinct competitions",
       details: [
         "16 teams per conference (Western & Ontario)",
         "4 groups of 4 teams each per conference",
@@ -129,9 +129,7 @@ const FormatPage = () => {
           details: [
             "35 total problems divided into 7 sets of 5",
             "45 minute time limit",
-            "Teams work on one set at a time",
-            "Submit answers immediately after completing each set",
-            "Points awarded based on correct solutions"
+            "Teams work on one set at a time"
           ]
         },
         {
@@ -142,20 +140,17 @@ const FormatPage = () => {
             "8 proof-based problems total",
             "2 problems for each of 4 subject areas",
             "30 minute time limit",
-            "Emphasis on mathematical rigor and clarity",
             "Full solutions with proofs required"
           ]
         },
         {
           title: "MathRoyale",
-          description: "Head-to-head countdown competition similar to MathCounts",
+          description: "Head-to-head buzzer round",
           icon: Clock,
           details: [
-            "Fast-paced individual competition",
-            "Competitors race to solve problems first",
-            "Single-elimination bracket format",
-            "Timed problem-solving rounds",
-            "Tests both speed and accuracy"
+            "Buzzer round, live and fully timed",
+            "Tests both speed and accuracy",
+            "Similar to MathCounts Countdown or Quiz Bowls"
           ]
         }
       ],

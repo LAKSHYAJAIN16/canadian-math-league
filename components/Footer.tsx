@@ -32,6 +32,9 @@ const Footer = () => {
   if (pathname === "/o/team-competition") {
     return null;
   }
+    if(pathname=="/o/capture-the-problem") {
+    return null;
+  }
   return (
     <footer className="bg-white border-t-2 border-gray-300 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

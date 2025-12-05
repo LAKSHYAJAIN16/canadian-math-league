@@ -37,6 +37,9 @@ const Navbar = () => {
   if (pathname === "/o/team-competition") {
     return null;
   }
+  if(pathname=="/o/capture-the-problem") {
+    return null;
+  }
   const navItems = [
     { href: '/', label: 'Home' },
     {
