@@ -321,173 +321,153 @@ const HomePage = () => {
       </section>
 
       {/* How It Works - Enhanced Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-white to-gray-50">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
             >
-              <span className="inline-block px-3 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-full mb-4">
-                The Process
-              </span>
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1, duration: 0.6 }}
-              >
-                How It <span className="text-red-600">Works</span>
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-600 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-              >
-                Your journey to mathematical excellence in three simple steps
-              </motion.p>
+              How It <span className="text-red-600">Works</span>
             </motion.div>
+            <motion.p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Your journey to mathematical excellence in three simple steps
+            </motion.p>
           </div>
 
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-100 via-red-300 to-red-100"></div>
-            
-            {/* Steps */}
-            <div className="space-y-20 md:space-y-32">
-              {[
-                {
-                  number: '01',
-                  title: 'Register Your Team',
-                  description: 'Sign up your school team through our online portal. Each team can have 4-6 students from the same school.',
-                  icon: <Users className="h-8 w-8 text-white" />,
-                  color: 'from-red-500 to-red-400'
-                },
-                {
-                  number: '02',
-                  title: 'Prepare & Practice',
-                  description: 'Access our exclusive practice materials and past papers. Our resources are designed to challenge and prepare you for competition day.',
-                  icon: <BookOpen className="h-8 w-8 text-white" />,
-                  color: 'from-blue-500 to-blue-400'
-                },
-                {
-                  number: '03',
-                  title: 'Compete & Win',
-                  description: 'Showcase your skills in the tournament. Top teams advance through group stages to regionals and nationals.',
-                  icon: <Trophy className="h-8 w-8 text-white" />,
-                  color: 'from-amber-500 to-amber-400'
-                }
-              ].map((step, index) => (
-                <motion.div 
-                  key={step.number}
-                  className={`relative flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16`}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { 
-                      duration: 0.6,
-                      ease: [0.16, 1, 0.3, 1]
-                    }
-                  }}
-                  viewport={{ once: true, margin: "-100px" }}
-                >
-                  {/* Step Number & Icon */}
-                  <div className={`relative z-10 flex-shrink-0 w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} shadow-lg flex items-center justify-center transform transition-all duration-300 group-hover:scale-110`}>
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      whileInView={{ 
-                        scale: 1, 
-                        opacity: 1,
-                        transition: { delay: 0.2 + (index * 0.2), duration: 0.5 }
-                      }}
-                      viewport={{ once: true }}
-                    >
-                      {step.icon}
-                    </motion.div>
-                    <motion.span 
-                      className="absolute -bottom-2 -right-2 bg-white text-gray-900 font-bold rounded-full w-8 h-8 flex items-center justify-center text-sm shadow-md"
-                      initial={{ scale: 0 }}
-                      whileInView={{ 
-                        scale: 1,
-                        transition: { 
-                          delay: 0.3 + (index * 0.2),
-                          type: 'spring',
-                          stiffness: 300,
-                          damping: 15
-                        }
-                      }}
-                      viewport={{ once: true }}
-                    >
-                      {step.number}
-                    </motion.span>
+          {/* Tab Navigation */}
+          <div className="flex justify-center gap-4 mb-12">
+            {[
+              { id: 'register', label: 'Register', icon: Users },
+              { id: 'prepare', label: 'Prepare', icon: BookOpen },
+              { id: 'compete', label: 'Compete', icon: Trophy }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors ${
+                  tab.id === 'register'
+                    ? 'bg-red-700 text-white'
+                    : 'bg-white text-gray-700 hover:bg-red-50'
+                }`}
+              >
+                <tab.icon className="h-5 w-5" />
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Register Tab Content */}
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-12">
+            <div className="p-8">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-400 rounded-xl flex items-center justify-center">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Register Your Team</h2>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full font-medium">Free</span>
+                    <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full font-medium">Online</span>
+                    <span className="text-sm text-gray-500">• Registration Open</span>
                   </div>
-                  
-                  {/* Content */}
-                  <motion.div 
-                    className={`bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex-1 w-full transform transition-all duration-300 hover:shadow-xl ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}
-                    whileHover={{ 
-                      y: -5,
-                      transition: { duration: 0.2 }
-                    }}
+                </div>
+              </div>
+              
+              <p className="text-gray-700 mb-6">Join the competition by registering your school team through our simple online process.</p>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  {
+                    title: "Team Formation",
+                    description: "Create a team of 4-6 students from the same school",
+                    icon: Users,
+                    details: [
+                      "4-6 students per team",
+                      "All members must attend the same school",
+                      "No registration fee required",
+                      "Open to all high school students"
+                    ]
+                  },
+                  {
+                    title: "Registration Process",
+                    description: "Simple steps to get your team registered",
+                    icon: CheckCircle,
+                    details: [
+                      "Fill out the online registration form",
+                      "Designate a team captain",
+                      "Provide school verification",
+                      "Receive confirmation email"
+                    ]
+                  }
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * i }}
+                    className="p-6 bg-gray-50 rounded-lg border border-gray-100"
                   >
-                    <motion.h3 
-                      className="text-2xl font-bold text-gray-900 mb-3"
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { delay: 0.1 + (index * 0.1) }
-                      }}
-                      viewport={{ once: true }}
-                    >
-                      {step.title}
-                    </motion.h3>
-                    <motion.p 
-                      className="text-gray-600"
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { delay: 0.2 + (index * 0.1) }
-                      }}
-                      viewport={{ once: true }}
-                    >
-                      {step.description}
-                    </motion.p>
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-red-100 rounded-lg">
+                        <item.icon className="h-5 w-5 text-red-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                        <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                        <ul className="mt-3 space-y-2">
+                          {item.details.map((detail, j) => (
+                            <li key={j} className="flex items-start">
+                              <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm text-gray-600">{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </motion.div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
+              
+              <div className="mt-8 p-6 bg-red-50 rounded-lg border border-red-100">
+                <h3 className="font-medium text-red-800 mb-3">Important Dates</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <Calendar className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700"><span className="font-medium">Early Registration:</span> Until November 15, 2025</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Calendar className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700"><span className="font-medium">Final Registration Deadline:</span> December 1, 2025</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Calendar className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700"><span className="font-medium">Competition Day:</span> December 17, 2025</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="mt-8 text-center">
+                <Link
+                  href="/register"
+                  className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 transition-colors"
+                >
+                  Register Your Team Now
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        
-        {/* Add custom animation keyframes */}
-        <style jsx global>{`
-          @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-          }
-          .animate-blob {
-            animation: blob 7s infinite;
-          }
-          .animation-delay-2000 {
-            animation-delay: 2s;
-          }
-        `}</style>
       </section>
 
       {/* Prizes Section */}

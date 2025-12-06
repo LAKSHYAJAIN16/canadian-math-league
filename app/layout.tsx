@@ -8,8 +8,9 @@ const alike = Alike({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-alike',
-  fallback: ['serif']
+  fallback: ['serif'],
+  preload: true,
+  adjustFontFallback: true
 })
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${alike.className} font-sans`}>
+      <body className={alike.className}>
         <Navbar />
         <main className="min-h-screen">
           {children}
