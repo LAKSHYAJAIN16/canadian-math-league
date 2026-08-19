@@ -18,7 +18,7 @@ export default async function DashboardPage() {
 
   if (!school) {
     return (
-      <div className="bg-redpen-100 border-l-4 border-redpen-500 p-4">
+      <div className="bg-redpen-50 rounded-2xl p-4">
         <p className="text-sm text-redpen-700">Team data not found.</p>
       </div>
     )

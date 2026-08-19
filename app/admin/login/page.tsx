@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
         <h1 className="text-xl font-bold text-graphite-900 mb-6 text-center">Admin Sign In</h1>
 
         {error && (
-          <div className="mb-4 bg-redpen-100 border-l-4 border-redpen-500 p-3">
+          <div className="mb-4 bg-redpen-50 rounded-2xl p-3">
             <p className="text-sm text-redpen-700">{error}</p>
           </div>
         )}

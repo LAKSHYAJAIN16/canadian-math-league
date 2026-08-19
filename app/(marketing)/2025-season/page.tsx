@@ -580,7 +580,7 @@ const Season2025Page = () => {
                   <p className="text-graphite-600 mb-4">
                     The top teams will qualify for the Regional Stage through the following process:
                   </p>
-                  <div className="bg-blueprint-50 p-4 rounded-lg mb-4 border-l-4 border-redpen-500">
+                  <div className="bg-redpen-50 p-4 rounded-2xl mb-4">
                     <h4 className="font-semibold text-redpen-700 mb-2">12 teams, 6 from each region</h4>
                     <ul className="list-disc list-inside space-y-2 text-graphite-700">
                       <li><span className="font-medium">4 Group Champions</span> - Top team from each group</li>
@@ -595,7 +595,7 @@ const Season2025Page = () => {
                   <p className="text-graphite-600 mb-4">
                     The top teams will qualify for the National Stage through the following process:
                   </p>
-                  <div className="bg-blueprint-50 p-4 rounded-lg mb-4 border-l-4 border-redpen-500">
+                  <div className="bg-redpen-50 p-4 rounded-2xl mb-4">
                     <h4 className="font-semibold text-redpen-700 mb-2">6 teams, 3 from each region</h4>
                     <ul className="list-disc list-inside space-y-2 text-graphite-700">
                       <li><span className="font-medium">The top 3 teams at each regional tournament will qualify for the national championships.</span></li>

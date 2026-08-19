@@ -163,7 +163,7 @@ export default function TeamCompetitionPage() {
             <li>Work together with your team to solve all questions within the time limit.</li>
             <li>Answers are saved automatically as your team types.</li>
           </ul>
-          <div className="mt-8 p-4 bg-redpen-100 border-l-4 border-redpen-500">
+          <div className="mt-8 p-4 bg-redpen-50 rounded-2xl">
             <p className="text-redpen-700">
               <span className="font-semibold">On Cheating:</span> Any form of cheating will result
               in immediate disqualification of the entire team.
