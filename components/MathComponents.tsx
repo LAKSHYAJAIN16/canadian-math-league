@@ -26,7 +26,7 @@ export const EquationHeading: React.FC<EquationHeadingProps> = ({
   const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements
   
   return (
-    <HeadingTag className={`equation-heading text-gray-900 font-bold ${className}`}>
+    <HeadingTag className={`equation-heading text-graphite-900 font-bold ${className}`}>
       {children}
     </HeadingTag>
   )

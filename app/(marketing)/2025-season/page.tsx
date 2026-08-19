@@ -305,7 +305,7 @@ const Season2025Page = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${activeTab === tab
                   ? 'bg-redpen-600 text-white shadow-lg'
-                  : 'bg-paper-ink text-graphite-700 hover:bg-gray-200 hover:shadow-md'
+                  : 'bg-paper-ink text-graphite-700 hover:bg-paper-line hover:shadow-md'
                   }`}
               >
                 {tab}
@@ -418,11 +418,11 @@ const Season2025Page = () => {
 
                     {/* Western Conference */}
                     <div className="text-center">
-                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-400 rounded-xl p-6 shadow-lg">
-                        <h3 className="text-xl font-bold text-blue-800 mb-1 font-serif italic">Western Championships</h3>
-                        <div className="border-t border-blue-300 pt-2 mt-2">
-                          <div className="text-xs text-blue-600 font-semibold italic font-serif">Vancouver, BC</div>
-                          <div className="text-xs text-blue-600 mt-0.5 italic font-serif">{SEASON_STAGES.regionals.displayDate}</div>
+                      <div className="bg-redpen-50 rounded-3xl p-6 shadow-soft">
+                        <h3 className="text-xl font-bold text-graphite-900 mb-1">Western Championships</h3>
+                        <div className="border-t border-redpen-200 pt-2 mt-2">
+                          <div className="text-xs text-redpen-700 font-semibold">Vancouver, BC</div>
+                          <div className="text-xs text-redpen-700 mt-0.5">{SEASON_STAGES.regionals.displayDate}</div>
                         </div>
                       </div>
                     </div>
@@ -436,14 +436,14 @@ const Season2025Page = () => {
 
                     {/* Championship */}
                     <div className="text-center">
-                      <div className="bg-paper border border-graphite-300 rounded-lg p-6 shadow-sm">
+                      <div className="bg-paper rounded-3xl p-6 shadow-soft-lg">
                         <div className="flex justify-center mb-1">
                           <img src="/logo.png" alt="CML Logo" className="h-20 w-20" />
                         </div>
-                        <h3 className="text-xl font-semibold text-graphite-900 mb-1 font-serif italic">Canadian Championship</h3>
+                        <h3 className="text-xl font-bold text-graphite-900 mb-1">Canadian Championship</h3>
                         <div className="border-t border-paper-line pt-2 mt-2">
-                          <div className="text-xs text-graphite-600 font-semibold italic font-serif">{SEASON_STAGES.nationals.location}</div>
-                          <div className="text-xs text-graphite-600 mt-0.5 italic font-serif">{SEASON_STAGES.nationals.displayDate}</div>
+                          <div className="text-xs text-graphite-600 font-semibold">{SEASON_STAGES.nationals.location}</div>
+                          <div className="text-xs text-graphite-600 mt-0.5">{SEASON_STAGES.nationals.displayDate}</div>
                         </div>
                       </div>
                     </div>
@@ -457,11 +457,11 @@ const Season2025Page = () => {
 
                     {/* Ontario Conference */}
                     <div className="text-center">
-                      <div className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-400 rounded-xl p-6 shadow-lg">
-                        <h3 className="text-xl font-bold text-green-800 mb-1 font-serif italic">Ontario Championships</h3>
-                        <div className="border-t border-green-300 pt-2 mt-2">
-                          <div className="text-xs text-blueprint-700 font-semibold italic font-serif">Toronto, ON</div>
-                          <div className="text-xs text-blueprint-700 mt-0.5 italic font-serif">{SEASON_STAGES.regionals.displayDate}</div>
+                      <div className="bg-redpen-50 rounded-3xl p-6 shadow-soft">
+                        <h3 className="text-xl font-bold text-graphite-900 mb-1">Ontario Championships</h3>
+                        <div className="border-t border-redpen-200 pt-2 mt-2">
+                          <div className="text-xs text-redpen-700 font-semibold">Toronto, ON</div>
+                          <div className="text-xs text-redpen-700 mt-0.5">{SEASON_STAGES.regionals.displayDate}</div>
                         </div>
                       </div>
                     </div>
@@ -658,7 +658,7 @@ const Season2025Page = () => {
                 </div>
               </div>
 
-              <div className="w-px bg-gray-300 mx-8"></div>
+              <div className="w-px bg-graphite-300 mx-8"></div>
 
               <div className="flex-1">
                 <h2 className="text-2xl font-bold text-graphite-700 mb-6">Group Stage Schedule</h2>

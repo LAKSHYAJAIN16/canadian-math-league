@@ -192,7 +192,7 @@ export default function TeamCompetitionPage() {
               disabled={hasSubmitted}
               className={`font-medium py-2 px-6 rounded-md text-lg transition-colors ${
                 hasSubmitted
-                  ? 'bg-gray-400 cursor-not-allowed text-white'
+                  ? 'bg-graphite-400 cursor-not-allowed text-white'
                   : 'bg-redpen-600 hover:bg-redpen-700 text-white'
               }`}
             >

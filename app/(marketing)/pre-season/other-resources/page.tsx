@@ -80,11 +80,11 @@ export default function OtherResources() {
           ))}
         </div>
 
-        <div className="mt-12 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r">
+        <div className="mt-12 bg-redpen-50 p-6 rounded-2xl">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg
-                className="h-5 w-5 text-blue-400"
+                className="h-5 w-5 text-redpen-500"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -97,7 +97,7 @@ export default function OtherResources() {
               </svg>
             </div>
             <div className="ml-3">
-              <p className="text-sm text-blue-700">
+              <p className="text-sm text-redpen-700">
                 Have a resource to suggest? Contact us to recommend additional math resources for our community.
               </p>
             </div>

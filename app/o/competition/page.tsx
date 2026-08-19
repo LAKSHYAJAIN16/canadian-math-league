@@ -215,7 +215,7 @@ export default function CompetitionPage() {
           </p>
           <button
             onClick={requestFullscreen}
-            className="px-8 py-3 bg-blueprint-800 text-white rounded-lg hover:bg-blueprint-900 transition-colors flex items-center mx-auto"
+            className="px-8 py-3 bg-redpen-600 text-white rounded-lg hover:bg-redpen-700 transition-colors flex items-center mx-auto"
           >
             <Maximize2 className="mr-2" size={20} />
             Enter Fullscreen
@@ -311,28 +311,28 @@ export default function CompetitionPage() {
         ) : testCompleted ? (
           <div className="w-full max-w-4xl mx-auto p-8 text-center">
             <div className="mt-[20%] bg-paper rounded-xl shadow-sm p-8">
-              <h1 className="text-5xl font-bold text-blueprint-700 mb-4">Test Submitted Successfully!</h1>
+              <h1 className="text-5xl font-bold text-redpen-600 mb-4">Test Submitted Successfully!</h1>
               <p className="text-xl text-graphite-700 mb-2">Waiting for the next round...</p>
-              <div className="text-5xl font-bold text-black">
+              <div className="text-5xl font-bold text-graphite-900">
                 {String(roundTimeLeft.minutes).padStart(2, '0')}:{String(roundTimeLeft.seconds).padStart(2, '0')}
               </div>
-              <div className="bg-blueprint-50 p-4 rounded-lg mt-6 border border-blueprint-200">
-                <p className="text-lg text-blueprint-800">
+              <div className="bg-redpen-50 p-4 rounded-xl mt-6">
+                <p className="text-lg text-redpen-700">
                   <span className="font-semibold">Note:</span> The next round is team-based and will
                   only load on one team member&apos;s screen.
                 </p>
                 {teamHost ? (
                   teamHost.id === session.memberId ? (
-                    <p className="mt-2 text-blueprint-800 font-semibold">
+                    <p className="mt-2 text-redpen-700 font-semibold">
                       You are the team host! The next round will load on your screen.
                     </p>
                   ) : (
-                    <p className="mt-2 text-blue-700">
+                    <p className="mt-2 text-redpen-700">
                       Team Host: <span className="font-bold">{teamHost.name}</span>
                     </p>
                   )
                 ) : (
-                  <p className="mt-2 text-blue-700">Determining team host...</p>
+                  <p className="mt-2 text-redpen-700">Determining team host...</p>
                 )}
               </div>
             </div>
@@ -341,7 +341,7 @@ export default function CompetitionPage() {
           <div className="w-full max-w-6xl mx-auto p-6 flex flex-col h-[calc(100vh-8rem)]">
             <div className="w-full bg-paper p-4 rounded-lg shadow-sm border border-paper-line mb-6">
               <div className="flex items-center">
-                <div className="text-2xl font-bold text-black whitespace-nowrap mr-4">
+                <div className="text-2xl font-bold text-graphite-900 whitespace-nowrap mr-4">
                   {String(roundTimeLeft.minutes).padStart(2, '0')}:{String(roundTimeLeft.seconds).padStart(2, '0')}
                 </div>
                 <div className="flex-1 flex justify-center">
@@ -352,9 +352,9 @@ export default function CompetitionPage() {
                         onClick={() => setCurrentQuestionIndex(index)}
                         className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200 ${
                           currentQuestionIndex === index
-                            ? 'bg-blueprint-800 text-white'
+                            ? 'bg-redpen-600 text-white'
                             : q.userAnswer !== undefined
-                              ? 'bg-green-100 text-blueprint-800 border-2 border-green-300'
+                              ? 'bg-redpen-100 text-redpen-700 border-2 border-redpen-300'
                               : 'bg-paper text-graphite-700 border-2 border-paper-line hover:bg-paper'
                         }`}
                       >
@@ -378,7 +378,7 @@ export default function CompetitionPage() {
                     <button
                       onClick={() => setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))}
                       disabled={currentQuestionIndex === 0}
-                      className="px-6 py-2 bg-paper-ink text-graphite-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors duration-200"
+                      className="px-6 py-2 bg-paper-ink text-graphite-700 rounded-lg hover:bg-paper-line disabled:opacity-50 transition-colors duration-200"
                     >
                       Previous
                     </button>
@@ -390,7 +390,7 @@ export default function CompetitionPage() {
                           handleTestSubmission()
                         }
                       }}
-                      className="px-8 py-2 bg-blueprint-800 text-white rounded-lg hover:bg-blueprint-900 transition-colors duration-200"
+                      className="px-8 py-2 bg-redpen-600 text-white rounded-lg hover:bg-redpen-700 transition-colors duration-200"
                     >
                       {currentQuestionIndex === questions.length - 1 ? 'Submit Test' : 'Next'}
                     </button>
@@ -408,15 +408,15 @@ export default function CompetitionPage() {
                         onClick={() => handleAnswerSelection(currentQuestionIndex, index)}
                         className={`p-4 border rounded-lg transition-colors cursor-pointer ${
                           questions[currentQuestionIndex]?.userAnswer === index
-                            ? 'border-blue-500 bg-blueprint-50'
-                            : 'border-paper-line hover:border-blue-300'
+                            ? 'border-redpen-500 bg-redpen-50'
+                            : 'border-paper-line hover:border-redpen-300'
                         }`}
                       >
                         <div className="flex items-center">
                           <div
                             className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-3 ${
                               questions[currentQuestionIndex]?.userAnswer === index
-                                ? 'bg-blueprint-100 text-blue-700 border-blue-500'
+                                ? 'bg-redpen-100 text-redpen-700 border-redpen-500'
                                 : 'border-graphite-300 text-graphite-600'
                             }`}
                           >

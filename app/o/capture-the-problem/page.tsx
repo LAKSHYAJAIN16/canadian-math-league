@@ -100,7 +100,7 @@ export default function CaptureTheProblemPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-paper">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 text-blueprint-700 animate-spin mx-auto mb-4" />
+          <Loader2 className="h-12 w-12 text-redpen-600 animate-spin mx-auto mb-4" />
           <p className="text-graphite-600">Loading competition...</p>
         </div>
       </div>
@@ -122,10 +122,10 @@ export default function CaptureTheProblemPage() {
             <Clock className="h-4 w-4 md:h-5 md:w-5 text-graphite-600 mr-2" />
             <span className="text-sm md:text-base">Starting in {formatTime(timing.startMs - now)}</span>
           </div>
-          <div className="bg-blueprint-50 p-4 rounded-lg mb-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-blueprint-800 mb-2">{teamName}</h2>
-            <p className="text-blue-700">{groupName}</p>
-            {conference && <p className="text-blueprint-700 text-sm">{conference} Conference</p>}
+          <div className="bg-redpen-50 p-4 rounded-lg mb-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-redpen-700 mb-2">{teamName}</h2>
+            <p className="text-redpen-700">{groupName}</p>
+            {conference && <p className="text-redpen-600 text-sm">{conference} Conference</p>}
           </div>
 
           <div className="max-w-md mx-auto">
@@ -139,10 +139,10 @@ export default function CaptureTheProblemPage() {
                   <div
                     key={team.teamId}
                     className={`flex items-center p-3 rounded-lg border ${
-                      team.online ? 'border-blueprint-200 bg-blueprint-50' : 'border-paper-line bg-paper'
+                      team.online ? 'border-redpen-200 bg-redpen-50' : 'border-paper-line bg-paper'
                     }`}
                   >
-                    <div className={`h-2.5 w-2.5 rounded-full mr-3 ${team.online ? 'bg-blueprint-500' : 'bg-gray-300'}`} />
+                    <div className={`h-2.5 w-2.5 rounded-full mr-3 ${team.online ? 'bg-redpen-500' : 'bg-graphite-300'}`} />
                     <div className="flex-1 text-left">
                       <span className="font-medium text-graphite-900">{team.name}</span>
                       <span className="text-graphite-600 text-sm ml-2">({team.schoolName})</span>
@@ -164,7 +164,7 @@ export default function CaptureTheProblemPage() {
       <div className="max-w-4xl mx-auto bg-paper rounded-xl shadow-sm p-6 md:p-8 mt-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-graphite-900">Competition Rules</h1>
-          <div className="bg-blueprint-100 text-blueprint-800 px-4 py-2 rounded-full text-sm font-medium">{teamName}</div>
+          <div className="bg-redpen-100 text-redpen-700 px-4 py-2 rounded-full text-sm font-medium">{teamName}</div>
         </div>
 
         <div className="bg-paper-ink inline-flex items-center px-4 md:px-6 py-2 rounded-full mb-6">
@@ -188,7 +188,7 @@ export default function CaptureTheProblemPage() {
   if (hasSubmitted) {
     return (
       <div className="max-w-2xl mx-auto mt-20 bg-paper rounded-xl shadow-sm p-8 text-center">
-        <CheckCircle className="h-16 w-16 text-blueprint-700 mx-auto mb-4" />
+        <CheckCircle className="h-16 w-16 text-redpen-600 mx-auto mb-4" />
         <h1 className="text-3xl font-bold text-graphite-900 mb-2">Submitted!</h1>
         {result && (
           <p className="text-lg text-graphite-700">
@@ -206,7 +206,7 @@ export default function CaptureTheProblemPage() {
           <div className="px-6 py-4 border-b border-paper-line bg-paper flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center mb-3 sm:mb-0">
               <h1 className="text-xl font-bold text-graphite-900">Capture the Problem</h1>
-              <span className="ml-3 px-3 py-1 bg-blueprint-100 text-blueprint-800 text-xs font-medium rounded-full">
+              <span className="ml-3 px-3 py-1 bg-redpen-100 text-redpen-700 text-xs font-medium rounded-full">
                 {conference}
               </span>
             </div>
@@ -226,9 +226,9 @@ export default function CaptureTheProblemPage() {
                   {Object.keys(answers).length}/{PROBLEMS.length} answered
                 </span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-paper-line rounded-full h-2">
                 <div
-                  className="bg-blueprint-800 h-2 rounded-full transition-all duration-300"
+                  className="bg-redpen-600 h-2 rounded-full transition-all duration-300"
                   style={{ width: `${(Object.keys(answers).length / PROBLEMS.length) * 100}%` }}
                 />
               </div>
@@ -257,7 +257,7 @@ export default function CaptureTheProblemPage() {
                     return updated
                   })
                 }}
-                className="w-full px-4 py-3 border border-graphite-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base"
+                className="w-full px-4 py-3 border border-graphite-300 rounded-lg focus:ring-2 focus:ring-redpen-500 focus:border-redpen-500 text-base"
                 placeholder="Type your answer here..."
                 autoFocus
               />
@@ -279,7 +279,7 @@ export default function CaptureTheProblemPage() {
                     <button
                       type="button"
                       onClick={() => setCurrentProblem((p) => Math.min(PROBLEMS.length, p + 1))}
-                      className="px-6 py-2.5 bg-blueprint-800 hover:bg-blueprint-900 text-white font-medium rounded-lg transition-colors"
+                      className="px-6 py-2.5 bg-redpen-600 hover:bg-redpen-700 text-white font-medium rounded-lg transition-colors"
                     >
                       Next
                     </button>
@@ -287,7 +287,7 @@ export default function CaptureTheProblemPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-8 py-2.5 font-medium rounded-lg bg-blueprint-800 hover:bg-blueprint-900 text-white transition-colors disabled:opacity-50"
+                      className="px-8 py-2.5 font-medium rounded-lg bg-redpen-600 hover:bg-redpen-700 text-white transition-colors disabled:opacity-50"
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit All Answers'}
                     </button>
@@ -307,10 +307,10 @@ export default function CaptureTheProblemPage() {
                 onClick={() => setCurrentProblem(index + 1)}
                 className={`w-full aspect-square flex items-center justify-center rounded-md text-sm font-medium transition-colors ${
                   currentProblem === index + 1
-                    ? 'bg-blueprint-800 text-white'
+                    ? 'bg-redpen-600 text-white'
                     : answers[index + 1]
-                      ? 'bg-green-100 text-blueprint-800 hover:bg-green-200'
-                      : 'bg-paper-ink text-graphite-700 hover:bg-gray-200'
+                      ? 'bg-redpen-100 text-redpen-700 hover:bg-redpen-200'
+                      : 'bg-paper-ink text-graphite-700 hover:bg-paper-line'
                 }`}
               >
                 {index + 1}

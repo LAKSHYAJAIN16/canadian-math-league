@@ -331,7 +331,7 @@ export default function RegisterPage() {
                           className={`px-4 py-2 rounded-md text-sm font-medium ${
                             formData.numberOfTeams === num 
                               ? 'bg-redpen-600 text-white' 
-                              : 'bg-paper-ink text-graphite-700 hover:bg-gray-200'
+                              : 'bg-paper-ink text-graphite-700 hover:bg-paper-line'
                           }`}
                         >
                           {num}

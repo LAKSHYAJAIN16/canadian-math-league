@@ -74,7 +74,7 @@ export default function FAQPage() {
 
       <div className="mt-10 bg-blueprint-50 p-6 rounded-lg">
         <h3 className="text-lg font-medium text-blueprint-800">Still need help?</h3>
-        <p className="mt-2 text-blue-700">
+        <p className="mt-2 text-redpen-700">
           Contact our support team at{' '}
           <a href="mailto:support@canadianmathleague.com" className="text-blueprint-700 underline">
             support@canadianmathleague.com
