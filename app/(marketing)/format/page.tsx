@@ -149,7 +149,7 @@ const FormatPage = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="stamp-label text-redpen-600 border-redpen-600">Rulebook</span>
+          <span className="stamp-label">Rulebook</span>
           <h1 className="text-4xl md:text-5xl font-bold text-graphite-900 mt-3">Tournament Format</h1>
         </div>
 
@@ -159,8 +159,8 @@ const FormatPage = () => {
             <button
               key={key}
               onClick={() => setActiveTab(key as TabType)}
-              className={`px-5 py-2.5 text-xs font-bold uppercase tracking-wider border-2 border-graphite-900 rounded-xl transition-colors ${
-                activeTab === key ? 'bg-blueprint-800 border-blueprint-800 text-white' : 'bg-paper text-graphite-700 hover:bg-blueprint-50'
+              className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-colors ${
+                activeTab === key ? 'bg-redpen-600 text-white shadow-red-glow' : 'bg-redpen-50 text-graphite-700 hover:bg-redpen-100'
               }`}
             >
               {comp.title}
@@ -169,23 +169,23 @@ const FormatPage = () => {
         </div>
 
         {/* Current Competition Content */}
-        <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-paper border-2 border-graphite-900 rounded-xl">
-          <div className="bg-grid-blueprint p-6 text-white">
+        <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-paper rounded-3xl shadow-soft overflow-hidden">
+          <div className="bg-redpen-600 p-6 text-white">
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <h2 className="text-2xl md:text-3xl font-bold">{currentCompetition.title}</h2>
                 <div className="mt-3 md:mt-0">
-                  <span className="stamp-label border-white text-white !rotate-0">
+                  <span className="inline-flex items-center rounded-full px-3 py-1 bg-white/15 text-white text-xs font-semibold">
                     {activeTab === 'group' ? 'Online' : activeTab === 'regional' ? 'In-Person' : 'Championship'}
                   </span>
                 </div>
               </div>
 
               {/* Competition Details */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-blueprint-500/40">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-white/20">
                 <div className="flex items-center space-x-2">
-                  <Calendar className="h-4 w-4 text-blueprint-300 flex-shrink-0" />
-                  <span className="text-sm text-blueprint-100">
+                  <Calendar className="h-4 w-4 text-white/70 flex-shrink-0" />
+                  <span className="text-sm text-white/90">
                     {activeTab === 'group'
                       ? SEASON_STAGES.groupStage.displayDate
                       : activeTab === 'regional'
@@ -194,14 +194,14 @@ const FormatPage = () => {
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Users className="h-4 w-4 text-blueprint-300 flex-shrink-0" />
-                  <span className="text-sm text-blueprint-100">
+                  <Users className="h-4 w-4 text-white/70 flex-shrink-0" />
+                  <span className="text-sm text-white/90">
                     {activeTab === 'group' ? '32 Teams (16 per conference)' : activeTab === 'regional' ? '12 Teams (6 per conference)' : '6 Finalist Teams'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Award className="h-4 w-4 text-blueprint-300 flex-shrink-0" />
-                  <span className="text-sm text-blueprint-100">
+                  <Award className="h-4 w-4 text-white/70 flex-shrink-0" />
+                  <span className="text-sm text-white/90">
                     {activeTab === 'group' ? 'Free to Participate' : activeTab === 'regional' ? 'Qualification Required' : 'Invitation Only'}
                   </span>
                 </div>
@@ -233,14 +233,14 @@ const FormatPage = () => {
             {activeTab === 'regional' && currentCompetition.championships && (
               <div className="mt-10">
                 <h3 className="text-sm font-bold text-graphite-900 uppercase tracking-wide mb-6">Regional Championships</h3>
-                <div className="grid md:grid-cols-2 gap-px bg-paper-line border border-paper-line">
+                <div className="grid md:grid-cols-2 gap-4">
                   {currentCompetition.championships.map((championship, index) => (
                     <motion.div
                       key={championship.title}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="bg-paper p-6"
+                      className="bg-redpen-50 rounded-2xl p-6"
                     >
                       <h4 className="font-bold text-graphite-900 mb-2">{championship.title}</h4>
                       <div className="flex items-center text-sm text-graphite-600">
@@ -267,19 +267,19 @@ const FormatPage = () => {
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.08 }}
-                      className="bg-grid-paper border-2 border-graphite-900 rounded-xl p-5"
+                      className="bg-redpen-50/60 rounded-2xl p-5"
                     >
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="border-2 border-graphite-900 rounded-xl p-2 bg-paper">
+                        <div className="p-2.5 bg-white rounded-xl shadow-soft">
                           <round.icon className="h-5 w-5 text-redpen-600" />
                         </div>
-                        <h4 className="text-sm font-bold text-graphite-900 uppercase tracking-wide">{round.title}</h4>
+                        <h4 className="text-sm font-bold text-graphite-900">{round.title}</h4>
                       </div>
                       <p className="text-graphite-600 text-sm mb-3">{round.description}</p>
                       <ul className="space-y-1.5">
                         {round.details.map((detail, i) => (
                           <li key={i} className="flex items-start text-sm text-graphite-600">
-                            <ChevronRight className="h-4 w-4 text-blueprint-500 mt-0.5 mr-1.5 flex-shrink-0" />
+                            <ChevronRight className="h-4 w-4 text-redpen-500 mt-0.5 mr-1.5 flex-shrink-0" />
                             {detail}
                           </li>
                         ))}

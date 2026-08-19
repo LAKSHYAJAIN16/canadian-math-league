@@ -12,24 +12,20 @@ export default function HowItWorksPage() {
       {/* Hero Section */}
       <section className="relative bg-grid-blueprint overflow-hidden py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mb-4">
-            <span className="text-xs tracking-[0.2em] uppercase text-blueprint-200">Canadian Math League</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold text-white leading-tight"
+            className="text-4xl md:text-6xl font-bold text-graphite-900 leading-tight"
           >
-            How the <span className="text-white">competition</span> works
+            How the <span className="text-redpen-600">competition</span> works
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-blueprint-100 mt-6 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg text-graphite-600 mt-6 max-w-2xl mx-auto leading-relaxed"
           >
             A three-stage tournament that brings together the brightest mathematical minds from across Canada.
             Here&apos;s how you can participate and progress through each stage.
@@ -74,7 +70,7 @@ export default function HowItWorksPage() {
           </div>
 
           {/* Stage Details */}
-          <div className="grid md:grid-cols-3 gap-px bg-graphite-900 border-2 border-graphite-900 rounded-xl mt-24">
+          <div className="grid md:grid-cols-3 gap-6 mt-24">
             {[
               {
                 icon: Users,
@@ -116,16 +112,16 @@ export default function HowItWorksPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + index * 0.1 }}
-                className="bg-paper p-6"
+                className="bg-paper rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all p-6"
               >
-                <div className="w-11 h-11 border-2 border-graphite-900 rounded-xl flex items-center justify-center mb-4">
-                  <stage.icon className="h-5 w-5 text-redpen-600" />
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mb-4">
+                  <stage.icon className="h-6 w-6 text-redpen-600" />
                 </div>
-                <h3 className="text-lg font-bold text-graphite-900 uppercase tracking-wide mb-2">{stage.title}</h3>
+                <h3 className="text-lg font-bold text-graphite-900 mb-2">{stage.title}</h3>
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {stage.tags.map((tag) => (
-                    <span key={tag} className="stamp-label border-graphite-400 text-graphite-600 !rotate-0">
+                    <span key={tag} className="stamp-label">
                       {tag}
                     </span>
                   ))}
@@ -160,7 +156,7 @@ export default function HowItWorksPage() {
                   </div>
                 </div>
 
-                <Link href="/register" className="mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-redpen-600 hover:text-redpen-700 group">
+                <Link href="/register" className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-redpen-600 hover:text-redpen-700 group">
                   Learn more
                   <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -176,7 +172,7 @@ export default function HowItWorksPage() {
             </p>
             <Link
               href="/register"
-              className="btn-press rounded-lg inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-bold tracking-wider uppercase shadow-stamp hover:bg-redpen-700"
+              className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
             >
               Register your team
               <ArrowRight className="h-4 w-4" />

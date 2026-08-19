@@ -59,7 +59,7 @@ const FAQPage = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-white"
+            className="text-4xl md:text-5xl font-bold text-graphite-900"
           >
             Frequently asked questions
           </motion.h1>
@@ -67,7 +67,7 @@ const FAQPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-blueprint-100 mt-4"
+            className="text-lg text-graphite-600 mt-4"
           >
             Find answers to common questions about the Canadian Math League.
           </motion.p>
@@ -88,7 +88,7 @@ const FAQPage = () => {
                 hidden: { opacity: 0, y: 10 },
                 show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } },
               }}
-              className="bg-paper border-2 border-graphite-900 rounded-xl"
+              className="bg-paper rounded-2xl shadow-soft"
             >
               <button className="w-full px-6 py-5 text-left focus:outline-none group" onClick={() => toggleFAQ(index)} aria-expanded={openIndex === index}>
                 <div className="flex items-center justify-between gap-4">
@@ -127,7 +127,7 @@ const FAQPage = () => {
           <p className="text-graphite-600 mb-6 text-lg">Still have questions?</p>
           <Link
             href="/contact"
-            className="btn-press rounded-lg inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-bold tracking-wider uppercase shadow-stamp hover:bg-redpen-700"
+            className="btn-press rounded-full inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
           >
             Contact Us
           </Link>

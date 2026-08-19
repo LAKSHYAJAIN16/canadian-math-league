@@ -38,7 +38,7 @@ const ContactPage = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-white"
+            className="text-4xl md:text-5xl font-bold text-graphite-900"
           >
             Contact us
           </motion.h1>
@@ -46,7 +46,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-blueprint-100 mt-4"
+            className="text-lg text-graphite-600 mt-4"
           >
             Have questions about the tournament? We&apos;re here to help.
           </motion.p>
@@ -58,27 +58,27 @@ const ContactPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <span className="stamp-label text-redpen-600 border-redpen-600">Reach us</span>
+              <span className="stamp-label">Reach us</span>
               <h2 className="text-2xl font-bold text-graphite-900 mt-3 mb-6">Get in touch</h2>
 
               <div className="flex items-start gap-4 mb-8">
-                <div className="border-2 border-graphite-900 rounded-xl p-3">
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center flex-shrink-0">
                   <Mail className="h-5 w-5 text-redpen-600" />
                 </div>
                 <div>
                   <h3 className="font-bold text-graphite-900 mb-1">Email</h3>
-                  <a href="mailto:info@canadianmathleague.ca" className="text-blueprint-800 font-medium hover:text-redpen-600">
+                  <a href="mailto:info@canadianmathleague.ca" className="text-redpen-600 font-medium hover:text-redpen-700">
                     info@canadianmathleague.ca
                   </a>
                   <p className="text-graphite-600 text-sm mt-1">The fastest way to reach us for any question.</p>
                 </div>
               </div>
 
-              <div className="p-6 bg-blueprint-900 border-2 border-graphite-900 rounded-xl">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wide mb-3">Before you write in</h3>
-                <p className="text-blueprint-100 text-sm">
+              <div className="p-6 bg-graphite-900 rounded-2xl">
+                <h3 className="text-sm font-bold text-white mb-3">Before you write in</h3>
+                <p className="text-graphite-300 text-sm">
                   Teachers: most account and roster questions are answered on the{' '}
-                  <a href="/platform/faq" className="text-white underline hover:text-white">
+                  <a href="/platform/faq" className="text-white underline hover:text-redpen-400">
                     Teacher Portal FAQ
                   </a>
                   . Students: check with your teacher for your join code first.
@@ -91,29 +91,29 @@ const ContactPage = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-paper border-2 border-graphite-900 rounded-xl p-8"
+              className="bg-paper rounded-3xl shadow-soft p-8"
             >
               <h2 className="text-lg font-bold text-graphite-900 mb-6">Send us a message</h2>
               <form className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wide text-graphite-700 mb-1.5">First Name</label>
-                    <input type="text" className="w-full px-3 py-2.5 border-2 border-graphite-300 rounded-lg focus:outline-none focus:border-blueprint-600" placeholder="John" />
+                    <label className="block text-sm font-semibold text-graphite-700 mb-1.5">First Name</label>
+                    <input type="text" className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="John" />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wide text-graphite-700 mb-1.5">Last Name</label>
-                    <input type="text" className="w-full px-3 py-2.5 border-2 border-graphite-300 rounded-lg focus:outline-none focus:border-blueprint-600" placeholder="Doe" />
+                    <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Last Name</label>
+                    <input type="text" className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="Doe" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide text-graphite-700 mb-1.5">Email Address</label>
-                  <input type="email" className="w-full px-3 py-2.5 border-2 border-graphite-300 rounded-lg focus:outline-none focus:border-blueprint-600" placeholder="john.doe@email.com" />
+                  <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Email Address</label>
+                  <input type="email" className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="john.doe@email.com" />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide text-graphite-700 mb-1.5">Subject</label>
-                  <select className="w-full px-3 py-2.5 border-2 border-graphite-300 rounded-lg focus:outline-none focus:border-blueprint-600">
+                  <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Subject</label>
+                  <select className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400">
                     <option>General Inquiry</option>
                     <option>School Registration</option>
                     <option>Technical Support</option>
@@ -123,13 +123,13 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide text-graphite-700 mb-1.5">Message</label>
-                  <textarea rows={5} className="w-full px-3 py-2.5 border-2 border-graphite-300 rounded-lg focus:outline-none focus:border-blueprint-600" placeholder="Tell us how we can help you..." />
+                  <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Message</label>
+                  <textarea rows={5} className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="Tell us how we can help you..." />
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-press rounded-lg w-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white py-3.5 text-sm font-bold tracking-wider uppercase shadow-stamp hover:bg-redpen-700"
+                  className="btn-press rounded-full w-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white py-3.5 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
                 >
                   Send Message
                   <Send className="h-4 w-4" />
@@ -140,11 +140,11 @@ const ContactPage = () => {
 
           {/* FAQ Section */}
           <motion.section initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-24">
-            <h2 className="text-2xl font-bold text-graphite-900 mb-10 text-center">Frequently asked questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-paper-line border border-paper-line">
+            <h2 className="text-2xl md:text-3xl font-bold text-graphite-900 mb-10 text-center">Frequently asked questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {faqs.map((faq) => (
-                <div key={faq.question} className="bg-paper p-6">
-                  <h3 className="font-bold text-graphite-900 mb-2 text-sm uppercase tracking-wide">{faq.question}</h3>
+                <div key={faq.question} className="bg-paper rounded-2xl shadow-soft p-6">
+                  <h3 className="font-bold text-graphite-900 mb-2 text-sm">{faq.question}</h3>
                   <p className="text-graphite-600 text-sm">{faq.answer}</p>
                 </div>
               ))}
