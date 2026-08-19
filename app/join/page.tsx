@@ -87,20 +87,20 @@ export default function JoinPage() {
                 <div className="flex justify-center mb-2">
                     <img src="/logo.png" alt="Canadian Math League" className="h-24 w-auto" />
                 </div>
-                <span className="stamp-label border-white text-white block w-fit mx-auto mb-3">Admit One</span>
-                <h1 className="text-center text-2xl font-bold text-white">
+                <span className="stamp-label block w-fit mx-auto mb-3">Admit One</span>
+                <h1 className="text-center text-2xl font-bold text-graphite-900">
                     Join Competition
                 </h1>
-                <p className="mt-2 text-center text-sm text-blueprint-200">
+                <p className="mt-2 text-center text-sm text-graphite-600">
                     Enter the join code your teacher gave you.
                 </p>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-                <div className="bg-paper border-2 border-graphite-900 rounded-xl py-8 px-6">
+                <div className="bg-paper rounded-3xl shadow-soft py-8 px-6">
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="joinCode" className="block text-xs font-bold uppercase tracking-wide text-graphite-700 mb-2">
+                            <label htmlFor="joinCode" className="block text-sm font-semibold text-graphite-700 mb-2">
                                 Join Code
                             </label>
                             <input
@@ -110,14 +110,14 @@ export default function JoinPage() {
                                 required
                                 value={joinCode}
                                 onChange={(e) => setJoinCode(e.target.value)}
-                                className="block w-full px-4 py-3 border-2 border-graphite-900 rounded-xl text-lg tracking-[0.3em] text-center uppercase placeholder:tracking-normal placeholder:text-graphite-400 focus:outline-none focus:border-redpen-600 bg-paper"
+                                className="block w-full px-4 py-3 bg-redpen-50/60 rounded-xl text-lg tracking-[0.3em] text-center uppercase placeholder:tracking-normal placeholder:text-graphite-400 focus:outline-none focus:ring-2 focus:ring-redpen-400"
                                 placeholder="ABCD12"
                                 autoComplete="off"
                             />
                         </div>
 
                         {error && (
-                            <div className="border-2 border-redpen-600 bg-redpen-100 p-3">
+                            <div className="bg-redpen-50 rounded-xl p-3">
                                 <p className="text-sm font-medium text-redpen-700">{error}</p>
                             </div>
                         )}
@@ -125,7 +125,7 @@ export default function JoinPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`btn-press rounded-lg w-full flex justify-center items-center gap-2 py-3 px-4 text-sm font-bold uppercase tracking-wider text-white bg-redpen-600 shadow-stamp hover:bg-redpen-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            className={`btn-press rounded-full w-full flex justify-center items-center gap-2 py-3.5 px-4 text-sm font-semibold text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             {isLoading ? 'Joining...' : 'Join Competition'}
                         </button>

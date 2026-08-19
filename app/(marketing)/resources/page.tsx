@@ -18,8 +18,8 @@ export default function ResourcesPage() {
     <div className="min-h-screen bg-paper">
       <section className="bg-grid-blueprint py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Resources</h1>
-          <p className="text-lg text-blueprint-100 mt-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-graphite-900">Resources</h1>
+          <p className="text-lg text-graphite-600 mt-4">
             Sample problem sets and everything else you need to get ready for the Group Stage.
           </p>
         </div>
@@ -28,18 +28,18 @@ export default function ResourcesPage() {
       <section className="py-20 bg-grid-paper">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <span className="stamp-label text-redpen-600 border-redpen-600">Practice</span>
+            <span className="stamp-label">Practice</span>
             <h2 className="text-2xl font-bold text-graphite-900 mt-3 mb-8">Sample problem sets</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-graphite-900 border-2 border-graphite-900 rounded-xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {problemSets.map((set) => (
-                <div key={set.title} className="bg-paper p-6 flex flex-col">
+                <div key={set.title} className="bg-paper rounded-3xl shadow-soft p-6 flex flex-col">
                   <h3 className="font-bold text-graphite-900 mb-2">{set.title}</h3>
                   <p className="text-graphite-600 text-sm mb-6 flex-grow">{set.description}</p>
                   <a
                     href={set.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-press rounded-lg inline-flex items-center justify-center gap-2 bg-redpen-600 text-white py-2.5 text-xs font-bold uppercase tracking-wide shadow-stamp-sm hover:bg-redpen-700"
+                    className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white py-2.5 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
                   >
                     <Download className="h-4 w-4" />
                     Download PDF
@@ -57,17 +57,17 @@ export default function ResourcesPage() {
           </div>
 
           <div>
-            <span className="stamp-label text-redpen-600 border-redpen-600">Learn more</span>
+            <span className="stamp-label">Learn more</span>
             <h2 className="text-2xl font-bold text-graphite-900 mt-3 mb-8">Everything else</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {links.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="bg-paper border-2 border-graphite-900 rounded-xl p-6 hover:-translate-y-1 hover:shadow-stamp transition-all block"
+                  className="bg-paper rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all p-6 block"
                 >
-                  <div className="w-11 h-11 border-2 border-graphite-900 rounded-xl flex items-center justify-center mb-4">
-                    <item.icon className="h-5 w-5 text-redpen-600" />
+                  <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mb-4">
+                    <item.icon className="h-6 w-6 text-redpen-600" />
                   </div>
                   <h3 className="font-bold text-graphite-900 mb-2">{item.title}</h3>
                   <p className="text-graphite-600 text-sm">{item.description}</p>

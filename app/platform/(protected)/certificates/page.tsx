@@ -33,7 +33,7 @@ export default function CertificatesPage() {
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-3 py-2 border border-graphite-300 rounded-md leading-5 bg-paper placeholder-gray-500 focus:outline-none focus:ring-blueprint-600 focus:border-blueprint-600 sm:text-sm"
+            className="block w-full pl-10 pr-3 py-2.5 rounded-xl leading-5 bg-redpen-50/60 placeholder-graphite-400 focus:outline-none focus:ring-2 focus:ring-redpen-400 sm:text-sm"
             placeholder="Search by student name or certificate ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -44,7 +44,7 @@ export default function CertificatesPage() {
             // TODO: Implement physical copy request logic
             alert('Physical copy request feature coming soon!');
           }}
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blueprint-800 hover:bg-blueprint-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blueprint-600"
+          className="btn-press inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-full text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700"
         >
           <svg
             className="-ml-1 mr-2 h-5 w-5"
@@ -69,8 +69,8 @@ export default function CertificatesPage() {
         </p>
       </div>
 
-      <div className="bg-paper shadow overflow-hidden sm:rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
+      <div className="bg-paper shadow-soft overflow-hidden rounded-2xl">
+        <table className="min-w-full divide-y divide-paper-line">
           <thead className="bg-paper">
             <tr>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-graphite-600 uppercase tracking-wider">
@@ -93,7 +93,7 @@ export default function CertificatesPage() {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-paper divide-y divide-gray-200">
+          <tbody className="bg-paper divide-y divide-paper-line">
             {filteredCertificates.length > 0 ? (
               filteredCertificates.map((cert) => (
                 <tr key={cert.id}>
@@ -110,10 +110,10 @@ export default function CertificatesPage() {
                     {cert.date}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                      cert.status === 'Available' 
-                        ? 'bg-green-100 text-blueprint-800' 
-                        : 'bg-yellow-100 text-yellow-800'
+                    <span className={`px-2.5 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      cert.status === 'Available'
+                        ? 'bg-redpen-50 text-redpen-700'
+                        : 'bg-paper-ink text-graphite-600'
                     }`}>
                       {cert.status}
                     </span>
@@ -122,7 +122,7 @@ export default function CertificatesPage() {
                     {cert.downloadUrl ? (
                       <a
                         href={cert.downloadUrl}
-                        className="text-blueprint-700 hover:text-blueprint-900"
+                        className="text-redpen-600 hover:text-redpen-700 font-semibold"
                         download
                       >
                         Download
@@ -144,11 +144,11 @@ export default function CertificatesPage() {
         </table>
       </div>
 
-      <div className="mt-6 bg-blueprint-50 p-6 rounded-lg">
-        <h3 className="text-lg font-medium text-blueprint-800">Need help with certificates?</h3>
-        <p className="mt-2 text-blue-700">
+      <div className="mt-6 bg-redpen-50 p-6 rounded-2xl">
+        <h3 className="text-lg font-bold text-graphite-900">Need help with certificates?</h3>
+        <p className="mt-2 text-graphite-700">
           If you&apos;re missing a certificate or need assistance, please contact{' '}
-          <a href="mailto:certificates@canadianmathleague.com" className="text-blueprint-700 underline">
+          <a href="mailto:certificates@canadianmathleague.com" className="text-redpen-600 font-semibold underline">
             certificates@canadianmathleague.com
           </a>
         </p>

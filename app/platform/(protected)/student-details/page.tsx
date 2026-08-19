@@ -12,7 +12,7 @@ export default async function StudentDetailsPage() {
   const school = await getSchoolWithTeams(claims.schoolId)
   if (!school) {
     return (
-      <div className="bg-redpen-100 border-l-4 border-redpen-500 p-4">
+      <div className="bg-redpen-50 rounded-2xl p-4">
         <p className="text-sm text-redpen-700">Team data not found.</p>
       </div>
     )
@@ -33,10 +33,10 @@ export default async function StudentDetailsPage() {
           team.members.map((member) => (
             <div
               key={member.id}
-              className="bg-paper p-4 rounded-lg shadow-sm hover:shadow transition-shadow"
+              className="bg-paper p-4 rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow"
             >
-              <div className="flex items-center justify-between mb-2 p-2 hover:bg-paper rounded">
-                <span className="text-black text-lg font-extrabold select-all">
+              <div className="flex items-center justify-between mb-2 p-2 bg-redpen-50/60 rounded-xl">
+                <span className="text-graphite-900 text-lg font-extrabold select-all">
                   {member.joinCode}
                 </span>
                 <CopyCodeButton code={member.joinCode} />
@@ -47,11 +47,11 @@ export default async function StudentDetailsPage() {
         )}
       </div>
 
-      <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-300">
-        <h3 className="text-lg font-medium text-yellow-800 mb-3">Confused?</h3>
-        <p>
+      <div className="bg-redpen-50 p-6 rounded-2xl">
+        <h3 className="text-lg font-bold text-graphite-900 mb-3">Confused?</h3>
+        <p className="text-graphite-700">
           We understand. It&apos;s a lot to take in. Click{' '}
-          <a href="/administering-contests" className="text-blueprint-700">
+          <a href="/administering-contests" className="text-redpen-600 font-semibold hover:text-redpen-700">
             here
           </a>{' '}
           to learn more.

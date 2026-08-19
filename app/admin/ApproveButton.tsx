@@ -32,8 +32,8 @@ export function ApproveButton({ registrationId }: { registrationId: string }) {
       <button
         onClick={handleApprove}
         disabled={isSubmitting}
-        className={`px-4 py-2 rounded-md text-sm font-medium text-white ${
-          isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-blueprint-800 hover:bg-blueprint-900'
+        className={`btn-press px-4 py-2 rounded-full text-sm font-semibold text-white ${
+          isSubmitting ? 'bg-graphite-400 cursor-not-allowed' : 'bg-redpen-600 hover:bg-redpen-700 shadow-red-glow'
         }`}
       >
         {isSubmitting ? 'Approving...' : 'Approve & Create Teams'}

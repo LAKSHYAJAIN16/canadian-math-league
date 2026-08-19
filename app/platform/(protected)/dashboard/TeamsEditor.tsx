@@ -61,21 +61,21 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
         const members = isEditing ? editingMembers : team.members
 
         return (
-          <div key={team.id} className="bg-paper p-6 rounded-lg shadow">
+          <div key={team.id} className="bg-paper p-6 rounded-2xl shadow-soft">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-medium text-graphite-900">Team {teamIndex + 1}</h3>
+              <h3 className="text-lg font-bold text-graphite-900">Team {teamIndex + 1}</h3>
               {isEditing ? (
                 <div className="space-x-2">
                   <button
                     onClick={cancelEditing}
-                    className="px-3 py-1.5 border border-graphite-300 rounded-md text-xs font-medium text-graphite-700 bg-paper hover:bg-paper"
+                    className="btn-press px-4 py-1.5 rounded-full text-xs font-semibold text-graphite-700 bg-paper border-2 border-graphite-200 hover:bg-graphite-50"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => saveTeamChanges(team.id)}
                     disabled={isSaving}
-                    className="px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blueprint-800 hover:bg-blueprint-900 disabled:opacity-50"
+                    className="btn-press px-4 py-1.5 text-xs font-semibold rounded-full text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700 disabled:opacity-50"
                   >
                     {isSaving ? 'Saving...' : 'Save Changes'}
                   </button>
@@ -83,7 +83,7 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
               ) : (
                 <button
                   onClick={() => startEditing(team)}
-                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blueprint-800 hover:bg-blueprint-900"
+                  className="btn-press inline-flex items-center px-4 py-1.5 text-xs font-semibold rounded-full text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700"
                 >
                   Edit Team
                 </button>
@@ -94,10 +94,10 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
 
             <div className="space-y-3">
               {members.map((member, memberIndex) => (
-                <div key={member.id} className="p-4 bg-paper rounded-lg">
+                <div key={member.id} className="p-4 bg-redpen-50/40 rounded-xl">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-graphite-600 mb-1">
+                      <label className="block text-xs font-semibold text-graphite-600 mb-1">
                         Member {memberIndex + 1} Name
                       </label>
                       {isEditing ? (
@@ -105,20 +105,20 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
                           type="text"
                           value={member.name}
                           onChange={(e) => handleMemberChange(memberIndex, 'name', e.target.value)}
-                          className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-blueprint-600 focus:border-blueprint-600 text-sm"
+                          className="w-full px-3 py-2 bg-paper rounded-lg focus:outline-none focus:ring-2 focus:ring-redpen-400 text-sm"
                         />
                       ) : (
                         <p className="text-sm font-medium text-graphite-900">{member.name}</p>
                       )}
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-graphite-600 mb-1">Email</label>
+                      <label className="block text-xs font-semibold text-graphite-600 mb-1">Email</label>
                       {isEditing ? (
                         <input
                           type="email"
                           value={member.email}
                           onChange={(e) => handleMemberChange(memberIndex, 'email', e.target.value)}
-                          className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-blueprint-600 focus:border-blueprint-600 text-sm"
+                          className="w-full px-3 py-2 bg-paper rounded-lg focus:outline-none focus:ring-2 focus:ring-redpen-400 text-sm"
                         />
                       ) : (
                         <p className="text-sm text-graphite-600">{member.email}</p>

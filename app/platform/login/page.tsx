@@ -102,7 +102,7 @@ export default function TeacherLoginPage() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-5xl bg-paper rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <div className="w-full max-w-5xl bg-paper rounded-3xl shadow-soft-lg overflow-hidden flex flex-col md:flex-row">
         <div className="p-8 md:p-12 flex items-center justify-center bg-white md:w-1/2">
           <div className="w-full max-w-xs">
             <Image
@@ -126,14 +126,14 @@ export default function TeacherLoginPage() {
           </p>
 
           {error && (
-            <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4">
-              <p className="text-sm text-red-700">{error}</p>
+            <div className="mb-6 bg-redpen-50 rounded-xl p-4">
+              <p className="text-sm text-redpen-700">{error}</p>
             </div>
           )}
 
           {linkSent ? (
-            <div className="bg-blueprint-50 border-l-4 border-green-400 p-4">
-              <p className="text-sm text-green-700">
+            <div className="bg-redpen-50 rounded-xl p-4">
+              <p className="text-sm text-redpen-700">
                 Check your inbox — click the link we sent to <strong>{email}</strong> to finish
                 signing in.
               </p>
@@ -141,7 +141,7 @@ export default function TeacherLoginPage() {
           ) : (
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-graphite-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-semibold text-graphite-700 mb-1.5">
                   Email
                 </label>
                 <input
@@ -150,13 +150,13 @@ export default function TeacherLoginPage() {
                   required
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blueprint-600 focus:border-blueprint-600"
+                  className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400"
                 />
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-2.5 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-blueprint-800 hover:bg-blueprint-900 disabled:opacity-50"
+                className="btn-press w-full flex justify-center py-3 px-4 rounded-full text-sm font-semibold text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700 disabled:opacity-50"
               >
                 {isLoading ? 'Sending...' : 'Send sign-in link'}
               </button>
