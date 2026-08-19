@@ -39,13 +39,13 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="bg-blueprint-900 sticky top-0 z-50 border-b border-blueprint-600/60">
+    <nav className="bg-paper/90 backdrop-blur-sm sticky top-0 z-50 border-b border-paper-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Canadian Math League" width={40} height={40} className="h-10 w-10" />
-              <span className="hidden sm:block text-xs font-bold tracking-[0.15em] text-paper uppercase">
+              <Image src="/logo.png" alt="Canadian Math League" width={40} height={40} className="h-9 w-9" />
+              <span className="hidden sm:block text-sm font-extrabold text-graphite-900">
                 Math League
               </span>
             </Link>
@@ -58,10 +58,10 @@ const Navbar = () => {
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="group relative inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold tracking-wider uppercase text-blueprint-100 hover:text-white transition-colors"
+                    className="group relative inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-graphite-700 hover:text-redpen-600 transition-colors"
                   >
                     {item.label}
-                    {item.highlight && <span className="stamp-label border-white text-white -rotate-3">New</span>}
+                    {item.highlight && <span className="stamp-label">New</span>}
                     <span className="absolute left-3 right-3 -bottom-0.5 h-0.5 bg-redpen-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200" />
                   </Link>
                 ) : (
@@ -69,20 +69,20 @@ const Navbar = () => {
                     <button
                       onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
                       onMouseEnter={() => setOpenDropdown(item.label)}
-                      className="inline-flex items-center gap-1 px-3 py-2 text-xs font-semibold tracking-wider uppercase text-blueprint-100 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1 px-3 py-2 text-sm font-semibold text-graphite-700 hover:text-redpen-600 transition-colors"
                     >
                       {item.label}
                       <ChevronDown className={`w-3.5 h-3.5 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
                     </button>
                     <div
-                      className={`absolute left-0 mt-1 w-52 bg-paper border-2 border-graphite-900 rounded-xl shadow-stamp py-1 z-50 ${openDropdown === item.label ? 'block' : 'hidden'}`}
+                      className={`absolute left-0 mt-2 w-52 bg-paper rounded-2xl shadow-soft-lg py-2 z-50 ${openDropdown === item.label ? 'block' : 'hidden'}`}
                       onMouseLeave={() => setOpenDropdown(null)}
                     >
                       {item.subItems?.map((subItem) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="block px-4 py-2 text-xs tracking-wide uppercase text-graphite-700 hover:bg-blueprint-50 hover:text-blueprint-800"
+                          className="block mx-2 px-3 py-2 rounded-xl text-sm font-medium text-graphite-700 hover:bg-redpen-50 hover:text-redpen-600"
                           onClick={() => setOpenDropdown(null)}
                         >
                           {subItem.label}
@@ -95,13 +95,13 @@ const Navbar = () => {
             ))}
             <Link
               href="/administering-contests"
-              className="px-3 py-2 text-xs font-semibold tracking-wider uppercase text-blueprint-100 hover:text-white transition-colors"
+              className="px-3 py-2 text-sm font-semibold text-graphite-700 hover:text-redpen-600 transition-colors"
             >
               Teacher Portal
             </Link>
             <Link
               href="/register"
-              className="btn-press rounded-lg ml-3 bg-redpen-600 text-white px-5 py-2 text-xs font-bold tracking-wider uppercase shadow-stamp-sm hover:bg-redpen-700"
+              className="btn-press rounded-full ml-3 bg-redpen-600 text-white px-5 py-2.5 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
             >
               Register
             </Link>
@@ -109,7 +109,7 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-graphite-900 focus:outline-none">
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
@@ -123,7 +123,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-blueprint-900 border-t border-blueprint-600/60"
+            className="md:hidden bg-paper border-t border-paper-line"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
@@ -131,17 +131,17 @@ const Navbar = () => {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="flex items-center gap-2 px-3 py-2 text-sm font-semibold tracking-wide uppercase text-blueprint-100 hover:text-white hover:bg-blueprint-800"
+                      className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-graphite-700 hover:text-redpen-600 hover:bg-redpen-50"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
-                      {item.highlight && <span className="stamp-label border-white text-white">New</span>}
+                      {item.highlight && <span className="stamp-label">New</span>}
                     </Link>
                   ) : (
                     <div className="space-y-1">
                       <button
                         onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
-                        className="w-full flex justify-between items-center px-3 py-2 text-sm font-semibold tracking-wide uppercase text-blueprint-100"
+                        className="w-full flex justify-between items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-graphite-700"
                       >
                         {item.label}
                         <ChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`} />
@@ -151,7 +151,7 @@ const Navbar = () => {
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="block px-3 py-2 text-xs tracking-wide uppercase text-blueprint-200 hover:text-white"
+                            className="block px-3 py-2 rounded-lg text-sm text-graphite-600 hover:text-redpen-600 hover:bg-redpen-50"
                             onClick={() => {
                               setIsOpen(false)
                               setOpenDropdown(null)
@@ -167,7 +167,7 @@ const Navbar = () => {
               ))}
               <Link
                 href="/register"
-                className="btn-press rounded-lg block text-center bg-redpen-600 text-white px-3 py-2.5 text-sm font-bold tracking-wider uppercase shadow-stamp-sm"
+                className="btn-press rounded-full block text-center bg-redpen-600 text-white px-3 py-3 text-sm font-semibold shadow-red-glow"
                 onClick={() => setIsOpen(false)}
               >
                 Register

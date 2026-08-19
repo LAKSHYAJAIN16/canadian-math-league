@@ -13,9 +13,8 @@ const CompetitionLogo = ({ src, alt, isCanadian = false, url }: CompetitionLogoP
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className="block h-full">
       <motion.div
-        className={`h-full min-h-[30px] flex flex-col items-center justify-center p-3 bg-paper transition-all duration-200 border-2 ${isCanadian ? 'border-redpen-500' : 'border-graphite-300 hover:border-blueprint-600'
-          }`}
-        whileHover={{ y: -2, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' }}
+        className="h-full min-h-[30px] flex flex-col items-center justify-center p-3 bg-paper rounded-xl shadow-soft transition-all duration-200"
+        whileHover={{ y: -2 }}
       >
         {src ? (
           <div className="h-14 w-full flex items-center justify-center">
@@ -31,12 +30,12 @@ const CompetitionLogo = ({ src, alt, isCanadian = false, url }: CompetitionLogoP
                 }
               }}
             />
-            <span className={`font-bold ${isCanadian ? 'text-redpen-700' : 'text-blue-700'} text-sm text-center hidden`}>
+            <span className={`font-bold ${isCanadian ? 'text-redpen-700' : 'text-graphite-700'} text-sm text-center hidden`}>
               {alt}
             </span>
           </div>
         ) : (
-          <span className={`font-bold ${isCanadian ? 'text-redpen-700' : 'text-blue-700'} text-sm text-center`}>
+          <span className={`font-bold ${isCanadian ? 'text-redpen-700' : 'text-graphite-700'} text-sm text-center`}>
             {alt}
           </span>
         )}
@@ -73,8 +72,8 @@ export default function AboutPage() {
     <div className="min-h-screen bg-paper">
       <section className="bg-grid-blueprint py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="stamp-label border-white text-white">Our Mission</span>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mt-4">Dear Canadian students,</h1>
+          <span className="stamp-label">Our Mission</span>
+          <h1 className="text-3xl md:text-4xl font-bold text-graphite-900 mt-4">Dear Canadian students,</h1>
         </div>
       </section>
 
@@ -85,7 +84,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-paper border-2 border-graphite-900 rounded-xl p-6 md:p-10"
+            className="bg-paper rounded-3xl shadow-soft p-6 md:p-10"
           >
             <div className="text-right mb-6">
               <p className="text-xs text-graphite-500">November 23, 2024</p>
@@ -99,32 +98,30 @@ export default function AboutPage() {
                   While students in other countries have access to plenty of math competitions that challenge and inspire, Canadian students have been left behind. We&apos;re here to change that.
                 </p>
 
-                <div className="my-8">
-                  <div className="grid md:grid-cols-2 gap-px bg-graphite-900 border-2 border-graphite-900 rounded-xl">
-                    {/* US Competitions */}
-                    <div className="p-6 bg-paper">
-                      <div className="flex justify-between items-center mb-6">
-                        <h3 className="text-lg font-bold text-graphite-900">United States</h3>
-                        <span className="stamp-label border-graphite-400 text-graphite-600 !rotate-0">15+ Competitions</span>
-                      </div>
-                      <div className="grid grid-cols-3 gap-2">
-                        {usCompetitions.map((comp) => (
-                          <CompetitionLogo key={comp.id} src={comp.logo} alt={comp.name} url={comp.url} />
-                        ))}
-                      </div>
+                <div className="my-8 grid md:grid-cols-2 gap-4">
+                  {/* US Competitions */}
+                  <div className="p-6 bg-paper rounded-2xl shadow-soft">
+                    <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-lg font-bold text-graphite-900">United States</h3>
+                      <span className="stamp-label bg-graphite-600">15+ Competitions</span>
                     </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {usCompetitions.map((comp) => (
+                        <CompetitionLogo key={comp.id} src={comp.logo} alt={comp.name} url={comp.url} />
+                      ))}
+                    </div>
+                  </div>
 
-                    {/* Canadian Competitions */}
-                    <div className="p-6 bg-blueprint-50">
-                      <div className="flex justify-between items-center mb-6">
-                        <h3 className="text-lg font-bold text-redpen-700">Canada</h3>
-                        <span className="stamp-label border-redpen-500 text-redpen-600 !rotate-0">3-4 Competitions</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        {canadianCompetitions.map((comp) => (
-                          <CompetitionLogo key={comp.id} src={comp.logo} alt={comp.name} isCanadian url={comp.url} />
-                        ))}
-                      </div>
+                  {/* Canadian Competitions */}
+                  <div className="p-6 bg-redpen-50 rounded-2xl">
+                    <div className="flex justify-between items-center mb-6">
+                      <h3 className="text-lg font-bold text-redpen-700">Canada</h3>
+                      <span className="stamp-label">3-4 Competitions</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      {canadianCompetitions.map((comp) => (
+                        <CompetitionLogo key={comp.id} src={comp.logo} alt={comp.name} isCanadian url={comp.url} />
+                      ))}
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Trophy, Award, Users, Mail, Phone, MapPin } from 'lucide-react';
+import { Trophy, Award, Users, Mail, MapPin, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SponsorsPage() {
@@ -47,8 +47,8 @@ export default function SponsorsPage() {
     <div className="min-h-screen bg-paper">
       <section className="bg-grid-blueprint py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Our Sponsors</h1>
-          <p className="text-lg text-blueprint-100 mt-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-graphite-900">Our Sponsors</h1>
+          <p className="text-lg text-graphite-600 mt-4">
             We are grateful for the generous support of our sponsors who help make the Canadian Math League possible.
           </p>
         </div>
@@ -57,13 +57,13 @@ export default function SponsorsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-grid-paper">
         <div className="mb-20">
           <h2 className="text-xl font-bold text-graphite-900 text-center mb-8">Current Sponsors</h2>
-          <div className="bg-paper border-2 border-graphite-900 rounded-xl p-8 text-center max-w-xl mx-auto">
+          <div className="bg-paper rounded-3xl shadow-soft p-8 text-center max-w-xl mx-auto">
             <p className="text-graphite-600 italic">
               Our sponsor showcase is coming soon. Interested in becoming our first sponsor?
             </p>
             <Link
               href="/contact"
-              className="btn-press rounded-lg mt-6 inline-flex items-center gap-2 bg-redpen-600 text-white px-6 py-3 text-xs font-bold uppercase tracking-wide shadow-stamp-sm hover:bg-redpen-700"
+              className="btn-press rounded-full mt-6 inline-flex items-center gap-2 bg-redpen-600 text-white px-6 py-3 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
             >
               Contact Us
             </Link>
@@ -71,84 +71,82 @@ export default function SponsorsPage() {
         </div>
 
         <div className="mb-20">
-          <h2 className="text-2xl font-semibold text-center mb-8">Sponsorship Opportunities</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-graphite-900 text-center mb-8">Sponsorship Opportunities</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sponsorshipLevels.map((level, index) => (
-              <div key={level.name} className="bg-paper rounded-lg shadow-md overflow-hidden border border-paper-line">
-                <div className={`p-6 ${index === 0 ? 'bg-gradient-to-r from-yellow-400 to-yellow-300' : 
-                  index === 1 ? 'bg-gradient-to-r from-yellow-600 to-yellow-500' : 
-                  index === 2 ? 'bg-gradient-to-r from-gray-300 to-gray-200' : 
-                  'bg-gradient-to-r from-amber-700 to-amber-600'}`}>
-                  <h3 className="text-2xl font-bold text-center text-white">{level.name}</h3>
-                  <p className="text-center text-white font-medium mt-1">{level.amount}</p>
+            {sponsorshipLevels.map((level, index) => {
+              const tierShade = ['bg-redpen-700', 'bg-redpen-600', 'bg-redpen-500', 'bg-redpen-400'][index] ?? 'bg-redpen-500'
+              return (
+                <div key={level.name} className="bg-paper rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all overflow-hidden">
+                  <div className={`p-6 ${tierShade}`}>
+                    <h3 className="text-2xl font-bold text-center text-white">{level.name}</h3>
+                    <p className="text-center text-white/90 font-medium mt-1">{level.amount}</p>
+                  </div>
+                  <div className="p-6">
+                    <ul className="space-y-3">
+                      {level.benefits.map((benefit, i) => (
+                        <li key={i} className="flex items-start">
+                          <CheckCircle className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-graphite-700 text-sm">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-3">
-                    {level.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start">
-                        <svg className="h-5 w-5 text-blueprint-700 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-graphite-700">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
-        <div className="bg-paper rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center mb-6">Why Sponsor Us?</h2>
+        <div className="bg-paper rounded-3xl shadow-soft p-8 md:p-10 max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-graphite-900 text-center mb-8">Why Sponsor Us?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="bg-blueprint-100 p-3 rounded-full mr-4">
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
                   <Users className="h-6 w-6 text-redpen-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Reach Talented Students</h3>
+                  <h3 className="font-bold text-lg text-graphite-900">Reach Talented Students</h3>
                   <p className="text-graphite-600 mt-1">Connect with high-achieving students across Canada who are passionate about mathematics.</p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="bg-blueprint-100 p-3 rounded-full mr-4">
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
                   <Award className="h-6 w-6 text-redpen-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Support Education</h3>
+                  <h3 className="font-bold text-lg text-graphite-900">Support Education</h3>
                   <p className="text-graphite-600 mt-1">Your contribution helps us provide quality math education and opportunities to students nationwide.</p>
                 </div>
               </div>
             </div>
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="bg-blueprint-100 p-3 rounded-full mr-4">
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
                   <Trophy className="h-6 w-6 text-redpen-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Brand Visibility</h3>
+                  <h3 className="font-bold text-lg text-graphite-900">Brand Visibility</h3>
                   <p className="text-graphite-600 mt-1">Gain exposure to our network of students, parents, educators, and academic institutions.</p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="bg-blueprint-100 p-3 rounded-full mr-4">
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
                   <MapPin className="h-6 w-6 text-redpen-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Community Impact</h3>
+                  <h3 className="font-bold text-lg text-graphite-900">Community Impact</h3>
                   <p className="text-graphite-600 mt-1">Be part of a community that values academic excellence and intellectual growth.</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="mt-10 text-center">
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-redpen-600 hover:bg-redpen-700 transition-colors duration-200"
+            <Link
+              href="/contact"
+              className="btn-press rounded-full inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
             >
-              <Mail className="mr-2 h-5 w-5" />
+              <Mail className="h-4 w-4" />
               Contact Us About Sponsorship
             </Link>
           </div>

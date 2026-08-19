@@ -9,35 +9,35 @@ import Link from 'next/link'
  */
 const Footer = () => {
   return (
-    <footer className="bg-blueprint-900 border-t-2 border-redpen-600 py-8">
+    <footer className="bg-graphite-900 border-t-4 border-redpen-600 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-5">
+          <div className="flex items-center gap-3">
             <Image src="/logo.png" alt="Canadian Math League" width={28} height={28} className="h-7 w-7" />
-            <span className="text-xs font-bold tracking-[0.15em] text-paper uppercase">
+            <span className="text-sm font-bold text-white">
               Canadian Math League
             </span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="/" className="text-xs tracking-wide uppercase text-blueprint-200 hover:text-redpen-500 transition-colors">
+            <Link href="/" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
               Home
             </Link>
-            <Link href="/about" className="text-xs tracking-wide uppercase text-blueprint-200 hover:text-redpen-500 transition-colors">
+            <Link href="/about" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
               About
             </Link>
-            <Link href="/format" className="text-xs tracking-wide uppercase text-blueprint-200 hover:text-redpen-500 transition-colors">
+            <Link href="/format" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
               Format
             </Link>
-            <Link href="/resources" className="text-xs tracking-wide uppercase text-blueprint-200 hover:text-redpen-500 transition-colors">
+            <Link href="/resources" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
               Resources
             </Link>
-            <Link href="/contact" className="text-xs tracking-wide uppercase text-blueprint-200 hover:text-redpen-500 transition-colors">
+            <Link href="/contact" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
               Contact
             </Link>
           </div>
 
-          <p className="text-[11px] text-blueprint-300 whitespace-nowrap">
+          <p className="text-xs text-graphite-400 whitespace-nowrap">
             © {new Date().getFullYear()} CML. All rights reserved.
           </p>
         </div>
