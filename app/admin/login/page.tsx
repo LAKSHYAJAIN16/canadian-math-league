@@ -46,19 +46,19 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-xl font-bold text-gray-900 mb-6 text-center">Admin Sign In</h1>
+    <div className="min-h-screen bg-paper flex items-center justify-center p-4">
+      <div className="w-full max-w-sm bg-paper rounded-xl shadow-lg p-8">
+        <h1 className="text-xl font-bold text-graphite-900 mb-6 text-center">Admin Sign In</h1>
 
         {error && (
-          <div className="mb-4 bg-red-50 border-l-4 border-red-400 p-3">
-            <p className="text-sm text-red-700">{error}</p>
+          <div className="mb-4 bg-redpen-100 border-l-4 border-redpen-500 p-3">
+            <p className="text-sm text-redpen-700">{error}</p>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-graphite-700 mb-1">
               Email
             </label>
             <input
@@ -67,11 +67,11 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blueprint-600 focus:border-blueprint-600"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-graphite-700 mb-1">
               Password
             </label>
             <input
@@ -80,13 +80,13 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blueprint-600 focus:border-blueprint-600"
             />
           </div>
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 px-4 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 disabled:opacity-50"
+            className="w-full py-2.5 px-4 rounded-md text-sm font-medium text-white bg-redpen-600 hover:bg-redpen-700 disabled:opacity-50"
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>

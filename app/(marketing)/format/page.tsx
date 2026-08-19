@@ -11,26 +11,25 @@ type TabType = 'group' | 'regional' | 'national'
 type IconComponent = React.ComponentType<{ className?: string }>
 
 interface Championship {
-  title: string;
-  location: string;
-  details?: string[];
+  title: string
+  location: string
+  details?: string[]
 }
 
 interface Round {
-  title: string;
-  description: string;
-  details: string[];
-  icon: IconComponent;
+  title: string
+  description: string
+  details: string[]
+  icon: IconComponent
 }
 
 interface Competition {
-  title: string;
-  description: string;
-  icon: IconComponent;
-  color?: 'red' | 'green';
-  details?: string[];
-  rounds?: Round[];
-  championships?: Championship[];
+  title: string
+  description: string
+  icon: IconComponent
+  details?: string[]
+  rounds?: Round[]
+  championships?: Championship[]
 }
 
 const FormatPage = () => {
@@ -38,157 +37,131 @@ const FormatPage = () => {
 
   const competitions: Record<TabType, Competition> = {
     group: {
-      title: "Group Stage",
+      title: 'Group Stage',
       icon: Users,
-      description: "The initial phase featuring four distinct competitions",
+      description: 'The initial phase featuring four distinct competitions',
       details: [
-        "16 teams per conference (Western & Ontario)",
-        "4 groups of 4 teams each per conference",
-        "Completely free to participate",
-        "Fully online competition",
+        '16 teams per conference (Western & Ontario)',
+        '4 groups of 4 teams each per conference',
+        'Completely free to participate',
+        'Fully online competition',
       ],
       rounds: [
         {
-          title: "Canadian Open",
-          description: "Individual multiple-choice competition inspired by AMC (American Mathematics Competitions)",
+          title: 'Canadian Open',
+          description: 'Individual multiple-choice competition inspired by AMC (American Mathematics Competitions)',
           icon: Award,
           details: [
-            "20 multiple-choice questions",
-            "45 minute time limit",
-            "Each question is worth 10 points",
-            "No penalty for incorrect answers"
-          ]
+            '20 multiple-choice questions',
+            '45 minute time limit',
+            'Each question is worth 10 points',
+            'No penalty for incorrect answers',
+          ],
         },
         {
-          title: "Team Rush",
-          description: "Team competition that requires collaborative problem solving and teamwork!",
+          title: 'Team Rush',
+          description: 'Team competition that requires collaborative problem solving and teamwork!',
           icon: Clock,
-          details: [
-            "10 problems to solve as a team",
-            "30 minute time limit",
-            "Each question is worth 30 points!"
-          ]
+          details: ['10 problems to solve as a team', '30 minute time limit', 'Each question is worth 30 points!'],
         },
         {
-          title: "Capture the Problem",
-          description: "A strategic battle of speed and accuracy where every problem is a territory to conquer!",
+          title: 'Capture the Problem',
+          description: 'A strategic battle of speed and accuracy where every problem is a territory to conquer!',
           icon: Grid3x3Icon,
           details: [
-            "Each group of teams gets 50 challenging problems arranged in a grid",
+            'Each group of teams gets 50 challenging problems arranged in a grid',
             "Teams 'capture' a problem when they solve it - nobody else can solve it!",
             'Teams get points for capturing problems!',
-            "20 minute time limit",
-            "500 points up for grabs!"
-          ]
+            '20 minute time limit',
+            '500 points up for grabs!',
+          ],
         },
         {
-          title: "Head to Head Matchups ",
-          description: "Team vs Team matchups, collaborative problem-solving!",
+          title: 'Head to Head Matchups',
+          description: 'Team vs Team matchups, collaborative problem-solving!',
           icon: FaTeamspeak,
           details: [
-            "Two teams get a set of 5 problems.",
-            "Teams have to answer them in 2 minutes.",
-            "Team with the most points wins.",
-            "300 points up for grabs!"
-          ]
-        }
-      ]
+            'Two teams get a set of 5 problems.',
+            'Teams have to answer them in 2 minutes.',
+            'Team with the most points wins.',
+            '300 points up for grabs!',
+          ],
+        },
+      ],
     },
     regional: {
-      title: "Regional Championships",
+      title: 'Regional Championships',
       icon: MapPin,
-      color: "green" as const,
-      description: "In-person competition featuring individual and team events",
+      description: 'In-person competition featuring individual and team events',
       rounds: [
         {
-          title: "Individual Round",
-          description: "AIME-style individual competition with numerical answers",
+          title: 'Individual Round',
+          description: 'AIME-style individual competition with numerical answers',
           icon: Fingerprint,
           details: [
-            "15 challenging problems",
-            "1 hour time limit",
-            "AIME-style format with numerical answers only",
-            "Tiebreaker round (points not added to total score)",
-            "Focus on problem-solving under time pressure"
-          ]
+            '15 challenging problems',
+            '1 hour time limit',
+            'AIME-style format with numerical answers only',
+            'Tiebreaker round (points not added to total score)',
+            'Focus on problem-solving under time pressure',
+          ],
         },
         {
-          title: "Guts Round",
-          description: "Fast-paced team problem solving inspired by HMMT",
+          title: 'Guts Round',
+          description: 'Fast-paced team problem solving inspired by HMMT',
           icon: Users,
-          details: [
-            "35 total problems divided into 7 sets of 5",
-            "45 minute time limit",
-            "Teams work on one set at a time"
-          ]
+          details: ['35 total problems divided into 7 sets of 5', '45 minute time limit', 'Teams work on one set at a time'],
         },
         {
-          title: "Power Guts",
-          description: "Advanced proof-based team challenge",
+          title: 'Power Guts',
+          description: 'Advanced proof-based team challenge',
           icon: Award,
           details: [
-            "8 proof-based problems total",
-            "2 problems for each of 4 subject areas",
-            "30 minute time limit",
-            "Full solutions with proofs required"
-          ]
+            '8 proof-based problems total',
+            '2 problems for each of 4 subject areas',
+            '30 minute time limit',
+            'Full solutions with proofs required',
+          ],
         },
         {
-          title: "MathRoyale",
-          description: "Head-to-head buzzer round",
+          title: 'MathRoyale',
+          description: 'Head-to-head buzzer round',
           icon: Clock,
-          details: [
-            "Buzzer round, live and fully timed",
-            "Tests both speed and accuracy",
-            "Similar to MathCounts Countdown or Quiz Bowls"
-          ]
-        }
+          details: ['Buzzer round, live and fully timed', 'Tests both speed and accuracy', 'Similar to MathCounts Countdown or Quiz Bowls'],
+        },
       ],
       championships: [
-        {
-          title: "Ontario Championship",
-          location: "Toronto, ON"
-        },
-        {
-          title: "Western Championship",
-          location: "Vancouver, BC"
-        }
-      ]
+        { title: 'Ontario Championship', location: 'Toronto, ON' },
+        { title: 'Western Championship', location: 'Vancouver, BC' },
+      ],
     },
     national: {
-      title: "National Championships",
+      title: 'National Championships',
       icon: Trophy,
-      description: "Details coming soon!"
-    }
+      description: 'Details coming soon!',
+    },
   }
 
   const currentCompetition = competitions[activeTab]
 
   return (
-    <div className="min-h-screen py-12 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div className="min-h-screen py-16 bg-grid-paper">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="flex flex-col items-center justify-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-red-600">
-              Tournament Format
-            </h1>
-            <div className="h-1 w-64 bg-red-500 rounded-full my-2"></div>
-          </div>
+          <span className="stamp-label text-redpen-600 border-redpen-600">Rulebook</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-graphite-900 mt-3">Tournament Format</h1>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex justify-center gap-3 mb-12 flex-wrap">
           {Object.entries(competitions).map(([key, comp]) => (
             <button
               key={key}
               onClick={() => setActiveTab(key as TabType)}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${activeTab === key
-                  ? activeTab === 'regional'
-                    ? 'bg-green-700 text-white'
-                    : 'bg-red-700 text-white'
-                  : 'bg-white text-gray-700 hover:bg-red-50'
-                }`}
+              className={`px-5 py-2.5 text-xs font-bold uppercase tracking-wider border-2 border-graphite-900 rounded-xl transition-colors ${
+                activeTab === key ? 'bg-blueprint-800 border-blueprint-800 text-white' : 'bg-paper text-graphite-700 hover:bg-blueprint-50'
+              }`}
             >
               {comp.title}
             </button>
@@ -196,28 +169,23 @@ const FormatPage = () => {
         </div>
 
         {/* Current Competition Content */}
-        <motion.div
-          key={activeTab}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
-        >
-          <div className={`${activeTab === 'regional' ? 'bg-green-600' : 'bg-red-600'} p-6 text-white`}>
+        <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-paper border-2 border-graphite-900 rounded-xl">
+          <div className="bg-grid-blueprint p-6 text-white">
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between">
-                <h2 className="text-2xl md:text-3xl font-bold">
-                  {currentCompetition.title}
-                </h2>
-                <div className="mt-4 md:mt-0 bg-white/20 px-4 py-2 rounded-full text-sm font-medium">
-                  {activeTab === 'group' ? 'Online' : activeTab === 'regional' ? 'Single Elimination' : 'Championship'}
+                <h2 className="text-2xl md:text-3xl font-bold">{currentCompetition.title}</h2>
+                <div className="mt-3 md:mt-0">
+                  <span className="stamp-label border-white text-white !rotate-0">
+                    {activeTab === 'group' ? 'Online' : activeTab === 'regional' ? 'In-Person' : 'Championship'}
+                  </span>
                 </div>
               </div>
 
               {/* Competition Details */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t border-white/20">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-blueprint-500/40">
                 <div className="flex items-center space-x-2">
-                  <Calendar className="h-5 w-5 text-white/80" />
-                  <span className="text-white/90">
+                  <Calendar className="h-4 w-4 text-blueprint-300 flex-shrink-0" />
+                  <span className="text-sm text-blueprint-100">
                     {activeTab === 'group'
                       ? SEASON_STAGES.groupStage.displayDate
                       : activeTab === 'regional'
@@ -226,44 +194,36 @@ const FormatPage = () => {
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Users className="h-5 w-5 text-white/80" />
-                  <span className="text-white/90">
-                    {activeTab === 'group'
-                      ? '32 Teams (16 per conference)'
-                      : activeTab === 'regional'
-                        ? '12 Teams (6 per conference)'
-                        : '6 Finalist Teams'}
+                  <Users className="h-4 w-4 text-blueprint-300 flex-shrink-0" />
+                  <span className="text-sm text-blueprint-100">
+                    {activeTab === 'group' ? '32 Teams (16 per conference)' : activeTab === 'regional' ? '12 Teams (6 per conference)' : '6 Finalist Teams'}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Award className="h-5 w-5 text-white/80" />
-                  <span className="text-white/90">
-                    {activeTab === 'group'
-                      ? 'Free to Participate'
-                      : activeTab === 'regional'
-                        ? 'Qualification Required'
-                        : 'Invitation Only'}
+                  <Award className="h-4 w-4 text-blueprint-300 flex-shrink-0" />
+                  <span className="text-sm text-blueprint-100">
+                    {activeTab === 'group' ? 'Free to Participate' : activeTab === 'regional' ? 'Qualification Required' : 'Invitation Only'}
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="p-6">
 
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">{currentCompetition.description}</p>
+          <div className="p-6 md:p-8">
+            <p className="text-lg text-graphite-700 mb-8 leading-relaxed">{currentCompetition.description}</p>
 
             {/* Key Details Section */}
             {currentCompetition.details && currentCompetition.details.length > 0 && (
               <div className="mb-10">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="w-1.5 h-6 bg-red-500 rounded-full mr-2"></span>
+                <h3 className="text-sm font-bold text-graphite-900 uppercase tracking-wide mb-4 flex items-center gap-2">
+                  <span className="w-1.5 h-5 bg-redpen-600" />
                   Key Details
                 </h3>
-                <div className="space-y-2 pl-4 border-l-2 border-gray-200">
-                  {currentCompetition.details?.map((detail: string, index: number) => (
+                <div className="space-y-2 pl-4 border-l-2 border-paper-line">
+                  {currentCompetition.details.map((detail, index) => (
                     <div key={index} className="flex items-start">
-                      <ChevronRight className="h-5 w-5 text-red-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">{detail}</p>
+                      <ChevronRight className="h-5 w-5 text-redpen-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-graphite-700">{detail}</p>
                     </div>
                   ))}
                 </div>
@@ -272,32 +232,21 @@ const FormatPage = () => {
 
             {activeTab === 'regional' && currentCompetition.championships && (
               <div className="mt-10">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Regional Championships</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  
-                  {currentCompetition.championships.map((championship: Championship, index: number) => (
+                <h3 className="text-sm font-bold text-graphite-900 uppercase tracking-wide mb-6">Regional Championships</h3>
+                <div className="grid md:grid-cols-2 gap-px bg-paper-line border border-paper-line">
+                  {currentCompetition.championships.map((championship, index) => (
                     <motion.div
                       key={championship.title}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                      className="bg-paper p-6"
                     >
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">{championship.title}</h4>
-                      <div className="flex items-center text-sm text-gray-600 mb-3">
+                      <h4 className="font-bold text-graphite-900 mb-2">{championship.title}</h4>
+                      <div className="flex items-center text-sm text-graphite-600">
                         <MapPin className="h-4 w-4 mr-1.5" />
                         {championship.location}
                       </div>
-                      {championship.details && championship.details.length > 0 && (
-                        <div className="space-y-2">
-                          {championship.details.map((detail: string, i: number) => (
-                            <div key={i} className="flex items-start">
-                              <ChevronRight className="h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                              <span className="text-sm text-gray-700">{detail}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
                     </motion.div>
                   ))}
                 </div>
@@ -305,73 +254,32 @@ const FormatPage = () => {
             )}
 
             {/* Rounds Section */}
-            {activeTab === 'group' && 'rounds' in currentCompetition && (
+            {currentCompetition.rounds && (
               <div className="mt-10">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="w-1.5 h-6 bg-red-500 rounded-full mr-2"></span>
-                  Rounds
+                <h3 className="text-sm font-bold text-graphite-900 uppercase tracking-wide mb-4 flex items-center gap-2">
+                  <span className="w-1.5 h-5 bg-redpen-600" />
+                  {activeTab === 'group' ? 'Rounds' : 'Competition Rounds'}
                 </h3>
-                <div className="space-y-6">
-                  {currentCompetition.rounds?.map((round, index) => (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {currentCompetition.rounds.map((round, index) => (
                     <motion.div
                       key={round.title}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="bg-gray-50 p-6 rounded-lg border border-gray-200"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.08 }}
+                      className="bg-grid-paper border-2 border-graphite-900 rounded-xl p-5"
                     >
-                      <div className="flex items-center mb-4">
-                        <div className="bg-white/20 p-3 rounded-xl">
-                          <round.icon className="h-5 w-5 text-red-600" />
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="border-2 border-graphite-900 rounded-xl p-2 bg-paper">
+                          <round.icon className="h-5 w-5 text-redpen-600" />
                         </div>
-                        <h4 className="text-lg font-semibold text-gray-900">
-                          {round.title}
-                        </h4>
+                        <h4 className="text-sm font-bold text-graphite-900 uppercase tracking-wide">{round.title}</h4>
                       </div>
-                      <p className="text-gray-600 text-sm mb-4">{round.description}</p>
-                      <ul className="space-y-2">
+                      <p className="text-graphite-600 text-sm mb-3">{round.description}</p>
+                      <ul className="space-y-1.5">
                         {round.details.map((detail, i) => (
-                          <li key={i} className="flex items-start text-sm text-gray-700">
-                            <ChevronRight className="h-4 w-4 text-gray-400 mt-0.5 mr-2 flex-shrink-0" />
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {/* Regional Rounds Section */}
-            {activeTab === 'regional' && 'rounds' in currentCompetition && (
-              <div className="mt-10">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <span className="w-1.5 h-6 bg-green-500 rounded-full mr-2"></span>
-                  Competition Rounds
-                </h3>
-                <div className="space-y-6">
-                  {currentCompetition.rounds?.map((round, index) => (
-                    <motion.div
-                      key={round.title}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="bg-gray-50 p-6 rounded-lg border border-gray-200"
-                    >
-                      <div className="flex items-center mb-4">
-                        <div className="bg-white/20 p-3 rounded-xl">
-                          <round.icon className="h-5 w-5 text-green-600" />
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-900">
-                          {round.title}
-                        </h4>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-4">{round.description}</p>
-                      <ul className="space-y-2">
-                        {round.details.map((detail, i) => (
-                          <li key={i} className="flex items-start text-sm text-gray-700">
-                            <ChevronRight className="h-4 w-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                          <li key={i} className="flex items-start text-sm text-graphite-600">
+                            <ChevronRight className="h-4 w-4 text-blueprint-500 mt-0.5 mr-1.5 flex-shrink-0" />
                             {detail}
                           </li>
                         ))}

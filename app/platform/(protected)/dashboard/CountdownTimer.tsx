@@ -23,16 +23,16 @@ export function CountdownTimer({ targetMs }: { targetMs: number }) {
   }, [targetMs])
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <h2 className="text-lg font-medium text-gray-900 mb-4">Time to Group Stage</h2>
+    <div className="bg-paper p-6 rounded-lg shadow">
+      <h2 className="text-lg font-medium text-graphite-900 mb-4">Time to Group Stage</h2>
       {timeLeft.started ? (
-        <div className="text-2xl font-bold text-green-600">Group Stage is Live!</div>
+        <div className="text-2xl font-bold text-blueprint-700">Group Stage is Live!</div>
       ) : (
         <div className="grid grid-cols-4 gap-2 text-center">
           {(['days', 'hours', 'minutes', 'seconds'] as const).map((unit) => (
             <div key={unit}>
-              <div className="text-2xl font-bold text-red-600">{timeLeft[unit]}</div>
-              <div className="text-xs text-gray-500">{unit}</div>
+              <div className="text-2xl font-bold text-redpen-600">{timeLeft[unit]}</div>
+              <div className="text-xs text-graphite-600">{unit}</div>
             </div>
           ))}
         </div>

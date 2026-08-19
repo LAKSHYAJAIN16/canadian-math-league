@@ -55,27 +55,27 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-gray-900">Your Teams</h2>
+      <h2 className="text-xl font-semibold text-graphite-900">Your Teams</h2>
       {localTeams.map((team, teamIndex) => {
         const isEditing = editingTeamId === team.id
         const members = isEditing ? editingMembers : team.members
 
         return (
-          <div key={team.id} className="bg-white p-6 rounded-lg shadow">
+          <div key={team.id} className="bg-paper p-6 rounded-lg shadow">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-medium text-gray-900">Team {teamIndex + 1}</h3>
+              <h3 className="text-lg font-medium text-graphite-900">Team {teamIndex + 1}</h3>
               {isEditing ? (
                 <div className="space-x-2">
                   <button
                     onClick={cancelEditing}
-                    className="px-3 py-1.5 border border-gray-300 rounded-md text-xs font-medium text-gray-700 bg-white hover:bg-gray-50"
+                    className="px-3 py-1.5 border border-graphite-300 rounded-md text-xs font-medium text-graphite-700 bg-paper hover:bg-paper"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => saveTeamChanges(team.id)}
                     disabled={isSaving}
-                    className="px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
+                    className="px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blueprint-800 hover:bg-blueprint-900 disabled:opacity-50"
                   >
                     {isSaving ? 'Saving...' : 'Save Changes'}
                   </button>
@@ -83,21 +83,21 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
               ) : (
                 <button
                   onClick={() => startEditing(team)}
-                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blueprint-800 hover:bg-blueprint-900"
                 >
                   Edit Team
                 </button>
               )}
             </div>
 
-            {error && isEditing && <p className="text-sm text-red-600 mb-3">{error}</p>}
+            {error && isEditing && <p className="text-sm text-redpen-600 mb-3">{error}</p>}
 
             <div className="space-y-3">
               {members.map((member, memberIndex) => (
-                <div key={member.id} className="p-4 bg-gray-50 rounded-lg">
+                <div key={member.id} className="p-4 bg-paper rounded-lg">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-gray-500 mb-1">
+                      <label className="block text-xs font-medium text-graphite-600 mb-1">
                         Member {memberIndex + 1} Name
                       </label>
                       {isEditing ? (
@@ -105,23 +105,23 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
                           type="text"
                           value={member.name}
                           onChange={(e) => handleMemberChange(memberIndex, 'name', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                          className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-blueprint-600 focus:border-blueprint-600 text-sm"
                         />
                       ) : (
-                        <p className="text-sm font-medium text-gray-900">{member.name}</p>
+                        <p className="text-sm font-medium text-graphite-900">{member.name}</p>
                       )}
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-gray-500 mb-1">Email</label>
+                      <label className="block text-xs font-medium text-graphite-600 mb-1">Email</label>
                       {isEditing ? (
                         <input
                           type="email"
                           value={member.email}
                           onChange={(e) => handleMemberChange(memberIndex, 'email', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                          className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-blueprint-600 focus:border-blueprint-600 text-sm"
                         />
                       ) : (
-                        <p className="text-sm text-gray-600">{member.email}</p>
+                        <p className="text-sm text-graphite-600">{member.email}</p>
                       )}
                     </div>
                   </div>

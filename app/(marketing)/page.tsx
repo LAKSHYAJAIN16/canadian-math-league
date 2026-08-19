@@ -6,104 +6,112 @@ import Link from 'next/link'
 import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES } from '@/lib/content/season'
 import { StageBar } from '@/components/ui/StageBar'
 
-const HomePage = () => {
-  const stats = [
-    { number: '10,000+', label: 'Students' },
-    { number: '500+', label: 'Schools' },
-    { number: '13', label: 'Provinces' },
-    { number: '25+', label: 'Years' },
-  ]
-
-  const features = [
-    {
-      icon: Trophy,
-      title: 'National Competitions',
-      description: 'Participate in prestigious mathematics competitions across Canada',
-    },
-    {
-      icon: Users,
-      title: 'Thriving Community',
-      description: 'Connect with like-minded students and mathematics enthusiasts',
-    },
-    {
-      icon: BookOpen,
-      title: 'Premium Resources',
-      description: 'Access comprehensive study materials and practice problems',
-    },
-  ]
-
+function RedPenCircle({ className = '' }: { className?: string }) {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-red-50 to-white py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+    <svg
+      className={`redpen-mark-auto ${className}`}
+      viewBox="0 0 220 48"
+      preserveAspectRatio="none"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M14 25 C14 6, 44 2, 110 2 C182 2, 206 6, 204 25 C204 42, 170 46, 110 46 C46 46, 16 40, 14 25 Z"
+        stroke="#DC1F35"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+const HomePage = () => {
+  return (
+    <div className="min-h-screen bg-paper">
+      {/* Hero */}
+      <section className="relative bg-grid-blueprint overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="flex flex-col items-center mb-4"
+              className="flex flex-col items-start gap-2 mb-6"
             >
-              <p className="text-xs font-medium text-gray-500 mb-1">In partnership with</p>
-              <img 
-                src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png" 
-                alt="Canadian Mathematical Society" 
-                className="h-10 w-auto object-contain"
+              <p className="text-xs font-semibold text-graphite-600 tracking-wide">In partnership with</p>
+              <img
+                src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png"
+                alt="Canadian Mathematical Society"
+                className="h-9 w-auto object-contain"
               />
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-7xl font-extrabold text-graphite-900 leading-[1.05] mb-3"
             >
-              Canada&apos;s Premier <span className="text-red-600">Math Tournament</span>
+              Canada&apos;s friendliest{' '}
+              <span className="relative inline-block group text-redpen-600">
+                math tournament
+                <RedPenCircle />
+              </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
+              transition={{ delay: 0.2 }}
+              className="mt-6 text-lg md:text-xl text-graphite-600 max-w-2xl leading-relaxed"
             >
-              Join thousands of students across Canada in our prestigious math competitions.
-              Develop problem-solving skills, compete with top talent, and achieve mathematical excellence.
+              A free, team-based tournament for high schools across Canada — an online
+              Group Stage, in-person Regional Championships, and a National final.
+              Four round formats. One school team. Zero entry fee.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              transition={{ delay: 0.3 }}
+              className="mt-9 flex flex-col sm:flex-row gap-4 items-start"
             >
-              <Link 
-                href="/register" 
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 transition-colors"
+              <Link
+                href="/register"
+                className="btn-press rounded-full inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-base font-semibold shadow-red-glow hover:bg-redpen-700"
               >
-                Register Now
-                <ArrowRight className="ml-2 h-5 w-5" />
+                Register your team
+                <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link 
-                href="/about" 
-                className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition-colors"
+              <Link
+                href="/format"
+                className="btn-press rounded-full inline-flex items-center gap-2 bg-white text-redpen-600 border-2 border-redpen-100 px-8 py-4 text-base font-semibold hover:border-redpen-300 hover:bg-redpen-50"
               >
-                Learn More
+                See the format
               </Link>
             </motion.div>
+          </div>
+        </div>
+
+        {/* Season strip */}
+        <div className="relative border-t border-redpen-100 bg-white/60">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="stamp-label">Group Stage</span>
+            <p className="text-sm text-graphite-600">
+              {SEASON_STAGES.groupStage.displayDate} &middot; {SEASON_STAGES.groupStage.location} &middot; Free
+            </p>
           </div>
         </div>
       </section>
 
       {/* Become a Sponsor */}
-      <section className="py-6 bg-white border-t border-b border-gray-100">
+      <section className="py-4 bg-paper border-b border-paper-line">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
-          <p className="text-sm font-medium text-gray-500">
+          <p className="text-sm font-medium text-graphite-600">
             Interested in supporting Canadian math education?
           </p>
           <Link
             href="/about/sponsors"
-            className="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
+            className="text-sm font-semibold text-redpen-600 hover:text-redpen-700 transition-colors"
           >
             Become a sponsor &rarr;
           </Link>
@@ -111,36 +119,32 @@ const HomePage = () => {
       </section>
 
       {/* Tournament Structure Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-24 bg-grid-paper">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+              className="text-3xl md:text-5xl font-bold text-graphite-900"
             >
-              Not a contest. A
-              <span className="relative inline-block mx-2 group">
-                <span className="absolute -inset-1 bg-red-100 rounded-full transform group-hover:scale-105 transition-transform duration-300"></span>
-                <span className="relative text-red-600">tournament</span>
-              </span>
-            </motion.div>
-            <motion.p 
+              Three stages. One champion.
+            </motion.h2>
+            <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-lg text-graphite-600 max-w-2xl mx-auto mt-4"
             >
-              A progressive competition with three distinct levels of achievement
+              A progressive tournament with three distinct levels of achievement.
             </motion.p>
           </div>
 
           {/* Bar Chart Visualization */}
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-end justify-center gap-4 md:gap-8 h-[300px] mb-12">
+            <div className="flex items-end justify-center gap-6 md:gap-10 h-[300px] mb-16">
               <StageBar
                 icon={Users}
                 title="Group Stage"
@@ -148,7 +152,7 @@ const HomePage = () => {
                 stat="200+"
                 statLabel="Particpants"
                 heightPx={180}
-                gradient="from-red-300 to-red-200"
+                gradient="from-blueprint-600 to-blueprint-400"
               />
               <StageBar
                 icon={Trophy}
@@ -157,7 +161,7 @@ const HomePage = () => {
                 stat="12"
                 statLabel="Teams"
                 heightPx={220}
-                gradient="from-red-400 to-red-300"
+                gradient="from-blueprint-700 to-blueprint-500"
                 delay={0.15}
               />
               <StageBar
@@ -167,7 +171,7 @@ const HomePage = () => {
                 stat="6"
                 statLabel="Finalists"
                 heightPx={260}
-                gradient="from-red-500 to-red-400"
+                gradient="from-blueprint-900 to-blueprint-700"
                 delay={0.3}
               />
             </div>
@@ -181,56 +185,44 @@ const HomePage = () => {
                 title: 'Group Stage',
                 description: 'Go up against schools near you for a spot at regionals.',
                 stats: '200+ Participants',
-                color: 'from-red-300 to-red-200'
+                tags: ['Free', 'Online'],
               },
               {
                 icon: Trophy,
                 title: 'Regionals',
                 description: 'Compete against the best in your region for a spot at nationals.',
                 stats: '12 Teams',
-                color: 'from-red-400 to-red-300'
+                tags: ['Toronto', 'Vancouver'],
               },
               {
                 icon: Award,
                 title: 'Nationals',
-                description: 'The ultimate challenge with Canada\'s top math teams.',
+                description: "The ultimate challenge with Canada's top math teams.",
                 stats: '6 Finalists',
-                color: 'from-red-500 to-red-400'
-              }
+                tags: ['Toronto'],
+              },
             ].map((stage, index) => (
               <motion.div
                 key={stage.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 + (index * 0.1) }}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+                transition={{ delay: 0.2 + index * 0.1 }}
+                className="bg-paper rounded-3xl shadow-soft p-6 hover:shadow-soft-lg hover:-translate-y-1 transition-all"
               >
-                <div className={`w-12 h-12 bg-gradient-to-br ${stage.color} rounded-xl flex items-center justify-center mb-4`}>
-                  <stage.icon className="h-6 w-6 text-white" />
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mb-4">
+                  <stage.icon className="h-6 w-6 text-redpen-600" />
                 </div>
-                <div className="mb-2">
-                  <h3 className="text-xl font-bold text-gray-900">{stage.title}</h3>
-                  {stage.title === 'Group Stage' && (
-                    <div className="flex gap-2 mt-1">
-                      <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">Free</span>
-                      <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">Online</span>
-                    </div>
-                  )}
-                  {stage.title === 'Regionals' && (
-                      <div className="flex gap-2 mt-1">
-                        <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">Toronto</span>
-                        <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">Vancouver</span>
-                      </div>
-                  )}
-                  {stage.title == "Nationals" && (
-                    <div className="flex gap-2 mt-1">
-                      <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">Toronto</span>
-                    </div>
-                  )}
+                <h3 className="text-lg font-bold text-graphite-900">{stage.title}</h3>
+                <div className="flex flex-wrap gap-2 mt-2 mb-3">
+                  {stage.tags.map((tag) => (
+                    <span key={tag} className="stamp-label">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <p className="text-gray-600 mb-3">{stage.description}</p>
-                <p className="text-sm font-medium text-gray-500">{stage.stats}</p>
+                <p className="text-graphite-600 mb-3">{stage.description}</p>
+                <p className="text-xs font-bold text-blueprint-700 uppercase tracking-wide">{stage.stats}</p>
               </motion.div>
             ))}
           </div>
@@ -238,7 +230,7 @@ const HomePage = () => {
       </section>
 
       {/* How It Works - Enhanced Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-paper">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <motion.div
@@ -246,23 +238,23 @@ const HomePage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+              className="text-3xl md:text-5xl font-bold text-graphite-900 mb-4"
             >
-              How It <span className="text-red-600">Works</span>
+              How it <span className="text-redpen-600">works</span>
             </motion.div>
-            <motion.p 
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+            <motion.p
+              className="text-lg text-graphite-600 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Your journey to mathematical excellence in three simple steps
+              Your path onto the tournament bracket, in three steps.
             </motion.p>
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex justify-center gap-4 mb-12">
+          <div className="flex justify-center gap-3 mb-12">
             {[
               { id: 'register', label: 'Register', icon: Users },
               { id: 'prepare', label: 'Prepare', icon: BookOpen },
@@ -270,38 +262,38 @@ const HomePage = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors ${
+                className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-colors ${
                   tab.id === 'register'
-                    ? 'bg-red-700 text-white'
-                    : 'bg-white text-gray-700 hover:bg-red-50'
+                    ? 'bg-redpen-600 text-white shadow-red-glow'
+                    : 'bg-redpen-50 text-graphite-700 hover:bg-redpen-100'
                 }`}
               >
-                <tab.icon className="h-5 w-5" />
+                <tab.icon className="h-4 w-4" />
                 {tab.label}
               </button>
             ))}
           </div>
 
           {/* Register Tab Content */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-12">
+          <div className="bg-paper rounded-3xl shadow-soft mb-12">
             <div className="p-8">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-400 rounded-xl flex items-center justify-center">
-                  <Users className="h-6 w-6 text-white" />
+                <div className="w-14 h-14 rounded-2xl bg-redpen-600 flex items-center justify-center flex-shrink-0">
+                  <Users className="h-7 w-7 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Register Your Team</h2>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full font-medium">Free</span>
-                    <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full font-medium">Online</span>
-                    <span className="text-sm text-gray-500">• Registration Open</span>
+                  <h2 className="text-2xl font-bold text-graphite-900">Register Your Team</h2>
+                  <div className="flex items-center gap-2 mt-1.5">
+                    <span className="stamp-label">Free</span>
+                    <span className="stamp-label">Online</span>
+                    <span className="text-sm text-graphite-500">Registration open</span>
                   </div>
                 </div>
               </div>
-              
-              <p className="text-gray-700 mb-6">Join the competition by registering your school team through our simple online process.</p>
-              
-              <div className="grid md:grid-cols-2 gap-6">
+
+              <p className="text-graphite-700 mb-6">Join the competition by registering your school team through our simple online process.</p>
+
+              <div className="grid md:grid-cols-2 gap-4">
                 {[
                   {
                     title: "Team Formation",
@@ -332,20 +324,20 @@ const HomePage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 * i }}
-                    className="p-6 bg-gray-50 rounded-lg border border-gray-100"
+                    className="p-6 bg-redpen-50/60 rounded-2xl"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="p-2 bg-red-100 rounded-lg">
-                        <item.icon className="h-5 w-5 text-red-600" />
+                      <div className="p-2.5 bg-white rounded-xl shadow-soft">
+                        <item.icon className="h-5 w-5 text-redpen-600" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                        <h3 className="text-base font-bold text-graphite-900">{item.title}</h3>
+                        <p className="text-graphite-600 text-sm mt-1">{item.description}</p>
                         <ul className="mt-3 space-y-2">
                           {item.details.map((detail, j) => (
                             <li key={j} className="flex items-start">
-                              <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm text-gray-600">{detail}</span>
+                              <CheckCircle className="h-4 w-4 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm text-graphite-600">{detail}</span>
                             </li>
                           ))}
                         </ul>
@@ -354,32 +346,32 @@ const HomePage = () => {
                   </motion.div>
                 ))}
               </div>
-              
-              <div className="mt-8 p-6 bg-red-50 rounded-lg border border-red-100">
-                <h3 className="font-medium text-red-800 mb-3">Important Dates</h3>
+
+              <div className="mt-8 p-6 bg-redpen-50 rounded-2xl">
+                <h3 className="text-sm font-bold text-redpen-700 uppercase tracking-wide mb-3">Important Dates</h3>
                 <ul className="space-y-2">
                   <li className="flex items-start">
-                    <Calendar className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700"><span className="font-medium">Early Registration:</span> {REGISTRATION_DEADLINES.early}</span>
+                    <Calendar className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-graphite-700"><span className="font-semibold text-graphite-900">Early Registration:</span> {REGISTRATION_DEADLINES.early}</span>
                   </li>
                   <li className="flex items-start">
-                    <Calendar className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700"><span className="font-medium">Final Registration Deadline:</span> {REGISTRATION_DEADLINES.final}</span>
+                    <Calendar className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-graphite-700"><span className="font-semibold text-graphite-900">Final Registration Deadline:</span> {REGISTRATION_DEADLINES.final}</span>
                   </li>
                   <li className="flex items-start">
-                    <Calendar className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700"><span className="font-medium">Competition Day:</span> {SEASON_STAGES.groupStage.displayDate}</span>
+                    <Calendar className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-graphite-700"><span className="font-semibold text-graphite-900">Competition Day:</span> {SEASON_STAGES.groupStage.displayDate}</span>
                   </li>
                 </ul>
               </div>
-              
+
               <div className="mt-8 text-center">
                 <Link
                   href="/register"
-                  className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 transition-colors"
+                  className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
                 >
-                  Register Your Team Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  Register your team now
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -388,32 +380,31 @@ const HomePage = () => {
       </section>
 
       {/* Prizes Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6"
+              className="text-3xl md:text-5xl font-bold text-graphite-900 mb-4"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-amber-300">Win Amazing Prizes</span>
+              Win real prizes.
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-lg text-graphite-600 max-w-2xl mx-auto"
             >
-              Compete for cash prizes, scholarships, and exclusive opportunities
+              Compete for cash prizes, scholarships, and national recognition.
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {PRIZE_TIERS.map((tier, index) => {
               const icon = [Trophy, Award, Medal][index] ?? Medal
-              const color = ['from-yellow-400 to-yellow-200', 'from-gray-300 to-gray-200', 'from-amber-500 to-amber-300'][index] ?? 'from-amber-500 to-amber-300'
               const Icon = icon
               return (
                 <motion.div
@@ -422,156 +413,121 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + index * 0.1 }}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                  className="bg-paper rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all p-8 text-center"
                 >
-                  <div className={`h-2 bg-gradient-to-r ${color}`}></div>
-                  <div className="p-6 text-center">
-                    <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-gray-50 mb-4">
-                      <Icon className="h-8 w-8 text-gray-700" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{tier.title}</h3>
-                    <p className={`text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r ${color} mb-2`}>{tier.amount}</p>
-                    <p className="text-gray-600">{tier.description}</p>
+                  <div className="mx-auto flex items-center justify-center h-16 w-16 bg-redpen-50 rounded-2xl mb-4">
+                    <Icon className="h-7 w-7 text-redpen-600" />
                   </div>
+                  <h3 className="text-sm font-bold text-graphite-600 uppercase tracking-wide mb-1">{tier.title}</h3>
+                  <p className="text-4xl font-extrabold text-redpen-600 mb-2">{tier.amount}</p>
+                  <p className="text-graphite-600 text-sm">{tier.description}</p>
                 </motion.div>
               )
             })}
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
             className="mt-12 text-center"
           >
-            <p className="text-gray-600 mb-4">Additional prizes include medals, certificates, and exclusive opportunities</p>
-            <Link 
-              href="/prizes" 
-              className="inline-flex items-center text-red-600 font-medium hover:text-red-700 transition-colors"
+            <p className="text-graphite-600 mb-4">Additional prizes include medals, certificates, and exclusive opportunities.</p>
+            <Link
+              href="/prizes"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-redpen-600 hover:text-redpen-700 transition-colors"
             >
               View all prizes and awards
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* 2025 Season Section */}
-      <section className="py-20 bg-gradient-to-br from-red-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <motion.div 
+      {/* Competition Timeline — scoreboard rhythm break */}
+      <section className="py-24 bg-grid-blueprint-dense">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Calendar className="h-6 w-6 text-redpen-600" />
+              <span className="text-xs tracking-[0.2em] uppercase text-graphite-600">2025&ndash;26 Season</span>
+            </div>
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-block"
+              className="text-3xl md:text-5xl font-bold text-graphite-900"
             >
-              <span className="inline-block px-4 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full mb-3">2025 SEASON</span>
-              <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-400">Register Now for 2025</span>
-              </h2>
-            </motion.div>
-            <motion.p 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 max-w-4xl mx-auto mb-10"
-            >
-              Secure your spot in Canada&apos;s premier math competition. Limited spots available!
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="mb-16"
-            >
-              <Link 
-                href="/register" 
-                className="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
-              >
-                Register Now
-                <ArrowRight className="ml-3 h-5 w-5" />
-              </Link>
-            </motion.div>
+              The competition timeline
+            </motion.h2>
           </div>
 
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-            <div className="p-1 bg-gradient-to-r from-red-600 to-red-400"></div>
-            <div className="p-8">
-              <div className="flex items-center justify-center mb-8">
-                <Calendar className="h-10 w-10 text-red-600 mr-3" />
-                <h3 className="text-3xl font-bold text-gray-900">Competition Timeline</h3>
-              </div>
+          <div className="bg-paper rounded-3xl shadow-soft divide-y divide-redpen-50 overflow-hidden">
+            {[
+              {
+                date: REGISTRATION_DEADLINES.early,
+                title: 'Early Registration',
+                description: 'Register your team ahead of the final deadline'
+              },
+              {
+                date: REGISTRATION_DEADLINES.final,
+                title: 'Final Registration Deadline',
+                description: 'Last day to register your team for the Group Stage'
+              },
+              {
+                date: SEASON_STAGES.groupStage.displayDate,
+                title: SEASON_STAGES.groupStage.title,
+                description: SEASON_STAGES.groupStage.description
+              },
+              {
+                date: SEASON_STAGES.regionals.displayDate,
+                title: SEASON_STAGES.regionals.title,
+                description: SEASON_STAGES.regionals.description
+              },
+              {
+                date: SEASON_STAGES.nationals.displayDate,
+                title: SEASON_STAGES.nationals.title,
+                description: SEASON_STAGES.nationals.description
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.08 * index }}
+                className="flex items-center gap-6 px-6 py-5"
+              >
+                <div className="scoreboard-digit flex-shrink-0 w-10 h-10 rounded-full bg-redpen-50 flex items-center justify-center text-base font-bold text-redpen-600">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                  <div>
+                    <div className="font-bold text-graphite-900 text-sm">{item.title}</div>
+                    <p className="text-graphite-600 text-sm mt-0.5">{item.description}</p>
+                  </div>
+                  <div className="text-sm text-redpen-600 font-semibold whitespace-nowrap">{item.date}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-              <div className="space-y-6">
-                {[
-                  {
-                    date: REGISTRATION_DEADLINES.early,
-                    title: 'Early Registration',
-                    description: 'Register your team ahead of the final deadline'
-                  },
-                  {
-                    date: REGISTRATION_DEADLINES.final,
-                    title: 'Final Registration Deadline',
-                    description: 'Last day to register your team for the Group Stage'
-                  },
-                  {
-                    date: SEASON_STAGES.groupStage.displayDate,
-                    title: SEASON_STAGES.groupStage.title,
-                    description: SEASON_STAGES.groupStage.description
-                  },
-                  {
-                    date: SEASON_STAGES.regionals.displayDate,
-                    title: SEASON_STAGES.regionals.title,
-                    description: SEASON_STAGES.regionals.description
-                  },
-                  {
-                    date: SEASON_STAGES.nationals.displayDate,
-                    title: SEASON_STAGES.nationals.title,
-                    description: SEASON_STAGES.nationals.description
-                  }
-                ].map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index }}
-                    className="flex items-start pb-6 border-b border-gray-100 last:border-0 last:pb-0"
-                  >
-                    <div className="flex-shrink-0 h-12 w-12 rounded-full bg-red-50 flex items-center justify-center text-red-600 font-bold mr-5 mt-1">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold text-gray-900">{item.title}</div>
-                      <div className="text-red-600 font-medium">{item.date}</div>
-                      <p className="text-gray-600 mt-1">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div className="mt-10 pt-6 border-t border-gray-100 text-center">
-                <p className="text-gray-600 mb-4">Don&apos;t miss your chance to compete with the best young mathematicians in Canada</p>
-                <Link 
-                  href="/register" 
-                  className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 md:py-3 md:text-lg md:px-10 transition-colors"
-                >
-                  Register Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </div>
-            </div>
+          <div className="mt-12 text-center">
+            <p className="text-graphite-600 mb-5">Don&apos;t miss your chance to compete with the best young mathematicians in Canada.</p>
+            <Link
+              href="/register"
+              className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
+            >
+              Register now
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Community Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <motion.div 
@@ -580,17 +536,16 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="inline-block relative"
             >
-              <div className="absolute -inset-4 bg-red-50 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
-              <h2 className="relative text-5xl md:text-6xl font-extrabold text-gray-900 mb-10 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-400">
-                Community is Everything
+              <h2 className="text-3xl md:text-5xl font-bold text-graphite-900 mb-6">
+                Community is everything.
               </h2>
             </motion.div>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-lg text-graphite-600 max-w-2xl mx-auto"
             >
               Join a network of passionate math enthusiasts and grow together
             </motion.p>
@@ -620,59 +575,61 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                className="bg-paper p-8 rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all"
               >
-                <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-red-600" />
+                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mb-4">
+                  <feature.icon className="h-6 w-6 text-redpen-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-lg font-bold text-graphite-900 mb-2">{feature.title}</h3>
+                <p className="text-graphite-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>
 
-          <motion.div 
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <Link 
-              href="/community" 
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 transition-colors"
+            <Link
+              href="/community"
+              className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
             >
-              Join Our Community
-              <Users className="ml-2 h-5 w-5" />
+              Join our community
+              <Users className="h-4 w-4" />
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-red-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-redpen-600 text-white py-20 relative overflow-hidden">
+        <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/10 rounded-full animate-float" />
+        <div className="absolute -left-10 bottom-0 w-40 h-40 bg-white/10 rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6">Ready to Test Your Skills?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Join students from across Canada in our upcoming competitions and take your mathematical abilities to the next level.
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to test your skills?</h2>
+            <p className="text-lg text-white/90 mb-10 max-w-xl mx-auto">
+              Join students from across Canada on the bracket. Free to enter, open to every high school.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/register" 
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-600 bg-white hover:bg-gray-100 md:py-4 md:text-lg md:px-10 transition-colors"
+              <Link
+                href="/register"
+                className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-white text-redpen-600 px-8 py-4 text-sm font-semibold hover:bg-redpen-50"
               >
-                Register Now
+                Register now
               </Link>
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white/10 md:py-4 md:text-lg md:px-10 transition-colors"
+              <Link
+                href="/contact"
+                className="btn-press rounded-full inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white px-8 py-4 text-sm font-semibold hover:bg-white hover:text-redpen-600"
               >
-                Contact Us
+                Contact us
               </Link>
             </div>
           </motion.div>

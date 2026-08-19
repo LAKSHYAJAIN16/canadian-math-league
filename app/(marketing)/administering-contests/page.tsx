@@ -2,15 +2,15 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { FileText, Play, User, Users as Team, Swords, ClipboardList, Settings } from 'lucide-react'
+import { FileText, User, Users as Team, Swords, ClipboardList, Settings } from 'lucide-react'
 
 // Content components
 const RegisteringContent = () => (
   <div className="space-y-6">
-    <h2 className="text-2xl font-bold text-gray-900">Registering</h2>
-    <div className="prose max-w-none text-gray-600 space-y-4">
+    <h2 className="text-2xl font-bold text-graphite-900">Registering</h2>
+    <div className="prose max-w-none text-graphite-600 space-y-4">
       <p className="text-lg">
-        Fill out the form <a href="/register">here</a> skiubidi. Our team will get back to you with further instructions and confirmation details.
+        Fill out the form <a href="/register">here</a>. Our team will get back to you with further instructions and confirmation details.
       </p>
       <div className="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-100">
         <h3 className="text-lg font-medium text-blue-800 mb-3">What happens next?</h3>
@@ -34,9 +34,9 @@ const RegisteringContent = () => (
 )
 
 const SetupContent = () => (
-  <div className="p-6 text-gray-600 w-[50%]">
-    <h2 className="text-2xl font-bold text-gray-900 mb-4">Setup</h2>
-    <div className="prose text-gray-600 space-y-4">
+  <div className="p-6 text-graphite-600 w-[50%]">
+    <h2 className="text-2xl font-bold text-graphite-900 mb-4">Setup</h2>
+    <div className="prose text-graphite-600 space-y-4">
       <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 mb-6">
         <h3 className="font-medium text-blue-800 mb-2">At a Glance</h3>
         <ul className="space-y-2 text-blue-700">
@@ -60,7 +60,7 @@ const SetupContent = () => (
           </li>
         </ul>
       </div>
-      <p className="text-gray-600">
+      <p className="text-graphite-600">
         Before the contest, you should have received an email with your login details. These credentials will give you access to the contest platform where you can manage your students and access contest materials.
       </p>
 
@@ -75,18 +75,18 @@ const SetupContent = () => (
       </div>
 
       <div className="mt-6">
-        <h3 className="font-medium text-gray-900 mb-3">Pre-Contest Checklist</h3>
-        <ul className="space-y-2 text-gray-600">
+        <h3 className="font-medium text-graphite-900 mb-3">Pre-Contest Checklist</h3>
+        <ul className="space-y-2 text-graphite-600">
           <li className="flex items-start">
-            <div className="flex-shrink-0 h-5 w-5 text-green-500 mr-2">✓</div>
+            <div className="flex-shrink-0 h-5 w-5 text-blueprint-700 mr-2">✓</div>
             <span>Test your login credentials before contest day</span>
           </li>
           <li className="flex items-start">
-            <div className="flex-shrink-0 h-5 w-5 text-green-500 mr-2">✓</div>
+            <div className="flex-shrink-0 h-5 w-5 text-blueprint-700 mr-2">✓</div>
             <span>Ensure all students have their materials ready</span>
           </li>
           <li className="flex items-start">
-            <div className="flex-shrink-0 h-5 w-5 text-green-500 mr-2">✓</div>
+            <div className="flex-shrink-0 h-5 w-5 text-blueprint-700 mr-2">✓</div>
             <span>Review contest rules and timing with your students</span>
           </li>
         </ul>
@@ -97,7 +97,7 @@ const SetupContent = () => (
 
 const IndividualRoundContent = () => (
   <div className="space-y-6 w-full">
-    <h2 className="text-2xl font-bold text-gray-900">Individual Round</h2>
+    <h2 className="text-2xl font-bold text-graphite-900">Individual Round</h2>
 
     {/* Requirements Section */}
     <div className="bg-blue-50 px-4 py-3 rounded-lg border border-blue-100">
@@ -130,76 +130,76 @@ const IndividualRoundContent = () => (
       </div>
     </div>
 
-    <p className="text-gray-600">
+    <p className="text-graphite-600">
       After the timer hits zero, a new screen will open up on each contestant&apos;s screen with the rules for the individual round
     </p>
     <div>
       <img src="/pages/rules_ind.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Teacher login page" />
-      <p className="text-center text-xs mt-1 text-gray-400">The rules that are on each contestant&apos;s screen.</p>
+      <p className="text-center text-xs mt-1 text-graphite-400">The rules that are on each contestant&apos;s screen.</p>
     </div>
-    <p className="text-gray-600">
+    <p className="text-graphite-600">
       We advise going through the rules with all of the participants, but they&apos;re pretty self-explanatory.
     </p>
-    <p className="text-gray-600">
+    <p className="text-graphite-600">
       Eventually, the rules page will also close and the contest interface will open.
     </p>
     <div>
       <img src="/pages/indiv.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Teacher login page" />
-      <p className="text-center text-xs mt-1 text-gray-400">The contest interface for the individual round.</p>
+      <p className="text-center text-xs mt-1 text-graphite-400">The contest interface for the individual round.</p>
     </div>
-    <p className="text-gray-600">
+    <p className="text-graphite-600">
       There will be a submit button on the last question, but if the user fails to submit, the test will auto-submit once the timer hits zero.
     </p>
-    <p className="text-gray-600">
+    <p className="text-graphite-600">
       The user will then be redirected to the pages for the subsequent rounds.
     </p>
 
     {/* FAQ Section */}
     {/* FAQ Section */}
-    <div className="bg-green-50 p-6 rounded-lg border border-green-100 mt-8">
+    <div className="bg-blueprint-50 p-6 rounded-lg border border-green-100 mt-8">
       <h3 className="text-xl font-semibold text-green-800 mb-4">Frequently Asked Questions</h3>
       <div className="space-y-4">
         {/* Existing question */}
-        <div className="bg-white border border-green-200 rounded-lg overflow-hidden">
+        <div className="bg-paper border border-green-200 rounded-lg overflow-hidden">
           <details className="group">
-            <summary className="flex justify-between items-center p-4 cursor-pointer bg-green-50 hover:bg-green-100">
+            <summary className="flex justify-between items-center p-4 cursor-pointer bg-blueprint-50 hover:bg-green-100">
               <h4 className="font-medium text-green-700">If a student disconnects during the contest, will they lose their progress?</h4>
-              <svg className="w-5 h-5 text-green-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-blueprint-700 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
-            <div className="p-4 pt-2 text-gray-700">
+            <div className="p-4 pt-2 text-graphite-700">
               <p>No. If a student gets disconnected during the contest, they can simply log back in using their unique code. The system will save their progress, and they can continue from where they left off. The timer will continue running during the disconnection, so we recommend ensuring a stable internet connection before starting.</p>
             </div>
           </details>
         </div>
 
         {/* New Question 1 */}
-        <div className="bg-white border border-green-200 rounded-lg overflow-hidden">
+        <div className="bg-paper border border-green-200 rounded-lg overflow-hidden">
           <details className="group">
-            <summary className="flex justify-between items-center p-4 cursor-pointer bg-green-50 hover:bg-green-100">
+            <summary className="flex justify-between items-center p-4 cursor-pointer bg-blueprint-50 hover:bg-green-100">
               <h4 className="font-medium text-green-700">What if our internet goes out?</h4>
-              <svg className="w-5 h-5 text-green-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-blueprint-700 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
-            <div className="p-4 pt-2 text-gray-700">
+            <div className="p-4 pt-2 text-graphite-700">
               <p>If your internet connection is lost, don&apos;t worry! The system automatically saves all progress. Once your internet is restored, students can log back in and continue from where they left off. Please note that the contest timer will continue running during the internet outage, so we strongly recommend having a backup internet connection available if possible.</p>
             </div>
           </details>
         </div>
 
         {/* New Question 2 */}
-        <div className="bg-white border border-green-200 rounded-lg overflow-hidden">
+        <div className="bg-paper border border-green-200 rounded-lg overflow-hidden">
           <details className="group">
-            <summary className="flex justify-between items-center p-4 cursor-pointer bg-green-50 hover:bg-green-100">
+            <summary className="flex justify-between items-center p-4 cursor-pointer bg-blueprint-50 hover:bg-green-100">
               <h4 className="font-medium text-green-700">The questions aren&apos;t loading</h4>
-              <svg className="w-5 h-5 text-green-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5 text-blueprint-700 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
-            <div className="p-4 pt-2 text-gray-700 space-y-2">
-              <p className="pt-2">Please contact support immediately at <a href="mailto:support@canadianmathleague.com" className="text-green-600 hover:underline">support@canadianmathleague.com</a> with details about the issue.</p>
+            <div className="p-4 pt-2 text-graphite-700 space-y-2">
+              <p className="pt-2">Please contact support immediately at <a href="mailto:support@canadianmathleague.com" className="text-blueprint-700 hover:underline">support@canadianmathleague.com</a> with details about the issue.</p>
             </div>
           </details>
         </div>
@@ -210,8 +210,8 @@ const IndividualRoundContent = () => (
 
 const TeamRoundContent = () => (
   <div className="space-y-6">
-    <h2 className="text-2xl font-bold text-gray-900">Team Round</h2>
-    <p className="text-gray-600">
+    <h2 className="text-2xl font-bold text-graphite-900">Team Round</h2>
+    <p className="text-graphite-600">
       Collaborative problem-solving with your team. 45 minutes duration. Work together to solve complex challenges.
     </p>
   </div>
@@ -219,8 +219,8 @@ const TeamRoundContent = () => (
 
 const HeadToHeadContent = () => (
   <div className="space-y-6">
-    <h2 className="text-2xl font-bold text-gray-900">Head to Head</h2>
-    <p className="text-gray-600">
+    <h2 className="text-2xl font-bold text-graphite-900">Head to Head</h2>
+    <p className="text-graphite-600">
       Fast-paced competition between top performers. 20 minutes of rapid-fire questions with bonus points available.
     </p>
   </div>
@@ -278,11 +278,11 @@ export default function AdministeringContestsPage() {
     if (!selectedEvent) {
       return (
         <div className="text-center py-12 w-full">
-          <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-            <FileText className="h-8 w-8 text-gray-400" />
+          <div className="mx-auto w-16 h-16 bg-paper-ink rounded-full flex items-center justify-center mb-4">
+            <FileText className="h-8 w-8 text-graphite-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900">Select an event</h3>
-          <p className="mt-1 text-gray-500">Click on any timeline event to view details</p>
+          <h3 className="text-lg font-medium text-graphite-900">Select an event</h3>
+          <p className="mt-1 text-graphite-600">Click on any timeline event to view details</p>
         </div>
       )
     }
@@ -290,8 +290,8 @@ export default function AdministeringContestsPage() {
     switch (selectedEvent) {
       case 'contest-day-setup':
         return (
-          <div className="p-6 text-gray-600 space-y-6 w-full">
-            <h2 className="text-2xl font-bold text-gray-900">Setup</h2>
+          <div className="p-6 text-graphite-600 space-y-6 w-full">
+            <h2 className="text-2xl font-bold text-graphite-900">Setup</h2>
 
             {/* Requirements Section */}
             <div className="bg-blue-50 px-4 py-3 rounded-lg border border-blue-100 mb-6">
@@ -321,10 +321,10 @@ export default function AdministeringContestsPage() {
             {/* Collapsible Sections */}
             <div className="space-y-4">
               {/* Teacher Login Section */}
-              <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden" open>
-                <summary className="flex justify-between items-center p-4 cursor-pointer bg-gray-50 hover:bg-gray-100">
-                  <h3 className="text-lg font-medium text-gray-900">Teacher Login</h3>
-                  <svg className="w-5 h-5 text-gray-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <details className="group bg-paper rounded-lg border border-paper-line overflow-hidden" open>
+                <summary className="flex justify-between items-center p-4 cursor-pointer bg-paper hover:bg-paper-ink">
+                  <h3 className="text-lg font-medium text-graphite-900">Teacher Login</h3>
+                  <svg className="w-5 h-5 text-graphite-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
@@ -347,14 +347,14 @@ export default function AdministeringContestsPage() {
                   <div className="space-y-4">
                     <div>
                       <img src="/pages/teacher_login.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Teacher login page" />
-                      <p className="text-center text-xs mt-1 text-gray-400">Enter your login details on the login page.</p>
+                      <p className="text-center text-xs mt-1 text-graphite-400">Enter your login details on the login page.</p>
                     </div>
 
                     <p>After logging in, you will be redirected to your contest dashboard. Here, you will be able to view your teams&apos; details and edit them if any change is required.</p>
 
                     <div>
                       <img src="/pages/teacher_dashboard.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Teacher dashboard" />
-                      <p className="text-center text-xs mt-1 text-gray-400">You will be able to edit your team details in the dashboard.</p>
+                      <p className="text-center text-xs mt-1 text-graphite-400">You will be able to edit your team details in the dashboard.</p>
                     </div>
 
                     <p>Once logged in, you will be able to access the results as well as request certificates after the contest.</p>
@@ -363,10 +363,10 @@ export default function AdministeringContestsPage() {
               </details>
 
               {/* Student Setup Section - Empty for now */}
-              <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
-                <summary className="flex justify-between items-center p-4 cursor-pointer bg-gray-50 hover:bg-gray-100">
-                  <h3 className="text-lg font-medium text-gray-900">Student Setup</h3>
-                  <svg className="w-5 h-5 text-gray-500 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <details className="group bg-paper rounded-lg border border-paper-line overflow-hidden">
+                <summary className="flex justify-between items-center p-4 cursor-pointer bg-paper hover:bg-paper-ink">
+                  <h3 className="text-lg font-medium text-graphite-900">Student Setup</h3>
+                  <svg className="w-5 h-5 text-graphite-600 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
@@ -375,7 +375,7 @@ export default function AdministeringContestsPage() {
 
                   <div>
                     <img src="/pages/teacher_std.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Student details" />
-                    <p className="text-center text-xs mt-1 text-gray-400">You will be able to see the join codes for your participants.</p>
+                    <p className="text-center text-xs mt-1 text-graphite-400">You will be able to see the join codes for your participants.</p>
                   </div>
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                     <h4 className="font-medium text-blue-800 mb-2">How Students Get Their Codes</h4>
@@ -386,7 +386,7 @@ export default function AdministeringContestsPage() {
                     </ul>
                   </div>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-graphite-600">
                     Once receiving their code, the student should go to {" "}
                     <span className="inline-flex items-center">
                       <a href="/join" className="text-blue-600"> https://www.canadianmathleague.com/join</a>
@@ -395,14 +395,14 @@ export default function AdministeringContestsPage() {
                   </p>
                   <div>
                     <img src="/pages/join.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Student details" />
-                    <p className="text-center text-xs mt-1 text-gray-400">The student should enter their code on the join page.</p>
+                    <p className="text-center text-xs mt-1 text-graphite-400">The student should enter their code on the join page.</p>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-graphite-600">
                     After entering their code, they will be redirected to their competition portal.
                   </p>
                   <div>
                     <img src="/pages/student.png" width={600} className="ml-auto mr-auto mb-0 mt-0" alt="Student details" />
-                    <p className="text-center text-xs mt-1 text-gray-400">The student will be redirected to their student portal.</p>
+                    <p className="text-center text-xs mt-1 text-graphite-400">The student will be redirected to their student portal.</p>
                   </div>
                   <p>
                     After this, they should be all set! Make sure that every student is logged in before the competition starts.
@@ -411,24 +411,24 @@ export default function AdministeringContestsPage() {
                 </div>
               </details>
 
-              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+              <div className="bg-blueprint-50 p-6 rounded-lg border border-green-200">
                 <h3 className="text-lg font-medium text-green-800 mb-4">Checklist</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
-                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
-                    <span className="ml-3 text-gray-700">Understand Contest Requirements</span>
+                    <input type="checkbox" className="h-5 w-5 text-blueprint-700 border-graphite-300 rounded focus:ring-blueprint-600 mt-0.5" />
+                    <span className="ml-3 text-graphite-700">Understand Contest Requirements</span>
                   </li>
                   <li className="flex items-start">
-                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
-                    <span className="ml-3 text-gray-700">Login and verify all dashboard details</span>
+                    <input type="checkbox" className="h-5 w-5 text-blueprint-700 border-graphite-300 rounded focus:ring-blueprint-600 mt-0.5" />
+                    <span className="ml-3 text-graphite-700">Login and verify all dashboard details</span>
                   </li>
                   <li className="flex items-start">
-                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
-                    <span className="ml-3 text-gray-700">Distribute unique student codes to each participant</span>
+                    <input type="checkbox" className="h-5 w-5 text-blueprint-700 border-graphite-300 rounded focus:ring-blueprint-600 mt-0.5" />
+                    <span className="ml-3 text-graphite-700">Distribute unique student codes to each participant</span>
                   </li>
                   <li className="flex items-start">
-                    <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
-                    <span className="ml-3 text-gray-700">Make sure each participant is logged in before the contest starts.</span>
+                    <input type="checkbox" className="h-5 w-5 text-blueprint-700 border-graphite-300 rounded focus:ring-blueprint-600 mt-0.5" />
+                    <span className="ml-3 text-graphite-700">Make sure each participant is logged in before the contest starts.</span>
                   </li>
 
                 </ul>
@@ -439,8 +439,8 @@ export default function AdministeringContestsPage() {
 
       case 'pre-contest-registering':
         return (
-          <div className="p-6 text-gray-600 w-full">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Registering</h2>
+          <div className="p-6 text-graphite-600 w-full">
+            <h2 className="text-2xl font-bold text-graphite-900 mb-4">Registering</h2>
             <p className="mb-6">
               Fill out the registration form <a href="/register" target="_blank" className="text-blue-600 hover:underline">here</a>. Our team will review your application and get back to you with further  details.
             </p>
@@ -453,16 +453,16 @@ export default function AdministeringContestsPage() {
             <p>Once we confirm your registration, inform your students! The more time they have to prepare, the better they&apos;ll do!</p>
             <br />
             <br />
-            <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+            <div className="bg-blueprint-50 p-6 rounded-lg border border-green-200">
               <h3 className="text-lg font-medium text-green-800 mb-4">Checklist</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
-                  <span className="ml-3 text-gray-700">Submit your registration form</span>
+                  <input type="checkbox" className="h-5 w-5 text-blueprint-700 border-graphite-300 rounded focus:ring-blueprint-600 mt-0.5" />
+                  <span className="ml-3 text-graphite-700">Submit your registration form</span>
                 </li>
                 <li className="flex items-start">
-                  <input type="checkbox" className="h-5 w-5 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5" />
-                  <span className="ml-3 text-gray-700">Receive confirmation email with additional details in 24-48 hours</span>
+                  <input type="checkbox" className="h-5 w-5 text-blueprint-700 border-graphite-300 rounded focus:ring-blueprint-600 mt-0.5" />
+                  <span className="ml-3 text-graphite-700">Receive confirmation email with additional details in 24-48 hours</span>
                 </li>
               </ul>
             </div>
@@ -479,8 +479,8 @@ export default function AdministeringContestsPage() {
       case 'contest-day-team':
         return (
           <div className="p-6 w-full">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Team Round</h2>
-            <p className="text-gray-600">
+            <h2 className="text-2xl font-bold text-graphite-900 mb-4">Team Round</h2>
+            <p className="text-graphite-600">
               Collaborative problem-solving with your team. 45 minutes duration. Work together to solve complex challenges.
             </p>
           </div>
@@ -489,8 +489,8 @@ export default function AdministeringContestsPage() {
       case 'contest-day-head-to-head':
         return (
           <div className="p-6 w-full">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Head to Head</h2>
-            <p className="text-gray-600">
+            <h2 className="text-2xl font-bold text-graphite-900 mb-4">Head to Head</h2>
+            <p className="text-graphite-600">
               Fast-paced competition between top performers. 20 minutes of rapid-fire questions with bonus points available.
             </p>
           </div>
@@ -502,75 +502,49 @@ export default function AdministeringContestsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6 md:mb-0"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Administering Contests</h1>
-            <p className="text-xl text-gray-600">
-              Everything you need to know about organizing and participating in our math competitions
+    <div className="min-h-screen bg-paper">
+      <section className="bg-grid-blueprint py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">Administering Contests</h1>
+            <p className="text-lg text-blueprint-100">
+              Everything you need to know about organizing and participating in our math competitions.
             </p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }}>
             <a
-              href="/teacher-login"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:-translate-y-0.5"
+              href="/platform/login"
+              className="btn-press rounded-lg inline-flex items-center gap-2 bg-white text-redpen-600 px-6 py-3 text-xs font-bold uppercase tracking-wide hover:bg-blueprint-50"
             >
               Teacher Login
             </a>
           </motion.div>
         </div>
+      </section>
 
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-grid-paper">
         {/* New Kind of Contest Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-16"
+          className="bg-paper border-2 border-graphite-900 rounded-xl p-8 mb-16"
         >
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">A new kind of contest.</h2>
-          <div className="prose max-w-none text-gray-600 mb-6">
+          <h2 className="text-xl font-bold text-graphite-900 mb-4">A new kind of contest.</h2>
+          <div className="prose max-w-none text-graphite-600">
             <p className="text-lg">
               The Canadian Math League offers a unique contest experience that stands out from traditional competitions.
               Our contests are designed to be accessible yet challenging, encouraging mathematical thinking and problem-solving
               skills in a low-pressure environment. Unlike conventional tests, our format emphasizes collaborative learning
-              and celebrates progress, making math exciting for students at all skill levels. With flexible administration
-              options and comprehensive support materials, we make it easy for educators to bring the joy of mathematics
-              to their classrooms while meeting curriculum objectives.
+              and celebrates progress, making math exciting for students at all skill levels.
             </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <a
-              href="/guide"
-              className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:-translate-y-0.5"
-            >
-              <FileText className="mr-2 h-5 w-5 text-red-500" />
-              View Guide
-            </a>
-            <a
-              href="/video"
-              className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:-translate-y-0.5"
-            >
-              <Play className="mr-2 h-5 w-5 text-red-600" />
-              Watch Video
-            </a>
           </div>
         </motion.div>
 
         {/* Timeline Section */}
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-4/12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Timeline</h2>
+            <h2 className="text-2xl font-bold text-graphite-900 mb-8">Timeline</h2>
 
             <div className="relative">
               {/* Main Timeline Line */}
@@ -581,8 +555,8 @@ export default function AdministeringContestsPage() {
                   <div key={section.id} className="relative">
                     {/* Section Title */}
                     <div className="flex items-center mb-6">
-                      <div className="w-4 h-4 rounded-full bg-red-500 mr-4 z-10 relative"></div>
-                      <h3 className="text-xl font-semibold text-gray-900">{section.title}</h3>
+                      <div className="w-4 h-4 rounded-full bg-redpen-600 mr-4 z-10 relative"></div>
+                      <h3 className="text-xl font-semibold text-graphite-900">{section.title}</h3>
                     </div>
 
                     {/* Events */}
@@ -600,20 +574,20 @@ export default function AdministeringContestsPage() {
                             {/* Event Dot - on the line */}
                             <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 flex justify-center">
                               <div
-                                className={`w-3 h-3 rounded-full ${isSelected ? 'bg-red-600' : 'bg-gray-400'} transition-all`}
+                                className={`w-3 h-3 rounded-full ${isSelected ? 'bg-redpen-600' : 'bg-gray-400'} transition-all`}
                               ></div>
                             </div>
 
                             {/* Event Content */}
                             <button
                               onClick={() => setSelectedEvent(isSelected ? null : `${section.id}-${event.id}`)}
-                              className={`w-full text-left pl-12 pr-4 py-3 rounded-lg transition-colors ${isSelected ? 'bg-red-50' : 'hover:bg-gray-50'}`}
+                              className={`w-full text-left pl-12 pr-4 py-3 rounded-lg transition-colors ${isSelected ? 'bg-blueprint-50' : 'hover:bg-paper'}`}
                             >
                               <div className="flex items-center">
-                                <div className="p-1.5 rounded-full bg-white border border-gray-200 mr-3">
+                                <div className="p-1.5 rounded-full bg-paper border border-paper-line mr-3">
                                   {event.icon}
                                 </div>
-                                <span className="font-medium text-gray-900">{event.title}</span>
+                                <span className="font-medium text-graphite-900">{event.title}</span>
                               </div>
                             </button>
 
@@ -638,7 +612,7 @@ export default function AdministeringContestsPage() {
           {/* Content Panel */}
           <div className="lg:w-10/12 mt-8 lg:mt-0">
             <div className="sticky top-8">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden w-full">
+              <div className="bg-paper rounded-xl shadow-sm border border-paper-line overflow-hidden w-full">
                 {renderContent()}
               </div>
             </div>

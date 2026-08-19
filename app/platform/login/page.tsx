@@ -95,14 +95,14 @@ export default function TeacherLoginPage() {
   if (isCompletingSignIn) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center p-4">
-        <p className="text-gray-600">Signing you in...</p>
+        <p className="text-graphite-600">Signing you in...</p>
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-5xl bg-gray-50 rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <div className="w-full max-w-5xl bg-paper rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
         <div className="p-8 md:p-12 flex items-center justify-center bg-white md:w-1/2">
           <div className="w-full max-w-xs">
             <Image
@@ -116,11 +116,11 @@ export default function TeacherLoginPage() {
           </div>
         </div>
 
-        <div className="hidden md:block border-l border-gray-200"></div>
+        <div className="hidden md:block border-l border-paper-line"></div>
 
         <div className="bg-white p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
-          <h2 className="text-center text-2xl font-bold text-gray-900 mb-2">Teacher Sign In</h2>
-          <p className="text-sm text-gray-600 mb-6 text-center">
+          <h2 className="text-center text-2xl font-bold text-graphite-900 mb-2">Teacher Sign In</h2>
+          <p className="text-sm text-graphite-600 mb-6 text-center">
             Enter the email you registered with — we&apos;ll email you a sign-in link, no password
             needed.
           </p>
@@ -132,7 +132,7 @@ export default function TeacherLoginPage() {
           )}
 
           {linkSent ? (
-            <div className="bg-green-50 border-l-4 border-green-400 p-4">
+            <div className="bg-blueprint-50 border-l-4 border-green-400 p-4">
               <p className="text-sm text-green-700">
                 Check your inbox — click the link we sent to <strong>{email}</strong> to finish
                 signing in.
@@ -141,7 +141,7 @@ export default function TeacherLoginPage() {
           ) : (
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-graphite-700 mb-1">
                   Email
                 </label>
                 <input
@@ -150,13 +150,13 @@ export default function TeacherLoginPage() {
                   required
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blueprint-600 focus:border-blueprint-600"
                 />
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex justify-center py-2.5 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
+                className="w-full flex justify-center py-2.5 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-blueprint-800 hover:bg-blueprint-900 disabled:opacity-50"
               >
                 {isLoading ? 'Sending...' : 'Send sign-in link'}
               </button>

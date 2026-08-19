@@ -42,32 +42,32 @@ const resources = [
 
 export default function OtherResources() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-paper py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Other Resources</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-4xl font-bold text-graphite-900 mb-4">Other Resources</h1>
+          <p className="text-lg text-graphite-600">
             A curated list of valuable math resources and competitions to enhance your learning journey.
           </p>
         </div>
 
         <div className="space-y-6">
           {resources.map((resource, index) => (
-            <div key={index} className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-200">
+            <div key={index} className="bg-paper overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-200">
               <div className="px-6 py-5">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-medium text-gray-900">{resource.name}</h3>
-                  <span className="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded-full">
+                  <h3 className="text-lg font-medium text-graphite-900">{resource.name}</h3>
+                  <span className="px-2 py-1 text-xs font-semibold text-redpen-700 bg-blueprint-100 rounded-full">
                     {resource.type}
                   </span>
                 </div>
-                <p className="mt-2 text-gray-600">{resource.description}</p>
+                <p className="mt-2 text-graphite-600">{resource.description}</p>
                 <div className="mt-4">
                   <a
                     href={resource.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:text-red-800 text-sm font-medium inline-flex items-center"
+                    className="text-redpen-600 hover:text-redpen-700 text-sm font-medium inline-flex items-center"
                   >
                     Visit Resource
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -13,36 +13,36 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     question: 'What is the Canadian Math League?',
-    answer: 'The Canadian Math League is a prestigious mathematics competition that brings together students from across Canada to compete in challenging mathematical problem-solving.'
+    answer: 'A free, team-based math tournament for Canadian high school students, run in partnership with the Canadian Mathematical Society. Schools compete through an online Group Stage, in-person Regional Championships, and a National final.',
   },
   {
     question: 'Who can participate?',
-    answer: 'The competition is open to all middle and high school students across Canada. We have different categories based on grade levels to ensure fair competition.'
+    answer: 'Any high school student in Canada, as part of a school team of 4–6 students. There is no individual registration path — a teacher registers the team.',
   },
   {
     question: 'When does the competition take place?',
-    answer: 'The competition typically runs during the academic year, with registration opening in the fall and the main contests taking place in the winter and spring terms.'
+    answer: 'The Group Stage runs online. Regionals and Nationals follow in person. See the 2025 Season page for exact dates.',
   },
   {
     question: 'How do I register?',
-    answer: 'You can register through our registration page. Both individual and school registrations are accepted. Please check the registration page for specific deadlines and requirements.'
+    answer: 'A teacher registers their school and up to 3 teams through the Register page. An admin reviews the submission, then the teacher gets dashboard access and each student gets a join code.',
   },
   {
     question: 'What is the competition format?',
-    answer: 'The competition consists of multiple rounds of problem-solving challenges. Each round includes a set of problems that test various mathematical concepts and problem-solving skills.'
+    answer: 'The Group Stage has four rounds: an AMC-style individual round (Canadian Open), a collaborative numeric round (Team Rush), a speed-and-accuracy grid round (Capture the Problem), and short Head-to-Head matchups. See the Format page for the full breakdown.',
   },
   {
     question: 'Are there any prizes?',
-    answer: 'Yes, we offer various awards and recognitions for top performers, including medals, certificates, and scholarships. Please visit our prizes page for more details.'
+    answer: 'Yes — cash prizes for the top teams at Nationals, plus medals and certificates for finalists. See the Prizes page for details.',
   },
   {
     question: 'How can I prepare for the competition?',
-    answer: 'We provide practice materials and past papers on our resources page. Regular practice and participation in math circles or clubs can also be very helpful.'
+    answer: 'Sample problem sets for every Group Stage round are available on the Resources and Pre-Season pages.',
   },
   {
-    question: 'Can I participate if my school is not registered?',
-    answer: 'Yes, individual registrations are welcome. However, we encourage you to check with your school first as they might be interested in registering as well.'
-  }
+    question: 'Is there a cost to enter?',
+    answer: 'No — the Group Stage is completely free to enter for every team.',
+  },
 ]
 
 const FAQPage = () => {
@@ -53,68 +53,56 @@ const FAQPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
-          <p className="text-xl text-gray-600">Find answers to common questions about the Canadian Math League</p>
-        </motion.div>
+    <div className="min-h-screen bg-paper">
+      <section className="bg-grid-blueprint py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-bold text-white"
+          >
+            Frequently asked questions
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-blueprint-100 mt-4"
+          >
+            Find answers to common questions about the Canadian Math League.
+          </motion.p>
+        </div>
+      </section>
 
-        <motion.div 
-          className="max-w-3xl mx-auto space-y-6"
+      <section className="py-20 bg-grid-paper px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="max-w-3xl mx-auto space-y-4"
           initial="hidden"
           animate="show"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.05
-              }
-            }
-          }}
+          variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } }}
         >
           {faqData.map((faq, index) => (
             <motion.div
               key={index}
               variants={{
                 hidden: { opacity: 0, y: 10 },
-                show: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: {
-                    type: 'spring',
-                    stiffness: 100,
-                    damping: 15
-                  }
-                }
+                show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } },
               }}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 hover:shadow-md"
+              className="bg-paper border-2 border-graphite-900 rounded-xl"
             >
-              <button
-                className="w-full px-6 py-5 text-left focus:outline-none group"
-                onClick={() => toggleFAQ(index)}
-                aria-expanded={openIndex === index}
-              >
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
-                    {faq.question}
-                  </h2>
+              <button className="w-full px-6 py-5 text-left focus:outline-none group" onClick={() => toggleFAQ(index)} aria-expanded={openIndex === index}>
+                <div className="flex items-center justify-between gap-4">
+                  <h2 className="font-bold text-graphite-900 group-hover:text-redpen-600 transition-colors">{faq.question}</h2>
                   <motion.span
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-gray-400 group-hover:text-red-500 transition-colors"
+                    className="text-graphite-400 group-hover:text-redpen-600 transition-colors flex-shrink-0"
                   >
                     <ChevronDown className="w-5 h-5" />
                   </motion.span>
                 </div>
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div
@@ -122,28 +110,12 @@ const FAQPage = () => {
                     animate="open"
                     exit="collapsed"
                     variants={{
-                      open: { 
-                        opacity: 1, 
-                        height: 'auto',
-                        transition: {
-                          opacity: { duration: 0.3 },
-                          height: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-                        }
-                      },
-                      collapsed: { 
-                        opacity: 0, 
-                        height: 0,
-                        transition: {
-                          opacity: { duration: 0.2 },
-                          height: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
-                        }
-                      }
+                      open: { opacity: 1, height: 'auto', transition: { opacity: { duration: 0.3 }, height: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } } },
+                      collapsed: { opacity: 0, height: 0, transition: { opacity: { duration: 0.2 }, height: { duration: 0.2, ease: [0.16, 1, 0.3, 1] } } },
                     }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 pt-2 text-gray-600">
-                      {faq.answer}
-                    </div>
+                    <div className="px-6 pb-6 pt-1 text-graphite-600 border-t border-paper-line">{faq.answer}</div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -151,16 +123,11 @@ const FAQPage = () => {
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 text-center"
-        >
-          <p className="text-gray-600 mb-6 text-lg">Still have questions?</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-16 text-center">
+          <p className="text-graphite-600 mb-6 text-lg">Still have questions?</p>
           <Link
             href="/contact"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:-translate-y-0.5"
+            className="btn-press rounded-lg inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-bold tracking-wider uppercase shadow-stamp hover:bg-redpen-700"
           >
             Contact Us
           </Link>

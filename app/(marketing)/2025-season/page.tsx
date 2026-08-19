@@ -51,8 +51,8 @@ const Season2025Page = () => {
     
     return (
       <>
-        <div className="font-semibold text-gray-800">{primaryTime} ({primaryTZ})</div>
-        <div className="text-sm text-gray-500">{secondaryTime} ({secondaryTZ})</div>
+        <div className="font-semibold text-graphite-700">{primaryTime} ({primaryTZ})</div>
+        <div className="text-sm text-graphite-600">{secondaryTime} ({secondaryTZ})</div>
       </>
     );
   };
@@ -144,7 +144,7 @@ const Season2025Page = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-paper relative">
       {isClient && (
         <AnimatePresence>
           {showAnimation && (
@@ -159,7 +159,7 @@ const Season2025Page = () => {
               {[...Array(10)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute rounded-full bg-red-600/20"
+                  className="absolute rounded-full bg-redpen-600/20"
                   initial={{
                     width: Math.random() * 100 + 100,
                     height: Math.random() * 100 + 100,
@@ -186,7 +186,7 @@ const Season2025Page = () => {
                   setShowAnimation(false);
                   animationComplete.current = true;
                 }}
-                className="absolute top-6 right-6 z-50 px-4 py-2 bg-gray-500 text-white rounded-full text-sm font-medium transition-colors"
+                className="absolute top-6 right-6 z-50 px-4 py-2 bg-black/50 hover:bg-black/70 text-white rounded-full text-sm font-medium transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: -10 }}
@@ -219,7 +219,7 @@ const Season2025Page = () => {
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
                   <motion.h1
-                    className="text-7xl md:text-9xl font-extrabold text-red-500 tracking-tight"
+                    className="text-7xl md:text-9xl font-extrabold text-redpen-600 tracking-tight"
                     style={{
                       textShadow: '0 0 20px rgba(239, 68, 68, 0.8)',
                       WebkitTextStroke: '2px rgba(255, 255, 255, 0.1)'
@@ -246,7 +246,7 @@ const Season2025Page = () => {
                 </motion.div>
 
                 <motion.div
-                  className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"
+                  className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-redpen-500 to-transparent"
                   initial={{ width: 0 }}
                   animate={{ width: '12rem' }}
                   transition={{ duration: 1, delay: 1 }}
@@ -269,31 +269,31 @@ const Season2025Page = () => {
         {/* Page Header */}
         <div className="mb-8 text-center">
           <div className="relative inline-block">
-            <h1 className="text-5xl md:text-6xl font-bold text-red-600 mb-2 tracking-tight transform -rotate-2">
+            <h1 className="text-5xl md:text-6xl font-bold text-redpen-600 mb-2 tracking-tight transform -rotate-2">
               2025 Season
             </h1>
-            <div className="h-1 w-32 bg-red-500 mx-auto rounded-full mb-4 shadow-lg"></div>
+            <div className="h-1 w-32 bg-redpen-600 mx-auto rounded-full mb-4 shadow-lg"></div>
           </div>
           {/* Countdown Timer */}
           <div className="flex justify-center space-x-6 text-center">
             <div className="min-w-[60px]">
-              <div className="text-2xl font-mono text-gray-800">{timeLeft.days}</div>
-              <div className="text-xs font-mono text-gray-500">days</div>
+              <div className="text-2xl text-graphite-700">{timeLeft.days}</div>
+              <div className="text-xs text-graphite-600">days</div>
             </div>
             <div className="min-w-[60px]">
-              <div className="text-2xl font-mono text-gray-800">{timeLeft.hours}</div>
-              <div className="text-xs font-mono text-gray-500">hours</div>
+              <div className="text-2xl text-graphite-700">{timeLeft.hours}</div>
+              <div className="text-xs text-graphite-600">hours</div>
             </div>
             <div className="min-w-[60px]">
-              <div className="text-2xl font-mono text-gray-800">{timeLeft.minutes}</div>
-              <div className="text-xs font-mono text-gray-500">minutes</div>
+              <div className="text-2xl text-graphite-700">{timeLeft.minutes}</div>
+              <div className="text-xs text-graphite-600">minutes</div>
             </div>
             <div className="min-w-[60px]">
-              <div className="text-2xl font-mono text-gray-800">{timeLeft.seconds}</div>
-              <div className="text-xs font-mono text-gray-500">seconds</div>
+              <div className="text-2xl text-graphite-700">{timeLeft.seconds}</div>
+              <div className="text-xs text-graphite-600">seconds</div>
             </div>
           </div>
-          <p className="text-sm text-gray-500 mt-3">Until Season Starts</p>
+          <p className="text-sm text-graphite-600 mt-3">Until Season Starts</p>
         </div>
 
         {/* Tab Navigation */}
@@ -304,8 +304,8 @@ const Season2025Page = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-200 ${activeTab === tab
-                  ? 'bg-red-600 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
+                  ? 'bg-redpen-600 text-white shadow-lg'
+                  : 'bg-paper-ink text-graphite-700 hover:bg-gray-200 hover:shadow-md'
                   }`}
               >
                 {tab}
@@ -318,7 +318,7 @@ const Season2025Page = () => {
         <div className="min-h-96">
           {activeTab === 'Brackets' && (
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-8">Tournament Brackets</h2>
+              <h2 className="text-2xl font-semibold text-graphite-900 mb-8">Tournament Brackets</h2>
 
               <div className="overflow-x-auto">
                 <div className="min-w-[1000px] relative">
@@ -326,79 +326,79 @@ const Season2025Page = () => {
 
                     {/* Western Conference Groups */}
                     <div className="space-y-1">
-                      <h3 className="text-sm font-semibold text-red-600 text-center mb-2">Western Groups</h3>
+                      <h3 className="text-sm font-semibold text-redpen-600 text-center mb-2">Western Groups</h3>
 
                       {/* Group A */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group A</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
                       </div>
 
                       {/* Group B */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group B</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
                       </div>
 
                       {/* Group C */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group C</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
                       </div>
 
                       {/* Group D */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group D</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
@@ -436,14 +436,14 @@ const Season2025Page = () => {
 
                     {/* Championship */}
                     <div className="text-center">
-                      <div className="bg-white border border-gray-300 rounded-lg p-6 shadow-sm">
+                      <div className="bg-paper border border-graphite-300 rounded-lg p-6 shadow-sm">
                         <div className="flex justify-center mb-1">
                           <img src="/logo.png" alt="CML Logo" className="h-20 w-20" />
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-1 font-serif italic">Canadian Championship</h3>
-                        <div className="border-t border-gray-200 pt-2 mt-2">
-                          <div className="text-xs text-gray-600 font-semibold italic font-serif">{SEASON_STAGES.nationals.location}</div>
-                          <div className="text-xs text-gray-600 mt-0.5 italic font-serif">{SEASON_STAGES.nationals.displayDate}</div>
+                        <h3 className="text-xl font-semibold text-graphite-900 mb-1 font-serif italic">Canadian Championship</h3>
+                        <div className="border-t border-paper-line pt-2 mt-2">
+                          <div className="text-xs text-graphite-600 font-semibold italic font-serif">{SEASON_STAGES.nationals.location}</div>
+                          <div className="text-xs text-graphite-600 mt-0.5 italic font-serif">{SEASON_STAGES.nationals.displayDate}</div>
                         </div>
                       </div>
                     </div>
@@ -460,8 +460,8 @@ const Season2025Page = () => {
                       <div className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-400 rounded-xl p-6 shadow-lg">
                         <h3 className="text-xl font-bold text-green-800 mb-1 font-serif italic">Ontario Championships</h3>
                         <div className="border-t border-green-300 pt-2 mt-2">
-                          <div className="text-xs text-green-600 font-semibold italic font-serif">Toronto, ON</div>
-                          <div className="text-xs text-green-600 mt-0.5 italic font-serif">{SEASON_STAGES.regionals.displayDate}</div>
+                          <div className="text-xs text-blueprint-700 font-semibold italic font-serif">Toronto, ON</div>
+                          <div className="text-xs text-blueprint-700 mt-0.5 italic font-serif">{SEASON_STAGES.regionals.displayDate}</div>
                         </div>
                       </div>
                     </div>
@@ -479,79 +479,79 @@ const Season2025Page = () => {
 
                     {/* Ontario Conference Groups */}
                     <div className="space-y-1">
-                      <h3 className="text-sm font-semibold text-red-600 text-center mb-2">Ontario Groups</h3>
+                      <h3 className="text-sm font-semibold text-redpen-600 text-center mb-2">Ontario Groups</h3>
 
                       {/* Group E */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group E</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
                       </div>
 
                       {/* Group F */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group F</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
                       </div>
 
                       {/* Group G */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group G</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
                       </div>
 
                       {/* Group H */}
-                      <div className="bg-gray-50 p-2 rounded border">
+                      <div className="bg-paper p-2 rounded border">
                         <h4 className="text-xs font-bold text-center mb-1">Group H</h4>
                         <div className="space-y-0.5">
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
-                          <div className="bg-white p-1 rounded text-xs text-center">
+                          <div className="bg-paper p-1 rounded text-xs text-center">
                             TBA*
                           </div>
                         </div>
@@ -566,23 +566,23 @@ const Season2025Page = () => {
 
           {activeTab === 'Leaderboard' && (
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">Leaderboard</h2>
-              <p className="text-gray-600 text-left py-2">Season hasn&apos;t started yet! Check back when it does!</p>
+              <h2 className="text-2xl font-semibold text-graphite-900 mb-2">Leaderboard</h2>
+              <p className="text-graphite-600 text-left py-2">Season hasn&apos;t started yet! Check back when it does!</p>
             </div>
           )}
 
           {activeTab === 'Qualifying' && (
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Qualifying</h2>
+              <h2 className="text-2xl font-semibold text-graphite-900 mb-4">Qualifying</h2>
               <div className="space-y-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">Regional Qualification</h3>
-                  <p className="text-gray-600 mb-4">
+                <div className="bg-paper p-6 rounded-lg shadow-sm border border-paper-line">
+                  <h3 className="text-xl font-semibold text-graphite-700 mb-3">Regional Qualification</h3>
+                  <p className="text-graphite-600 mb-4">
                     The top teams will qualify for the Regional Stage through the following process:
                   </p>
-                  <div className="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-400">
-                    <h4 className="font-semibold text-red-800 mb-2">12 teams, 6 from each region</h4>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                  <div className="bg-blueprint-50 p-4 rounded-lg mb-4 border-l-4 border-redpen-500">
+                    <h4 className="font-semibold text-redpen-700 mb-2">12 teams, 6 from each region</h4>
+                    <ul className="list-disc list-inside space-y-2 text-graphite-700">
                       <li><span className="font-medium">4 Group Champions</span> - Top team from each group</li>
                       <li><span className="font-medium">2 Wildcards</span> - Next best performing teams across all groups</li>
                     </ul>
@@ -590,14 +590,14 @@ const Season2025Page = () => {
                 </div>
               </div>
               <div className="space-y-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">National Qualification</h3>
-                  <p className="text-gray-600 mb-4">
+                <div className="bg-paper p-6 rounded-lg shadow-sm border border-paper-line">
+                  <h3 className="text-xl font-semibold text-graphite-700 mb-3">National Qualification</h3>
+                  <p className="text-graphite-600 mb-4">
                     The top teams will qualify for the National Stage through the following process:
                   </p>
-                  <div className="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-400">
-                    <h4 className="font-semibold text-red-800 mb-2">6 teams, 3 from each region</h4>
-                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                  <div className="bg-blueprint-50 p-4 rounded-lg mb-4 border-l-4 border-redpen-500">
+                    <h4 className="font-semibold text-redpen-700 mb-2">6 teams, 3 from each region</h4>
+                    <ul className="list-disc list-inside space-y-2 text-graphite-700">
                       <li><span className="font-medium">The top 3 teams at each regional tournament will qualify for the national championships.</span></li>
                       <li><span className="font-medium">There will be other awards too, but this is the only way to qualify for the national championships.</span></li>
                     </ul>
@@ -609,8 +609,8 @@ const Season2025Page = () => {
 
           {activeTab === 'Statistics' && (
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">Statistics</h2>
-              <p className="text-gray-600 text-left py-2">Season hasn&apos;t started yet! Check back when it does!</p>
+              <h2 className="text-2xl font-semibold text-graphite-900 mb-2">Statistics</h2>
+              <p className="text-graphite-600 text-left py-2">Season hasn&apos;t started yet! Check back when it does!</p>
             </div>
           )}
 
@@ -618,41 +618,41 @@ const Season2025Page = () => {
             <div className="flex">
               <div className="flex-1">
                 <div className="mb-10">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-5">Group Stage</h2>
+                  <h2 className="text-2xl font-bold text-graphite-700 mb-5">Group Stage</h2>
                   <div className="flex">
-                    <div className="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-sm w-28 text-center">
-                      <div className="text-3xl font-bold text-gray-800 mb-1">{groupStageBadge.day}</div>
-                      <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">{groupStageBadge.monthYear}</div>
+                    <div className="bg-paper border-2 border-paper-line rounded-lg p-4 shadow-sm w-28 text-center">
+                      <div className="text-3xl font-bold text-graphite-700 mb-1">{groupStageBadge.day}</div>
+                      <div className="text-xs font-medium text-graphite-600 uppercase tracking-wider">{groupStageBadge.monthYear}</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-5">Regional Stage</h2>
+                  <h2 className="text-2xl font-bold text-graphite-700 mb-5">Regional Stage</h2>
                   <div className="flex space-x-6">
                     <div>
-                      <h3 className="text-base font-semibold text-gray-700 mb-3">Western Championships</h3>
-                      <div className="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-sm w-28 text-center">
-                        <div className="text-3xl font-bold text-gray-800 mb-1">{regionalsBadge.day}</div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">{regionalsBadge.monthYear}</div>
+                      <h3 className="text-base font-semibold text-graphite-700 mb-3">Western Championships</h3>
+                      <div className="bg-paper border-2 border-paper-line rounded-lg p-4 shadow-sm w-28 text-center">
+                        <div className="text-3xl font-bold text-graphite-700 mb-1">{regionalsBadge.day}</div>
+                        <div className="text-xs font-medium text-graphite-600 uppercase tracking-wider">{regionalsBadge.monthYear}</div>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-base font-semibold text-gray-700 mb-3">Ontario Championships</h3>
-                      <div className="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-sm w-28 text-center">
-                        <div className="text-3xl font-bold text-gray-800 mb-1">{regionalsBadge.day}</div>
-                        <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">{regionalsBadge.monthYear}</div>
+                      <h3 className="text-base font-semibold text-graphite-700 mb-3">Ontario Championships</h3>
+                      <div className="bg-paper border-2 border-paper-line rounded-lg p-4 shadow-sm w-28 text-center">
+                        <div className="text-3xl font-bold text-graphite-700 mb-1">{regionalsBadge.day}</div>
+                        <div className="text-xs font-medium text-graphite-600 uppercase tracking-wider">{regionalsBadge.monthYear}</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-5">National Championships</h2>
+                  <h2 className="text-2xl font-bold text-graphite-700 mb-5">National Championships</h2>
                   <div className="flex">
-                    <div className="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-sm w-28 text-center">
-                      <div className="text-3xl font-bold text-gray-800 mb-1">{nationalsBadge.day}</div>
-                      <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">{nationalsBadge.monthYear}</div>
+                    <div className="bg-paper border-2 border-paper-line rounded-lg p-4 shadow-sm w-28 text-center">
+                      <div className="text-3xl font-bold text-graphite-700 mb-1">{nationalsBadge.day}</div>
+                      <div className="text-xs font-medium text-graphite-600 uppercase tracking-wider">{nationalsBadge.monthYear}</div>
                     </div>
                   </div>
                 </div>
@@ -661,34 +661,34 @@ const Season2025Page = () => {
               <div className="w-px bg-gray-300 mx-8"></div>
 
               <div className="flex-1">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Group Stage Schedule</h2>
+                <h2 className="text-2xl font-bold text-graphite-700 mb-6">Group Stage Schedule</h2>
                 <div className="space-y-6">
-                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <div className="bg-paper p-4 rounded-lg shadow-sm border border-paper-line">
                     <div className="flex justify-between items-center">
                       {renderTime('11:00 AM')}
                     </div>
-                    <div className="text-gray-600 mt-1">Individual Round</div>
+                    <div className="text-graphite-600 mt-1">Individual Round</div>
                   </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <div className="bg-paper p-4 rounded-lg shadow-sm border border-paper-line">
                     <div className="flex justify-between items-center">
                       {renderTime('12:00 PM')}
                     </div>
-                    <div className="text-gray-600 mt-1">Team Round (Power 5)</div>
+                    <div className="text-graphite-600 mt-1">Team Round (Power 5)</div>
                   </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <div className="bg-paper p-4 rounded-lg shadow-sm border border-paper-line">
                     <div className="flex justify-between items-center">
                       {renderTime('1:00 PM')}
                     </div>
-                    <div className="text-gray-600 mt-1">Team Rush</div>
+                    <div className="text-graphite-600 mt-1">Team Rush</div>
                   </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                  <div className="bg-paper p-4 rounded-lg shadow-sm border border-paper-line">
                     <div className="flex justify-between items-center">
                       {renderTime('2:00 PM')}
                     </div>
-                    <div className="text-gray-600 mt-1">Final Round</div>
+                    <div className="text-graphite-600 mt-1">Final Round</div>
                   </div>
                 </div>
-                <div className="mt-4 text-sm text-gray-500">
+                <div className="mt-4 text-sm text-graphite-600">
                   * Times shown in EST / PST (3-hour time difference)
                 </div>
               </div>

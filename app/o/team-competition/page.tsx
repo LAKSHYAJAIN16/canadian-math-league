@@ -112,10 +112,10 @@ export default function TeamCompetitionPage() {
 
   if (sessionLoading || !session || !timing) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-paper">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-lg text-gray-700">Loading your team information...</p>
+          <Loader2 className="h-12 w-12 animate-spin text-blueprint-700 mx-auto mb-4" />
+          <p className="text-lg text-graphite-700">Loading your team information...</p>
         </div>
       </div>
     )
@@ -128,21 +128,21 @@ export default function TeamCompetitionPage() {
   if (beforeStart) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
-        <div className="w-full max-w-4xl bg-white rounded-xl shadow-md overflow-hidden p-8 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-2">Welcome, {teamName}!</h1>
-          <h2 className="text-3xl font-semibold text-gray-800 mb-10">{groupName || 'Your Group'}</h2>
-          <div className="text-8xl font-mono font-bold text-black mb-12">{formatTime(timing.startMs - now)}</div>
+        <div className="w-full max-w-4xl bg-paper rounded-xl shadow-md overflow-hidden p-8 text-center">
+          <h1 className="text-5xl font-bold text-graphite-900 mb-2">Welcome, {teamName}!</h1>
+          <h2 className="text-3xl font-semibold text-graphite-700 mb-10">{groupName || 'Your Group'}</h2>
+          <div className="text-8xl font-bold text-black mb-12">{formatTime(timing.startMs - now)}</div>
 
           <div className="flex items-center justify-center mb-4">
-            <Users className="h-5 w-5 text-gray-500 mr-2" />
-            <h3 className="text-lg font-medium text-gray-700">Teams in your group</h3>
+            <Users className="h-5 w-5 text-graphite-600 mr-2" />
+            <h3 className="text-lg font-medium text-graphite-700">Teams in your group</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {otherTeams.map((team) => (
-              <div key={team.teamId} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <div key={team.teamId} className="bg-paper p-6 rounded-xl border border-paper-line shadow-sm">
                 <div className="flex items-center space-x-3">
-                  <span className={`inline-block w-3 h-3 rounded-full ${team.online ? 'bg-green-500' : 'bg-red-500'}`} />
-                  <p className="text-lg font-medium text-gray-800">{team.name}</p>
+                  <span className={`inline-block w-3 h-3 rounded-full ${team.online ? 'bg-blueprint-500' : 'bg-redpen-600'}`} />
+                  <p className="text-lg font-medium text-graphite-700">{team.name}</p>
                 </div>
               </div>
             ))}
@@ -155,23 +155,23 @@ export default function TeamCompetitionPage() {
   if (showingRules) {
     return (
       <div className="w-full max-w-4xl mt-[5%] mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 text-center mb-8">Round 2 : Team Rush</h1>
-        <div className="bg-white rounded-xl shadow-sm p-8 mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Team Challenge Rules</h2>
-          <ul className="text-left space-y-4 text-gray-700 text-lg">
+        <h1 className="text-4xl font-bold text-graphite-900 text-center mb-8">Round 2 : Team Rush</h1>
+        <div className="bg-paper rounded-xl shadow-sm p-8 mt-8">
+          <h2 className="text-2xl font-bold text-graphite-900 mb-6">Team Challenge Rules</h2>
+          <ul className="text-left space-y-4 text-graphite-700 text-lg">
             <li>Your team will be presented with 10 questions that require numerical answers.</li>
             <li>Work together with your team to solve all questions within the time limit.</li>
             <li>Answers are saved automatically as your team types.</li>
           </ul>
-          <div className="mt-8 p-4 bg-red-50 border-l-4 border-red-400">
-            <p className="text-red-700">
+          <div className="mt-8 p-4 bg-redpen-100 border-l-4 border-redpen-500">
+            <p className="text-redpen-700">
               <span className="font-semibold">On Cheating:</span> Any form of cheating will result
               in immediate disqualification of the entire team.
             </p>
           </div>
           <div className="mt-8 text-center">
-            <p className="text-lg text-gray-600 mb-4">The round will begin in:</p>
-            <div className="text-3xl font-mono font-bold text-gray-800">{formatTime(rulesEndMs - now)}</div>
+            <p className="text-lg text-graphite-600 mb-4">The round will begin in:</p>
+            <div className="text-3xl font-bold text-graphite-700">{formatTime(rulesEndMs - now)}</div>
           </div>
         </div>
       </div>
@@ -179,12 +179,12 @@ export default function TeamCompetitionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-paper p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-900">Team Rush</h2>
+          <h2 className="text-3xl font-bold text-graphite-900">Team Rush</h2>
           <div className="flex items-center space-x-4">
-            <div className="bg-black text-white px-4 py-2 rounded-lg font-mono text-xl">
+            <div className="bg-black text-white px-4 py-2 rounded-lg text-xl">
               {formatTime(timing.endMs - now)}
             </div>
             <button
@@ -193,7 +193,7 @@ export default function TeamCompetitionPage() {
               className={`font-medium py-2 px-6 rounded-md text-lg transition-colors ${
                 hasSubmitted
                   ? 'bg-gray-400 cursor-not-allowed text-white'
-                  : 'bg-red-500 hover:bg-red-800 text-white'
+                  : 'bg-redpen-600 hover:bg-redpen-700 text-white'
               }`}
             >
               {hasSubmitted ? 'Submitted!' : 'Submit'}
@@ -201,14 +201,14 @@ export default function TeamCompetitionPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800">Questions</h3>
+        <div className="bg-paper rounded-xl shadow-sm p-6">
+          <h3 className="text-2xl font-semibold mb-6 text-graphite-700">Questions</h3>
           <div className="space-y-6">
             {QUESTIONS.map((question) => (
               <div key={question.id} className="py-4 border-b last:border-b-0">
                 <div className="flex">
-                  <span className="font-bold text-lg mr-3 text-gray-700">{question.id}.</span>
-                  <p className="text-lg text-gray-800 whitespace-pre-line">{question.text}</p>
+                  <span className="font-bold text-lg mr-3 text-graphite-700">{question.id}.</span>
+                  <p className="text-lg text-graphite-700 whitespace-pre-line">{question.text}</p>
                 </div>
                 <div className="mt-3 ml-4">
                   <input
@@ -216,7 +216,7 @@ export default function TeamCompetitionPage() {
                     value={answers[question.id] ?? ''}
                     onChange={(e) => updateAnswer(question.id, e.target.value)}
                     disabled={hasSubmitted}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-graphite-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Your answer"
                   />
                 </div>

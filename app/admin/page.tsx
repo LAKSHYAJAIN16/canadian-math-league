@@ -43,21 +43,21 @@ export default async function AdminPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-paper p-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">School Registrations</h1>
+          <h1 className="text-2xl font-bold text-graphite-900">School Registrations</h1>
           <LogoutButton
             redirectTo="/admin/login"
-            className="text-sm text-gray-500 hover:text-red-600"
+            className="text-sm text-graphite-600 hover:text-redpen-600"
           />
         </div>
 
-        <div className="bg-white shadow rounded-lg p-6">
-          <p className="text-gray-500 mb-4">Total submissions: {registrations.length}</p>
+        <div className="bg-paper shadow rounded-lg p-6">
+          <p className="text-graphite-600 mb-4">Total submissions: {registrations.length}</p>
 
           {registrations.length === 0 ? (
-            <p className="text-gray-500">No submissions found</p>
+            <p className="text-graphite-600">No submissions found</p>
           ) : (
             <div className="space-y-6">
               {registrations.map((registration) => (
@@ -73,7 +73,7 @@ export default async function AdminPage() {
                         Status:{' '}
                         <span
                           className={`font-medium ${
-                            registration.status === 'approved' ? 'text-green-700' : 'text-amber-700'
+                            registration.status === 'approved' ? 'text-blueprint-800' : 'text-amber-700'
                           }`}
                         >
                           {registration.status}
@@ -83,7 +83,7 @@ export default async function AdminPage() {
                     <div>
                       <h4 className="font-medium">Teams:</h4>
                       {registration.teams.map((team) => (
-                        <div key={team.index} className="mt-2 pl-4 border-l-2 border-gray-200">
+                        <div key={team.index} className="mt-2 pl-4 border-l-2 border-paper-line">
                           <p className="font-medium">Team {team.index}</p>
                           <ul className="list-disc pl-5">
                             {team.members.map((member, i) => (
@@ -97,7 +97,7 @@ export default async function AdminPage() {
                     </div>
                   </div>
                   <div className="mt-4 pt-4 border-t flex justify-between items-center">
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-graphite-600">
                       Submitted: {new Date(registration.submittedAt).toLocaleString()}
                     </div>
                     {registration.status === 'pending' && (

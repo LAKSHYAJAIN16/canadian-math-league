@@ -1,242 +1,82 @@
-'use client'
+import { Download, FileText, HelpCircle, MessageSquare } from 'lucide-react'
+import Link from 'next/link'
 
-import { motion } from 'framer-motion'
-import { BookOpen, Download, Video, FileText, Calculator, Users } from 'lucide-react'
+const problemSets = [
+  { title: 'Individual Round', pdfUrl: '/p-sets/individual.pdf', description: 'Individual problem-solving practice covering a variety of topics.' },
+  { title: 'Team Rounds', pdfUrl: '/p-sets/team-round.pdf', description: 'Collaborative practice problems for your whole team.' },
+  { title: 'Capture the Problem', pdfUrl: '/p-sets/capture_the_problem.pdf', description: 'Practice problems for the speed-and-accuracy grid format.' },
+]
 
-const ResourcesPage = () => {
-  const resources = [
-    {
-      icon: FileText,
-      title: 'Practice Problems',
-      description: 'Comprehensive collection of past competition problems with detailed solutions',
-      items: ['2023 Competition Archive', '2022 Competition Archive', '2021 Competition Archive'],
-      color: 'bg-blue-100 text-blue-600',
-    },
-    {
-      icon: Video,
-      title: 'Video Tutorials',
-      description: 'Step-by-step video explanations of complex mathematical concepts',
-      items: ['Algebra Fundamentals', 'Geometry Proofs', 'Number Theory Basics'],
-      color: 'bg-green-100 text-green-600',
-    },
-    {
-      icon: BookOpen,
-      title: 'Study Guides',
-      description: 'Structured learning materials organized by topic and difficulty level',
-      items: ['Competition Preparation Guide', 'Problem-Solving Strategies', 'Mathematical Olympiad Handbook'],
-      color: 'bg-purple-100 text-purple-600',
-    },
-    {
-      icon: Calculator,
-      title: 'Online Tools',
-      description: 'Interactive calculators and problem generators for practice',
-      items: ['Equation Solver', 'Graph Plotter', 'Prime Number Generator'],
-      color: 'bg-orange-100 text-orange-600',
-    },
-  ]
+const links = [
+  { icon: HelpCircle, title: 'How it works', description: 'The three-stage tournament structure, explained.', href: '/how-it-works' },
+  { icon: FileText, title: 'Tournament format', description: 'Every round, in every stage, in detail.', href: '/format' },
+  { icon: MessageSquare, title: 'Community', description: 'Connect with other competitors and coaches.', href: '/community' },
+]
 
-  const topics = [
-    'Algebra & Polynomials',
-    'Geometry & Trigonometry',
-    'Number Theory',
-    'Combinatorics',
-    'Probability & Statistics',
-    'Calculus Basics',
-    'Logic & Proofs',
-    'Mathematical Modeling',
-  ]
-
+export default function ResourcesPage() {
   return (
-    <div className="min-h-screen py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Learning Resources
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Access our comprehensive collection of study materials, practice problems, 
-            and educational resources to excel in mathematics competitions.
+    <div className="min-h-screen bg-paper">
+      <section className="bg-grid-blueprint py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">Resources</h1>
+          <p className="text-lg text-blueprint-100 mt-4">
+            Sample problem sets and everything else you need to get ready for the Group Stage.
           </p>
-        </motion.div>
+        </div>
+      </section>
 
-        {/* Resource Categories */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {resources.map((resource, index) => (
-              <motion.div
-                key={resource.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6"
-              >
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${resource.color}`}>
-                  <resource.icon className="h-6 w-6" />
+      <section className="py-20 bg-grid-paper">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-16">
+            <span className="stamp-label text-redpen-600 border-redpen-600">Practice</span>
+            <h2 className="text-2xl font-bold text-graphite-900 mt-3 mb-8">Sample problem sets</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-graphite-900 border-2 border-graphite-900 rounded-xl">
+              {problemSets.map((set) => (
+                <div key={set.title} className="bg-paper p-6 flex flex-col">
+                  <h3 className="font-bold text-graphite-900 mb-2">{set.title}</h3>
+                  <p className="text-graphite-600 text-sm mb-6 flex-grow">{set.description}</p>
+                  <a
+                    href={set.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-press rounded-lg inline-flex items-center justify-center gap-2 bg-redpen-600 text-white py-2.5 text-xs font-bold uppercase tracking-wide shadow-stamp-sm hover:bg-redpen-700"
+                  >
+                    <Download className="h-4 w-4" />
+                    Download PDF
+                  </a>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {resource.title}
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  {resource.description}
-                </p>
-                <ul className="space-y-2 mb-6">
-                  {resource.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-center text-gray-700">
-                      <Download className="h-4 w-4 mr-2 text-primary-600" />
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-primary-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-primary-700 transition-colors duration-200"
+              ))}
+            </div>
+            <p className="text-sm text-graphite-500 mt-4">
+              Looking for more? See the full{' '}
+              <Link href="/pre-season" className="text-redpen-600 font-semibold hover:text-redpen-700">
+                Pre-Season page
+              </Link>
+              .
+            </p>
+          </div>
+
+          <div>
+            <span className="stamp-label text-redpen-600 border-redpen-600">Learn more</span>
+            <h2 className="text-2xl font-bold text-graphite-900 mt-3 mb-8">Everything else</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {links.map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="bg-paper border-2 border-graphite-900 rounded-xl p-6 hover:-translate-y-1 hover:shadow-stamp transition-all block"
                 >
-                  Access Resources
-                </motion.button>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Topics Covered */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Topics Covered
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {topics.map((topic, index) => (
-              <motion.div
-                key={topic}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-primary-50 to-secondary-50 p-4 rounded-lg text-center cursor-pointer"
-              >
-                <span className="text-gray-800 font-medium">{topic}</span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Study Tips */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl p-8 md:p-12 text-white">
-            <h2 className="text-3xl font-bold mb-6 text-center">Study Tips for Success</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">1</span>
-                </div>
-                <h3 className="font-semibold mb-2">Practice Regularly</h3>
-                <p className="text-primary-100">
-                  Dedicate time daily to solving problems and reviewing concepts
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">2</span>
-                </div>
-                <h3 className="font-semibold mb-2">Understand Concepts</h3>
-                <p className="text-primary-100">
-                  Focus on understanding the underlying principles, not just memorizing
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">3</span>
-                </div>
-                <h3 className="font-semibold mb-2">Join Study Groups</h3>
-                <p className="text-primary-100">
-                  Collaborate with peers to discuss problems and share strategies
-                </p>
-              </div>
+                  <div className="w-11 h-11 border-2 border-graphite-900 rounded-xl flex items-center justify-center mb-4">
+                    <item.icon className="h-5 w-5 text-redpen-600" />
+                  </div>
+                  <h3 className="font-bold text-graphite-900 mb-2">{item.title}</h3>
+                  <p className="text-graphite-600 text-sm">{item.description}</p>
+                </Link>
+              ))}
             </div>
           </div>
-        </motion.section>
-
-        {/* Featured Resources */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Featured Resources
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="bg-primary-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Users className="h-6 w-6 text-primary-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Mentorship Program
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Connect with experienced mathematicians and past competition winners for personalized guidance.
-              </p>
-              <button className="text-primary-600 font-medium hover:text-primary-700">
-                Learn More →
-              </button>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Video className="h-6 w-6 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Live Workshops
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Join our weekly online workshops covering advanced topics and problem-solving techniques.
-              </p>
-              <button className="text-primary-600 font-medium hover:text-primary-700">
-                View Schedule →
-              </button>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <BookOpen className="h-6 w-6 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Digital Library
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Access our extensive collection of mathematics books, journals, and research papers.
-              </p>
-              <button className="text-primary-600 font-medium hover:text-primary-700">
-                Browse Library →
-              </button>
-            </div>
-          </div>
-        </motion.section>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }
-
-export default ResourcesPage

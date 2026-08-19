@@ -7,95 +7,74 @@ module.exports = {
   ],
   theme: {
     extend: {
-      animation: {
-        'marquee': 'marquee 25s linear infinite',
-      },
-      keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-      },
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+        // Canadian flag red — the one accent color, used at whatever
+        // strength the moment calls for (soft tint through full fill).
+        redpen: {
+          950: '#4A0810',
+          900: '#6B0B16',
+          800: '#8F0E1D',
+          700: '#B41225',
+          600: '#DC1F35', // primary brand red
+          500: '#E8394C',
+          400: '#EF6472',
+          300: '#F49AA3',
+          200: '#F9C6CB',
+          100: '#FCE2E5',
+          50: '#FEF3F4',
         },
-        secondary: {
-          50: '#fdf4ff',
-          100: '#fae8ff',
-          200: '#f5d0fe',
-          300: '#f0abfc',
-          400: '#e879f9',
-          500: '#d946ef',
-          600: '#c026d3',
-          700: '#a21caf',
-          800: '#86198f',
-          900: '#701a75',
+        blueprint: {
+          950: '#4A0810',
+          900: '#6B0B16',
+          800: '#8F0E1D',
+          700: '#B41225',
+          600: '#DC1F35',
+          500: '#E8394C',
+          400: '#EF6472',
+          300: '#F49AA3',
+          200: '#F9C6CB',
+          100: '#FCE2E5',
+          50: '#FEF3F4',
         },
-        accent: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
+        paper: {
+          DEFAULT: '#FFFFFF',
+          line: '#F1E4E5',
+          ink: '#FDF7F7',
         },
-        neon: {
-          cyan: '#00ffff',
-          pink: '#ff00ff',
-          green: '#00ff00',
-          yellow: '#ffff00',
-        }
+        // Warm dark gray — friendlier than pure black.
+        graphite: {
+          900: '#241E1F',
+          700: '#493D3F',
+          600: '#6B5B5D',
+          400: '#9C8A8C',
+          300: '#C9BABB',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Clash Display', 'Space Grotesk', 'Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
-        math: ['Space Grotesk', 'Inter', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
-      animation: {
-        'gradient': 'gradient 8s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-slow': 'bounce 3s infinite',
-        'scroll': 'scroll 30s linear infinite',
+      borderRadius: {
+        '4xl': '2rem',
+      },
+      boxShadow: {
+        soft: '0 2px 8px -2px rgba(36, 30, 31, 0.08), 0 8px 24px -8px rgba(36, 30, 31, 0.10)',
+        'soft-lg': '0 4px 16px -4px rgba(36, 30, 31, 0.10), 0 16px 40px -12px rgba(36, 30, 31, 0.14)',
+        'red-glow': '0 8px 24px -8px rgba(220, 31, 53, 0.35)',
       },
       keyframes: {
-        gradient: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          },
+        'redpen-draw': {
+          from: { strokeDashoffset: '1' },
+          to: { strokeDashoffset: '0' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-8px)' },
         },
-        scroll: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
-        }
       },
-      backdropBlur: {
-        xs: '2px',
-      }
+      animation: {
+        float: 'float 5s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

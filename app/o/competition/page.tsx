@@ -199,23 +199,23 @@ export default function CompetitionPage() {
   if (sessionLoading || !session) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Loading...</p>
+        <p className="text-graphite-600">Loading...</p>
       </div>
     )
   }
 
   if (!isFullscreen) {
     return (
-      <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-4 text-center">
+      <div className="fixed inset-0 bg-paper z-50 flex flex-col items-center justify-center p-4 text-center">
         <div className="max-w-md">
           <h1 className="text-3xl font-bold mb-6">Fullscreen Required</h1>
-          <p className="text-lg text-gray-700 mb-8">
+          <p className="text-lg text-graphite-700 mb-8">
             For the best competition experience, please enable fullscreen mode. This helps
             prevent accidental navigation and ensures you can focus on the competition.
           </p>
           <button
             onClick={requestFullscreen}
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center mx-auto"
+            className="px-8 py-3 bg-blueprint-800 text-white rounded-lg hover:bg-blueprint-900 transition-colors flex items-center mx-auto"
           >
             <Maximize2 className="mr-2" size={20} />
             Enter Fullscreen
@@ -226,9 +226,9 @@ export default function CompetitionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col md:flex-row">
+    <div className="min-h-screen bg-paper flex flex-col md:flex-row">
       {showWarning && (
-        <div className="fixed bottom-0 left-0 right-0 bg-red-600 text-white p-4 text-center z-50">
+        <div className="fixed bottom-0 left-0 right-0 bg-redpen-600 text-white p-4 text-center z-50">
           <p className="text-xl font-medium">I have my eye on you...</p>
           <p className="text-md">
             Attempts to cheat will result in immediate disqualification.
@@ -238,20 +238,20 @@ export default function CompetitionPage() {
 
       <button
         onClick={() => setIsTeamVisible(!isTeamVisible)}
-        className="fixed left-0 top-1/2 -translate-y-1/2 bg-white border-r border-t border-b border-gray-200 rounded-r-lg p-2 shadow-md z-10 hover:bg-gray-50 transition-colors"
+        className="fixed left-0 top-1/2 -translate-y-1/2 bg-paper border-r border-t border-b border-paper-line rounded-r-lg p-2 shadow-md z-10 hover:bg-paper transition-colors"
       >
         {isTeamVisible ? <ChevronLeft size={24} /> : <Users size={24} />}
       </button>
 
       <div
-        className={`fixed left-0 top-0 h-full bg-white border-r border-gray-200 transition-all duration-300 ease-in-out z-20 ${
+        className={`fixed left-0 top-0 h-full bg-paper border-r border-paper-line transition-all duration-300 ease-in-out z-20 ${
           isTeamVisible ? 'w-80' : 'w-0 opacity-0 invisible'
         }`}
       >
         <div className="p-6 h-full overflow-y-auto">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Your Team</h2>
-            <button onClick={() => setIsTeamVisible(false)} className="text-gray-400 hover:text-gray-600">
+            <h2 className="text-xl font-bold text-graphite-900">Your Team</h2>
+            <button onClick={() => setIsTeamVisible(false)} className="text-graphite-400 hover:text-graphite-600">
               <ChevronRight size={20} />
             </button>
           </div>
@@ -259,12 +259,12 @@ export default function CompetitionPage() {
           <div className="space-y-3">
             {teammates.length > 0 ? (
               teammates.map((mate) => (
-                <div key={mate.id} className="p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                <div key={mate.id} className="p-3 border rounded-lg hover:bg-paper transition-colors">
                   <div className="font-medium">{mate.name}</div>
                 </div>
               ))
             ) : (
-              <p className="text-gray-500">No other team members found</p>
+              <p className="text-graphite-600">No other team members found</p>
             )}
           </div>
         </div>
@@ -276,32 +276,32 @@ export default function CompetitionPage() {
         }`}
       >
         {!isCompetitionStarted ? (
-          <div className="max-w-3xl w-full mt-[22%] bg-white rounded-xl shadow-sm p-8 text-center">
-            <h1 className="text-6xl font-bold text-gray-900 mb-2">Welcome, {session.name}!</h1>
-            <p className="text-2xl text-gray-600 mb-8">The competition starts in:</p>
+          <div className="max-w-3xl w-full mt-[22%] bg-paper rounded-xl shadow-sm p-8 text-center">
+            <h1 className="text-6xl font-bold text-graphite-900 mb-2">Welcome, {session.name}!</h1>
+            <p className="text-2xl text-graphite-600 mb-8">The competition starts in:</p>
             <div className="grid grid-cols-4 gap-1 mb-8">
               {(['days', 'hours', 'minutes', 'seconds'] as const).map((unit) => (
                 <div className="px-1" key={unit}>
-                  <div className="text-5xl font-bold text-gray-900 font-mono leading-none">
+                  <div className="text-5xl font-bold text-graphite-900 leading-none">
                     {timeLeft[unit].toString().padStart(2, '0')}
                   </div>
-                  <div className="text-gray-500 font-mono text-xs">{unit}</div>
+                  <div className="text-graphite-600 text-xs">{unit}</div>
                 </div>
               ))}
             </div>
           </div>
         ) : showRules ? (
           <div className="w-full max-w-4xl mt-[5%]">
-            <h1 className="text-4xl font-bold text-gray-900 text-center mb-8">Round 1 : Individual</h1>
-            <div className="bg-white rounded-xl shadow-sm p-8 mt-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Round 1 Rules</h2>
-              <ul className="text-left space-y-4 text-gray-700 text-lg">
+            <h1 className="text-4xl font-bold text-graphite-900 text-center mb-8">Round 1 : Individual</h1>
+            <div className="bg-paper rounded-xl shadow-sm p-8 mt-8">
+              <h2 className="text-2xl font-bold text-graphite-900 mb-6">Round 1 Rules</h2>
+              <ul className="text-left space-y-4 text-graphite-700 text-lg">
                 <li>There are 20 multiple choice questions and 45 minutes to answer them.</li>
                 <li>Each correct answer is worth 1 point, there are no penalties for incorrect answers.</li>
                 <li>No calculators or external aids are allowed.</li>
               </ul>
-              <div className="mt-8 p-4 bg-red-50 border-l-4 border-red-400">
-                <p className="text-red-700">
+              <div className="mt-8 p-4 bg-redpen-100 border-l-4 border-redpen-500">
+                <p className="text-redpen-700">
                   <span className="font-semibold">On Cheating:</span> Any cheating will result in
                   immediate disqualification of the entire team.
                 </p>
@@ -310,20 +310,20 @@ export default function CompetitionPage() {
           </div>
         ) : testCompleted ? (
           <div className="w-full max-w-4xl mx-auto p-8 text-center">
-            <div className="mt-[20%] bg-white rounded-xl shadow-sm p-8">
-              <h1 className="text-5xl font-bold text-green-600 mb-4">Test Submitted Successfully!</h1>
-              <p className="text-xl text-gray-700 mb-2">Waiting for the next round...</p>
+            <div className="mt-[20%] bg-paper rounded-xl shadow-sm p-8">
+              <h1 className="text-5xl font-bold text-blueprint-700 mb-4">Test Submitted Successfully!</h1>
+              <p className="text-xl text-graphite-700 mb-2">Waiting for the next round...</p>
               <div className="text-5xl font-bold text-black">
                 {String(roundTimeLeft.minutes).padStart(2, '0')}:{String(roundTimeLeft.seconds).padStart(2, '0')}
               </div>
-              <div className="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
-                <p className="text-lg text-blue-800">
+              <div className="bg-blueprint-50 p-4 rounded-lg mt-6 border border-blueprint-200">
+                <p className="text-lg text-blueprint-800">
                   <span className="font-semibold">Note:</span> The next round is team-based and will
                   only load on one team member&apos;s screen.
                 </p>
                 {teamHost ? (
                   teamHost.id === session.memberId ? (
-                    <p className="mt-2 text-green-700 font-semibold">
+                    <p className="mt-2 text-blueprint-800 font-semibold">
                       You are the team host! The next round will load on your screen.
                     </p>
                   ) : (
@@ -339,7 +339,7 @@ export default function CompetitionPage() {
           </div>
         ) : (
           <div className="w-full max-w-6xl mx-auto p-6 flex flex-col h-[calc(100vh-8rem)]">
-            <div className="w-full bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+            <div className="w-full bg-paper p-4 rounded-lg shadow-sm border border-paper-line mb-6">
               <div className="flex items-center">
                 <div className="text-2xl font-bold text-black whitespace-nowrap mr-4">
                   {String(roundTimeLeft.minutes).padStart(2, '0')}:{String(roundTimeLeft.seconds).padStart(2, '0')}
@@ -352,10 +352,10 @@ export default function CompetitionPage() {
                         onClick={() => setCurrentQuestionIndex(index)}
                         className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200 ${
                           currentQuestionIndex === index
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-blueprint-800 text-white'
                             : q.userAnswer !== undefined
-                              ? 'bg-green-100 text-green-700 border-2 border-green-300'
-                              : 'bg-white text-gray-700 border-2 border-gray-200 hover:bg-gray-50'
+                              ? 'bg-green-100 text-blueprint-800 border-2 border-green-300'
+                              : 'bg-paper text-graphite-700 border-2 border-paper-line hover:bg-paper'
                         }`}
                       >
                         {index + 1}
@@ -367,18 +367,18 @@ export default function CompetitionPage() {
             </div>
 
             <div className="flex-1 flex flex-col md:flex-row gap-8">
-              <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="w-full md:w-1/2 bg-paper p-6 rounded-lg shadow-sm border border-paper-line">
                 <h2 className="text-2xl font-bold mb-6">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </h2>
                 <p className="text-lg">{questions[currentQuestionIndex]?.question}</p>
 
                 <div className="mt-auto pt-6">
-                  <div className="flex justify-between border-t border-gray-200 pt-4">
+                  <div className="flex justify-between border-t border-paper-line pt-4">
                     <button
                       onClick={() => setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))}
                       disabled={currentQuestionIndex === 0}
-                      className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors duration-200"
+                      className="px-6 py-2 bg-paper-ink text-graphite-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors duration-200"
                     >
                       Previous
                     </button>
@@ -390,7 +390,7 @@ export default function CompetitionPage() {
                           handleTestSubmission()
                         }
                       }}
-                      className="px-8 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                      className="px-8 py-2 bg-blueprint-800 text-white rounded-lg hover:bg-blueprint-900 transition-colors duration-200"
                     >
                       {currentQuestionIndex === questions.length - 1 ? 'Submit Test' : 'Next'}
                     </button>
@@ -399,7 +399,7 @@ export default function CompetitionPage() {
               </div>
 
               <div className="w-full md:w-1/2">
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 sticky top-6">
+                <div className="bg-paper p-6 rounded-lg shadow-sm border border-paper-line sticky top-6">
                   <h3 className="text-xl font-semibold mb-6">Select your answer:</h3>
                   <div className="space-y-4">
                     {questions[currentQuestionIndex]?.options?.map((option, index) => (
@@ -408,16 +408,16 @@ export default function CompetitionPage() {
                         onClick={() => handleAnswerSelection(currentQuestionIndex, index)}
                         className={`p-4 border rounded-lg transition-colors cursor-pointer ${
                           questions[currentQuestionIndex]?.userAnswer === index
-                            ? 'border-blue-500 bg-blue-50'
-                            : 'border-gray-200 hover:border-blue-300'
+                            ? 'border-blue-500 bg-blueprint-50'
+                            : 'border-paper-line hover:border-blue-300'
                         }`}
                       >
                         <div className="flex items-center">
                           <div
                             className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-3 ${
                               questions[currentQuestionIndex]?.userAnswer === index
-                                ? 'bg-blue-100 text-blue-700 border-blue-500'
-                                : 'border-gray-300 text-gray-600'
+                                ? 'bg-blueprint-100 text-blue-700 border-blue-500'
+                                : 'border-graphite-300 text-graphite-600'
                             }`}
                           >
                             {String.fromCharCode(65 + index)}

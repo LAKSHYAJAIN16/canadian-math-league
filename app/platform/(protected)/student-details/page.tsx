@@ -12,8 +12,8 @@ export default async function StudentDetailsPage() {
   const school = await getSchoolWithTeams(claims.schoolId)
   if (!school) {
     return (
-      <div className="bg-red-50 border-l-4 border-red-400 p-4">
-        <p className="text-sm text-red-700">Team data not found.</p>
+      <div className="bg-redpen-100 border-l-4 border-redpen-500 p-4">
+        <p className="text-sm text-redpen-700">Team data not found.</p>
       </div>
     )
   }
@@ -21,8 +21,8 @@ export default async function StudentDetailsPage() {
   return (
     <div className="space-y-8 p-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Student Join Codes</h1>
-        <p className="text-sm text-gray-600 mt-1">
+        <h1 className="text-2xl font-bold text-graphite-900">Student Join Codes</h1>
+        <p className="text-sm text-graphite-600 mt-1">
           Share each student&apos;s code with them — they&apos;ll enter it at{' '}
           <span className="font-mono">/join</span> to access the competition.
         </p>
@@ -33,15 +33,15 @@ export default async function StudentDetailsPage() {
           team.members.map((member) => (
             <div
               key={member.id}
-              className="bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow"
+              className="bg-paper p-4 rounded-lg shadow-sm hover:shadow transition-shadow"
             >
-              <div className="flex items-center justify-between mb-2 p-2 hover:bg-gray-50 rounded">
-                <span className="font-mono text-black text-lg font-extrabold select-all">
+              <div className="flex items-center justify-between mb-2 p-2 hover:bg-paper rounded">
+                <span className="text-black text-lg font-extrabold select-all">
                   {member.joinCode}
                 </span>
                 <CopyCodeButton code={member.joinCode} />
               </div>
-              <div className="text-gray-700 p-2">{member.name}</div>
+              <div className="text-graphite-700 p-2">{member.name}</div>
             </div>
           ))
         )}
@@ -51,7 +51,7 @@ export default async function StudentDetailsPage() {
         <h3 className="text-lg font-medium text-yellow-800 mb-3">Confused?</h3>
         <p>
           We understand. It&apos;s a lot to take in. Click{' '}
-          <a href="/administering-contests" className="text-blue-600">
+          <a href="/administering-contests" className="text-blueprint-700">
             here
           </a>{' '}
           to learn more.
