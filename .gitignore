@@ -1,2 +1,12 @@
 /node_modules
 /.next
+*.tsbuildinfo
+
+# environment variables
+.env
+.env.local
+.env.*.local
+
+# Firebase service account keys — never commit these
+*serviceAccount*.json
+secrets/

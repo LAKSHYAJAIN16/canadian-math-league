@@ -2,39 +2,12 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
+/**
+ * Only rendered by app/(marketing)/layout.tsx — see Navbar.tsx for why
+ * this no longer self-hides based on pathname.
+ */
 const Footer = () => {
-  const pathname = usePathname()
-
-  // Hide footer on dashboard page
-  if (pathname === '/platform/dashboard') {
-    return null;
-  }
-  if (pathname === '/platform/login') {
-    return null;
-  }
-  if (pathname === "/platform/student-details") {
-    return null;
-  }
-  if (pathname === "/platform/faq") {
-    return null;
-  }
-  if (pathname === "/platform/certificates") {
-    return null;
-  }
-  if (pathname == "/join") {
-    return null;
-  }
-  if (pathname === "/o/competition") {
-    return null;
-  }
-  if (pathname === "/o/team-competition") {
-    return null;
-  }
-    if(pathname=="/o/capture-the-problem") {
-    return null;
-  }
   return (
     <footer className="bg-white border-t-2 border-gray-300 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,8 +31,8 @@ const Footer = () => {
             <Link href="/about" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
               About
             </Link>
-            <Link href="/competitions" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
-              Competitions
+            <Link href="/format" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
+              Format
             </Link>
             <Link href="/resources" className="text-sm text-gray-600 hover:text-red-600 transition-colors">
               Resources

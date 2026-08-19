@@ -2,8 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '@/lib/config';
+import { signInAnonymously } from 'firebase/auth';
+import { auth } from '@/lib/firebase/client';
+
+// Always session-dependent, never useful to prerender statically — and
+// prerendering would execute Firebase client init at build time, which
+// needs real env vars that CI/local builds may not have configured yet.
+export const dynamic = 'force-dynamic';
 
 export default function JoinPage() {
     const [joinCode, setJoinCode] = useState('');
@@ -12,71 +17,68 @@ export default function JoinPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    // Check for URL parameter on component mount
-    useEffect(() => {
-        const code = searchParams.get('code');
-        if (code) {
-            setJoinCode(code);
-            // Auto-submit if code is provided in URL
-            handleSubmit({ preventDefault: () => { } } as React.FormEvent, code);
-        }
-    }, [searchParams]);
-
-    const handleSubmit = async (e: React.FormEvent, codeFromUrl?: string) => {
-        e.preventDefault();
+    const joinWithCode = async (code: string) => {
         setIsLoading(true);
         setError('');
 
         try {
-            const codeToUse = codeFromUrl || joinCode;
-            const memberId = `member-${codeToUse.trim()}`;
-            console.log('Searching for member:', memberId);
+            // A real, revocable Firebase Auth identity for the student — the
+            // server (not this page) decides which team/member that identity
+            // maps to, via /api/auth/join.
+            const credential = auth.currentUser ?? (await signInAnonymously(auth)).user;
+            const idToken = await credential.getIdToken();
 
-            // First, get all team documents
-            const teamsRef = collection(db, 'teams');
-            const querySnapshot = await getDocs(teamsRef);
-
-            // Find the team and member that match
-            let foundTeam = null;
-            let foundMember = null;
-
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                if (data.teams && Array.isArray(data.teams)) {
-                    data.teams.forEach(team => {
-                        if (team.members && Array.isArray(team.members)) {
-                            const member = team.members.find(m => m.id === memberId);
-                            if (member) {
-                                foundTeam = team;
-                                foundMember = member;
-                            }
-                        }
-                    });
-                }
+            const joinResponse = await fetch('/api/auth/join', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${idToken}`,
+                },
+                body: JSON.stringify({ joinCode: code.trim() }),
             });
+            const joinResult = await joinResponse.json();
 
-            if (!foundTeam || !foundMember) {
-                setError('Invalid join code. Please check and try again.');
-                setIsLoading(false);
+            if (!joinResponse.ok) {
+                setError(joinResult.error ?? 'Invalid join code. Please check and try again.');
                 return;
             }
 
-            // Store member ID in localStorage for session management
-            localStorage.setItem('studentAuth', JSON.stringify({
-                memberId,
-                teamId: foundTeam.id,
-                name: foundMember.name // Add the member's name
-            }));
+            // Custom claims just changed server-side — force a token refresh
+            // so the session cookie we mint next actually carries them.
+            const freshIdToken = await credential.getIdToken(true);
+            const sessionResponse = await fetch('/api/auth/session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idToken: freshIdToken }),
+            });
 
-            // Redirect to competition page
+            if (!sessionResponse.ok) {
+                setError('Could not start your session. Please try again.');
+                return;
+            }
+
             router.push('/o/competition');
-
-        } catch (error) {
-            console.error('Error joining team:', error);
+        } catch (err) {
+            console.error('Error joining team:', err);
             setError('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);
         }
+    };
+
+    // Auto-submit if a code is provided in the URL, e.g. /join?code=AB12CD
+    useEffect(() => {
+        const code = searchParams.get('code');
+        if (code) {
+            setJoinCode(code);
+            joinWithCode(code);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchParams]);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        joinWithCode(joinCode);
     };
 
     return (

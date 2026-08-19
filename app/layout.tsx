@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Alike } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
 const alike = Alike({ 
   weight: '400',
@@ -32,11 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body className={alike.className}>
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   )

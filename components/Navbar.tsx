@@ -1,45 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
+/**
+ * Only rendered by app/(marketing)/layout.tsx — pages that shouldn't show
+ * it (platform, admin, /join, /o/*) simply live outside that route group
+ * instead of this component guessing by pathname.
+ */
 const Navbar = () => {
-  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
-  // Show only logo on dashboard page
-  if (pathname === '/platform/dashboard') {
-    return null;
-  }
-  if (pathname === '/platform/login') {
-    return null;
-  }
-  if (pathname === "/platform/student-details") {
-    return null;
-  }
-  if (pathname === "/o/competition") {
-    return null;
-  }
-  if (pathname === "/platform/faq") {
-    return null;
-  }
-  if (pathname === "/platform/certificates") {
-    return null;
-  }
-  if (pathname == "/join") {
-    return null;
-  }
-  if (pathname === "/o/team-competition") {
-    return null;
-  }
-  if(pathname=="/o/capture-the-problem") {
-    return null;
-  }
   const navItems = [
     { href: '/', label: 'Home' },
     {
