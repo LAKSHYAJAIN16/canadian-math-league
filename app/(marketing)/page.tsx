@@ -6,36 +6,17 @@ import Link from 'next/link'
 import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES } from '@/lib/content/season'
 import { StageBar } from '@/components/ui/StageBar'
 
-function RedPenCircle({ className = '' }: { className?: string }) {
-  return (
-    <svg
-      className={`redpen-mark-auto ${className}`}
-      viewBox="0 0 220 48"
-      preserveAspectRatio="none"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M14 25 C14 6, 44 2, 110 2 C182 2, 206 6, 204 25 C204 42, 170 46, 110 46 C46 46, 16 40, 14 25 Z"
-        stroke="#DC1F35"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-paper">
       {/* Hero */}
       <section className="relative bg-grid-blueprint overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col items-start gap-2 mb-6"
+              className="flex flex-col items-center gap-2 mb-6"
             >
               <p className="text-xs font-semibold text-graphite-600 tracking-wide">In partnership with</p>
               <img
@@ -52,17 +33,14 @@ const HomePage = () => {
               className="text-5xl md:text-7xl font-extrabold text-graphite-900 leading-[1.05] mb-3"
             >
               Canada&apos;s premier{' '}
-              <span className="relative inline-block group text-redpen-600">
-                math tournament
-                <RedPenCircle />
-              </span>
+              <span className="text-redpen-600">math tournament</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-6 text-lg md:text-xl text-graphite-600 max-w-2xl leading-relaxed"
+              className="mt-6 text-lg md:text-xl text-graphite-600 max-w-2xl mx-auto leading-relaxed"
             >
               A free, team-based tournament for high schools across Canada — an online
               Group Stage, in-person Regional Championships, and a National final.
@@ -73,7 +51,7 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mt-9 flex flex-col sm:flex-row gap-4 items-start"
+              className="mt-9 flex flex-col sm:flex-row gap-4 items-center justify-center"
             >
               <Link
                 href="/register"
