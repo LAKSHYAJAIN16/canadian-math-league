@@ -51,7 +51,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Alike', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       borderRadius: {

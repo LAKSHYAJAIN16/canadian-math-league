@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans } from 'next/font/google'
+import { Alike } from 'next/font/google'
 import './globals.css'
 
-const jakarta = Plus_Jakarta_Sans({
-  weight: ['400', '500', '600', '700', '800'],
+const alike = Alike({
+  weight: '400',
   subsets: ['latin'],
   display: 'swap',
+  fallback: ['serif'],
+  preload: true,
+  adjustFontFallback: true,
   variable: '--font-sans',
 })
 
@@ -21,14 +24,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${jakarta.variable} font-sans antialiased`}>
+      <body className={`${alike.variable} font-sans antialiased`}>
         {/*
           THESIS: Friendly, approachable math tournament — warm and inviting
           for teenagers, not corporate or severe.
           OWN-WORLD: Soft rounded cards (2xl/3xl radii), gentle drop shadows,
-          pill buttons, red/white Canadian palette, light-weight friendly
-          display type (Plus Jakarta Sans), small line icons, generous
-          whitespace, gentle motion.
+          pill buttons, red/white Canadian palette, serif display type
+          (Alike — the original pre-redesign font), small line icons,
+          generous whitespace, gentle motion.
           STORY: A visitor feels welcomed into a national student math
           tournament — exciting, not intimidating — and registers their team.
           FIRST VIEWPORT: white hero, CMS partnership logo, warm red accent
