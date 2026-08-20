@@ -69,31 +69,6 @@ const HomePage = () => {
             </motion.div>
           </div>
         </div>
-
-        {/* Season strip */}
-        <div className="relative border-t border-redpen-100 bg-white/60">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="stamp-label">Group Stage</span>
-            <p className="text-sm text-graphite-600">
-              {SEASON_STAGES.groupStage.displayDate} &middot; {SEASON_STAGES.groupStage.location} &middot; Free
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Become a Sponsor */}
-      <section className="py-4 bg-paper border-b border-paper-line">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
-          <p className="text-sm font-medium text-graphite-600">
-            Interested in supporting Canadian math education?
-          </p>
-          <Link
-            href="/about/sponsors"
-            className="text-sm font-semibold text-redpen-600 hover:text-redpen-700 transition-colors"
-          >
-            Become a sponsor &rarr;
-          </Link>
-        </div>
       </section>
 
       {/* Tournament Structure Section */}
