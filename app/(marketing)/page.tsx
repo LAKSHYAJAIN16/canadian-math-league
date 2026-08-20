@@ -51,7 +51,7 @@ const HomePage = () => {
               transition={{ delay: 0.1 }}
               className="text-5xl md:text-7xl font-extrabold text-graphite-900 leading-[1.05] mb-3"
             >
-              Canada&apos;s friendliest{' '}
+              Canada&apos;s premier{' '}
               <span className="relative inline-block group text-redpen-600">
                 math tournament
                 <RedPenCircle />
