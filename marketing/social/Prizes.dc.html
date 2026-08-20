@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alike&display=swap">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .post {
+      width: 1080px; height: 1080px;
+      background: #DC1F35;
+      font-family: 'Alike', Georgia, serif;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+  </style>
+</helmet>
+<div class="post">
+  <div style="position:absolute; top:-160px; left:-160px; width:420px; height:420px; border-radius:9999px; border:2px solid rgba(255,255,255,0.25);"></div>
+  <div style="position:absolute; bottom:-240px; right:-200px; width:560px; height:560px; border-radius:9999px; background:#B41225;"></div>
+
+  <div style="position:relative; height:100%; display:flex; flex-direction:column; justify-content:space-between; padding:88px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <img src="logo.png" alt="CML" style="width:64px; height:64px; object-fit:contain; background:#fff; border-radius:9999px; padding:4px;">
+      <div style="font-size:18px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">Canadian Math League</div>
+    </div>
+
+    <div>
+      <div style="font-size:104px; line-height:0.95; font-weight:700; margin-bottom:36px;">
+        Win real<br>prizes.
+      </div>
+      <div style="display:flex; gap:48px;">
+        <div>
+          <div style="font-size:56px; font-weight:700;">$5,000</div>
+          <div style="font-size:18px; color:#FCE2E5; text-transform:uppercase; letter-spacing:0.06em;">Champion</div>
+        </div>
+        <div>
+          <div style="font-size:56px; font-weight:700;">$2,500</div>
+          <div style="font-size:18px; color:#FCE2E5; text-transform:uppercase; letter-spacing:0.06em;">Runner-Up</div>
+        </div>
+        <div>
+          <div style="font-size:56px; font-weight:700;">$1,500</div>
+          <div style="font-size:18px; color:#FCE2E5; text-transform:uppercase; letter-spacing:0.06em;">Top Junior</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+      <div style="font-size:22px; color:#FCE2E5; max-width:520px; line-height:1.5;">
+        Plus medals and certificates for every finalist at Nationals.
+      </div>
+      <div style="font-size:20px; font-weight:700;">canadianmathleague.ca</div>
+    </div>
+  </div>
+</div>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</x-dc>
+</body>
+</html>

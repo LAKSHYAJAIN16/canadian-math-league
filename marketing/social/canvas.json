@@ -1,0 +1,9 @@
+{
+  "artboards": [
+    { "file": "RegistrationOpen.dc.html", "x": 0, "y": 0, "w": 1080, "h": 1080, "title": "Registration Open", "print": "fixed" },
+    { "file": "SaveTheDate.dc.html", "x": 1160, "y": 0, "w": 1080, "h": 1080, "title": "Save the Date", "print": "fixed" },
+    { "file": "MeetTheFormat.dc.html", "x": 2320, "y": 0, "w": 1080, "h": 1080, "title": "Meet the Format", "print": "fixed" },
+    { "file": "Prizes.dc.html", "x": 3480, "y": 0, "w": 1080, "h": 1080, "title": "Prizes", "print": "fixed" }
+  ],
+  "launch": { "view": "canvas" }
+}

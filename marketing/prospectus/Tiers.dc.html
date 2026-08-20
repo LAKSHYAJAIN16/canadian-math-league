@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alike&display=swap">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .page {
+      width: 816px;
+      height: 1056px;
+      background: #ffffff;
+      font-family: 'Alike', Georgia, serif;
+      color: #241E1F;
+      padding: 72px 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    a { color: #ffffff; }
+    .tier {
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px -2px rgba(36,30,31,0.08), 0 8px 24px -8px rgba(36,30,31,0.10);
+    }
+    .tier-head { padding: 16px 20px; color: #ffffff; }
+    .tier-body { padding: 16px 20px; background: #ffffff; flex: 1; }
+    .tier-body li { font-size: 12.5px; color: #493D3F; line-height: 1.5; margin-bottom: 6px; }
+  </style>
+</helmet>
+<div class="page">
+
+  <div style="display:flex; align-items:center; justify-content:space-between;">
+    <div style="font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:#6B5B5D; font-weight:700;">03 &middot; Sponsorship Tiers</div>
+    <img src="logo.png" alt="CML" style="width:34px; height:34px; object-fit:contain;">
+  </div>
+
+  <div style="font-size:34px; line-height:1.15; font-weight:700; max-width:600px;">
+    Four ways to back the League.
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:14px;">
+
+    <div class="tier">
+      <div class="tier-head" style="background:#B41225;">
+        <div style="font-weight:700; font-size:16px;">Platinum</div>
+        <div style="font-size:13px; opacity:0.9;">$5,000+</div>
+      </div>
+      <div class="tier-body">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Logo on all marketing materials</li>
+          <li>Featured on homepage</li>
+          <li>Speaking opportunity at events</li>
+          <li>Full-page booklet ad</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head" style="background:#DC1F35;">
+        <div style="font-weight:700; font-size:16px;">Gold</div>
+        <div style="font-size:13px; opacity:0.9;">$2,500&ndash;$4,999</div>
+      </div>
+      <div class="tier-body">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Logo on website &amp; materials</li>
+          <li>Half-page booklet ad</li>
+          <li>Social media recognition</li>
+          <li>Booth space at events</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head" style="background:#E8394C;">
+        <div style="font-weight:700; font-size:16px;">Silver</div>
+        <div style="font-size:13px; opacity:0.9;">$1,000&ndash;$2,499</div>
+      </div>
+      <div class="tier-body">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Logo on website</li>
+          <li>Quarter-page booklet ad</li>
+          <li>Social media mention</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head" style="background:#EF6472;">
+        <div style="font-weight:700; font-size:16px;">Bronze</div>
+        <div style="font-size:13px; opacity:0.9;">$250&ndash;$999</div>
+      </div>
+      <div class="tier-body">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Name listed on website</li>
+          <li>Recognition in booklet</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- founding note -->
+  <div style="background:#FEF3F4; border-radius:20px; padding:20px 24px; font-size:14px; line-height:1.6; color:#493D3F;">
+    CML has not yet announced a sponsor for the 2025&ndash;26 season. Every tier
+    above is open, and a custom package is always on the table. If none of these
+    fit, tell us what would.
+  </div>
+
+  <!-- CTA -->
+  <div style="margin-top:auto; background:#241E1F; border-radius:24px; padding:36px 40px; display:flex; align-items:center; justify-content:space-between;">
+    <div>
+      <div style="color:#ffffff; font-weight:700; font-size:24px;">Be our first sponsor.</div>
+      <div style="color:#C9BABB; font-size:14px; margin-top:6px;">Let's talk about the right package for you.</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="display:inline-flex; align-items:center; border-radius:9999px; padding:12px 26px; background:#DC1F35; color:#ffffff; font-weight:700; font-size:14px;">
+        info@canadianmathleague.ca
+      </div>
+      <div style="color:#C9BABB; font-size:12px; margin-top:10px;">canadianmathleague.ca</div>
+    </div>
+  </div>
+
+</div>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</x-dc>
+</body>
+</html>

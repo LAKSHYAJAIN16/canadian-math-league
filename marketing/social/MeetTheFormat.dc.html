@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alike&display=swap">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .post {
+      width: 1080px; height: 1080px;
+      background: #ffffff;
+      font-family: 'Alike', Georgia, serif;
+      color: #241E1F;
+    }
+    .fmt {
+      background: #FEF3F4;
+      border-radius: 28px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+  </style>
+</helmet>
+<div class="post">
+  <div style="height:100%; display:flex; flex-direction:column; padding:80px; gap:36px;">
+
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <img src="logo.png" alt="CML" style="width:52px; height:52px; object-fit:contain;">
+        <div style="font-size:16px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#6B5B5D;">Canadian Math League</div>
+      </div>
+    </div>
+
+    <div style="font-size:64px; line-height:1.05; font-weight:700; max-width:820px;">
+      Four rounds.<br>One <span style="color:#DC1F35;">Group Stage.</span>
+    </div>
+
+    <div style="flex:1; display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); grid-template-rows: repeat(2, minmax(0,1fr)); gap:20px;">
+      <div class="fmt">
+        <div style="font-size:30px; font-weight:700;">Canadian Open</div>
+        <div style="font-size:18px; color:#6B5B5D;">AMC-style individual round.</div>
+      </div>
+      <div class="fmt">
+        <div style="font-size:30px; font-weight:700;">Team Rush</div>
+        <div style="font-size:18px; color:#6B5B5D;">Collaborative, solved together.</div>
+      </div>
+      <div class="fmt">
+        <div style="font-size:30px; font-weight:700;">Capture the Problem</div>
+        <div style="font-size:18px; color:#6B5B5D;">Speed-and-accuracy problem grid.</div>
+      </div>
+      <div class="fmt">
+        <div style="font-size:30px; font-weight:700;">Head-to-Head</div>
+        <div style="font-size:18px; color:#6B5B5D;">Fast team-versus-team rounds.</div>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; font-size:20px; font-weight:700; color:#DC1F35;">
+      <div>Free to enter</div>
+      <div>canadianmathleague.ca</div>
+    </div>
+  </div>
+</div>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</x-dc>
+</body>
+</html>

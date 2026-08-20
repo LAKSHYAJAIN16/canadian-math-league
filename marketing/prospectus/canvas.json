@@ -1,0 +1,9 @@
+{
+  "artboards": [
+    { "file": "Cover.dc.html", "x": 0, "y": 0, "w": 816, "h": 1056, "title": "Cover", "print": "fixed" },
+    { "file": "Opportunity.dc.html", "x": 896, "y": 0, "w": 816, "h": 1056, "title": "The Opportunity", "print": "fixed" },
+    { "file": "Structure.dc.html", "x": 1792, "y": 0, "w": 816, "h": 1056, "title": "Structure & Reach", "print": "fixed" },
+    { "file": "Tiers.dc.html", "x": 2688, "y": 0, "w": 816, "h": 1056, "title": "Sponsorship Tiers", "print": "fixed" }
+  ],
+  "launch": { "view": "canvas" }
+}

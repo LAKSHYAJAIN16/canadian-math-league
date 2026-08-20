@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alike&display=swap">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .page {
+      width: 816px;
+      height: 1056px;
+      background: #ffffff;
+      font-family: 'Alike', Georgia, serif;
+      color: #241E1F;
+      padding: 80px 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    a { color: #DC1F35; text-decoration: none; }
+    a:hover { color: #B41225; }
+    .card {
+      background: #FEF3F4;
+      border-radius: 20px;
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .icon-chip {
+      width: 44px; height: 44px; border-radius: 14px;
+      background: #ffffff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+  </style>
+</helmet>
+<div class="page">
+
+  <div style="display:flex; align-items:center; justify-content:space-between;">
+    <div style="font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:#6B5B5D; font-weight:700;">01 &middot; The Opportunity</div>
+    <img src="logo.png" alt="CML" style="width:34px; height:34px; object-fit:contain;">
+  </div>
+
+  <div style="font-size:40px; line-height:1.15; font-weight:700; max-width:600px;">
+    Canadian students deserve a national math tournament of their own.
+  </div>
+
+  <div style="font-size:17px; line-height:1.7; color:#493D3F; max-width:640px;">
+    While students south of the border have AMC, HMMT, and a dozen other storied
+    competitions to aim for, Canada has had far fewer. The Canadian Math League is
+    changing that: a free, team-based tournament that takes high school teams from
+    an online Group Stage, through in-person Regional Championships, to a National
+    final, built in partnership with the <strong>Canadian Mathematical Society</strong>.
+  </div>
+
+  <div style="font-size:17px; line-height:1.7; color:#493D3F; max-width:640px;">
+    CML is entering its first season, and has not yet announced a sponsor. We're
+    looking for organizations who want to be part of that founding cohort,
+    visible from day one, in front of an audience of Canada's most engaged young
+    mathematicians, their teachers, and their parents.
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px; margin-top:8px;">
+
+    <div class="card">
+      <div class="icon-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC1F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div style="font-weight:700; font-size:16px;">A national audience</div>
+      <div style="font-size:14px; line-height:1.55; color:#6B5B5D;">Reach high-achieving students, teachers, and parents across the country, online and in person.</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC1F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div style="font-weight:700; font-size:16px;">Zero cost to enter</div>
+      <div style="font-size:14px; line-height:1.55; color:#6B5B5D;">Every school competes for free. Your support removes the one barrier standing between a team and the bracket.</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC1F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div style="font-weight:700; font-size:16px;">Founding sponsor status</div>
+      <div style="font-size:14px; line-height:1.55; color:#6B5B5D;">Be the first name associated with CML, with the visibility and story that comes with getting in early.</div>
+    </div>
+
+    <div class="card">
+      <div class="icon-chip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC1F35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+      </div>
+      <div style="font-weight:700; font-size:16px;">Invest in Canadian STEM</div>
+      <div style="font-size:14px; line-height:1.55; color:#6B5B5D;">Support the pipeline of Canadian students who go on to study and work in math, engineering, and computer science.</div>
+    </div>
+
+  </div>
+</div>
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</x-dc>
+</body>
+</html>
