@@ -35,11 +35,11 @@ export function StageBar({ icon: Icon, title, date, stat, statLabel, heightPx, g
         <h3 className="font-bold text-graphite-900 text-center text-xs">
           {title}
         </h3>
-        <p className="text-[10px] text-graphite-600 mt-0.5">{date}</p>
+        <p className="text-xs text-graphite-600 mt-0.5">{date}</p>
       </div>
       <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 text-center">
         <p className="text-sm font-bold text-graphite-900">{stat}</p>
-        <p className="text-[10px] text-graphite-600 uppercase tracking-wide">{statLabel}</p>
+        <p className="text-xs text-graphite-600">{statLabel}</p>
       </div>
     </motion.div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Trophy, Users, BookOpen, Target, Calendar, Award, Clock, CheckCircle, MessageCircle, Medal } from 'lucide-react'
+import { ArrowRight, Trophy, Users, Calendar, Award, CheckCircle, Medal } from 'lucide-react'
 import Link from 'next/link'
 import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES } from '@/lib/content/season'
 import { StageBar } from '@/components/ui/StageBar'
@@ -22,6 +22,9 @@ const HomePage = () => {
               <img
                 src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png"
                 alt="Canadian Mathematical Society"
+                width={200}
+                height={36}
+                decoding="async"
                 className="h-9 w-auto object-contain"
               />
             </motion.div>
@@ -103,9 +106,9 @@ const HomePage = () => {
                 title="Group Stage"
                 date={SEASON_STAGES.groupStage.displayDate}
                 stat="200+"
-                statLabel="Particpants"
+                statLabel="Participants"
                 heightPx={180}
-                gradient="from-blueprint-600 to-blueprint-400"
+                gradient="from-redpen-600 to-redpen-400"
               />
               <StageBar
                 icon={Trophy}
@@ -114,7 +117,7 @@ const HomePage = () => {
                 stat="12"
                 statLabel="Teams"
                 heightPx={220}
-                gradient="from-blueprint-700 to-blueprint-500"
+                gradient="from-redpen-700 to-redpen-500"
                 delay={0.15}
               />
               <StageBar
@@ -124,7 +127,7 @@ const HomePage = () => {
                 stat="6"
                 statLabel="Finalists"
                 heightPx={260}
-                gradient="from-blueprint-900 to-blueprint-700"
+                gradient="from-redpen-900 to-redpen-700"
                 delay={0.3}
               />
             </div>
@@ -137,21 +140,18 @@ const HomePage = () => {
                 icon: Users,
                 title: 'Group Stage',
                 description: 'Go up against schools near you for a spot at regionals.',
-                stats: '200+ Participants',
                 tags: ['Free', 'Online'],
               },
               {
                 icon: Trophy,
                 title: 'Regionals',
                 description: 'Compete against the best in your region for a spot at nationals.',
-                stats: '12 Teams',
                 tags: ['Toronto', 'Vancouver'],
               },
               {
                 icon: Award,
                 title: 'Nationals',
                 description: "The ultimate challenge with Canada's top math teams.",
-                stats: '6 Finalists',
                 tags: ['Toronto'],
               },
             ].map((stage, index) => (
@@ -174,8 +174,7 @@ const HomePage = () => {
                     </span>
                   ))}
                 </div>
-                <p className="text-graphite-600 mb-3">{stage.description}</p>
-                <p className="text-xs font-bold text-blueprint-700 uppercase tracking-wide">{stage.stats}</p>
+                <p className="text-graphite-600">{stage.description}</p>
               </motion.div>
             ))}
           </div>
@@ -186,7 +185,7 @@ const HomePage = () => {
       <section className="py-16 bg-paper">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <motion.div
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -194,7 +193,7 @@ const HomePage = () => {
               className="text-3xl md:text-5xl font-bold text-graphite-900 mb-4"
             >
               How it <span className="text-redpen-600">works</span>
-            </motion.div>
+            </motion.h2>
             <motion.p
               className="text-lg text-graphite-600 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 10 }}
@@ -202,131 +201,61 @@ const HomePage = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Your path onto the tournament bracket, in three steps.
+              Free, online, and open to every high school in Canada.
             </motion.p>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="flex justify-center gap-3 mb-12">
-            {[
-              { id: 'register', label: 'Register', icon: Users },
-              { id: 'prepare', label: 'Prepare', icon: BookOpen },
-              { id: 'compete', label: 'Compete', icon: Trophy }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-colors ${
-                  tab.id === 'register'
-                    ? 'bg-redpen-600 text-white shadow-red-glow'
-                    : 'bg-redpen-50 text-graphite-700 hover:bg-redpen-100'
-                }`}
-              >
-                <tab.icon className="h-4 w-4" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          <div className="bg-paper rounded-3xl shadow-soft p-8">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="stamp-label">Free</span>
+              <span className="stamp-label">Online</span>
+              <span className="text-sm text-graphite-400">Registration open</span>
+            </div>
 
-          {/* Register Tab Content */}
-          <div className="bg-paper rounded-3xl shadow-soft mb-12">
-            <div className="p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-redpen-600 flex items-center justify-center flex-shrink-0">
-                  <Users className="h-7 w-7 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-graphite-900">Register Your Team</h2>
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <span className="stamp-label">Free</span>
-                    <span className="stamp-label">Online</span>
-                    <span className="text-sm text-graphite-500">Registration open</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-graphite-700 mb-6">Join the competition by registering your school team through our simple online process.</p>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {[
-                  {
-                    title: "Team Formation",
-                    description: "Create a team of 4-6 students from the same school",
-                    icon: Users,
-                    details: [
-                      "4-6 students per team",
-                      "All members must attend the same school",
-                      "No registration fee required",
-                      "Open to all high school students"
-                    ]
-                  },
-                  {
-                    title: "Registration Process",
-                    description: "Simple steps to get your team registered",
-                    icon: CheckCircle,
-                    details: [
-                      "Fill out the online registration form",
-                      "Designate a team captain",
-                      "Provide school verification",
-                      "Receive confirmation email"
-                    ]
-                  }
-                ].map((item, i) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * i }}
-                    className="p-6 bg-redpen-50/60 rounded-2xl"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="p-2.5 bg-white rounded-xl shadow-soft">
-                        <item.icon className="h-5 w-5 text-redpen-600" />
-                      </div>
-                      <div>
-                        <h3 className="text-base font-bold text-graphite-900">{item.title}</h3>
-                        <p className="text-graphite-600 text-sm mt-1">{item.description}</p>
-                        <ul className="mt-3 space-y-2">
-                          {item.details.map((detail, j) => (
-                            <li key={j} className="flex items-start">
-                              <CheckCircle className="h-4 w-4 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm text-graphite-600">{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-8 p-6 bg-redpen-50 rounded-2xl">
-                <h3 className="text-sm font-bold text-redpen-700 uppercase tracking-wide mb-3">Important Dates</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <Calendar className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-graphite-700"><span className="font-semibold text-graphite-900">Early Registration:</span> {REGISTRATION_DEADLINES.early}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Calendar className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-graphite-700"><span className="font-semibold text-graphite-900">Final Registration Deadline:</span> {REGISTRATION_DEADLINES.final}</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Calendar className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-graphite-700"><span className="font-semibold text-graphite-900">Competition Day:</span> {SEASON_STAGES.groupStage.displayDate}</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-8 text-center">
-                <Link
-                  href="/register"
-                  className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "Team formation",
+                  icon: Users,
+                  details: [
+                    "5 students per team, from the same school",
+                    "No registration fee",
+                    "Open to all high school students"
+                  ]
+                },
+                {
+                  title: "Registration process",
+                  icon: CheckCircle,
+                  details: [
+                    "Fill out the online registration form",
+                    "Designate a team captain",
+                    "Receive a confirmation email once approved"
+                  ]
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * i }}
                 >
-                  Register your team now
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-redpen-50 rounded-xl">
+                      <item.icon className="h-5 w-5 text-redpen-600" />
+                    </div>
+                    <h3 className="text-base font-bold text-graphite-900">{item.title}</h3>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.details.map((detail, j) => (
+                      <li key={j} className="flex items-start">
+                        <CheckCircle className="h-4 w-4 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-graphite-600">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -371,7 +300,7 @@ const HomePage = () => {
                   <div className="mx-auto flex items-center justify-center h-16 w-16 bg-redpen-50 rounded-2xl mb-4">
                     <Icon className="h-7 w-7 text-redpen-600" />
                   </div>
-                  <h3 className="text-sm font-bold text-graphite-600 uppercase tracking-wide mb-1">{tier.title}</h3>
+                  <h3 className="text-sm font-bold text-graphite-600 mb-1">{tier.title}</h3>
                   <p className="text-4xl font-extrabold text-redpen-600 mb-2">{tier.amount}</p>
                   <p className="text-graphite-600 text-sm">{tier.description}</p>
                 </motion.div>
@@ -389,7 +318,7 @@ const HomePage = () => {
             <p className="text-graphite-600 mb-4">Additional prizes include medals, certificates, and exclusive opportunities.</p>
             <Link
               href="/prizes"
-              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-redpen-600 hover:text-redpen-700 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-bold text-redpen-600 hover:text-redpen-700 transition-colors"
             >
               View all prizes and awards
               <ArrowRight className="h-4 w-4" />
@@ -402,17 +331,14 @@ const HomePage = () => {
       <section className="py-24 bg-grid-blueprint-dense">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <Calendar className="h-6 w-6 text-redpen-600" />
-              <span className="text-xs tracking-[0.2em] uppercase text-graphite-600">2025&ndash;26 Season</span>
-            </div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold text-graphite-900"
+              className="flex items-center justify-center gap-3 text-3xl md:text-5xl font-bold text-graphite-900"
             >
-              The competition timeline
+              <Calendar className="h-8 w-8 md:h-10 md:w-10 text-redpen-600" />
+              The 2025&ndash;26 competition timeline
             </motion.h2>
           </div>
 
@@ -465,95 +391,6 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-graphite-600 mb-5">Don&apos;t miss your chance to compete with the best young mathematicians in Canada.</p>
-            <Link
-              href="/register"
-              className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
-            >
-              Register now
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Community Section */}
-      <section className="py-20 bg-paper">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block relative"
-            >
-              <h2 className="text-3xl md:text-5xl font-bold text-graphite-900 mb-6">
-                Community is everything.
-              </h2>
-            </motion.div>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-graphite-600 max-w-2xl mx-auto"
-            >
-              Join a network of passionate math enthusiasts and grow together
-            </motion.p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Users,
-                title: 'Study Groups',
-                description: 'Connect with peers, form study groups, and tackle challenging problems together in a supportive environment.'
-              },
-              {
-                icon: MessageCircle,
-                title: 'Discussion Forums',
-                description: 'Engage in meaningful discussions, ask questions, and share insights with our active community.'
-              },
-              {
-                icon: Users,
-                title: 'Mentorship',
-                description: 'Learn from experienced competitors and alumni who can guide you on your mathematical journey.'
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * index }}
-                className="bg-paper p-8 rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all"
-              >
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-redpen-600" />
-                </div>
-                <h3 className="text-lg font-bold text-graphite-900 mb-2">{feature.title}</h3>
-                <p className="text-graphite-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            <Link
-              href="/community"
-              className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
-            >
-              Join our community
-              <Users className="h-4 w-4" />
-            </Link>
-          </motion.div>
         </div>
       </section>
 

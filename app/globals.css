@@ -50,7 +50,7 @@ body {
   background-color: var(--flag-red);
   color: #fff;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.02em;
 }
 
@@ -67,7 +67,7 @@ body {
   background-color: #fce2e5;
   color: var(--flag-red);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }
 
 /* ---- Buttons: soft, pill, gentle lift on hover ----------------------- */
