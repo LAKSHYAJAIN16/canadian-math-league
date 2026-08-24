@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Trophy, Users, Calendar, Award, CheckCircle, Medal } from 'lucide-react'
 import Link from 'next/link'
-import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES } from '@/lib/content/season'
+import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES, isRegistrationOpen } from '@/lib/content/season'
 import { StageBar } from '@/components/ui/StageBar'
 
 const HomePage = () => {
@@ -209,7 +209,9 @@ const HomePage = () => {
             <div className="flex items-center gap-2 mb-6">
               <span className="stamp-label">Free</span>
               <span className="stamp-label">Online</span>
-              <span className="text-sm text-graphite-400">Registration open</span>
+              <span className="text-sm text-graphite-600">
+                {isRegistrationOpen() ? 'Registration open' : 'Registration opens for next season soon'}
+              </span>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">

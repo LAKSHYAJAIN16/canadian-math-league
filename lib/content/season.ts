@@ -61,6 +61,14 @@ export const SEASON_STAGE_ORDER: StageId[] = ['groupStage', 'regionals', 'nation
 export const REGISTRATION_DEADLINES = {
   early: 'Until November 15, 2025',
   final: 'December 1, 2025',
+  // ISO mirrors of the display strings above, so the site can tell whether
+  // registration is still open instead of always claiming it is.
+  finalIso: '2025-12-01',
+}
+
+/** Whether today is on or before the final registration deadline. */
+export function isRegistrationOpen(): boolean {
+  return new Date() <= new Date(`${REGISTRATION_DEADLINES.finalIso}T23:59:59`)
 }
 
 /** Splits a stage's ISO date into the day-number + "MON YYYY" pieces the schedule badges use. */
