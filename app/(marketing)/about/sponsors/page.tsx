@@ -44,26 +44,26 @@ export default function SponsorsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-paper">
-      <section className="bg-grid-blueprint py-16">
+    <div className="min-h-screen bg-ledger">
+      <section className="bg-ledger border-b-4 border-ink-900 py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-graphite-900">Our Sponsors</h1>
-          <p className="text-lg text-graphite-600 mt-4">
+          <h1 className="font-sans text-4xl md:text-5xl text-ink-900">Our Sponsors</h1>
+          <p className="text-lg text-ink-700 mt-4">
             We are grateful for the generous support of our sponsors who help make the Canadian Math League possible.
           </p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-grid-paper">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-ledger">
         <div className="mb-20">
-          <h2 className="text-xl font-bold text-graphite-900 text-center mb-8">Current Sponsors</h2>
-          <div className="bg-paper rounded-3xl shadow-soft p-8 text-center max-w-xl mx-auto">
-            <p className="text-graphite-600 italic">
+          <h2 className="font-sans text-xl text-ink-900 text-center mb-8">Current Sponsors</h2>
+          <div className="border-2 border-ink-900 bg-ledger p-8 text-center max-w-xl mx-auto">
+            <p className="text-ink-700 italic">
               Our sponsor showcase is coming soon. Interested in becoming our first sponsor?
             </p>
             <Link
               href="/contact"
-              className="btn-press rounded-full mt-6 inline-flex items-center gap-2 bg-redpen-600 text-white px-6 py-3 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
+              className="btn-press mt-6 inline-flex items-center gap-2 bg-stamp-600 text-ledger px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
             >
               Contact Us
             </Link>
@@ -71,72 +71,61 @@ export default function SponsorsPage() {
         </div>
 
         <div className="mb-20">
-          <h2 className="text-2xl md:text-3xl font-bold text-graphite-900 text-center mb-8">Sponsorship Opportunities</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sponsorshipLevels.map((level, index) => {
-              const tierShade = ['bg-redpen-700', 'bg-redpen-600', 'bg-redpen-500', 'bg-redpen-400'][index] ?? 'bg-redpen-500'
-              return (
-                <div key={level.name} className="bg-paper rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all overflow-hidden">
-                  <div className={`p-6 ${tierShade}`}>
-                    <h3 className="text-2xl font-bold text-center text-white">{level.name}</h3>
-                    <p className="text-center text-white/90 font-medium mt-1">{level.amount}</p>
-                  </div>
-                  <div className="p-6">
-                    <ul className="space-y-3">
-                      {level.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-start">
-                          <CheckCircle className="h-5 w-5 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
-                          <span className="text-graphite-700 text-sm">{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+          <h2 className="font-sans text-2xl md:text-3xl text-ink-900 text-center mb-8">Sponsorship Opportunities</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-ink-900 border border-ink-900">
+            {sponsorshipLevels.map((level) => (
+              <div key={level.name} className="bg-ledger flex flex-col">
+                <div className="p-6 border-b-2 border-ink-900">
+                  <h3 className="font-sans text-2xl text-center text-ink-900">{level.name}</h3>
+                  <p className="text-center text-stamp-600 font-mono text-xs font-semibold uppercase tracking-wide mt-1">{level.amount}</p>
                 </div>
-              )
-            })}
+                <div className="p-6 flex-grow">
+                  <ul className="space-y-3">
+                    {level.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-stamp-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-ink-700 text-sm">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="bg-paper rounded-3xl shadow-soft p-8 md:p-10 max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-graphite-900 text-center mb-8">Why Sponsor Us?</h2>
+        <div className="border-2 border-ink-900 bg-ledger p-8 md:p-10 max-w-4xl mx-auto">
+          <h2 className="font-sans text-2xl md:text-3xl text-ink-900 text-center mb-8">Why Sponsor Us?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
-                  <Users className="h-6 w-6 text-redpen-600" />
-                </div>
+                <Users className="h-6 w-6 text-stamp-600 mr-4 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-lg text-graphite-900">Reach Talented Students</h3>
-                  <p className="text-graphite-600 mt-1">Connect with high-achieving students across Canada who are passionate about mathematics.</p>
+                  <h3 className="font-sans text-lg text-ink-900">Reach Talented Students</h3>
+                  <p className="text-ink-700 mt-1">Connect with high-achieving students across Canada who are passionate about mathematics.</p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
-                  <Award className="h-6 w-6 text-redpen-600" />
-                </div>
+                <Award className="h-6 w-6 text-stamp-600 mr-4 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-lg text-graphite-900">Support Education</h3>
-                  <p className="text-graphite-600 mt-1">Your contribution helps us provide quality math education and opportunities to students nationwide.</p>
+                  <h3 className="font-sans text-lg text-ink-900">Support Education</h3>
+                  <p className="text-ink-700 mt-1">Your contribution helps us provide quality math education and opportunities to students nationwide.</p>
                 </div>
               </div>
             </div>
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
-                  <Trophy className="h-6 w-6 text-redpen-600" />
-                </div>
+                <Trophy className="h-6 w-6 text-stamp-600 mr-4 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-lg text-graphite-900">Brand Visibility</h3>
-                  <p className="text-graphite-600 mt-1">Gain exposure to our network of students, parents, educators, and academic institutions.</p>
+                  <h3 className="font-sans text-lg text-ink-900">Brand Visibility</h3>
+                  <p className="text-ink-700 mt-1">Gain exposure to our network of students, parents, educators, and academic institutions.</p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-redpen-600" />
-                </div>
+                <MapPin className="h-6 w-6 text-stamp-600 mr-4 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-lg text-graphite-900">Community Impact</h3>
-                  <p className="text-graphite-600 mt-1">Be part of a community that values academic excellence and intellectual growth.</p>
+                  <h3 className="font-sans text-lg text-ink-900">Community Impact</h3>
+                  <p className="text-ink-700 mt-1">Be part of a community that values academic excellence and intellectual growth.</p>
                 </div>
               </div>
             </div>
@@ -144,7 +133,7 @@ export default function SponsorsPage() {
           <div className="mt-10 text-center">
             <Link
               href="/contact"
-              className="btn-press rounded-full inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
+              className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
             >
               <Mail className="h-4 w-4" />
               Contact Us About Sponsorship

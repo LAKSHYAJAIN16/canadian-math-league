@@ -9,35 +9,35 @@ import Link from 'next/link'
  */
 const Footer = () => {
   return (
-    <footer className="bg-graphite-900 border-t-4 border-redpen-600 py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-ink-900 border-t-4 border-stamp-600 py-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-5">
           <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Canadian Math League" width={28} height={28} className="h-7 w-7" />
-            <span className="text-sm font-bold text-white">
+            <Image src="/logo.png" alt="Canadian Math League" width={26} height={26} className="h-6 w-6" />
+            <span className="font-sans text-sm text-ledger">
               Canadian Math League
             </span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="/" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
+            <Link href="/" className="font-mono text-xs uppercase tracking-wide text-ink-300 hover:text-stamp-500 transition-colors">
               Home
             </Link>
-            <Link href="/about" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
+            <Link href="/about" className="font-mono text-xs uppercase tracking-wide text-ink-300 hover:text-stamp-500 transition-colors">
               About
             </Link>
-            <Link href="/format" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
+            <Link href="/format" className="font-mono text-xs uppercase tracking-wide text-ink-300 hover:text-stamp-500 transition-colors">
               Format
             </Link>
-            <Link href="/resources" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
+            <Link href="/resources" className="font-mono text-xs uppercase tracking-wide text-ink-300 hover:text-stamp-500 transition-colors">
               Resources
             </Link>
-            <Link href="/contact" className="text-sm font-medium text-graphite-300 hover:text-redpen-400 transition-colors">
+            <Link href="/contact" className="font-mono text-xs uppercase tracking-wide text-ink-300 hover:text-stamp-500 transition-colors">
               Contact
             </Link>
           </div>
 
-          <p className="text-xs text-graphite-400 whitespace-nowrap">
+          <p className="font-mono text-[0.6875rem] text-ink-300 whitespace-nowrap">
             © {new Date().getFullYear()} CML. All rights reserved.
           </p>
         </div>

@@ -49,10 +49,30 @@ module.exports = {
           400: '#9C8A8C',
           300: '#C9BABB',
         },
+        // "Answer Key" world (homepage) — exam-booklet stock, ink, and one
+        // institutional stamp red. Additive: existing pages keep using
+        // redpen/graphite/paper above untouched.
+        ledger: {
+          DEFAULT: '#F5EFDF',
+          deep: '#EDE4CC',
+          line: '#D9CDA8',
+        },
+        ink: {
+          900: '#211C15',
+          700: '#4A4234',
+          500: '#7A705C',
+          300: '#B4A98C',
+        },
+        stamp: {
+          700: '#7E140F',
+          600: '#9C1D16',
+          500: '#B93227',
+          100: '#F2DCD6',
+        },
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Alike', 'Georgia', 'serif'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        mono: ['var(--font-mono)', 'IBM Plex Mono', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         '4xl': '2rem',

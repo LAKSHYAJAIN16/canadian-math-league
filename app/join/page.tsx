@@ -82,25 +82,30 @@ export default function JoinPage() {
     };
 
     return (
-        <div className="min-h-screen bg-grid-blueprint flex flex-col justify-center py-12 px-4">
+        <div className="min-h-screen bg-ledger flex flex-col justify-center py-12 px-4">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <div className="flex justify-center mb-2">
                     <img src="/logo.png" alt="Canadian Math League" className="h-24 w-auto" />
                 </div>
-                <span className="stamp-label block w-fit mx-auto mb-3">Admit One</span>
-                <h1 className="text-center text-2xl font-bold text-graphite-900">
+                <span
+                    className="exam-stamp block w-fit mx-auto mb-3 font-mono text-[0.625rem] font-semibold uppercase tracking-wide border-2 border-ink-900 text-ink-900 px-3 py-1.5"
+                    style={{ ['--stamp-rotate' as string]: '-4deg' } as React.CSSProperties}
+                >
+                    Admit One
+                </span>
+                <h1 className="text-center font-sans text-2xl text-ink-900">
                     Join Competition
                 </h1>
-                <p className="mt-2 text-center text-sm text-graphite-600">
+                <p className="mt-2 text-center text-sm text-ink-700">
                     Enter the join code your teacher gave you.
                 </p>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-                <div className="bg-paper rounded-3xl shadow-soft py-8 px-6">
+                <div className="border-2 border-ink-900 bg-ledger py-8 px-6">
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="joinCode" className="block text-sm font-semibold text-graphite-700 mb-2">
+                            <label htmlFor="joinCode" className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">
                                 Join Code
                             </label>
                             <input
@@ -110,22 +115,22 @@ export default function JoinPage() {
                                 required
                                 value={joinCode}
                                 onChange={(e) => setJoinCode(e.target.value)}
-                                className="block w-full px-4 py-3 bg-redpen-50/60 rounded-xl text-lg tracking-[0.3em] text-center uppercase placeholder:tracking-normal placeholder:text-graphite-400 focus:outline-none focus:ring-2 focus:ring-redpen-400"
+                                className="block w-full px-4 py-3 border-2 border-ink-900 bg-ledger font-mono text-lg tracking-[0.3em] text-center uppercase text-ink-900 placeholder:tracking-normal placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30"
                                 placeholder="ABCD12"
                                 autoComplete="off"
                             />
                         </div>
 
                         {error && (
-                            <div className="bg-redpen-50 rounded-xl p-3">
-                                <p className="text-sm font-medium text-redpen-700">{error}</p>
+                            <div className="border-2 border-stamp-600 bg-stamp-100 p-3">
+                                <p className="font-mono text-sm text-stamp-700">{error}</p>
                             </div>
                         )}
 
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`btn-press rounded-full w-full flex justify-center items-center gap-2 py-3.5 px-4 text-sm font-semibold text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            className={`btn-press w-full flex justify-center items-center gap-2 py-3.5 px-4 font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             {isLoading ? 'Joining...' : 'Join Competition'}
                         </button>

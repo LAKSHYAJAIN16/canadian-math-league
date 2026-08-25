@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Alike } from 'next/font/google'
+import { Alike, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 
 const alike = Alike({
@@ -10,6 +10,18 @@ const alike = Alike({
   preload: true,
   adjustFontFallback: true,
   variable: '--font-sans',
+})
+
+// Homepage-scoped "Answer Key" world: numbers, problem codes, and bubble
+// labels set in mono, echoing typewritten exam forms. Alike stays the
+// sitewide display/body serif — a protected asset, not up for replacement.
+const plexMono = IBM_Plex_Mono({
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['ui-monospace', 'monospace'],
+  preload: true,
+  variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
@@ -24,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${alike.variable} font-sans antialiased`}>
+      <body className={`${alike.variable} ${plexMono.variable} font-sans antialiased`}>
         {/*
           THESIS: Friendly, approachable math tournament — warm and inviting
           for teenagers, not corporate or severe.
@@ -41,6 +53,11 @@ export default function RootLayout({
           FINISH: unreviewed and undocumented is unfinished; this build ends
           with the finish review, the verdict, DESIGN.md, and every shipping
           raster carrying its provenance.
+
+          NOTE: this remains the sitewide default. The homepage (/) now
+          carries its own direction-contract override — see the comment at
+          the top of app/(marketing)/page.tsx — pending the rest of the site
+          following suit.
         */}
         {children}
       </body>

@@ -10,3 +10,6 @@
 # Firebase service account keys — never commit these
 *serviceAccount*.json
 secrets/
+
+# local conversation history
+conversation_history.md

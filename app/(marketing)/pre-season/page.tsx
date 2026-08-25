@@ -23,36 +23,36 @@ const problemSets = [
 
 export default function PreSeasonPage() {
   return (
-    <div className="min-h-screen bg-paper py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-ledger py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-graphite-900 mb-4">Pre-Season 2025</h1>
-          <p className="text-lg text-graphite-600 max-w-3xl mx-auto">
+          <h1 className="font-sans text-4xl text-ink-900 mb-4">Pre-Season 2025</h1>
+          <p className="text-lg text-ink-700 max-w-3xl mx-auto">
             Practice with problem sets from different competition formats.
           </p>
         </div>
 
-        <div className="bg-paper shadow rounded-lg overflow-hidden">
+        <div className="border-2 border-ink-900 bg-ledger">
           <div className="p-6">
             <div className="space-y-6">
 
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-graphite-700">Group Stage</h2>
-                <div className="mt-2 h-1 w-20 bg-redpen-600 mx-auto"></div>
+                <h2 className="font-sans text-3xl text-ink-900">Group Stage</h2>
+                <div className="mt-2 h-0.5 w-20 bg-stamp-600 mx-auto"></div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
                 {problemSets.map((set) => (
-                  <div key={set.id} className="bg-paper border border-paper-line rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200 p-6 flex flex-col">
-                    <h2 className="text-xl font-bold text-graphite-900 mb-3">{set.title}</h2>
-                    <p className="text-graphite-700 mb-4 flex-grow">{set.description}</p>
+                  <div key={set.id} className="bg-ledger p-6 flex flex-col">
+                    <h2 className="font-sans text-xl text-ink-900 mb-3">{set.title}</h2>
+                    <p className="text-ink-700 mb-4 flex-grow">{set.description}</p>
                     <div className="mt-auto">
                       <a
                         href={set.pdfUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-redpen-600 hover:bg-redpen-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blueprint-600"
+                        className="btn-press w-full inline-flex justify-center items-center px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
                       >
-                        <svg className="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="-ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         Download PDF

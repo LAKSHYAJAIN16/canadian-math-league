@@ -3,7 +3,7 @@
  * marketing site (home, /format, /how-it-works, /2025-season) and the
  * teacher dashboard countdown. Previously these dates/numbers were
  * hardcoded independently in each page and had already drifted — e.g. the
- * home page said Regionals was Feb 15, 2026 while /format said Jan 18–19.
+ * home page said Regionals was Feb 15, 2026 while /format said Jan 18-19.
  *
  * TODO(content owner): the values below were picked from whichever page's
  * copy looked most authoritative during the rework; please confirm the real
@@ -37,9 +37,9 @@ export const SEASON_STAGES: Record<StageId, SeasonStage> = {
   regionals: {
     id: 'regionals',
     title: 'Regionals',
-    // TODO(content owner): home page previously said Feb 15, 2026 — /format said Jan 18–19, 2026.
+    // TODO(content owner): home page previously said Feb 15, 2026 — /format said Jan 18-19, 2026.
     date: '2026-01-18',
-    displayDate: 'January 18–19, 2026',
+    displayDate: 'January 18-19, 2026',
     location: 'Toronto, ON & Vancouver, BC',
     participants: '12 teams (6 per conference)',
     description: 'Top group-stage teams face off in person for a spot at Nationals.',

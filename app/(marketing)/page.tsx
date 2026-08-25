@@ -1,258 +1,321 @@
 'use client'
 
+/*
+  THESIS: The homepage reads as the cover page and answer sheet of a real,
+  official math competition booklet — refusing the soft-rounded,
+  pill-button, shadow-card "friendly SaaS" arrangement (both the prior
+  Friendly Field system and the generic ed-tech default).
+  OWN-WORLD: Warm exam-paper "ledger" ground, near-black ink, one
+  institutional stamp-red reserved for official marks (seals, status
+  stamps, the primary CTA, dollar figures). Alike stays the sitewide
+  display serif (a protected asset, not replaced); IBM Plex Mono carries
+  numbers, codes, and tags, echoing typewritten exam forms. Structure comes
+  from ruled hairline grids and bordered ledger panels, never soft shadows
+  or rounded cards. Scantron-style bubble numerals mark real sequence
+  (tournament stages, timeline) — never decorative section counters.
+  STORY: A visitor understands this is a real, credible national math
+  competition — not a marketing funnel — and registers their team via the
+  stamped primary CTA.
+  FIRST VIEWPORT: CMS partnership rendered as a rotated circular seal
+  stamp, a dynamic registration-status stamp (open/closed, computed from
+  the real deadline), a serif headline, and a real worked sample problem
+  in a ruled-paper panel — proving the tournament's difficulty before any
+  ask, instead of claiming it in prose.
+  FORM: "The Answer Key" — competition scoring-sheet / exam-paper world.
+  My own top-ranked grounded candidate (position 1 of 7); the user
+  pinned this pick over the dice-assigned "Grid Notebook" direction
+  (position 4). Direction seed key: 9375c2fd (scope: direction, mode:
+  persuade). Scope: homepage only — Navbar/Footer and the rest of the
+  site still run the sitewide Friendly Field system pending a follow-up
+  pass.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with
+  the finish review, the verdict, DESIGN.md, and every shipping raster
+  carrying its provenance.
+*/
+
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Trophy, Users, Calendar, Award, CheckCircle, Medal } from 'lucide-react'
+import { ArrowRight, Trophy, Users, Calendar, Award, CheckCircle, Medal, type LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES, isRegistrationOpen } from '@/lib/content/season'
-import { StageBar } from '@/components/ui/StageBar'
+
+function BubbleNumeral({ n, filled }: { n: number; filled?: boolean }) {
+  return (
+    <span
+      className={`inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border-2 font-mono text-xs font-semibold ${
+        filled ? 'border-stamp-600 bg-stamp-600 text-ledger' : 'border-ink-900 text-ink-900'
+      }`}
+    >
+      {String(n).padStart(2, '0')}
+    </span>
+  )
+}
+
+function SampleProblem() {
+  const [revealed, setRevealed] = useState(false)
+  return (
+    <div>
+      <p className="font-mono text-xs uppercase tracking-wide text-ink-500 mb-3">Sample problem &middot; Canadian Open format</p>
+      <p className="text-ink-900 leading-relaxed mb-4">
+        A regular hexagon has area 24&radic;3. What is the side length of the hexagon?
+      </p>
+      <button
+        type="button"
+        onClick={() => setRevealed((r) => !r)}
+        className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-600 underline underline-offset-4 hover:text-stamp-700"
+      >
+        {revealed ? 'Hide answer' : 'Show answer'}
+      </button>
+      {revealed && (
+        <p className="mt-3 font-mono text-sm text-ink-900">
+          Answer: <strong>4</strong> &mdash; a regular hexagon with side s has area (3&radic;3/2) &times; s&sup2;.
+          Setting that equal to 24&radic;3 gives s&sup2; = 16, so s = 4.
+        </p>
+      )}
+    </div>
+  )
+}
 
 const HomePage = () => {
+  const registrationOpen = isRegistrationOpen()
+
+  const stages: Array<{ icon: LucideIcon; title: string; description: string; tags: string[] }> = [
+    {
+      icon: Users,
+      title: 'Group Stage',
+      description: 'Go up against schools near you for a spot at regionals.',
+      tags: ['Free', 'Online'],
+    },
+    {
+      icon: Trophy,
+      title: 'Regionals',
+      description: 'Compete against the best in your region for a spot at nationals.',
+      tags: ['Toronto', 'Vancouver'],
+    },
+    {
+      icon: Award,
+      title: 'Nationals',
+      description: "The ultimate challenge with Canada's top math teams.",
+      tags: ['Toronto'],
+    },
+  ]
+
+  const timeline = [
+    {
+      date: REGISTRATION_DEADLINES.early,
+      title: 'Early Registration',
+      description: 'Register your team ahead of the final deadline',
+    },
+    {
+      date: REGISTRATION_DEADLINES.final,
+      title: 'Final Registration Deadline',
+      description: 'Last day to register your team for the Group Stage',
+    },
+    {
+      date: SEASON_STAGES.groupStage.displayDate,
+      title: SEASON_STAGES.groupStage.title,
+      description: SEASON_STAGES.groupStage.description,
+    },
+    {
+      date: SEASON_STAGES.regionals.displayDate,
+      title: SEASON_STAGES.regionals.title,
+      description: SEASON_STAGES.regionals.description,
+    },
+    {
+      date: SEASON_STAGES.nationals.displayDate,
+      title: SEASON_STAGES.nationals.title,
+      description: SEASON_STAGES.nationals.description,
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-paper">
-      {/* Hero */}
-      <section className="relative bg-grid-blueprint overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col items-center gap-2 mb-6"
-            >
-              <p className="text-xs font-semibold text-graphite-600 tracking-wide">In partnership with</p>
-              <img
-                src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png"
-                alt="Canadian Mathematical Society"
-                width={200}
-                height={36}
-                decoding="async"
-                className="h-9 w-auto object-contain"
-              />
+    <div className="min-h-screen bg-ledger">
+      {/* Hero — cover page */}
+      <section className="relative bg-ledger overflow-hidden border-b-4 border-ink-900">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="grid md:grid-cols-[1fr_auto] gap-10 items-start">
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+              <h1 className="font-sans text-4xl md:text-6xl text-ink-900 leading-[1.08] mb-5">
+                Canada&apos;s national math tournament, run like the real thing.
+              </h1>
+              <p className="text-lg text-ink-700 max-w-xl leading-relaxed mb-8">
+                A free, team-based tournament for high schools across Canada — an online
+                Group Stage, in-person Regional Championships, and a National final. Four
+                round formats. One school team. Zero entry fee.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 items-start">
+                <Link
+                  href="/register"
+                  className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-6 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-stamp-700"
+                >
+                  Register your team
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/format"
+                  className="btn-press inline-flex items-center gap-2 border-2 border-ink-900 text-ink-900 px-6 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ink-900 hover:text-ledger"
+                >
+                  See the format
+                </Link>
+              </div>
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-extrabold text-graphite-900 leading-[1.05] mb-3"
-            >
-              Canada&apos;s premier{' '}
-              <span className="text-redpen-600">math tournament</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mt-6 text-lg md:text-xl text-graphite-600 max-w-2xl mx-auto leading-relaxed"
-            >
-              A free, team-based tournament for high schools across Canada — an online
-              Group Stage, in-person Regional Championships, and a National final.
-              Four round formats. One school team. Zero entry fee.
-            </motion.p>
-
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-9 flex flex-col sm:flex-row gap-4 items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-row md:flex-col items-center gap-4 md:pt-2"
             >
-              <Link
-                href="/register"
-                className="btn-press rounded-full inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-base font-semibold shadow-red-glow hover:bg-redpen-700"
+              <div
+                className="exam-stamp flex flex-col items-center justify-center h-28 w-28 rounded-full border-2 border-ink-900 bg-ledger p-3 text-center"
+                style={{ ['--stamp-rotate' as string]: '-7deg' } as React.CSSProperties}
               >
-                Register your team
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/format"
-                className="btn-press rounded-full inline-flex items-center gap-2 bg-white text-redpen-600 border-2 border-redpen-100 px-8 py-4 text-base font-semibold hover:border-redpen-300 hover:bg-redpen-50"
+                <img
+                  src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png"
+                  alt="Canadian Mathematical Society"
+                  width={72}
+                  height={13}
+                  decoding="async"
+                  className="h-6 w-auto object-contain mb-1"
+                />
+                <span className="font-mono text-[0.625rem] leading-tight text-ink-700 uppercase tracking-wide">
+                  Official Partner
+                </span>
+              </div>
+
+              <div
+                className={`exam-stamp font-mono text-[0.625rem] font-semibold uppercase tracking-wide px-3 py-2 border-2 text-center whitespace-nowrap ${
+                  registrationOpen ? 'border-stamp-600 text-stamp-600' : 'border-ink-300 text-ink-300 line-through'
+                }`}
+                style={{ ['--stamp-rotate' as string]: '4deg' } as React.CSSProperties}
               >
-                See the format
-              </Link>
+                {registrationOpen ? 'Registration Open' : 'Registration Closed'}
+              </div>
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-14 ruled-lines border-2 border-ink-900 bg-ledger p-6 md:p-8 max-w-2xl"
+          >
+            <SampleProblem />
+          </motion.div>
         </div>
       </section>
 
-      {/* Tournament Structure Section */}
-      <section className="py-24 bg-grid-paper">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-5xl font-bold text-graphite-900"
-            >
-              Three stages. One champion.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-graphite-600 max-w-2xl mx-auto mt-4"
-            >
-              A progressive tournament with three distinct levels of achievement.
-            </motion.p>
-          </div>
+      {/* Tournament structure */}
+      <section className="py-20 bg-ledger-deep border-b border-ledger-line">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-sans text-3xl md:text-4xl text-ink-900 mb-3"
+          >
+            Three stages. One champion.
+          </motion.h2>
+          <p className="text-ink-700 max-w-xl mb-12">
+            A progressive tournament with three distinct levels of achievement.
+          </p>
 
-          {/* Bar Chart Visualization */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-end justify-center gap-6 md:gap-10 h-[300px] mb-16">
-              <StageBar
-                icon={Users}
-                title="Group Stage"
-                date={SEASON_STAGES.groupStage.displayDate}
-                stat="200+"
-                statLabel="Participants"
-                heightPx={180}
-                gradient="from-redpen-600 to-redpen-400"
-              />
-              <StageBar
-                icon={Trophy}
-                title="Regionals"
-                date={SEASON_STAGES.regionals.displayDate}
-                stat="12"
-                statLabel="Teams"
-                heightPx={220}
-                gradient="from-redpen-700 to-redpen-500"
-                delay={0.15}
-              />
-              <StageBar
-                icon={Award}
-                title="Nationals"
-                date={SEASON_STAGES.nationals.displayDate}
-                stat="6"
-                statLabel="Finalists"
-                heightPx={260}
-                gradient="from-redpen-900 to-redpen-700"
-                delay={0.3}
-              />
-            </div>
-          </div>
-
-          {/* Stage Details */}
-          <div className="grid md:grid-cols-3 gap-6 mt-16">
-            {[
-              {
-                icon: Users,
-                title: 'Group Stage',
-                description: 'Go up against schools near you for a spot at regionals.',
-                tags: ['Free', 'Online'],
-              },
-              {
-                icon: Trophy,
-                title: 'Regionals',
-                description: 'Compete against the best in your region for a spot at nationals.',
-                tags: ['Toronto', 'Vancouver'],
-              },
-              {
-                icon: Award,
-                title: 'Nationals',
-                description: "The ultimate challenge with Canada's top math teams.",
-                tags: ['Toronto'],
-              },
-            ].map((stage, index) => (
+          <div className="grid md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+            {stages.map((stage, i) => (
               <motion.div
                 key={stage.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="bg-paper rounded-3xl shadow-soft p-6 hover:shadow-soft-lg hover:-translate-y-1 transition-all"
+                transition={{ delay: 0.1 * i }}
+                className="bg-ledger p-6"
               >
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center mb-4">
-                  <stage.icon className="h-6 w-6 text-redpen-600" />
+                <div className="flex items-center gap-3 mb-4">
+                  <BubbleNumeral n={i + 1} filled={i === 0} />
+                  <stage.icon className="h-5 w-5 text-ink-700" />
                 </div>
-                <h3 className="text-lg font-bold text-graphite-900">{stage.title}</h3>
-                <div className="flex flex-wrap gap-2 mt-2 mb-3">
+                <h3 className="font-sans text-lg text-ink-900 mb-2">{stage.title}</h3>
+                <div className="flex flex-wrap gap-2 mb-3">
                   {stage.tags.map((tag) => (
-                    <span key={tag} className="stamp-label">
+                    <span
+                      key={tag}
+                      className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-0.5 text-ink-700"
+                    >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <p className="text-graphite-600">{stage.description}</p>
+                <p className="text-sm text-ink-700">{stage.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works - Enhanced Section */}
-      <section className="py-16 bg-paper">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-5xl font-bold text-graphite-900 mb-4"
-            >
-              How it <span className="text-redpen-600">works</span>
-            </motion.h2>
-            <motion.p
-              className="text-lg text-graphite-600 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              Free, online, and open to every high school in Canada.
-            </motion.p>
-          </div>
+      {/* How it works */}
+      <section className="py-20 bg-ledger">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-sans text-3xl md:text-4xl text-ink-900 mb-3"
+          >
+            How it works
+          </motion.h2>
+          <p className="text-ink-700 mb-10">Free, online, and open to every high school in Canada.</p>
 
-          <div className="bg-paper rounded-3xl shadow-soft p-8">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="stamp-label">Free</span>
-              <span className="stamp-label">Online</span>
-              <span className="text-sm text-graphite-600">
-                {isRegistrationOpen() ? 'Registration open' : 'Registration opens for next season soon'}
+          <div className="border-2 border-ink-900 p-6 md:p-8">
+            <div className="flex flex-wrap items-center gap-3 mb-8">
+              <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-1 text-ink-900">
+                Free
+              </span>
+              <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-1 text-ink-900">
+                Online
+              </span>
+              <span className="font-mono text-xs text-ink-500">
+                {registrationOpen ? 'Registration open' : 'Registration opens for next season soon'}
               </span>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-0 md:divide-x md:divide-ink-900">
               {[
                 {
-                  title: "Team formation",
+                  title: 'Team formation',
                   icon: Users,
                   details: [
-                    "5 students per team, from the same school",
-                    "No registration fee",
-                    "Open to all high school students"
-                  ]
+                    '5 students per team, from the same school',
+                    'No registration fee',
+                    'Open to all high school students',
+                  ],
                 },
                 {
-                  title: "Registration process",
+                  title: 'Registration process',
                   icon: CheckCircle,
                   details: [
-                    "Fill out the online registration form",
-                    "Designate a team captain",
-                    "Receive a confirmation email once approved"
-                  ]
-                }
+                    'Fill out the online registration form',
+                    'Designate a team captain',
+                    'Receive a confirmation email once approved',
+                  ],
+                },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * i }}
+                  className={i === 1 ? 'md:pl-8' : ''}
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-redpen-50 rounded-xl">
-                      <item.icon className="h-5 w-5 text-redpen-600" />
-                    </div>
-                    <h3 className="text-base font-bold text-graphite-900">{item.title}</h3>
+                    <item.icon className="h-5 w-5 text-ink-700" />
+                    <h3 className="font-sans text-base text-ink-900">{item.title}</h3>
                   </div>
                   <ul className="space-y-2">
                     {item.details.map((detail, j) => (
                       <li key={j} className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-redpen-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-graphite-600">{detail}</span>
+                        <CheckCircle className="h-4 w-4 text-stamp-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-ink-700">{detail}</span>
                       </li>
                     ))}
                   </ul>
@@ -263,132 +326,84 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Prizes Section */}
-      <section className="py-20 bg-paper">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold text-graphite-900 mb-4"
-            >
-              Win real prizes.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-graphite-600 max-w-2xl mx-auto"
-            >
-              Compete for cash prizes, scholarships, and national recognition.
-            </motion.p>
-          </div>
+      {/* Prizes */}
+      <section className="py-20 bg-ledger-deep border-y border-ledger-line">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-sans text-3xl md:text-4xl text-ink-900 mb-3"
+          >
+            Win real prizes.
+          </motion.h2>
+          <p className="text-ink-700 mb-12">Compete for cash prizes, scholarships, and national recognition.</p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 border border-ink-900 divide-y md:divide-y-0 md:divide-x divide-ink-900">
             {PRIZE_TIERS.map((tier, index) => {
               const icon = [Trophy, Award, Medal][index] ?? Medal
               const Icon = icon
               return (
                 <motion.div
                   key={tier.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="bg-paper rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all p-8 text-center"
+                  transition={{ delay: 0.1 * index }}
+                  className="bg-ledger p-8 text-center"
                 >
-                  <div className="mx-auto flex items-center justify-center h-16 w-16 bg-redpen-50 rounded-2xl mb-4">
-                    <Icon className="h-7 w-7 text-redpen-600" />
-                  </div>
-                  <h3 className="text-sm font-bold text-graphite-600 mb-1">{tier.title}</h3>
-                  <p className="text-4xl font-extrabold text-redpen-600 mb-2">{tier.amount}</p>
-                  <p className="text-graphite-600 text-sm">{tier.description}</p>
+                  <Icon className="h-6 w-6 text-ink-700 mx-auto mb-4" />
+                  <h3 className="font-mono text-xs uppercase tracking-wide text-ink-700 mb-2">{tier.title}</h3>
+                  <p className="font-mono text-4xl font-semibold text-stamp-600 mb-2">{tier.amount}</p>
+                  <p className="text-ink-700 text-sm">{tier.description}</p>
                 </motion.div>
               )
             })}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="mt-12 text-center"
-          >
-            <p className="text-graphite-600 mb-4">Additional prizes include medals, certificates, and exclusive opportunities.</p>
+          <div className="mt-10 text-center">
+            <p className="text-ink-700 mb-3">Additional prizes include medals, certificates, and exclusive opportunities.</p>
             <Link
               href="/prizes"
-              className="inline-flex items-center gap-2 text-sm font-bold text-redpen-600 hover:text-redpen-700 transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-stamp-600 hover:text-stamp-700"
             >
               View all prizes and awards
               <ArrowRight className="h-4 w-4" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Competition Timeline — scoreboard rhythm break */}
-      <section className="py-24 bg-grid-blueprint-dense">
+      {/* Timeline */}
+      <section className="py-20 bg-ledger">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center justify-center gap-3 text-3xl md:text-5xl font-bold text-graphite-900"
-            >
-              <Calendar className="h-8 w-8 md:h-10 md:w-10 text-redpen-600" />
-              The 2025&ndash;26 competition timeline
-            </motion.h2>
-          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3 font-sans text-3xl md:text-4xl text-ink-900 mb-10"
+          >
+            <Calendar className="h-7 w-7 text-stamp-600" />
+            The 2025&ndash;26 competition timeline
+          </motion.h2>
 
-          <div className="bg-paper rounded-3xl shadow-soft divide-y divide-redpen-50 overflow-hidden">
-            {[
-              {
-                date: REGISTRATION_DEADLINES.early,
-                title: 'Early Registration',
-                description: 'Register your team ahead of the final deadline'
-              },
-              {
-                date: REGISTRATION_DEADLINES.final,
-                title: 'Final Registration Deadline',
-                description: 'Last day to register your team for the Group Stage'
-              },
-              {
-                date: SEASON_STAGES.groupStage.displayDate,
-                title: SEASON_STAGES.groupStage.title,
-                description: SEASON_STAGES.groupStage.description
-              },
-              {
-                date: SEASON_STAGES.regionals.displayDate,
-                title: SEASON_STAGES.regionals.title,
-                description: SEASON_STAGES.regionals.description
-              },
-              {
-                date: SEASON_STAGES.nationals.displayDate,
-                title: SEASON_STAGES.nationals.title,
-                description: SEASON_STAGES.nationals.description
-              }
-            ].map((item, index) => (
+          <div className="border-2 border-ink-900 divide-y divide-ink-900">
+            {timeline.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.08 * index }}
-                className="flex items-center gap-6 px-6 py-5"
+                transition={{ delay: 0.06 * index }}
+                className="flex items-center gap-5 px-5 py-4"
               >
-                <div className="scoreboard-digit flex-shrink-0 w-10 h-10 rounded-full bg-redpen-50 flex items-center justify-center text-base font-bold text-redpen-600">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
+                <BubbleNumeral n={index + 1} />
                 <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                   <div>
-                    <div className="font-bold text-graphite-900 text-sm">{item.title}</div>
-                    <p className="text-graphite-600 text-sm mt-0.5">{item.description}</p>
+                    <div className="font-sans text-ink-900 text-sm">{item.title}</div>
+                    <p className="text-ink-700 text-sm mt-0.5">{item.description}</p>
                   </div>
-                  <div className="text-sm text-redpen-600 font-semibold whitespace-nowrap">{item.date}</div>
+                  <div className="font-mono text-sm text-stamp-600 font-semibold whitespace-nowrap">{item.date}</div>
                 </div>
               </motion.div>
             ))}
@@ -396,30 +411,24 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-redpen-600 text-white py-20 relative overflow-hidden">
-        <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/10 rounded-full animate-float" />
-        <div className="absolute -left-10 bottom-0 w-40 h-40 bg-white/10 rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to test your skills?</h2>
-            <p className="text-lg text-white/90 mb-10 max-w-xl mx-auto">
+      {/* Closing CTA */}
+      <section className="bg-stamp-600 text-ledger py-20 border-t-4 border-ink-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="font-sans text-3xl md:text-5xl mb-6">Ready to test your skills?</h2>
+            <p className="text-lg text-ledger/90 mb-10 max-w-xl mx-auto">
               Join students from across Canada on the bracket. Free to enter, open to every high school.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/register"
-                className="btn-press rounded-full inline-flex items-center justify-center gap-2 bg-white text-redpen-600 px-8 py-4 text-sm font-semibold hover:bg-redpen-50"
+                className="btn-press inline-flex items-center justify-center gap-2 bg-ledger text-stamp-600 px-8 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger-deep"
               >
                 Register now
               </Link>
               <Link
                 href="/contact"
-                className="btn-press rounded-full inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white px-8 py-4 text-sm font-semibold hover:bg-white hover:text-redpen-600"
+                className="btn-press inline-flex items-center justify-center gap-2 border-2 border-ledger text-ledger px-8 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger hover:text-stamp-600"
               >
                 Contact us
               </Link>

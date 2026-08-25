@@ -6,7 +6,7 @@ import { Mail, Send } from 'lucide-react'
 const faqs = [
   {
     question: 'How do I register my school?',
-    answer: 'Head to the Register page and submit your school’s info along with up to 3 teams of 4–6 students. An admin reviews it, then your teacher account and join codes are created.',
+    answer: 'Head to the Register page and submit your school’s info along with up to 3 teams of 4-6 students. An admin reviews it, then your teacher account and join codes are created.',
   },
   {
     question: 'Who can participate?',
@@ -32,13 +32,13 @@ const faqs = [
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-paper">
-      <section className="bg-grid-blueprint py-20">
+    <div className="min-h-screen bg-ledger">
+      <section className="bg-ledger border-b-4 border-ink-900 py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-graphite-900"
+            className="font-sans text-4xl md:text-5xl text-ink-900"
           >
             Contact us
           </motion.h1>
@@ -46,39 +46,36 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-graphite-600 mt-4"
+            className="text-lg text-ink-700 mt-4"
           >
             Have questions about the tournament? We&apos;re here to help.
           </motion.p>
         </div>
       </section>
 
-      <section className="py-20 bg-grid-paper">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-ledger px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <span className="stamp-label">Reach us</span>
-              <h2 className="text-2xl font-bold text-graphite-900 mt-3 mb-6">Get in touch</h2>
+              <h2 className="font-sans text-2xl text-ink-900 mb-6">Get in touch</h2>
 
               <div className="flex items-start gap-4 mb-8">
-                <div className="w-12 h-12 bg-redpen-50 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-5 w-5 text-redpen-600" />
-                </div>
+                <Mail className="h-5 w-5 text-stamp-600 mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-bold text-graphite-900 mb-1">Email</h3>
-                  <a href="mailto:info@canadianmathleague.ca" className="text-redpen-600 font-medium hover:text-redpen-700">
+                  <h3 className="font-sans text-lg text-ink-900 mb-1">Email</h3>
+                  <a href="mailto:info@canadianmathleague.ca" className="text-stamp-600 font-medium hover:text-stamp-700">
                     info@canadianmathleague.ca
                   </a>
-                  <p className="text-graphite-600 text-sm mt-1">The fastest way to reach us for any question.</p>
+                  <p className="text-ink-700 text-sm mt-1">The fastest way to reach us for any question.</p>
                 </div>
               </div>
 
-              <div className="p-6 bg-graphite-900 rounded-2xl">
-                <h3 className="text-sm font-bold text-white mb-3">Before you write in</h3>
-                <p className="text-graphite-300 text-sm">
+              <div className="p-6 border-2 border-ink-900 bg-ledger">
+                <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 mb-3">Before you write in</h3>
+                <p className="text-ink-700 text-sm">
                   Teachers: most account and roster questions are answered on the{' '}
-                  <a href="/platform/faq" className="text-white underline hover:text-redpen-400">
+                  <a href="/platform/faq" className="text-stamp-600 underline hover:text-stamp-700">
                     Teacher Portal FAQ
                   </a>
                   . Students: check with your teacher for your join code first.
@@ -91,29 +88,29 @@ const ContactPage = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-paper rounded-3xl shadow-soft p-8"
+              className="border-2 border-ink-900 bg-ledger p-8"
             >
-              <h2 className="text-lg font-bold text-graphite-900 mb-6">Send us a message</h2>
+              <h2 className="font-sans text-lg text-ink-900 mb-6">Send us a message</h2>
               <form className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-graphite-700 mb-1.5">First Name</label>
-                    <input type="text" className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="John" />
+                    <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">First Name</label>
+                    <input type="text" className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="John" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Last Name</label>
-                    <input type="text" className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="Doe" />
+                    <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Last Name</label>
+                    <input type="text" className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="Doe" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Email Address</label>
-                  <input type="email" className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="john.doe@email.com" />
+                  <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Email Address</label>
+                  <input type="email" className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="john.doe@email.com" />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Subject</label>
-                  <select className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400">
+                  <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Subject</label>
+                  <select className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30">
                     <option>General Inquiry</option>
                     <option>School Registration</option>
                     <option>Technical Support</option>
@@ -123,13 +120,13 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-graphite-700 mb-1.5">Message</label>
-                  <textarea rows={5} className="w-full px-4 py-2.5 bg-redpen-50/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-redpen-400" placeholder="Tell us how we can help you..." />
+                  <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Message</label>
+                  <textarea rows={5} className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="Tell us how we can help you..." />
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-press rounded-full w-full inline-flex items-center justify-center gap-2 bg-redpen-600 text-white py-3.5 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
+                  className="btn-press w-full inline-flex items-center justify-center gap-2 bg-stamp-600 text-ledger py-3.5 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
                 >
                   Send Message
                   <Send className="h-4 w-4" />
@@ -140,12 +137,12 @@ const ContactPage = () => {
 
           {/* FAQ Section */}
           <motion.section initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-24">
-            <h2 className="text-2xl md:text-3xl font-bold text-graphite-900 mb-10 text-center">Frequently asked questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="font-sans text-2xl md:text-3xl text-ink-900 mb-10 text-center">Frequently asked questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-ink-900 border border-ink-900">
               {faqs.map((faq) => (
-                <div key={faq.question} className="bg-paper rounded-2xl shadow-soft p-6">
-                  <h3 className="font-bold text-graphite-900 mb-2 text-sm">{faq.question}</h3>
-                  <p className="text-graphite-600 text-sm">{faq.answer}</p>
+                <div key={faq.question} className="bg-ledger p-6">
+                  <h3 className="font-sans text-ink-900 mb-2 text-sm">{faq.question}</h3>
+                  <p className="text-ink-700 text-sm">{faq.answer}</p>
                 </div>
               ))}
             </div>

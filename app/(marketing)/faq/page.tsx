@@ -17,7 +17,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: 'Who can participate?',
-    answer: 'Any high school student in Canada, as part of a school team of 4–6 students. There is no individual registration path — a teacher registers the team.',
+    answer: 'Any high school student in Canada, as part of a school team of 4-6 students. There is no individual registration path — a teacher registers the team.',
   },
   {
     question: 'When does the competition take place?',
@@ -53,13 +53,13 @@ const FAQPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-paper">
-      <section className="bg-grid-blueprint py-20">
+    <div className="min-h-screen bg-ledger">
+      <section className="bg-ledger border-b-4 border-ink-900 py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-graphite-900"
+            className="font-sans text-4xl md:text-5xl text-ink-900"
           >
             Frequently asked questions
           </motion.h1>
@@ -67,16 +67,16 @@ const FAQPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-graphite-600 mt-4"
+            className="text-lg text-ink-700 mt-4"
           >
             Find answers to common questions about the Canadian Math League.
           </motion.p>
         </div>
       </section>
 
-      <section className="py-20 bg-grid-paper px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-ledger px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="max-w-3xl mx-auto space-y-4"
+          className="max-w-3xl mx-auto border-2 border-ink-900 divide-y divide-ink-900"
           initial="hidden"
           animate="show"
           variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } }}
@@ -88,15 +88,15 @@ const FAQPage = () => {
                 hidden: { opacity: 0, y: 10 },
                 show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } },
               }}
-              className="bg-paper rounded-2xl shadow-soft"
+              className="bg-ledger"
             >
               <button className="w-full px-6 py-5 text-left focus:outline-none group" onClick={() => toggleFAQ(index)} aria-expanded={openIndex === index}>
                 <div className="flex items-center justify-between gap-4">
-                  <h2 className="font-bold text-graphite-900 group-hover:text-redpen-600 transition-colors">{faq.question}</h2>
+                  <h2 className="font-sans text-lg text-ink-900 group-hover:text-stamp-600 transition-colors">{faq.question}</h2>
                   <motion.span
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-graphite-400 group-hover:text-redpen-600 transition-colors flex-shrink-0"
+                    className="text-ink-700 group-hover:text-stamp-600 transition-colors flex-shrink-0"
                   >
                     <ChevronDown className="w-5 h-5" />
                   </motion.span>
@@ -115,7 +115,7 @@ const FAQPage = () => {
                     }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 pt-1 text-graphite-600 border-t border-paper-line">{faq.answer}</div>
+                    <div className="px-6 pb-6 pt-1 text-ink-700 border-t border-ledger-line">{faq.answer}</div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -124,10 +124,10 @@ const FAQPage = () => {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-16 text-center">
-          <p className="text-graphite-600 mb-6 text-lg">Still have questions?</p>
+          <p className="text-ink-700 mb-6 text-lg">Still have questions?</p>
           <Link
             href="/contact"
-            className="btn-press rounded-full inline-flex items-center gap-2 bg-redpen-600 text-white px-8 py-4 text-sm font-semibold shadow-red-glow hover:bg-redpen-700"
+            className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
           >
             Contact Us
           </Link>
