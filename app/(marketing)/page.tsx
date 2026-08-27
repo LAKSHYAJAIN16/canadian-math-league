@@ -16,24 +16,13 @@
   STORY: A visitor understands this is a real, credible national math
   competition — not a marketing funnel — and registers their team via the
   stamped primary CTA.
-  FIRST VIEWPORT: CMS partnership rendered as a rotated circular seal
-  stamp, a dynamic registration-status stamp (open/closed, computed from
-  the real deadline), a serif headline, and a real worked sample problem
-  in a ruled-paper panel — proving the tournament's difficulty before any
-  ask, instead of claiming it in prose.
-  FORM: "The Answer Key" — competition scoring-sheet / exam-paper world.
-  My own top-ranked grounded candidate (position 1 of 7); the user
-  pinned this pick over the dice-assigned "Grid Notebook" direction
-  (position 4). Direction seed key: 9375c2fd (scope: direction, mode:
-  persuade). Scope: homepage only — Navbar/Footer and the rest of the
-  site still run the sitewide Friendly Field system pending a follow-up
-  pass.
-  FINISH: unreviewed and undocumented is unfinished; this build ends with
-  the finish review, the verdict, DESIGN.md, and every shipping raster
-  carrying its provenance.
+  FIRST VIEWPORT: a CMS partnership credit line above the headline, a
+  serif headline, and a dynamic registration-status stamp (open/closed,
+  computed from the real deadline).
+  FORM: "The Answer Key" — competition scoring-sheet / exam-paper world,
+  now the sitewide system (see DESIGN.md).
 */
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Trophy, Users, Calendar, Award, CheckCircle, Medal, type LucideIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -48,31 +37,6 @@ function BubbleNumeral({ n, filled }: { n: number; filled?: boolean }) {
     >
       {String(n).padStart(2, '0')}
     </span>
-  )
-}
-
-function SampleProblem() {
-  const [revealed, setRevealed] = useState(false)
-  return (
-    <div>
-      <p className="font-mono text-xs uppercase tracking-wide text-ink-500 mb-3">Sample problem &middot; Canadian Open format</p>
-      <p className="text-ink-900 leading-relaxed mb-4">
-        A regular hexagon has area 24&radic;3. What is the side length of the hexagon?
-      </p>
-      <button
-        type="button"
-        onClick={() => setRevealed((r) => !r)}
-        className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-600 underline underline-offset-4 hover:text-stamp-700"
-      >
-        {revealed ? 'Hide answer' : 'Show answer'}
-      </button>
-      {revealed && (
-        <p className="mt-3 font-mono text-sm text-ink-900">
-          Answer: <strong>4</strong> &mdash; a regular hexagon with side s has area (3&radic;3/2) &times; s&sup2;.
-          Setting that equal to 24&radic;3 gives s&sup2; = 16, so s = 4.
-        </p>
-      )}
-    </div>
   )
 }
 
@@ -133,10 +97,23 @@ const HomePage = () => {
       {/* Hero — cover page */}
       <section className="relative bg-ledger overflow-hidden border-b-4 border-ink-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="grid md:grid-cols-[1fr_auto] gap-10 items-start">
+          <div>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="flex items-center gap-2 mb-4">
+                <img
+                  src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png"
+                  alt="Canadian Mathematical Society"
+                  width={72}
+                  height={13}
+                  decoding="async"
+                  className="h-4 w-auto object-contain"
+                />
+                <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-wide text-ink-500">
+                  In partnership with the Canadian Mathematical Society
+                </span>
+              </div>
               <h1 className="font-sans text-4xl md:text-6xl text-ink-900 leading-[1.08] mb-5">
-                Canada&apos;s national math tournament, run like the real thing.
+                Canada&apos;s premier math tournament.
               </h1>
               <p className="text-lg text-ink-700 max-w-xl leading-relaxed mb-8">
                 A free, team-based tournament for high schools across Canada — an online
@@ -159,49 +136,7 @@ const HomePage = () => {
                 </Link>
               </div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-row md:flex-col items-center gap-4 md:pt-2"
-            >
-              <div
-                className="exam-stamp flex flex-col items-center justify-center h-28 w-28 rounded-full border-2 border-ink-900 bg-ledger p-3 text-center"
-                style={{ ['--stamp-rotate' as string]: '-7deg' } as React.CSSProperties}
-              >
-                <img
-                  src="https://www2.cms.math.ca/Events/Winter20/wp-content/uploads/2018/08/Wordmark-Bilingual-Colour.png"
-                  alt="Canadian Mathematical Society"
-                  width={72}
-                  height={13}
-                  decoding="async"
-                  className="h-6 w-auto object-contain mb-1"
-                />
-                <span className="font-mono text-[0.625rem] leading-tight text-ink-700 uppercase tracking-wide">
-                  Official Partner
-                </span>
-              </div>
-
-              <div
-                className={`exam-stamp font-mono text-[0.625rem] font-semibold uppercase tracking-wide px-3 py-2 border-2 text-center whitespace-nowrap ${
-                  registrationOpen ? 'border-stamp-600 text-stamp-600' : 'border-ink-300 text-ink-300 line-through'
-                }`}
-                style={{ ['--stamp-rotate' as string]: '4deg' } as React.CSSProperties}
-              >
-                {registrationOpen ? 'Registration Open' : 'Registration Closed'}
-              </div>
-            </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-14 ruled-lines border-2 border-ink-900 bg-ledger p-6 md:p-8 max-w-2xl"
-          >
-            <SampleProblem />
-          </motion.div>
         </div>
       </section>
 
