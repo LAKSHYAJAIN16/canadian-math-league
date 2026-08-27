@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 /*
- * DESIGN SYSTEM — "Friendly Field"
- * Warm, approachable, red + white. Soft rounded cards, pill buttons,
- * gentle shadows, light-weight friendly type. No hard borders-as-structure,
- * no drenched color fields, no mono-as-decoration.
+ * DESIGN SYSTEM — "The Answer Key"
+ * Exam-booklet ledger stock, near-black ink, one institutional stamp red.
+ * Hard 2px borders as structure, sharp corners, no shadows, no rounding
+ * except the scantron-bubble/stamp-seal signature marks. Alike serif for
+ * prose, uppercase-tracked IBM Plex Mono for every label and number.
+ * The classes below labeled "Friendly Field" are the retired prior system;
+ * they're kept only because a couple of utility class names are shared.
  */
 
 :root {
@@ -129,8 +132,9 @@ body {
   display: none;
 }
 
-/* ---- "Answer Key" world — now rolling out sitewide. The classes above
-   ("Friendly Field") remain only on pages not yet converted. ---------- */
+/* ---- "Answer Key" world — now live sitewide. The classes above
+   ("Friendly Field") are unused dead weight kept only in case a class name
+   collides; no page references them anymore. ---------------------------- */
 
 /* Faint ruled-paper texture for the worked-sample-problem panel. */
 .ruled-lines {

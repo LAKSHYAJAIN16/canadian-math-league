@@ -18,8 +18,8 @@ export default async function DashboardPage() {
 
   if (!school) {
     return (
-      <div className="bg-redpen-50 rounded-2xl p-4">
-        <p className="text-sm text-redpen-700">Team data not found.</p>
+      <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+        <p className="font-mono text-sm text-stamp-700">Team data not found.</p>
       </div>
     )
   }
@@ -29,31 +29,31 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-graphite-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-graphite-600">Welcome back, {school.schoolName}!</p>
+        <h1 className="font-sans text-2xl text-ink-900">Dashboard</h1>
+        <p className="mt-1 text-sm text-ink-700">Welcome back, {school.schoolName}!</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-paper p-6 rounded-lg shadow">
-          <h2 className="text-lg font-medium text-graphite-900 mb-4">School Information</h2>
+        <div className="border-2 border-ink-900 bg-ledger p-6">
+          <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-4">School information</h2>
           <div className="space-y-2">
-            <p className="text-sm text-graphite-600">
-              <span className="font-medium">School:</span> {school.schoolName}
+            <p className="text-sm text-ink-700">
+              <span className="font-semibold text-ink-900">School:</span> {school.schoolName}
             </p>
-            <p className="text-sm text-graphite-600">
-              <span className="font-medium">Email:</span> {school.teacherEmail}
+            <p className="text-sm text-ink-700">
+              <span className="font-semibold text-ink-900">Email:</span> {school.teacherEmail}
             </p>
           </div>
         </div>
 
-        <div className="bg-paper p-6 rounded-lg shadow">
-          <h2 className="text-lg font-medium text-graphite-900 mb-4">Teams Summary</h2>
+        <div className="border-2 border-ink-900 bg-ledger p-6">
+          <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-4">Teams summary</h2>
           <div className="space-y-2">
-            <p className="text-sm text-graphite-600">
-              <span className="font-medium">Total Teams:</span> {school.teams.length}
+            <p className="text-sm text-ink-700">
+              <span className="font-semibold text-ink-900">Total teams:</span> {school.teams.length}
             </p>
-            <p className="text-sm text-graphite-600">
-              <span className="font-medium">Total Students:</span> {totalStudents}
+            <p className="text-sm text-ink-700">
+              <span className="font-semibold text-ink-900">Total students:</span> {totalStudents}
             </p>
           </div>
         </div>

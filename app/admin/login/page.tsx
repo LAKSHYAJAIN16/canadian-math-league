@@ -46,19 +46,19 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-paper flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-paper rounded-xl shadow-lg p-8">
-        <h1 className="text-xl font-bold text-graphite-900 mb-6 text-center">Admin Sign In</h1>
+    <div className="min-h-screen bg-ledger flex items-center justify-center p-4">
+      <div className="w-full max-w-sm border-2 border-ink-900 bg-ledger py-8 px-6">
+        <h1 className="text-center font-sans text-2xl text-ink-900 mb-6">Admin sign in</h1>
 
         {error && (
-          <div className="mb-4 bg-redpen-50 rounded-2xl p-3">
-            <p className="text-sm text-redpen-700">{error}</p>
+          <div className="mb-4 border-2 border-stamp-600 bg-stamp-100 p-3">
+            <p className="font-mono text-sm text-stamp-700">{error}</p>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-graphite-700 mb-1">
+            <label htmlFor="email" className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">
               Email
             </label>
             <input
@@ -67,11 +67,11 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blueprint-600 focus:border-blueprint-600"
+              className="block w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-graphite-700 mb-1">
+            <label htmlFor="password" className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">
               Password
             </label>
             <input
@@ -80,13 +80,13 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full px-3 py-2 border border-graphite-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blueprint-600 focus:border-blueprint-600"
+              className="block w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30"
             />
           </div>
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 px-4 rounded-md text-sm font-medium text-white bg-redpen-600 hover:bg-redpen-700 disabled:opacity-50"
+            className={`btn-press w-full flex justify-center items-center py-3.5 px-4 font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>

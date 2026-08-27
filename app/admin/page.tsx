@@ -43,37 +43,37 @@ export default async function AdminPage() {
   })
 
   return (
-    <div className="min-h-screen bg-paper p-4">
+    <div className="min-h-screen bg-ledger p-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-graphite-900">School Registrations</h1>
+          <h1 className="font-sans text-2xl text-ink-900">School registrations</h1>
           <LogoutButton
             redirectTo="/admin/login"
-            className="text-sm text-graphite-600 hover:text-redpen-600"
+            className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 hover:text-stamp-600"
           />
         </div>
 
-        <div className="bg-paper shadow rounded-lg p-6">
-          <p className="text-graphite-600 mb-4">Total submissions: {registrations.length}</p>
+        <div className="border-2 border-ink-900 bg-ledger p-6">
+          <p className="font-mono text-sm text-ink-700 mb-4">Total submissions: {registrations.length}</p>
 
           {registrations.length === 0 ? (
-            <p className="text-graphite-600">No submissions found</p>
+            <p className="font-mono text-sm text-ink-700">No submissions found</p>
           ) : (
             <div className="space-y-6">
               {registrations.map((registration) => (
-                <div key={registration.id} className="border rounded-lg p-4">
+                <div key={registration.id} className="border-2 border-ink-900 p-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h3 className="font-medium">School: {registration.schoolName}</h3>
-                      <p>Province: {registration.province}</p>
-                      <p>Teacher: {registration.teacherName}</p>
-                      <p>Email: {registration.teacherEmail}</p>
-                      <p>Phone: {registration.teacherPhone}</p>
+                      <h3 className="font-semibold text-ink-900">School: {registration.schoolName}</h3>
+                      <p className="text-ink-700">Province: {registration.province}</p>
+                      <p className="text-ink-700">Teacher: {registration.teacherName}</p>
+                      <p className="text-ink-700">Email: {registration.teacherEmail}</p>
+                      <p className="text-ink-700">Phone: {registration.teacherPhone}</p>
                       <p className="mt-1">
                         Status:{' '}
                         <span
-                          className={`font-medium ${
-                            registration.status === 'approved' ? 'text-blueprint-800' : 'text-amber-700'
+                          className={`font-mono text-xs font-semibold uppercase tracking-wide ${
+                            registration.status === 'approved' ? 'text-ink-900' : 'text-stamp-600'
                           }`}
                         >
                           {registration.status}
@@ -81,11 +81,11 @@ export default async function AdminPage() {
                       </p>
                     </div>
                     <div>
-                      <h4 className="font-medium">Teams:</h4>
+                      <h4 className="font-semibold text-ink-900">Teams:</h4>
                       {registration.teams.map((team) => (
-                        <div key={team.index} className="mt-2 pl-4 border-l-2 border-paper-line">
-                          <p className="font-medium">Team {team.index}</p>
-                          <ul className="list-disc pl-5">
+                        <div key={team.index} className="mt-2 pl-4 border-l-2 border-ink-900">
+                          <p className="font-semibold text-ink-900">Team {team.index}</p>
+                          <ul className="list-disc pl-5 text-ink-700">
                             {team.members.map((member, i) => (
                               <li key={i}>
                                 {member.name} : {member.email}
@@ -96,8 +96,8 @@ export default async function AdminPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t flex justify-between items-center">
-                    <div className="text-sm text-graphite-600">
+                  <div className="mt-4 pt-4 border-t-2 border-ink-900 flex justify-between items-center">
+                    <div className="font-mono text-xs text-ink-500">
                       Submitted: {new Date(registration.submittedAt).toLocaleString()}
                     </div>
                     {registration.status === 'pending' && (

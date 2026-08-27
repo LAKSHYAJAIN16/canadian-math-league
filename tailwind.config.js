@@ -49,9 +49,10 @@ module.exports = {
           400: '#9C8A8C',
           300: '#C9BABB',
         },
-        // "Answer Key" world (homepage) — exam-booklet stock, ink, and one
-        // institutional stamp red. Additive: existing pages keep using
-        // redpen/graphite/paper above untouched.
+        // "Answer Key" world — exam-booklet stock, ink, and one
+        // institutional stamp red. Now the sitewide system; redpen/graphite/
+        // paper/blueprint above are the retired Friendly Field/Blueprint
+        // tokens, kept only so old references don't 404 mid-migration.
         ledger: {
           DEFAULT: '#F5EFDF',
           deep: '#EDE4CC',

@@ -31,23 +31,23 @@ export default function FAQPage() {
   return (
     <div className="max-w-3xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold text-graphite-900">Frequently Asked Questions</h1>
-        <p className="mt-2 text-lg text-graphite-600">
+        <h1 className="font-sans text-3xl text-ink-900">Frequently asked questions</h1>
+        <p className="mt-2 text-lg text-ink-700">
           Find answers to common questions about using the platform
         </p>
       </div>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="border border-paper-line rounded-lg overflow-hidden">
+          <div key={index} className="border-2 border-ink-900 overflow-hidden">
             <button
-              className="w-full px-6 py-4 text-left bg-paper hover:bg-paper-ink focus:outline-none"
+              className="w-full px-6 py-4 text-left bg-ledger hover:bg-ledger-deep focus:outline-none"
               onClick={() => toggleFAQ(index)}
             >
               <div className="flex items-center justify-between">
-                <span className="font-medium text-graphite-900">{faq.question}</span>
+                <span className="font-semibold text-ink-900">{faq.question}</span>
                 <svg
-                  className={`h-5 w-5 text-graphite-600 transform transition-transform ${
+                  className={`h-5 w-5 text-ink-700 transform transition-transform ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -64,19 +64,19 @@ export default function FAQPage() {
               </div>
             </button>
             {openIndex === index && (
-              <div className="px-6 py-4 bg-paper border-t border-paper-line">
-                <p className="text-graphite-700">{faq.answer}</p>
+              <div className="px-6 py-4 bg-ledger border-t-2 border-ink-900">
+                <p className="text-ink-700">{faq.answer}</p>
               </div>
             )}
           </div>
         ))}
       </div>
 
-      <div className="mt-10 bg-blueprint-50 p-6 rounded-lg">
-        <h3 className="text-lg font-medium text-blueprint-800">Still need help?</h3>
-        <p className="mt-2 text-redpen-700">
+      <div className="mt-10 border-2 border-ink-900 bg-ledger-deep p-6">
+        <h3 className="font-sans text-lg text-ink-900">Still need help?</h3>
+        <p className="mt-2 text-ink-700">
           Contact our support team at{' '}
-          <a href="mailto:support@canadianmathleague.com" className="text-blueprint-700 underline">
+          <a href="mailto:support@canadianmathleague.com" className="text-stamp-600 underline">
             support@canadianmathleague.com
           </a>{' '}
           for further assistance.

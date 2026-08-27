@@ -55,73 +55,73 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-graphite-900">Your Teams</h2>
+      <h2 className="font-sans text-xl text-ink-900">Your teams</h2>
       {localTeams.map((team, teamIndex) => {
         const isEditing = editingTeamId === team.id
         const members = isEditing ? editingMembers : team.members
 
         return (
-          <div key={team.id} className="bg-paper p-6 rounded-2xl shadow-soft">
+          <div key={team.id} className="border-2 border-ink-900 bg-ledger p-6">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-bold text-graphite-900">Team {teamIndex + 1}</h3>
+              <h3 className="font-sans text-lg text-ink-900">Team {teamIndex + 1}</h3>
               {isEditing ? (
                 <div className="space-x-2">
                   <button
                     onClick={cancelEditing}
-                    className="btn-press px-4 py-1.5 rounded-full text-xs font-semibold text-graphite-700 bg-paper border-2 border-graphite-200 hover:bg-graphite-50"
+                    className="btn-press px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 border-2 border-ink-900 hover:bg-ink-900 hover:text-ledger"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => saveTeamChanges(team.id)}
                     disabled={isSaving}
-                    className="btn-press px-4 py-1.5 text-xs font-semibold rounded-full text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700 disabled:opacity-50"
+                    className="btn-press px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 disabled:opacity-50"
                   >
-                    {isSaving ? 'Saving...' : 'Save Changes'}
+                    {isSaving ? 'Saving...' : 'Save changes'}
                   </button>
                 </div>
               ) : (
                 <button
                   onClick={() => startEditing(team)}
-                  className="btn-press inline-flex items-center px-4 py-1.5 text-xs font-semibold rounded-full text-white bg-redpen-600 shadow-red-glow hover:bg-redpen-700"
+                  className="btn-press inline-flex items-center px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
                 >
-                  Edit Team
+                  Edit team
                 </button>
               )}
             </div>
 
-            {error && isEditing && <p className="text-sm text-redpen-600 mb-3">{error}</p>}
+            {error && isEditing && <p className="font-mono text-xs text-stamp-600 mb-3">{error}</p>}
 
             <div className="space-y-3">
               {members.map((member, memberIndex) => (
-                <div key={member.id} className="p-4 bg-redpen-50/40 rounded-xl">
+                <div key={member.id} className="p-4 bg-ledger-deep">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-graphite-600 mb-1">
-                        Member {memberIndex + 1} Name
+                      <label className="block font-mono text-[0.625rem] font-semibold uppercase tracking-wide text-ink-700 mb-1">
+                        Member {memberIndex + 1} name
                       </label>
                       {isEditing ? (
                         <input
                           type="text"
                           value={member.name}
                           onChange={(e) => handleMemberChange(memberIndex, 'name', e.target.value)}
-                          className="w-full px-3 py-2 bg-paper rounded-lg focus:outline-none focus:ring-2 focus:ring-redpen-400 text-sm"
+                          className="w-full px-3 py-2 border-2 border-ink-900 bg-ledger focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30 text-sm"
                         />
                       ) : (
-                        <p className="text-sm font-medium text-graphite-900">{member.name}</p>
+                        <p className="text-sm font-semibold text-ink-900">{member.name}</p>
                       )}
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-graphite-600 mb-1">Email</label>
+                      <label className="block font-mono text-[0.625rem] font-semibold uppercase tracking-wide text-ink-700 mb-1">Email</label>
                       {isEditing ? (
                         <input
                           type="email"
                           value={member.email}
                           onChange={(e) => handleMemberChange(memberIndex, 'email', e.target.value)}
-                          className="w-full px-3 py-2 bg-paper rounded-lg focus:outline-none focus:ring-2 focus:ring-redpen-400 text-sm"
+                          className="w-full px-3 py-2 border-2 border-ink-900 bg-ledger focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30 text-sm"
                         />
                       ) : (
-                        <p className="text-sm text-graphite-600">{member.email}</p>
+                        <p className="text-sm text-ink-700">{member.email}</p>
                       )}
                     </div>
                   </div>

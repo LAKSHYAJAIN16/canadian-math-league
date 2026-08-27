@@ -1,56 +1,52 @@
 ---
 name: Canadian Math League
-description: Friendly Field — a warm red/white tournament identity for a free, team-based national math competition
+description: The Answer Key — a national math tournament run like a real, official exam-paper booklet
 colors:
-  flag-red:
-    value: "#DC1F35"
-  flag-red-tint:
-    value: "#FEF3F4"
-  flag-red-soft:
-    value: "#FCE2E5"
-  flag-red-deep:
-    value: "#B41225"
-  paper:
-    value: "#FFFFFF"
-  paper-line:
-    value: "#F1E4E5"
-  paper-ink:
-    value: "#FDF7F7"
-  graphite-900:
-    value: "#241E1F"
-  graphite-700:
-    value: "#493D3F"
-  graphite-600:
-    value: "#6B5B5D"
-  graphite-400:
-    value: "#9C8A8C"
-  graphite-300:
-    value: "#C9BABB"
+  ledger:
+    value: "#F5EFDF"
+  ledger-deep:
+    value: "#EDE4CC"
+  ledger-line:
+    value: "#D9CDA8"
+  ink-900:
+    value: "#211C15"
+  ink-700:
+    value: "#4A4234"
+  ink-500:
+    value: "#7A705C"
+  ink-300:
+    value: "#B4A98C"
+  stamp-700:
+    value: "#7E140F"
+  stamp-600:
+    value: "#9C1D16"
+  stamp-500:
+    value: "#B93227"
+  stamp-100:
+    value: "#F2DCD6"
 typography:
   display:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 5vw, 4.5rem)"
-    fontWeight: 800
-    lineHeight: 1.05
+    fontFamily: "Alike, Georgia, serif"
+    fontSize: "clamp(2rem, 4.5vw, 3.75rem)"
+    fontWeight: 400
+    lineHeight: 1.08
   headline:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 3vw, 3rem)"
-    fontWeight: 700
+    fontFamily: "Alike, Georgia, serif"
+    fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)"
+    fontWeight: 400
     lineHeight: 1.15
   body:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "Alike, Georgia, serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "IBM Plex Mono, ui-monospace, monospace"
     fontSize: "0.75rem"
     fontWeight: 600
+    letterSpacing: "0.02em"
 rounded:
-  sm: "0.75rem"
-  md: "1rem"
-  lg: "1.5rem"
-  xl: "2rem"
+  none: "0px"
   full: "9999px"
 spacing:
   sm: "0.5rem"
@@ -59,20 +55,21 @@ spacing:
   xl: "2rem"
 components:
   button-primary:
-    backgroundColor: "{colors.flag-red}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.full}"
-    padding: "1rem 2rem"
+    backgroundColor: "{colors.stamp-600}"
+    textColor: "{colors.ledger}"
+    typography: "{typography.label}"
+    rounded: "{rounded.none}"
+    padding: "0.875rem 1.5rem"
   button-primary-hover:
-    backgroundColor: "{colors.flag-red-deep}"
+    backgroundColor: "{colors.stamp-700}"
   button-secondary:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.flag-red}"
-    rounded: "{rounded.full}"
-    padding: "1rem 2rem"
+    backgroundColor: "{colors.ledger}"
+    textColor: "{colors.ink-900}"
+    rounded: "{rounded.none}"
+    padding: "0.875rem 1.5rem"
   card:
-    backgroundColor: "{colors.paper}"
-    rounded: "{rounded.xl}"
+    backgroundColor: "{colors.ledger}"
+    rounded: "{rounded.none}"
     padding: "1.5rem"
 ---
 
@@ -80,123 +77,123 @@ components:
 
 ## Overview
 
-**Creative North Star: "Friendly Field"**
+**Creative North Star: "The Answer Key"**
 
-CML's visual world is a warm, approachable tournament identity, not a sterile test-prep interface. It carries a Canadian flag red as its single accent against white and warm off-white grounds, soft rounded cards, and pill-shaped buttons — the register-your-team energy of a school sports league poster, not a standardized-exam booklet. Type is Plus Jakarta Sans throughout: a rounded, friendly grotesque that reads as approachable at display sizes and stays legible in dense body copy. Depth comes from soft, diffuse shadows rather than hard strokes; the one recurring hand-drawn touch is the "red-pen circle" — an SVG underline stroke that draws itself around a key phrase in the hero, referencing a teacher's red pen without leaning on it anywhere else.
+CML's visual world is the cover page and answer sheet of a real, official math competition booklet — not a soft-rounded, pill-button, shadow-card "friendly SaaS" arrangement. Warm exam-paper "ledger" stock stands in for the page, near-black ink carries text and structure, and one institutional stamp-red is reserved for official marks: seals, status stamps, the primary CTA, dollar figures. Alike, a protected display serif, carries every heading and body paragraph sitewide; IBM Plex Mono carries numbers, codes, tags, and every interactive label, echoing a typewritten exam form. Structure comes from ruled hairline grids and hard-bordered ledger panels — never soft ambient shadows or rounded cards. Scantron-style bubble numerals and rotated rubber-stamp marks mark real sequence and real status (tournament stages, a timeline, a live registration-open/closed state) — never decorative flourish.
 
-This is the third direction explored for the site. Two prior passes are the confirmed anti-reference: a "blueprint notebook" theme (dark navy nav, uppercase-tracked labels, hairline technical-drawing grids) and a flat red/white neobrutalist theme (hard 2px black borders, sharp corners, offset block shadows, `shadow-stamp`). Both are fully retired — no hard `border-2 border-graphite-900` outlines, no uppercase letter-spaced labels as a structural device, no offset block shadows anywhere in the current system.
+This is the third direction explored for the site, and the two prior passes are the confirmed anti-reference. "Blueprint notebook" (dark navy nav, uppercase-tracked labels, hairline technical-drawing grids) and "Friendly Field" (Canadian flag red as a single accent on soft white/off-white grounds, `rounded-2xl`/`rounded-3xl` cards, `rounded-full` pill buttons, diffuse `shadow-soft` elevation, Plus Jakarta Sans throughout, strict sentence case) are both fully retired. No `redpen-*`/`graphite-*`/`paper-*` tokens, no `shadow-soft`/`shadow-red-glow`, and no rounded cards or pill buttons remain anywhere in the current system — the one exception is the small set of circular signature marks (scantron bubble numerals, rotated seal/stamp chips) described under Components below.
 
 **Key Characteristics:**
-- Single accent color (Canadian flag red) at full page scale — never a rainbow of semantic blue/green/yellow
-- Soft rounded cards (`rounded-2xl`/`rounded-3xl`) with diffuse `shadow-soft`, never hard borders
-- Pill-shaped (`rounded-full`) buttons and tabs everywhere, primary always solid red with a red glow shadow
-- Plus Jakarta Sans for everything — display, body, and labels; no serif, no mono-as-decoration
-- Sentence case throughout; no uppercase-tracked labels or kicker/eyebrow rows
+- Single accent color (institutional stamp red) reserved for official marks and primary actions — never a rainbow of semantic blue/green/yellow, and never spread across a page as decoration
+- Hard 2px `ink-900` borders as the only structural device — no soft shadows, no drop shadows, no ambient elevation anywhere
+- Sharp, un-rounded rectangular corners everywhere except the circular scantron-bubble and rotated-stamp signature marks
+- Alike (serif) for every heading and paragraph; IBM Plex Mono for every label, button, nav item, tag, number, and code — no third typeface
+- Uppercase, letter-tracked labels for all interactive/label text (`font-mono text-xs font-semibold uppercase tracking-wide`) — the opposite of the retired system's sentence-case rule
+- Ruled hairline-grid textures and bordered ledger panels stand in for the card grids and shadow elevation of prior systems
 
 ## Colors
 
-The palette is Restrained: two neutrals (white paper, warm dark graphite) plus one saturated accent (flag red) that carries roughly 10–20% of any given screen — enough to feel confident, never drenched.
+The palette is Restrained: a warm paper neutral, a near-black ink neutral, and one saturated accent (stamp red) that appears only on primary actions, official marks, and status/emphasis — never as page-wide decoration.
 
 ### Primary
-- **Flag Red** (`#DC1F35` / `redpen-600`): the one accent. Primary buttons, links, active nav/tab states, icon tints, the red-pen hero mark, and the solid CTA band. Used at full strength for anything actionable.
-- **Flag Red Tint** (`#FEF3F4` / `redpen-50`): soft background fill for info panels, secondary card backgrounds, and icon chips — the "this is emphasized but not urgent" surface.
-- **Flag Red Soft** (`#FCE2E5` / `redpen-100`): pill badge fills, numeral badges, selected-state chips.
-- **Flag Red Deep** (`#B41225` / `redpen-700`): hover state for solid red buttons; heading text inside a tinted red panel.
+- **Stamp Red** (`#9C1D16` / `stamp-600`): the one accent. Primary buttons, active nav/tab states, dollar figures, the registration-open stamp, links, and the full-bleed closing-CTA band. Used at full strength for anything actionable or officially significant.
+- **Stamp Red Deep** (`#7E140F` / `stamp-700`): hover state for solid stamp-red buttons and links.
+- **Stamp Red Mid** (`#B93227` / `stamp-500`): reserved for secondary emphasis where `stamp-600` would compete with an adjacent primary action.
+- **Stamp Red Tint** (`#F2DCD6` / `stamp-100`): the fill for bordered error/alert panels (paired with `stamp-600` border and `stamp-700` text) — never a standalone background without its border.
 
 ### Neutral
-- **Paper** (`#FFFFFF`): the page background and default card surface.
-- **Paper Line** (`#F1E4E5`): hairline dividers and section borders — barely-there, warm-tinted, never a hard black rule.
-- **Paper Ink** (`#FDF7F7`): the faintest warm-white, used for subtle inset panels (search inputs, quiet info chips).
-- **Graphite 900** (`#241E1F`): primary text and dark surfaces (footer, solid dark info panels). A warm near-black, never pure `#000`.
-- **Graphite 700 / 600** (`#493D3F` / `#6B5B5D`): body copy and secondary text.
-- **Graphite 400 / 300** (`#9C8A8C` / `#C9BABB`): placeholder text, disabled states, quiet dividers.
+- **Ledger** (`#F5EFDF`): the page background and default panel surface — warm exam-paper stock, never pure white.
+- **Ledger Deep** (`#EDE4CC`): a slightly deeper paper tone for alternating sections, inset panels, and answered/filled table rows.
+- **Ledger Line** (`#D9CDA8`): the faintest hairline divider between major page sections where a full `ink-900` border would be too heavy.
+- **Ink 900** (`#211C15`): primary text, all structural borders and dividers, and the one deliberately dark surface (footer). A warm near-black, never pure `#000`.
+- **Ink 700** (`#4A4234`): body copy and secondary text.
+- **Ink 500 / 300** (`#7A705C` / `#B4A98C`): placeholder text, timestamps, muted captions, disabled states.
 
 ### Named Rules
-**The One Accent Rule.** Flag red is the only saturated hue in the system. Never introduce Tailwind-default blue, green, yellow, or gray for status or category color — differentiate states with the red/graphite scale, weight, or an icon, not a second hue.
+**The One Stamp Rule.** Stamp red is the only saturated hue in the system, and it marks only what is actionable or official (a button, a live status, a dollar amount, a seal) — never a background wash or a decorative accent.
 
-**The No Hard Border Rule.** Structure comes from soft shadows and generous corner radius, never a 2px solid border used as a shape-defining device. A 1px `paper-line` hairline is acceptable for a genuinely flat divider (table rows, a footer rule); it is never a card's outline.
+**The Hard Border Rule.** All structure comes from a 2px `ink-900` border or an `ink-900`/`ledger-line` divider — never a soft shadow, never a `border-radius` beyond `0` (except the signature circular marks). A shadow of any kind on a card, button, or panel is a regression to the retired Friendly Field system.
 
 ## Typography
 
-**Display Font:** Plus Jakarta Sans (with system-ui, sans-serif fallback)
-**Body Font:** Plus Jakarta Sans
-**Label Font:** Plus Jakarta Sans, weight 600
+**Display/Body Font:** Alike (with Georgia, serif fallback) — one serif family carries every heading and every paragraph, sitewide, at every scale.
+**Label/Mono Font:** IBM Plex Mono (with ui-monospace, monospace fallback) — every button, nav item, tab, tag, table header, timestamp, and numeral.
 
-**Character:** One friendly, rounded grotesque family carries the whole system at every scale — extrabold for display headlines, semibold for interactive labels, regular for body copy. No serif is ever mixed in; a stray `font-serif italic` anywhere in the codebase is a regression to an earlier, discarded direction.
+**Character:** The serif/mono pairing is the whole system's typographic signature: Alike reads as a real, printed exam booklet's body text, while IBM Plex Mono reads as the typewritten stamps and codes overlaid on that paper. Never mix in a rounded grotesque (Plus Jakarta Sans, the retired system's display font) or any other sans as a body or label voice.
 
 ### Hierarchy
-- **Display** (800, `clamp(2.25rem, 5vw, 4.5rem)`, 1.05 line-height): hero headlines only, one per page.
-- **Headline** (700, `clamp(1.75rem, 3vw, 3rem)`, 1.15): section titles.
-- **Title** (700, 1.125–1.5rem): card and panel headings.
-- **Body** (400–500, 1rem, 1.6 line-height): paragraph copy, 65–75ch measure where the layout allows.
-- **Label** (600, 0.75–0.875rem): buttons, nav items, pills, form labels — sentence case.
+- **Display** (400, `clamp(2rem, 4.5vw, 3.75rem)`, 1.08 line-height, Alike): hero headlines only, one per page.
+- **Headline** (400, `clamp(1.5rem, 2.5vw, 2.25rem)`, 1.15, Alike): section titles.
+- **Title** (400, 1.125–1.5rem, Alike): card and panel headings.
+- **Body** (400, 1rem, 1.6 line-height, Alike): paragraph copy.
+- **Label** (600, 0.625–0.75rem, IBM Plex Mono, uppercase, `tracking-wide`): buttons, nav items, tabs, tags, table headers, form labels.
 
 ### Named Rules
-**The Sentence Case Rule.** Labels, nav items, and buttons are set in normal sentence case, not uppercase with tracked letter-spacing. Uppercase-tracked labels are a tell of the retired "blueprint" pass.
+**The Uppercase-Mono-Label Rule.** Every interactive or structural label — buttons, nav items, tabs, form labels, table headers, tags, timestamps — is set in uppercase, letter-tracked IBM Plex Mono. This is a deliberate reversal of the retired system's sentence-case rule and is the fastest tell of an unmigrated page.
+
+**No Third Typeface Rule.** Only Alike (prose) and IBM Plex Mono (labels/data) ever appear. A stray Plus Jakarta Sans, system-ui, or Tailwind default sans anywhere is a regression to a retired pass.
 
 ## Layout
 
-Sections run in a centered `max-w-7xl` (or `max-w-5xl`/`max-w-4xl` for text-heavy pages) container with `px-4 sm:px-6 lg:px-8` gutters. Vertical rhythm is generous: `py-16`–`py-24` between major sections, `gap-6` between cards in a grid. Card grids are typically 3-up on desktop (`md:grid-cols-3`), collapsing to 1-up on mobile. Content panels favor a single strong card over multi-column hairline grids — the retired "blueprint" pass's `gap-px bg-graphite-900` hairline-grid tables are fully replaced by individually-shadowed rounded cards in a normal `gap-4`/`gap-6` grid.
+Sections run in a centered `max-w-4xl`/`max-w-5xl` (occasionally `max-w-7xl` for admin data views) container with `px-4 sm:px-6 lg:px-8` gutters — narrower than the retired system's `max-w-7xl` default, in keeping with a booklet's page measure. Vertical rhythm is generous between sections (`py-16`–`py-20`) but dense within a bordered panel. Card grids typically render as a single bordered panel divided internally by `divide-ink-900` rules (a ruled ledger sheet), rather than a grid of individually-shadowed floating cards — the retired system's `gap-6` card grid is replaced by `grid-cols-3 gap-px bg-ink-900` (cells touching, separated by a single hairline) or a `divide-x`/`divide-y divide-ink-900` panel.
 
 ## Elevation & Depth
 
-Hybrid: mostly flat within a section, with soft ambient shadows lifting individual cards and buttons off the page. Depth is a response to importance and interaction, not a universal outline.
-
-### Shadow Vocabulary
-- **soft** (`0 2px 8px -2px rgba(36,30,31,.08), 0 8px 24px -8px rgba(36,30,31,.10)`): default card elevation.
-- **soft-lg** (`0 4px 16px -4px rgba(36,30,31,.10), 0 16px 40px -12px rgba(36,30,31,.14)`): hover state for elevated cards, and prominent standalone panels (login card, hero card).
-- **red-glow** (`0 8px 24px -8px rgba(220,31,53,.35)`): reserved for solid red primary buttons — a colored glow instead of a neutral shadow, reinforcing the one-accent rule.
+Flat. There is no shadow vocabulary in this system — depth is never simulated with `box-shadow`. Every surface sits at the same visual plane; separation between elements comes entirely from a 2px `ink-900` border, an `ink-900`/`ledger-line` divider, or a shift between `ledger` and `ledger-deep` background tone.
 
 ### Named Rules
-**The Hover-Lift Rule.** Interactive cards lift (`hover:-translate-y-1`) and their shadow steps from `soft` to `soft-lg` on hover; static/non-interactive cards stay at `soft` with no lift.
+**The No-Shadow Rule.** No card, button, input, or panel ever carries a `box-shadow`. If a surface needs to read as "raised" or "important," give it a `border-2 border-ink-900` and/or a `stamp-600` fill — never a shadow.
 
 ## Shapes
 
-Rounded and soft everywhere. Buttons, tabs, badges, and pills are always `rounded-full`. Cards use `rounded-2xl` (small/inline cards) or `rounded-3xl` (section-level cards, hero panels). Inputs use `rounded-xl` with a tinted `redpen-50/60` fill instead of a stroked border. No sharp corners, no hard-edged rectangles, anywhere in the current system.
+Sharp and rectangular everywhere, with one deliberate exception. Cards, panels, inputs, and buttons all use `rounded-none` (no radius) — the exam-booklet page has square-cut edges. The single exception is the signature circular marks: scantron-style bubble numerals and rotated rubber-stamp/seal chips, which are `rounded-full` by design, echoing a real stamped or bubbled mark on paper. No other rounding exists in the system.
 
 ## Components
 
 ### Buttons
-- **Shape:** fully pill (`rounded-full`, 9999px).
-- **Primary:** solid `flag-red` background, white text, `shadow-red-glow`, hover to `flag-red-deep`. A small `translateY(-2px)` lift on hover/press via the shared `.btn-press` utility class.
-- **Secondary:** white background, `flag-red` text, either no border or a soft `border-2 border-redpen-100` for a hero-level secondary action; hover fills with `redpen-50`.
-- **Dark/neutral:** `graphite-900` background with white text, used sparingly (e.g. "Volunteer Now") where red would compete with an adjacent red primary action on the same card.
+- **Shape:** sharp rectangle, no radius.
+- **Primary:** solid `stamp-600` background, `ledger` text, uppercase-mono label, hover to `stamp-700`. A small `translateY(-2px)` lift on hover/press via the shared `.btn-press` utility class (no shadow change accompanies the lift).
+- **Secondary:** `ledger` background with a `border-2 border-ink-900`, `ink-900` text; hover inverts to solid `ink-900` background with `ledger` text.
+- **Disabled:** `ink-300`/`opacity-70` fill, `cursor-not-allowed`, no other state change.
 
-### Chips / Pills
-- **stamp-label** (the shared badge component in `globals.css`): solid `flag-red` fill, white text, `rounded-full`, small caps-free bold label — used for "Free", "Online", section eyebrows like "Rulebook", "Practice".
-- **Tab pills:** inactive = `redpen-50` fill with `graphite-700` text; active = solid `flag-red` fill with white text and `shadow-red-glow`.
+### Tags / Status marks
+- **Tag:** a small rectangle with a 1px `ink-900` border, uppercase Plex Mono label — used for format labels ("Free", "Online"), timeline entries, and table-cell metadata.
+- **Stamp mark** (the `.exam-stamp` component): a bordered chip or circular seal that plays a one-time `stamp-press-in` entrance animation (scale + rotate settling in, via `--stamp-rotate`) — used for the CMS partnership seal, the registration-open/closed status, and admission-style tickets (`/join`). Rotation and the press-in animation are the one recurring signature motion in the system; disabled under `prefers-reduced-motion`.
+- **Bubble numeral** (`BubbleNumeral`): a `rounded-full`, `border-2` circle with a zero-padded Plex Mono number — marks real sequence only (tournament stage order, a timeline), never decorative section counters.
 
-### Cards / Containers
-- **Corner Style:** `rounded-2xl` to `rounded-3xl`.
-- **Background:** `paper` (white) by default; `redpen-50` for a tinted emphasis panel; `graphite-900` for a dark contrast panel (footer, "before you write in" notices).
-- **Shadow Strategy:** `shadow-soft` at rest, `shadow-soft-lg` on hover for interactive cards.
-- **Border:** none. Structure comes from the shadow and the surrounding whitespace.
-- **Internal Padding:** `p-6` to `p-8` for section-level cards, `p-4`–`p-5` for compact list items.
+### Cards / Panels
+- **Corner Style:** `rounded-none`, always.
+- **Background:** `ledger` by default; `ledger-deep` for an alternating section or an inset/filled sub-panel; `ink-900` for the one deliberately dark surface (footer).
+- **Border:** `border-2 border-ink-900` is the default container boundary; internal subdivisions use `divide-ink-900` (or the softer `ledger-line` for a genuinely minor divider).
+- **Shadow Strategy:** none — see Elevation & Depth.
+- **Internal Padding:** `p-6`–`p-8` for section-level panels, `p-4` for compact list/table cells.
 
 ### Inputs / Fields
-- **Style:** no stroke; a soft `bg-redpen-50/60` fill with `rounded-xl` corners.
-- **Focus:** `focus:ring-2 focus:ring-redpen-400`, no border-color change (there is no border to change).
-- **Error:** message rendered in a `bg-redpen-50` / `text-redpen-700` panel below the field, not a red field outline.
+- **Style:** `border-2 border-ink-900`, `bg-ledger`, `rounded-none`, label above the field in uppercase Plex Mono.
+- **Focus:** `focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30` — the border itself changes color, unlike the retired system's borderless-fill-only focus treatment.
+- **Error:** a `border-2 border-stamp-600 bg-stamp-100` panel with `text-stamp-700` Plex Mono copy below the field, not a red field outline.
 
 ### Navigation
-- **Style:** light sticky bar (`bg-paper/90 backdrop-blur-sm`), a thin `paper-line` bottom hairline. Nav items are sentence-case, semibold, `graphite-700` at rest, `flag-red` on hover, with an animated underline sliding in from the left. Dropdowns are `rounded-2xl` white panels with `shadow-soft-lg`, no border. The register CTA is always the one solid red pill button in the bar.
-- **Mobile:** same token language in a collapsing panel; items become full-width rounded-pill hit targets.
-- **Footer:** the one deliberately dark surface — `graphite-900` background with a `redpen-600` top accent bar, white/`graphite-300` text, red-tinted link hovers.
+- **Style:** `bg-ledger` sticky bar with a `border-b-2 border-ink-900` (no blur, no translucency). Nav items are uppercase Plex Mono, `ink-700` at rest, `stamp-600` on hover. Dropdowns are square-cornered `ledger` panels with a `border-2 border-ink-900`, no shadow.
+- **Mobile:** same token language in a collapsing panel; items remain full-width rectangular hit targets, no rounding.
+- **Footer:** the one deliberately dark surface — `ink-900` background with a `stamp-600` top accent bar (`border-t-4`), `ledger`/`ink-300` text, `stamp-500` link hovers.
 
-### Live competition rounds (signature operate-mode surface)
-The fullscreen, timed competition interfaces (`/o/competition`, `/o/capture-the-problem`, `/o/team-competition`) inherit the same token set — `flag-red` for the active/selected state and progress fill, `redpen-50`/`redpen-100` for "answered" indicators, soft rounded cards for the question and answer panels — but stay functionally restrained per Operate mode: no decorative motion, no pill buttons where a clear rectangular action button reads faster during a timed round, and the anti-cheat warning banner is the one place a saturated full-bleed red band is used outside the marketing CTA sections.
+### Live competition rounds & admin/platform surfaces (Operate mode)
+The fullscreen timed competition interfaces (`/o/competition`, `/o/capture-the-problem`, `/o/team-competition`) and the authenticated admin/teacher surfaces (`/admin`, `/platform/*`) use the same token set and hard-bordered, unrounded, unshadowed component language as the marketing site — `stamp-600` for the active/selected/primary-action state, `ledger-deep` for filled/answered indicators, `border-2 border-ink-900` panels for question/answer/data displays. Per Operate-mode restraint, these surfaces add no decorative motion beyond the shared `.btn-press` hover lift, and the anti-cheat warning banner is the one place outside the marketing closing-CTA section that uses a full-bleed saturated `stamp-600` band.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use `flag-red` as the only saturated accent color across the entire product, including the live competition rounds and teacher/admin surfaces.
-- **Do** build cards as `rounded-2xl`/`rounded-3xl` with `shadow-soft`, never a hard border.
-- **Do** set every button, tab, and badge as `rounded-full`.
-- **Do** keep all text in Plus Jakarta Sans, sentence case, no letter-spacing tricks.
-- **Do** use `redpen-50`-tinted panels (not Tailwind-default blue/green/yellow) to differentiate an info/note/warning callout from the surrounding card.
+- **Do** use `stamp-600`/`stamp-700` as the only saturated accent color across the entire product, including live competition rounds and admin/teacher surfaces.
+- **Do** build every card, panel, button, and input as `rounded-none` with a `border-2 border-ink-900` — never a shadow.
+- **Do** set every button, nav item, tab, tag, and form label in uppercase, letter-tracked IBM Plex Mono.
+- **Do** keep every heading and body paragraph in Alike (serif) — never a sans-serif display face.
+- **Do** reserve `rounded-full` exclusively for the scantron bubble-numeral and rotated stamp/seal signature marks.
+- **Do** use `stamp-100`-filled, `stamp-600`-bordered panels (not Tailwind-default red/blue/green/yellow) for error and alert states.
 
 ### Don't:
-- **Don't** reintroduce `border-2 border-graphite-900` hard outlines, hairline `gap-px` grid tables, or offset block shadows (`shadow-stamp`) — these belong to the two retired directions.
-- **Don't** use Tailwind-default `blue-*`, `green-*`, `yellow-*`, or `gray-*` utility colors anywhere; every color must resolve to a `redpen-*`, `graphite-*`, or `paper*` token.
-- **Don't** render white text on `bg-grid-blueprint` or `bg-grid-paper` — both are light gradients now (a holdover dark-hero assumption caused several white-on-near-white bugs during this redesign).
-- **Don't** use uppercase-tracked labels, kicker/eyebrow rows above headings, or `font-serif italic` — all are tells of an earlier pass and read as inconsistent against the rest of the product.
+- **Don't** reintroduce any `redpen-*`, `graphite-*`, `paper-*`, or `blueprint-*` token, `shadow-soft`/`shadow-soft-lg`/`shadow-red-glow`, or Plus Jakarta Sans — all belong to the two retired directions.
+- **Don't** use Tailwind-default `blue-*`, `green-*`, `yellow-*`, `amber-*`, or `gray-*` utility colors anywhere; every color must resolve to a `ledger-*`, `ink-*`, or `stamp-*` token.
+- **Don't** round a card, button, input, or panel corner (`rounded-lg`/`xl`/`2xl`/`3xl`) — the system is sharp-cornered by design outside the named circular signature marks.
+- **Don't** set interactive labels or nav items in sentence case — uppercase-tracked Plex Mono is the rule here, not the exception it was in the retired system.
+- **Don't** add a `box-shadow` to anything. Depth is a border or a background-tone shift, never a shadow.

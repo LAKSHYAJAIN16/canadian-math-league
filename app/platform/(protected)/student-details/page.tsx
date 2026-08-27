@@ -12,8 +12,8 @@ export default async function StudentDetailsPage() {
   const school = await getSchoolWithTeams(claims.schoolId)
   if (!school) {
     return (
-      <div className="bg-redpen-50 rounded-2xl p-4">
-        <p className="text-sm text-redpen-700">Team data not found.</p>
+      <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+        <p className="font-mono text-sm text-stamp-700">Team data not found.</p>
       </div>
     )
   }
@@ -21,8 +21,8 @@ export default async function StudentDetailsPage() {
   return (
     <div className="space-y-8 p-6">
       <div>
-        <h1 className="text-2xl font-bold text-graphite-900">Student Join Codes</h1>
-        <p className="text-sm text-graphite-600 mt-1">
+        <h1 className="font-sans text-2xl text-ink-900">Student join codes</h1>
+        <p className="text-sm text-ink-700 mt-1">
           Share each student&apos;s code with them — they&apos;ll enter it at{' '}
           <span className="font-mono">/join</span> to access the competition.
         </p>
@@ -33,25 +33,25 @@ export default async function StudentDetailsPage() {
           team.members.map((member) => (
             <div
               key={member.id}
-              className="bg-paper p-4 rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow"
+              className="border-2 border-ink-900 bg-ledger p-4"
             >
-              <div className="flex items-center justify-between mb-2 p-2 bg-redpen-50/60 rounded-xl">
-                <span className="text-graphite-900 text-lg font-extrabold select-all">
+              <div className="flex items-center justify-between mb-2 p-2 bg-ledger-deep">
+                <span className="font-mono text-ink-900 text-lg font-bold tracking-wide select-all">
                   {member.joinCode}
                 </span>
                 <CopyCodeButton code={member.joinCode} />
               </div>
-              <div className="text-graphite-700 p-2">{member.name}</div>
+              <div className="text-ink-700 p-2">{member.name}</div>
             </div>
           ))
         )}
       </div>
 
-      <div className="bg-redpen-50 p-6 rounded-2xl">
-        <h3 className="text-lg font-bold text-graphite-900 mb-3">Confused?</h3>
-        <p className="text-graphite-700">
+      <div className="border-2 border-ink-900 bg-ledger-deep p-6">
+        <h3 className="font-sans text-lg text-ink-900 mb-3">Confused?</h3>
+        <p className="text-ink-700">
           We understand. It&apos;s a lot to take in. Click{' '}
-          <a href="/administering-contests" className="text-redpen-600 font-semibold hover:text-redpen-700">
+          <a href="/administering-contests" className="text-stamp-600 font-semibold hover:text-stamp-700">
             here
           </a>{' '}
           to learn more.

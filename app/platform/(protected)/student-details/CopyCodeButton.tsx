@@ -15,12 +15,12 @@ export function CopyCodeButton({ code }: { code: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="relative text-graphite-600 hover:text-blueprint-700 transition-colors"
+      className="relative text-ink-700 hover:text-stamp-600 transition-colors"
       aria-label="Copy join code"
     >
       <FiCopy className="w-5 h-5" />
       {copied && (
-        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-graphite-900 text-white text-xs px-2 py-1 rounded-lg whitespace-nowrap">
+        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-ink-900 text-ledger font-mono text-xs px-2 py-1 whitespace-nowrap">
           Copied!
         </span>
       )}
