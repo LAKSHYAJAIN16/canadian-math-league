@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
 import { db } from '@/lib/firebase/client'
 import { useStudentSession } from '@/lib/client/useStudentSession'
 import { useRoundTiming } from '@/lib/client/useRoundTiming'
@@ -50,6 +50,14 @@ export default function CaptureTheProblemPage() {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [result, setResult] = useState<{ correctAnswers: number; totalQuestions: number } | null>(null)
 
+  // Tracks the problem currently being typed into, so an incoming snapshot
+  // from a teammate's edit never overwrites a keystroke that hasn't landed
+  // in Firestore yet.
+  const activeProblemRef = useRef<number | null>(null)
+  // Values changed locally but not yet flushed to Firestore (debounced).
+  const pendingRef = useRef<Record<number, string>>({})
+  const flushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 1000)
     return () => clearInterval(timer)
@@ -70,12 +78,72 @@ export default function CaptureTheProblemPage() {
     }
   }, [session])
 
+  // Hydrate from — and stay live-synced with — the team's shared answer
+  // sheet, so a refresh or a teammate joining mid-round sees real progress
+  // instead of a blank form, and one member's typing shows up for the rest
+  // of the team without anyone needing to reload.
+  useEffect(() => {
+    if (!session?.groupId) return
+    const answersRef = doc(db, 'groups', session.groupId, 'teamState', session.teamId, 'private', 'capture_the_problem')
+    const unsubscribe = onSnapshot(answersRef, (snap) => {
+      const remote = (snap.data()?.answers as Record<string, string>) ?? {}
+      setAnswers((prev) => {
+        const next: Record<number, string> = { ...prev, ...remote }
+        const active = activeProblemRef.current
+        if (active != null && active in pendingRef.current) {
+          next[active] = pendingRef.current[active]
+        }
+        return next
+      })
+    })
+    return unsubscribe
+  }, [session])
+
+  const flushPending = useCallback(async () => {
+    if (flushTimerRef.current) {
+      clearTimeout(flushTimerRef.current)
+      flushTimerRef.current = null
+    }
+    const pending = pendingRef.current
+    const ids = Object.keys(pending)
+    if (ids.length === 0 || !session?.groupId) return
+    pendingRef.current = {}
+
+    const answersRef = doc(db, 'groups', session.groupId, 'teamState', session.teamId, 'private', 'capture_the_problem')
+    const update: Record<string, string> = { roundId: 'capture_the_problem' }
+    for (const id of ids) {
+      update[`answers.${id}`] = pending[Number(id)]
+    }
+    await setDoc(answersRef, update, { merge: true }).catch(() => {})
+  }, [session])
+
+  const updateAnswer = useCallback(
+    (problemId: number, value: string) => {
+      setAnswers((prev) => ({ ...prev, [problemId]: value }))
+      pendingRef.current[problemId] = value
+      if (flushTimerRef.current) clearTimeout(flushTimerRef.current)
+      flushTimerRef.current = setTimeout(() => {
+        flushPending()
+      }, 500)
+    },
+    [flushPending]
+  )
+
+  const goToProblem = useCallback(
+    (n: number) => {
+      flushPending()
+      setCurrentProblem(n)
+    },
+    [flushPending]
+  )
+
   const handleSubmit = useCallback(
     async (event?: React.FormEvent) => {
       event?.preventDefault()
       if (hasSubmitted) return
       setIsSubmitting(true)
       try {
+        await flushPending()
         const response = await fetch('/api/rounds/capture-the-problem/submit', { method: 'POST' })
         const data = await response.json()
         setResult({ correctAnswers: data.correctCount ?? data.correctAnswers ?? 0, totalQuestions: data.totalQuestions ?? PROBLEMS.length })
@@ -86,7 +154,7 @@ export default function CaptureTheProblemPage() {
         setIsSubmitting(false)
       }
     },
-    [hasSubmitted]
+    [hasSubmitted, flushPending]
   )
 
   useEffect(() => {
@@ -98,10 +166,10 @@ export default function CaptureTheProblemPage() {
 
   if (sessionLoading || !session || !timing) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-paper">
+      <div className="min-h-screen flex items-center justify-center bg-ledger">
         <div className="text-center">
-          <Loader2 className="h-12 w-12 text-redpen-600 animate-spin mx-auto mb-4" />
-          <p className="text-graphite-600">Loading competition...</p>
+          <Loader2 className="h-12 w-12 text-stamp-600 animate-spin mx-auto mb-4" />
+          <p className="font-mono text-sm text-ink-700">Loading competition...</p>
         </div>
       </div>
     )
@@ -113,44 +181,44 @@ export default function CaptureTheProblemPage() {
 
   if (beforeStart) {
     return (
-      <div className="min-h-screen bg-paper p-4 md:p-6">
-        <div className="max-w-4xl mx-auto bg-paper rounded-xl shadow-sm p-6 md:p-8 text-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-graphite-900 mb-4 md:mb-6">
+      <div className="min-h-screen bg-ledger p-4 md:p-6">
+        <div className="max-w-4xl mx-auto border-2 border-ink-900 bg-ledger p-6 md:p-8 text-center">
+          <h1 className="font-sans text-2xl md:text-3xl text-ink-900 mb-4 md:mb-6">
             Welcome to Capture the Problem
           </h1>
-          <div className="bg-paper-ink inline-flex items-center px-4 md:px-6 py-2 md:py-3 rounded-full mb-4 md:mb-6">
-            <Clock className="h-4 w-4 md:h-5 md:w-5 text-graphite-600 mr-2" />
-            <span className="text-sm md:text-base">Starting in {formatTime(timing.startMs - now)}</span>
+          <div className="bg-ledger-deep inline-flex items-center px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6">
+            <Clock className="h-4 w-4 md:h-5 md:w-5 text-ink-700 mr-2" />
+            <span className="font-mono text-sm md:text-base text-ink-900">Starting in {formatTime(timing.startMs - now)}</span>
           </div>
-          <div className="bg-redpen-50 p-4 rounded-lg mb-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-redpen-700 mb-2">{teamName}</h2>
-            <p className="text-redpen-700">{groupName}</p>
-            {conference && <p className="text-redpen-600 text-sm">{conference} Conference</p>}
+          <div className="border-2 border-stamp-600 bg-stamp-100 p-4 mb-6">
+            <h2 className="font-sans text-xl md:text-2xl text-stamp-700 mb-2">{teamName}</h2>
+            <p className="font-mono text-sm text-stamp-700">{groupName}</p>
+            {conference && <p className="font-mono text-sm text-stamp-600">{conference} Conference</p>}
           </div>
 
           <div className="max-w-md mx-auto">
             <div className="flex items-center justify-center mb-3">
-              <Users className="h-5 w-5 text-graphite-600 mr-2" />
-              <h3 className="text-lg font-medium text-graphite-700">Teams in your group</h3>
+              <Users className="h-5 w-5 text-ink-700 mr-2" />
+              <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700">Teams in your group</h3>
             </div>
             <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
               {otherTeams.length > 0 ? (
                 otherTeams.map((team) => (
                   <div
                     key={team.teamId}
-                    className={`flex items-center p-3 rounded-lg border ${
-                      team.online ? 'border-redpen-200 bg-redpen-50' : 'border-paper-line bg-paper'
+                    className={`flex items-center p-3 border-2 ${
+                      team.online ? 'border-stamp-500 bg-stamp-100' : 'border-ink-900 bg-ledger'
                     }`}
                   >
-                    <div className={`h-2.5 w-2.5 rounded-full mr-3 ${team.online ? 'bg-redpen-500' : 'bg-graphite-300'}`} />
+                    <div className={`h-2.5 w-2.5 rounded-full mr-3 ${team.online ? 'bg-stamp-500' : 'bg-ink-300'}`} />
                     <div className="flex-1 text-left">
-                      <span className="font-medium text-graphite-900">{team.name}</span>
-                      <span className="text-graphite-600 text-sm ml-2">({team.schoolName})</span>
+                      <span className="font-medium text-ink-900">{team.name}</span>
+                      <span className="text-ink-700 text-sm ml-2">({team.schoolName})</span>
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="text-graphite-600 py-4">No other teams in your group yet</div>
+                <div className="font-mono text-sm text-ink-700 py-4">No other teams in your group yet</div>
               )}
             </div>
           </div>
@@ -161,20 +229,20 @@ export default function CaptureTheProblemPage() {
 
   if (showingRules) {
     return (
-      <div className="max-w-4xl mx-auto bg-paper rounded-xl shadow-sm p-6 md:p-8 mt-6">
+      <div className="max-w-4xl mx-auto border-2 border-ink-900 bg-ledger p-6 md:p-8 mt-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-graphite-900">Competition Rules</h1>
-          <div className="bg-redpen-100 text-redpen-700 px-4 py-2 rounded-full text-sm font-medium">{teamName}</div>
+          <h1 className="font-sans text-2xl md:text-3xl text-ink-900">Competition rules</h1>
+          <div className="border-2 border-stamp-600 bg-stamp-100 text-stamp-700 px-4 py-2 font-mono text-sm font-semibold uppercase tracking-wide">{teamName}</div>
         </div>
 
-        <div className="bg-paper-ink inline-flex items-center px-4 md:px-6 py-2 rounded-full mb-6">
-          <Clock className="h-4 w-4 md:h-5 md:w-5 text-graphite-600 mr-2" />
-          <span className="text-sm md:text-base">Starting in {formatTime(rulesEndMs - now)}</span>
+        <div className="bg-ledger-deep inline-flex items-center px-4 md:px-6 py-2 mb-6">
+          <Clock className="h-4 w-4 md:h-5 md:w-5 text-ink-700 mr-2" />
+          <span className="font-mono text-sm md:text-base text-ink-900">Starting in {formatTime(rulesEndMs - now)}</span>
         </div>
 
-        <div className="bg-paper p-6 rounded-lg border border-paper-line">
-          <h3 className="text-lg font-semibold text-graphite-900 mb-4">How it works:</h3>
-          <ul className="space-y-3 text-graphite-700">
+        <div className="bg-ledger p-6 border-2 border-ink-900">
+          <h3 className="font-sans text-lg text-ink-900 mb-4">How it works:</h3>
+          <ul className="space-y-3 text-ink-700">
             <li>You&apos;ll have {Math.round((timing.endMs - rulesEndMs) / 60000)} minutes to solve {PROBLEMS.length} problems.</li>
             <li>You can navigate freely between problems.</li>
             <li>Your answers are saved automatically as you type.</li>
@@ -187,11 +255,11 @@ export default function CaptureTheProblemPage() {
 
   if (hasSubmitted) {
     return (
-      <div className="max-w-2xl mx-auto mt-20 bg-paper rounded-xl shadow-sm p-8 text-center">
-        <CheckCircle className="h-16 w-16 text-redpen-600 mx-auto mb-4" />
-        <h1 className="text-3xl font-bold text-graphite-900 mb-2">Submitted!</h1>
+      <div className="max-w-2xl mx-auto mt-20 border-2 border-ink-900 bg-ledger p-8 text-center">
+        <CheckCircle className="h-16 w-16 text-stamp-600 mx-auto mb-4" />
+        <h1 className="font-sans text-3xl text-ink-900 mb-2">Submitted!</h1>
         {result && (
-          <p className="text-lg text-graphite-700">
+          <p className="text-lg text-ink-700">
             Your team got {result.correctAnswers} out of {result.totalQuestions} correct.
           </p>
         )}
@@ -200,18 +268,18 @@ export default function CaptureTheProblemPage() {
   }
 
   return (
-    <div className="min-h-screen bg-paper p-4 md:p-6">
+    <div className="min-h-screen bg-ledger p-4 md:p-6">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-paper rounded-xl shadow-sm overflow-hidden mb-6">
-          <div className="px-6 py-4 border-b border-paper-line bg-paper flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-2 border-ink-900 bg-ledger overflow-hidden mb-6">
+          <div className="px-6 py-4 border-b-2 border-ink-900 bg-ledger flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center mb-3 sm:mb-0">
-              <h1 className="text-xl font-bold text-graphite-900">Capture the Problem</h1>
-              <span className="ml-3 px-3 py-1 bg-redpen-100 text-redpen-700 text-xs font-medium rounded-full">
+              <h1 className="font-sans text-xl text-ink-900">Capture the Problem</h1>
+              <span className="ml-3 px-3 py-1 border-2 border-stamp-600 bg-stamp-100 text-stamp-700 font-mono text-xs font-medium uppercase tracking-wide">
                 {conference}
               </span>
             </div>
-            <div className="bg-paper-ink px-4 py-2 rounded-lg text-base sm:text-lg flex items-center">
-              <Clock className="h-4 w-4 text-graphite-600 mr-2 flex-shrink-0" />
+            <div className="scoreboard-digit bg-ledger-deep px-4 py-2 font-mono text-base sm:text-lg flex items-center text-ink-900">
+              <Clock className="h-4 w-4 text-ink-700 mr-2 flex-shrink-0" />
               <span>{formatTime(timing.endMs - now)}</span>
             </div>
           </div>
@@ -219,45 +287,34 @@ export default function CaptureTheProblemPage() {
           <div className="p-6">
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-graphite-700">
+                <span className="font-mono text-sm font-medium text-ink-700">
                   Problem {currentProblem} of {PROBLEMS.length}
                 </span>
-                <span className="text-sm text-graphite-600">
+                <span className="font-mono text-sm text-ink-700">
                   {Object.keys(answers).length}/{PROBLEMS.length} answered
                 </span>
               </div>
-              <div className="w-full bg-paper-line rounded-full h-2">
+              <div className="w-full bg-ledger-deep border-2 border-ink-900 h-2">
                 <div
-                  className="bg-redpen-600 h-2 rounded-full transition-all duration-300"
+                  className="bg-stamp-600 h-full transition-all duration-300"
                   style={{ width: `${(Object.keys(answers).length / PROBLEMS.length) * 100}%` }}
                 />
               </div>
             </div>
 
-            <div className="bg-paper p-6 rounded-lg mb-6 border border-paper-line">
-              <h3 className="text-xl font-medium text-graphite-900 mb-4">Problem {currentProblem}</h3>
-              <div className="text-lg text-graphite-700">{PROBLEMS[currentProblem - 1]?.text}</div>
+            <div className="bg-ledger-deep p-6 mb-6 border-2 border-ink-900">
+              <h3 className="font-sans text-xl text-ink-900 mb-4">Problem {currentProblem}</h3>
+              <div className="text-lg text-ink-700">{PROBLEMS[currentProblem - 1]?.text}</div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
                 value={answers[currentProblem] ?? ''}
-                onChange={(e) => {
-                  const value = e.target.value
-                  setAnswers((prev) => {
-                    const updated = { ...prev, [currentProblem]: value }
-                    if (session.groupId) {
-                      setDoc(
-                        doc(db, 'groups', session.groupId, 'teamState', session.teamId, 'private', 'capture_the_problem'),
-                        { roundId: 'capture_the_problem', answers: updated },
-                        { merge: true }
-                      ).catch(() => {})
-                    }
-                    return updated
-                  })
-                }}
-                className="w-full px-4 py-3 border border-graphite-300 rounded-lg focus:ring-2 focus:ring-redpen-500 focus:border-redpen-500 text-base"
+                onChange={(e) => updateAnswer(currentProblem, e.target.value)}
+                onFocus={() => { activeProblemRef.current = currentProblem }}
+                onBlur={() => { activeProblemRef.current = null }}
+                className="w-full px-4 py-3 border-2 border-ink-900 bg-ledger focus:outline-none focus:ring-2 focus:ring-stamp-600/30 focus:border-stamp-600 text-base"
                 placeholder="Type your answer here..."
                 autoFocus
               />
@@ -267,8 +324,8 @@ export default function CaptureTheProblemPage() {
                   {currentProblem > 1 && (
                     <button
                       type="button"
-                      onClick={() => setCurrentProblem((p) => Math.max(1, p - 1))}
-                      className="px-5 py-2.5 border border-graphite-300 rounded-lg text-graphite-700 hover:bg-paper transition-colors"
+                      onClick={() => goToProblem(Math.max(1, currentProblem - 1))}
+                      className="btn-press px-5 py-2.5 border-2 border-ink-900 font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 hover:bg-ink-900 hover:text-ledger transition-colors"
                     >
                       Previous
                     </button>
@@ -278,8 +335,8 @@ export default function CaptureTheProblemPage() {
                   {currentProblem < PROBLEMS.length ? (
                     <button
                       type="button"
-                      onClick={() => setCurrentProblem((p) => Math.min(PROBLEMS.length, p + 1))}
-                      className="px-6 py-2.5 bg-redpen-600 hover:bg-redpen-700 text-white font-medium rounded-lg transition-colors"
+                      onClick={() => goToProblem(Math.min(PROBLEMS.length, currentProblem + 1))}
+                      className="btn-press px-6 py-2.5 bg-stamp-600 hover:bg-stamp-700 text-ledger font-mono text-xs font-semibold uppercase tracking-wide transition-colors"
                     >
                       Next
                     </button>
@@ -287,9 +344,9 @@ export default function CaptureTheProblemPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-8 py-2.5 font-medium rounded-lg bg-redpen-600 hover:bg-redpen-700 text-white transition-colors disabled:opacity-50"
+                      className="btn-press px-8 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide bg-stamp-600 hover:bg-stamp-700 text-ledger transition-colors disabled:opacity-50"
                     >
-                      {isSubmitting ? 'Submitting...' : 'Submit All Answers'}
+                      {isSubmitting ? 'Submitting...' : 'Submit all answers'}
                     </button>
                   )}
                 </div>
@@ -298,19 +355,19 @@ export default function CaptureTheProblemPage() {
           </div>
         </div>
 
-        <div className="bg-paper rounded-xl shadow-sm p-4 mb-6">
-          <h3 className="text-sm font-medium text-graphite-700 mb-3">Jump to problem:</h3>
+        <div className="border-2 border-ink-900 bg-ledger p-4 mb-6">
+          <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-3">Jump to problem:</h3>
           <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
             {PROBLEMS.map((_, index) => (
               <button
                 key={index + 1}
-                onClick={() => setCurrentProblem(index + 1)}
-                className={`w-full aspect-square flex items-center justify-center rounded-md text-sm font-medium transition-colors ${
+                onClick={() => goToProblem(index + 1)}
+                className={`w-full aspect-square flex items-center justify-center font-mono text-sm font-medium transition-colors border-2 ${
                   currentProblem === index + 1
-                    ? 'bg-redpen-600 text-white'
+                    ? 'bg-stamp-600 text-ledger border-stamp-600'
                     : answers[index + 1]
-                      ? 'bg-redpen-100 text-redpen-700 hover:bg-redpen-200'
-                      : 'bg-paper-ink text-graphite-700 hover:bg-paper-line'
+                      ? 'bg-stamp-100 text-stamp-700 border-stamp-500 hover:bg-stamp-100/70'
+                      : 'bg-ledger-deep text-ink-700 border-ink-900 hover:bg-ledger'
                 }`}
               >
                 {index + 1}
