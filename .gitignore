@@ -13,3 +13,7 @@ secrets/
 
 # local conversation history
 conversation_history.md
+conversation.md
+
+# impeccable design-skill local artifacts (critique snapshots, etc.)
+.impeccable/

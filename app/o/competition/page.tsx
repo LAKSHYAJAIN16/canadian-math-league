@@ -198,27 +198,27 @@ export default function CompetitionPage() {
 
   if (sessionLoading || !session) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-graphite-600">Loading...</p>
+      <div className="min-h-screen flex items-center justify-center bg-ledger">
+        <p className="font-mono text-sm text-ink-700">Loading...</p>
       </div>
     )
   }
 
   if (!isFullscreen) {
     return (
-      <div className="fixed inset-0 bg-paper z-50 flex flex-col items-center justify-center p-4 text-center">
+      <div className="fixed inset-0 bg-ledger z-50 flex flex-col items-center justify-center p-4 text-center">
         <div className="max-w-md">
-          <h1 className="text-3xl font-bold mb-6">Fullscreen Required</h1>
-          <p className="text-lg text-graphite-700 mb-8">
+          <h1 className="font-sans text-3xl text-ink-900 mb-6">Fullscreen required</h1>
+          <p className="text-lg text-ink-700 mb-8">
             For the best competition experience, please enable fullscreen mode. This helps
             prevent accidental navigation and ensures you can focus on the competition.
           </p>
           <button
             onClick={requestFullscreen}
-            className="px-8 py-3 bg-redpen-600 text-white rounded-lg hover:bg-redpen-700 transition-colors flex items-center mx-auto"
+            className="btn-press px-8 py-3 font-mono text-sm font-semibold uppercase tracking-wide bg-stamp-600 text-ledger hover:bg-stamp-700 transition-colors flex items-center mx-auto"
           >
             <Maximize2 className="mr-2" size={20} />
-            Enter Fullscreen
+            Enter fullscreen
           </button>
         </div>
       </div>
@@ -226,10 +226,10 @@ export default function CompetitionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-paper flex flex-col md:flex-row">
+    <div className="min-h-screen bg-ledger flex flex-col md:flex-row">
       {showWarning && (
-        <div className="fixed bottom-0 left-0 right-0 bg-redpen-600 text-white p-4 text-center z-50">
-          <p className="text-xl font-medium">I have my eye on you...</p>
+        <div className="fixed bottom-0 left-0 right-0 bg-stamp-600 text-ledger p-4 text-center z-50">
+          <p className="font-sans text-xl">I have my eye on you...</p>
           <p className="text-md">
             Attempts to cheat will result in immediate disqualification.
           </p>
@@ -238,20 +238,20 @@ export default function CompetitionPage() {
 
       <button
         onClick={() => setIsTeamVisible(!isTeamVisible)}
-        className="fixed left-0 top-1/2 -translate-y-1/2 bg-paper border-r border-t border-b border-paper-line rounded-r-lg p-2 shadow-md z-10 hover:bg-paper transition-colors"
+        className="fixed left-0 top-1/2 -translate-y-1/2 bg-ledger border-2 border-ink-900 p-2 z-10 hover:bg-ledger-deep transition-colors"
       >
         {isTeamVisible ? <ChevronLeft size={24} /> : <Users size={24} />}
       </button>
 
       <div
-        className={`fixed left-0 top-0 h-full bg-paper border-r border-paper-line transition-all duration-300 ease-in-out z-20 ${
+        className={`fixed left-0 top-0 h-full bg-ledger border-r-2 border-ink-900 transition-all duration-300 ease-in-out z-20 ${
           isTeamVisible ? 'w-80' : 'w-0 opacity-0 invisible'
         }`}
       >
         <div className="p-6 h-full overflow-y-auto">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-graphite-900">Your Team</h2>
-            <button onClick={() => setIsTeamVisible(false)} className="text-graphite-400 hover:text-graphite-600">
+            <h2 className="font-sans text-xl text-ink-900">Your team</h2>
+            <button onClick={() => setIsTeamVisible(false)} className="text-ink-500 hover:text-ink-700">
               <ChevronRight size={20} />
             </button>
           </div>
@@ -259,12 +259,12 @@ export default function CompetitionPage() {
           <div className="space-y-3">
             {teammates.length > 0 ? (
               teammates.map((mate) => (
-                <div key={mate.id} className="p-3 border rounded-lg hover:bg-paper transition-colors">
-                  <div className="font-medium">{mate.name}</div>
+                <div key={mate.id} className="p-3 border-2 border-ink-900 hover:bg-ledger-deep transition-colors">
+                  <div className="font-semibold text-ink-900">{mate.name}</div>
                 </div>
               ))
             ) : (
-              <p className="text-graphite-600">No other team members found</p>
+              <p className="font-mono text-sm text-ink-700">No other team members found</p>
             )}
           </div>
         </div>
@@ -276,33 +276,33 @@ export default function CompetitionPage() {
         }`}
       >
         {!isCompetitionStarted ? (
-          <div className="max-w-3xl w-full mt-[22%] bg-paper rounded-xl shadow-sm p-8 text-center">
-            <h1 className="text-6xl font-bold text-graphite-900 mb-2">Welcome, {session.name}!</h1>
-            <p className="text-2xl text-graphite-600 mb-8">The competition starts in:</p>
+          <div className="max-w-3xl w-full mt-[22%] border-2 border-ink-900 bg-ledger p-8 text-center">
+            <h1 className="font-sans text-6xl text-ink-900 mb-2">Welcome, {session.name}!</h1>
+            <p className="text-2xl text-ink-700 mb-8">The competition starts in:</p>
             <div className="grid grid-cols-4 gap-1 mb-8">
               {(['days', 'hours', 'minutes', 'seconds'] as const).map((unit) => (
                 <div className="px-1" key={unit}>
-                  <div className="text-5xl font-bold text-graphite-900 leading-none">
+                  <div className="scoreboard-digit font-sans text-5xl text-ink-900 leading-none">
                     {timeLeft[unit].toString().padStart(2, '0')}
                   </div>
-                  <div className="text-graphite-600 text-xs">{unit}</div>
+                  <div className="font-mono text-xs uppercase tracking-wide text-ink-700">{unit}</div>
                 </div>
               ))}
             </div>
           </div>
         ) : showRules ? (
           <div className="w-full max-w-4xl mt-[5%]">
-            <h1 className="text-4xl font-bold text-graphite-900 text-center mb-8">Round 1 : Individual</h1>
-            <div className="bg-paper rounded-xl shadow-sm p-8 mt-8">
-              <h2 className="text-2xl font-bold text-graphite-900 mb-6">Round 1 Rules</h2>
-              <ul className="text-left space-y-4 text-graphite-700 text-lg">
+            <h1 className="font-sans text-4xl text-ink-900 text-center mb-8">Round 1: Individual</h1>
+            <div className="border-2 border-ink-900 bg-ledger p-8 mt-8">
+              <h2 className="font-sans text-2xl text-ink-900 mb-6">Round 1 rules</h2>
+              <ul className="text-left space-y-4 text-ink-700 text-lg">
                 <li>There are 20 multiple choice questions and 45 minutes to answer them.</li>
                 <li>Each correct answer is worth 1 point, there are no penalties for incorrect answers.</li>
                 <li>No calculators or external aids are allowed.</li>
               </ul>
-              <div className="mt-8 p-4 bg-redpen-50 rounded-2xl">
-                <p className="text-redpen-700">
-                  <span className="font-semibold">On Cheating:</span> Any cheating will result in
+              <div className="mt-8 p-4 border-2 border-stamp-600 bg-stamp-100">
+                <p className="font-mono text-sm text-stamp-700">
+                  <span className="font-semibold">On cheating:</span> Any cheating will result in
                   immediate disqualification of the entire team.
                 </p>
               </div>
@@ -310,38 +310,38 @@ export default function CompetitionPage() {
           </div>
         ) : testCompleted ? (
           <div className="w-full max-w-4xl mx-auto p-8 text-center">
-            <div className="mt-[20%] bg-paper rounded-xl shadow-sm p-8">
-              <h1 className="text-5xl font-bold text-redpen-600 mb-4">Test Submitted Successfully!</h1>
-              <p className="text-xl text-graphite-700 mb-2">Waiting for the next round...</p>
-              <div className="text-5xl font-bold text-graphite-900">
+            <div className="mt-[20%] border-2 border-ink-900 bg-ledger p-8">
+              <h1 className="font-sans text-5xl text-stamp-600 mb-4">Test submitted successfully!</h1>
+              <p className="text-xl text-ink-700 mb-2">Waiting for the next round...</p>
+              <div className="scoreboard-digit font-sans text-5xl text-ink-900">
                 {String(roundTimeLeft.minutes).padStart(2, '0')}:{String(roundTimeLeft.seconds).padStart(2, '0')}
               </div>
-              <div className="bg-redpen-50 p-4 rounded-xl mt-6">
-                <p className="text-lg text-redpen-700">
+              <div className="border-2 border-stamp-600 bg-stamp-100 p-4 mt-6">
+                <p className="font-mono text-sm text-stamp-700">
                   <span className="font-semibold">Note:</span> The next round is team-based and will
                   only load on one team member&apos;s screen.
                 </p>
                 {teamHost ? (
                   teamHost.id === session.memberId ? (
-                    <p className="mt-2 text-redpen-700 font-semibold">
+                    <p className="mt-2 font-mono text-sm text-stamp-700 font-semibold">
                       You are the team host! The next round will load on your screen.
                     </p>
                   ) : (
-                    <p className="mt-2 text-redpen-700">
-                      Team Host: <span className="font-bold">{teamHost.name}</span>
+                    <p className="mt-2 font-mono text-sm text-stamp-700">
+                      Team host: <span className="font-bold">{teamHost.name}</span>
                     </p>
                   )
                 ) : (
-                  <p className="mt-2 text-redpen-700">Determining team host...</p>
+                  <p className="mt-2 font-mono text-sm text-stamp-700">Determining team host...</p>
                 )}
               </div>
             </div>
           </div>
         ) : (
           <div className="w-full max-w-6xl mx-auto p-6 flex flex-col h-[calc(100vh-8rem)]">
-            <div className="w-full bg-paper p-4 rounded-lg shadow-sm border border-paper-line mb-6">
+            <div className="w-full border-2 border-ink-900 bg-ledger p-4 mb-6">
               <div className="flex items-center">
-                <div className="text-2xl font-bold text-graphite-900 whitespace-nowrap mr-4">
+                <div className="scoreboard-digit font-sans text-2xl text-ink-900 whitespace-nowrap mr-4">
                   {String(roundTimeLeft.minutes).padStart(2, '0')}:{String(roundTimeLeft.seconds).padStart(2, '0')}
                 </div>
                 <div className="flex-1 flex justify-center">
@@ -350,12 +350,12 @@ export default function CompetitionPage() {
                       <button
                         key={index}
                         onClick={() => setCurrentQuestionIndex(index)}
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200 ${
+                        className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-sm font-medium transition-colors duration-200 ${
                           currentQuestionIndex === index
-                            ? 'bg-redpen-600 text-white'
+                            ? 'bg-stamp-600 text-ledger'
                             : q.userAnswer !== undefined
-                              ? 'bg-redpen-100 text-redpen-700 border-2 border-redpen-300'
-                              : 'bg-paper text-graphite-700 border-2 border-paper-line hover:bg-paper'
+                              ? 'bg-stamp-100 text-stamp-700 border-2 border-stamp-500'
+                              : 'bg-ledger text-ink-700 border-2 border-ink-900 hover:bg-ledger-deep'
                         }`}
                       >
                         {index + 1}
@@ -367,18 +367,18 @@ export default function CompetitionPage() {
             </div>
 
             <div className="flex-1 flex flex-col md:flex-row gap-8">
-              <div className="w-full md:w-1/2 bg-paper p-6 rounded-lg shadow-sm border border-paper-line">
-                <h2 className="text-2xl font-bold mb-6">
+              <div className="w-full md:w-1/2 border-2 border-ink-900 bg-ledger p-6">
+                <h2 className="font-sans text-2xl text-ink-900 mb-6">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </h2>
-                <p className="text-lg">{questions[currentQuestionIndex]?.question}</p>
+                <p className="text-lg text-ink-900">{questions[currentQuestionIndex]?.question}</p>
 
                 <div className="mt-auto pt-6">
-                  <div className="flex justify-between border-t border-paper-line pt-4">
+                  <div className="flex justify-between border-t-2 border-ink-900 pt-4">
                     <button
                       onClick={() => setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))}
                       disabled={currentQuestionIndex === 0}
-                      className="px-6 py-2 bg-paper-ink text-graphite-700 rounded-lg hover:bg-paper-line disabled:opacity-50 transition-colors duration-200"
+                      className="btn-press px-6 py-2 font-mono text-xs font-semibold uppercase tracking-wide border-2 border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-ledger disabled:opacity-50 transition-colors duration-200"
                     >
                       Previous
                     </button>
@@ -390,39 +390,39 @@ export default function CompetitionPage() {
                           handleTestSubmission()
                         }
                       }}
-                      className="px-8 py-2 bg-redpen-600 text-white rounded-lg hover:bg-redpen-700 transition-colors duration-200"
+                      className="btn-press px-8 py-2 font-mono text-xs font-semibold uppercase tracking-wide bg-stamp-600 text-ledger hover:bg-stamp-700 transition-colors duration-200"
                     >
-                      {currentQuestionIndex === questions.length - 1 ? 'Submit Test' : 'Next'}
+                      {currentQuestionIndex === questions.length - 1 ? 'Submit test' : 'Next'}
                     </button>
                   </div>
                 </div>
               </div>
 
               <div className="w-full md:w-1/2">
-                <div className="bg-paper p-6 rounded-lg shadow-sm border border-paper-line sticky top-6">
-                  <h3 className="text-xl font-semibold mb-6">Select your answer:</h3>
+                <div className="border-2 border-ink-900 bg-ledger p-6 sticky top-6">
+                  <h3 className="font-sans text-xl text-ink-900 mb-6">Select your answer:</h3>
                   <div className="space-y-4">
                     {questions[currentQuestionIndex]?.options?.map((option, index) => (
                       <div
                         key={index}
                         onClick={() => handleAnswerSelection(currentQuestionIndex, index)}
-                        className={`p-4 border rounded-lg transition-colors cursor-pointer ${
+                        className={`p-4 border-2 transition-colors cursor-pointer ${
                           questions[currentQuestionIndex]?.userAnswer === index
-                            ? 'border-redpen-500 bg-redpen-50'
-                            : 'border-paper-line hover:border-redpen-300'
+                            ? 'border-stamp-500 bg-stamp-100'
+                            : 'border-ink-900 hover:border-stamp-500'
                         }`}
                       >
                         <div className="flex items-center">
                           <div
-                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-3 ${
+                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-3 font-mono ${
                               questions[currentQuestionIndex]?.userAnswer === index
-                                ? 'bg-redpen-100 text-redpen-700 border-redpen-500'
-                                : 'border-graphite-300 text-graphite-600'
+                                ? 'bg-stamp-100 text-stamp-700 border-stamp-500'
+                                : 'border-ink-300 text-ink-700'
                             }`}
                           >
                             {String.fromCharCode(65 + index)}
                           </div>
-                          <span>{option}</span>
+                          <span className="text-ink-900">{option}</span>
                         </div>
                       </div>
                     ))}
