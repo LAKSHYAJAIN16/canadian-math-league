@@ -15,7 +15,7 @@ export function CopyCodeButton({ code }: { code: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="relative text-ink-700 hover:text-stamp-600 transition-colors"
+      className="relative text-ink-700 hover:text-stamp-600 transition-colors p-3 -m-3"
       aria-label="Copy join code"
     >
       <FiCopy className="w-5 h-5" />

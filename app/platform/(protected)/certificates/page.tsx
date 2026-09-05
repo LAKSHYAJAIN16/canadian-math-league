@@ -33,6 +33,7 @@ export default function CertificatesPage() {
           </div>
           <input
             type="text"
+            aria-label="Search certificates by student name or certificate ID"
             className="block w-full pl-10 pr-3 py-2.5 border-2 border-ink-900 bg-ledger leading-5 placeholder-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30 sm:text-sm"
             placeholder="Search by student name or certificate ID..."
             value={searchTerm}

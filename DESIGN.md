@@ -13,7 +13,7 @@ colors:
   ink-700:
     value: "#4A4234"
   ink-500:
-    value: "#7A705C"
+    value: "#6D6452"
   ink-300:
     value: "#B4A98C"
   stamp-700:
@@ -107,7 +107,7 @@ The palette is Restrained: a warm paper neutral, a near-black ink neutral, and o
 - **Ledger Line** (`#D9CDA8`): the faintest hairline divider between major page sections where a full `ink-900` border would be too heavy.
 - **Ink 900** (`#211C15`): primary text, all structural borders and dividers, and the one deliberately dark surface (footer). A warm near-black, never pure `#000`.
 - **Ink 700** (`#4A4234`): body copy and secondary text.
-- **Ink 500 / 300** (`#7A705C` / `#B4A98C`): placeholder text, timestamps, muted captions, disabled states.
+- **Ink 500 / 300** (`#6D6452` / `#B4A98C`): placeholder text, timestamps, muted captions, disabled states. Ink 500 is tuned to clear 4.5:1 (WCAG AA) against both `ledger` and `ledger-deep` — don't lighten it back toward the original `#7A705C`, which fell short at 4.25:1.
 
 ### Named Rules
 **The One Stamp Rule.** Stamp red is the only saturated hue in the system, and it marks only what is actionable or official (a button, a live status, a dollar amount, a seal) — never a background wash or a decorative accent.

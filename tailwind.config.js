@@ -61,7 +61,10 @@ module.exports = {
         ink: {
           900: '#211C15',
           700: '#4A4234',
-          500: '#7A705C',
+          // Darkened from #7A705C — the original only hit 4.25:1 on ledger,
+          // just under WCAG AA's 4.5:1 floor for normal-size text. This
+          // clears 5.09:1 on ledger / 4.61:1 on ledger-deep.
+          500: '#6D6452',
           300: '#B4A98C',
         },
         stamp: {
