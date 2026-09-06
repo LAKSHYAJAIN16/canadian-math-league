@@ -70,7 +70,7 @@ export default function CertificatesPage() {
         </p>
       </div>
 
-      <div className="border-2 border-ink-900 bg-ledger overflow-hidden">
+      <div className="border-2 border-ink-900 bg-ledger overflow-x-auto">
         <table className="min-w-full divide-y divide-ink-900">
           <thead className="bg-ledger-deep">
             <tr>
