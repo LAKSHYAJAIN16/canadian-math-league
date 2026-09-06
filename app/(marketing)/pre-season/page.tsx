@@ -32,7 +32,7 @@ export default function PreSeasonPage() {
           </p>
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger">
+        <div className="rounded-3xl shadow-soft bg-ledger">
           <div className="p-6">
             <div className="space-y-6">
 
@@ -40,9 +40,9 @@ export default function PreSeasonPage() {
                 <h2 className="font-sans text-3xl text-ink-900">Group Stage</h2>
                 <div className="mt-2 h-0.5 w-20 bg-stamp-600 mx-auto"></div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {problemSets.map((set) => (
-                  <div key={set.id} className="bg-ledger p-6 flex flex-col">
+                  <div key={set.id} className="bg-ledger rounded-2xl shadow-soft p-6 flex flex-col">
                     <h2 className="font-sans text-xl text-ink-900 mb-3">{set.title}</h2>
                     <p className="text-ink-700 mb-4 flex-grow">{set.description}</p>
                     <div className="mt-auto">
@@ -50,7 +50,7 @@ export default function PreSeasonPage() {
                         href={set.pdfUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-press w-full inline-flex justify-center items-center px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
+                        className="btn-press w-full inline-flex justify-center items-center px-4 py-2.5 rounded-full shadow-stamp-glow font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
                       >
                         <svg className="-ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

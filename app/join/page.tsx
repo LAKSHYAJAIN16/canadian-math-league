@@ -102,7 +102,7 @@ export default function JoinPage() {
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-                <div className="border-2 border-ink-900 bg-ledger py-8 px-6">
+                <div className="rounded-3xl shadow-soft-lg bg-ledger py-8 px-6">
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="joinCode" className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">
@@ -115,14 +115,14 @@ export default function JoinPage() {
                                 required
                                 value={joinCode}
                                 onChange={(e) => setJoinCode(e.target.value)}
-                                className="block w-full px-4 py-3 border-2 border-ink-900 bg-ledger font-mono text-lg tracking-[0.3em] text-center uppercase text-ink-900 placeholder:tracking-normal placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30"
+                                className="block w-full px-4 py-3 rounded-xl bg-ledger-deep/60 font-mono text-lg tracking-[0.3em] text-center uppercase text-ink-900 placeholder:tracking-normal placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40"
                                 placeholder="ABCD12"
                                 autoComplete="off"
                             />
                         </div>
 
                         {error && (
-                            <div className="border-2 border-stamp-600 bg-stamp-100 p-3">
+                            <div className="rounded-xl bg-stamp-100 p-3">
                                 <p className="font-mono text-sm text-stamp-700">{error}</p>
                             </div>
                         )}
@@ -130,7 +130,7 @@ export default function JoinPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className={`btn-press w-full flex justify-center items-center gap-2 py-3.5 px-4 font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            className={`btn-press w-full flex justify-center items-center gap-2 py-3.5 px-4 rounded-full shadow-stamp-glow font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             {isLoading ? 'Joining...' : 'Join Competition'}
                         </button>

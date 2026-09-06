@@ -127,7 +127,7 @@ const Season2025Page = () => {
 
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger border-b-4 border-ink-900 py-16">
+      <section className="bg-ledger py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Page Header */}
           <div className="text-center">
@@ -141,7 +141,7 @@ const Season2025Page = () => {
                 ['minutes', timeLeft.minutes],
                 ['seconds', timeLeft.seconds],
               ] as const).map(([label, value]) => (
-                <div key={label} className="border-2 border-ink-900 px-4 py-3 min-w-[68px]">
+                <div key={label} className="rounded-2xl shadow-soft bg-ledger px-4 py-3 min-w-[68px]">
                   <div className="scoreboard-digit font-mono text-2xl text-ink-900">{value}</div>
                   <div className="font-mono text-[0.625rem] uppercase tracking-wide text-ink-500 mt-1">{label}</div>
                 </div>
@@ -160,9 +160,9 @@ const Season2025Page = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`btn-press px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide border-2 transition-colors ${activeTab === tab
-                  ? 'bg-stamp-600 border-stamp-600 text-ledger'
-                  : 'border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-ledger'
+                className={`btn-press rounded-full px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide transition-colors ${activeTab === tab
+                  ? 'shadow-stamp-glow bg-stamp-600 text-ledger'
+                  : 'shadow-soft hover:shadow-soft-lg bg-ledger text-ink-900 hover:bg-ledger-deep'
                   }`}
               >
                 {tab}
@@ -186,7 +186,7 @@ const Season2025Page = () => {
                       <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-600 text-center mb-2">Western Groups</h3>
 
                       {['A', 'B', 'C', 'D'].map((letter) => (
-                        <div key={letter} className="bg-ledger border-2 border-ink-900 p-2">
+                        <div key={letter} className="bg-ledger rounded-2xl shadow-soft p-2">
                           <h4 className="font-mono text-xs font-semibold text-ink-900 text-center mb-1">Group {letter}</h4>
                           <div className="space-y-0.5">
                             {[0, 1, 2, 3].map((i) => (
@@ -211,7 +211,7 @@ const Season2025Page = () => {
 
                     {/* Western Conference */}
                     <div className="text-center">
-                      <div className="border-2 border-ink-900 bg-ledger p-6">
+                      <div className="rounded-2xl shadow-soft bg-ledger p-6">
                         <h3 className="font-sans text-xl text-ink-900 mb-1">Western Championships</h3>
                         <div className="border-t border-ledger-line pt-2 mt-2">
                           <div className="font-mono text-xs text-stamp-600 font-semibold">Vancouver, BC</div>
@@ -229,7 +229,7 @@ const Season2025Page = () => {
 
                     {/* Championship */}
                     <div className="text-center">
-                      <div className="border-2 border-stamp-600 bg-ledger p-6">
+                      <div className="rounded-2xl shadow-soft-lg bg-ledger p-6">
                         <div className="flex justify-center mb-1">
                           <img src="/logo.png" alt="CML Logo" className="h-20 w-20" />
                         </div>
@@ -250,7 +250,7 @@ const Season2025Page = () => {
 
                     {/* Ontario Conference */}
                     <div className="text-center">
-                      <div className="border-2 border-ink-900 bg-ledger p-6">
+                      <div className="rounded-2xl shadow-soft bg-ledger p-6">
                         <h3 className="font-sans text-xl text-ink-900 mb-1">Ontario Championships</h3>
                         <div className="border-t border-ledger-line pt-2 mt-2">
                           <div className="font-mono text-xs text-stamp-600 font-semibold">Toronto, ON</div>
@@ -274,7 +274,7 @@ const Season2025Page = () => {
                       <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-600 text-center mb-2">Ontario Groups</h3>
 
                       {['E', 'F', 'G', 'H'].map((letter) => (
-                        <div key={letter} className="bg-ledger border-2 border-ink-900 p-2">
+                        <div key={letter} className="bg-ledger rounded-2xl shadow-soft p-2">
                           <h4 className="font-mono text-xs font-semibold text-ink-900 text-center mb-1">Group {letter}</h4>
                           <div className="space-y-0.5">
                             {[0, 1, 2, 3].map((i) => (
@@ -294,7 +294,7 @@ const Season2025Page = () => {
           )}
 
           {activeTab === 'Leaderboard' && (
-            <div className="border-2 border-ink-900 bg-ledger p-10 text-center">
+            <div className="rounded-3xl shadow-soft bg-ledger p-10 text-center">
               <h2 className="font-sans text-2xl text-ink-900 mb-2">Leaderboard</h2>
               <p className="text-ink-700">Season hasn&apos;t started yet! Check back when it does!</p>
             </div>
@@ -302,12 +302,12 @@ const Season2025Page = () => {
 
           {activeTab === 'Qualifying' && (
             <div className="space-y-6">
-              <div className="border-2 border-ink-900 bg-ledger p-6">
+              <div className="rounded-3xl shadow-soft bg-ledger p-6">
                 <h3 className="font-sans text-xl text-ink-900 mb-3">Regional Qualification</h3>
                 <p className="text-ink-700 mb-4">
                   The top teams will qualify for the Regional Stage through the following process:
                 </p>
-                <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+                <div className="rounded-2xl bg-stamp-100 p-4">
                   <h4 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-700 mb-2">12 teams, 6 from each region</h4>
                   <ul className="list-disc list-inside space-y-2 text-ink-700">
                     <li><span className="font-medium text-ink-900">4 Group Champions</span> - Top team from each group</li>
@@ -316,12 +316,12 @@ const Season2025Page = () => {
                 </div>
               </div>
 
-              <div className="border-2 border-ink-900 bg-ledger p-6">
+              <div className="rounded-3xl shadow-soft bg-ledger p-6">
                 <h3 className="font-sans text-xl text-ink-900 mb-3">National Qualification</h3>
                 <p className="text-ink-700 mb-4">
                   The top teams will qualify for the National Stage through the following process:
                 </p>
-                <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+                <div className="rounded-2xl bg-stamp-100 p-4">
                   <h4 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-700 mb-2">6 teams, 3 from each region</h4>
                   <ul className="list-disc list-inside space-y-2 text-ink-700">
                     <li><span className="font-medium text-ink-900">The top 3 teams at each regional tournament will qualify for the national championships.</span></li>
@@ -333,7 +333,7 @@ const Season2025Page = () => {
           )}
 
           {activeTab === 'Statistics' && (
-            <div className="border-2 border-ink-900 bg-ledger p-10 text-center">
+            <div className="rounded-3xl shadow-soft bg-ledger p-10 text-center">
               <h2 className="font-sans text-2xl text-ink-900 mb-2">Statistics</h2>
               <p className="text-ink-700">Season hasn&apos;t started yet! Check back when it does!</p>
             </div>
@@ -345,7 +345,7 @@ const Season2025Page = () => {
                 <div className="mb-10">
                   <h2 className="font-sans text-2xl text-ink-900 mb-5">Group Stage</h2>
                   <div className="flex">
-                    <div className="border-2 border-ink-900 bg-ledger p-4 w-28 text-center">
+                    <div className="rounded-2xl shadow-soft bg-ledger p-4 w-28 text-center">
                       <div className="font-mono text-3xl text-ink-900 mb-1">{groupStageBadge.day}</div>
                       <div className="font-mono text-[0.625rem] text-ink-700 uppercase tracking-wide">{groupStageBadge.monthYear}</div>
                     </div>
@@ -357,14 +357,14 @@ const Season2025Page = () => {
                   <div className="flex space-x-6">
                     <div>
                       <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-3">Western Championships</h3>
-                      <div className="border-2 border-ink-900 bg-ledger p-4 w-28 text-center">
+                      <div className="rounded-2xl shadow-soft bg-ledger p-4 w-28 text-center">
                         <div className="font-mono text-3xl text-ink-900 mb-1">{regionalsBadge.day}</div>
                         <div className="font-mono text-[0.625rem] text-ink-700 uppercase tracking-wide">{regionalsBadge.monthYear}</div>
                       </div>
                     </div>
                     <div>
                       <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-3">Ontario Championships</h3>
-                      <div className="border-2 border-ink-900 bg-ledger p-4 w-28 text-center">
+                      <div className="rounded-2xl shadow-soft bg-ledger p-4 w-28 text-center">
                         <div className="font-mono text-3xl text-ink-900 mb-1">{regionalsBadge.day}</div>
                         <div className="font-mono text-[0.625rem] text-ink-700 uppercase tracking-wide">{regionalsBadge.monthYear}</div>
                       </div>
@@ -375,7 +375,7 @@ const Season2025Page = () => {
                 <div>
                   <h2 className="font-sans text-2xl text-ink-900 mb-5">National Championships</h2>
                   <div className="flex">
-                    <div className="border-2 border-ink-900 bg-ledger p-4 w-28 text-center">
+                    <div className="rounded-2xl shadow-soft bg-ledger p-4 w-28 text-center">
                       <div className="font-mono text-3xl text-ink-900 mb-1">{nationalsBadge.day}</div>
                       <div className="font-mono text-[0.625rem] text-ink-700 uppercase tracking-wide">{nationalsBadge.monthYear}</div>
                     </div>
@@ -387,7 +387,7 @@ const Season2025Page = () => {
 
               <div className="flex-1">
                 <h2 className="font-sans text-2xl text-ink-900 mb-6">Group Stage Schedule</h2>
-                <div className="border-2 border-ink-900 divide-y divide-ink-900">
+                <div className="rounded-2xl shadow-soft divide-y divide-ledger-line overflow-hidden">
                   {[
                     ['11:00 AM', 'Individual Round'],
                     ['12:00 PM', 'Team Round (Power 5)'],

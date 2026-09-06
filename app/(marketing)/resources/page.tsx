@@ -16,7 +16,7 @@ const links = [
 export default function ResourcesPage() {
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger border-b-4 border-ink-900 py-20">
+      <section className="bg-ledger py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-sans text-4xl md:text-5xl text-ink-900">Resources</h1>
           <p className="text-lg text-ink-700 mt-4">
@@ -29,16 +29,16 @@ export default function ResourcesPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
             <h2 className="font-sans text-2xl text-ink-900 mb-8">Sample problem sets</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {problemSets.map((set) => (
-                <div key={set.title} className="bg-ledger p-6 flex flex-col">
+                <div key={set.title} className="bg-ledger rounded-2xl shadow-soft p-6 flex flex-col">
                   <h3 className="font-sans text-lg text-ink-900 mb-2">{set.title}</h3>
                   <p className="text-ink-700 text-sm mb-6 flex-grow">{set.description}</p>
                   <a
                     href={set.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-press inline-flex items-center justify-center gap-2 bg-stamp-600 text-ledger py-2.5 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
+                    className="btn-press inline-flex items-center justify-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger py-2.5 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
                   >
                     <Download className="h-4 w-4" />
                     Download PDF
@@ -57,16 +57,16 @@ export default function ResourcesPage() {
 
           <div>
             <h2 className="font-sans text-2xl text-ink-900 mb-8">Everything else</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {links.map((item) => (
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="bg-ledger hover:bg-ink-900 group transition-colors p-6 block"
+                  className="bg-ledger rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow p-6 block"
                 >
-                  <item.icon className="h-6 w-6 text-stamp-600 group-hover:text-stamp-500 mb-4" />
-                  <h3 className="font-sans text-lg text-ink-900 group-hover:text-ledger mb-2">{item.title}</h3>
-                  <p className="text-ink-700 group-hover:text-ink-300 text-sm">{item.description}</p>
+                  <item.icon className="h-6 w-6 text-stamp-600 mb-4" />
+                  <h3 className="font-sans text-lg text-ink-900 mb-2">{item.title}</h3>
+                  <p className="text-ink-700 text-sm">{item.description}</p>
                 </Link>
               ))}
             </div>

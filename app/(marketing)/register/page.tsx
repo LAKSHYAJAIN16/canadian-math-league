@@ -31,7 +31,7 @@ interface FormData {
 }
 
 const inputClasses =
-  'block w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30';
+  'block w-full px-4 py-2.5 rounded-xl bg-ledger-deep/60 text-ink-900 placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40';
 const labelClasses = 'block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2';
 
 export default function RegisterPage() {
@@ -181,7 +181,7 @@ export default function RegisterPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="border-2 border-ink-900 bg-ledger"
+          className="rounded-3xl shadow-soft bg-ledger"
         >
           <div className="px-6 py-8 md:px-10">
             <div className="text-center mb-8">
@@ -193,8 +193,8 @@ export default function RegisterPage() {
 
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* School Information */}
-              <div className="border-2 border-ink-900 bg-ledger">
-                <div className="px-6 py-3 border-b-2 border-ink-900">
+              <div className="rounded-2xl shadow-soft bg-ledger">
+                <div className="px-6 py-3 border-b border-ledger-line">
                   <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700">
                     School Information
                   </h2>
@@ -239,8 +239,8 @@ export default function RegisterPage() {
               </div>
 
               {/* Teacher Contact */}
-              <div className="border-2 border-ink-900 bg-ledger">
-                <div className="px-6 py-3 border-b-2 border-ink-900">
+              <div className="rounded-2xl shadow-soft bg-ledger">
+                <div className="px-6 py-3 border-b border-ledger-line">
                   <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700">
                     Teacher Contact
                   </h2>
@@ -332,10 +332,10 @@ export default function RegisterPage() {
                               teams: updatedTeams
                             }));
                           }}
-                          className={`btn-press px-4 py-2 font-mono text-sm font-semibold border-2 ${
+                          className={`btn-press rounded-full px-4 py-2 font-mono text-sm font-semibold ${
                             formData.numberOfTeams === num
-                              ? 'bg-stamp-600 border-stamp-600 text-ledger'
-                              : 'border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-ledger'
+                              ? 'shadow-stamp-glow bg-stamp-600 text-ledger'
+                              : 'shadow-soft hover:shadow-soft-lg bg-ledger text-ink-900 hover:bg-ledger-deep'
                           }`}
                         >
                           {num}
@@ -347,8 +347,8 @@ export default function RegisterPage() {
 
                 <div className="space-y-6">
                   {formData.teams.map((team, teamIndex) => (
-                    <div key={team.id} className="border-2 border-ink-900 bg-ledger">
-                      <div className="px-6 py-3 border-b-2 border-ink-900">
+                    <div key={team.id} className="rounded-2xl shadow-soft bg-ledger">
+                      <div className="px-6 py-3 border-b border-ledger-line">
                         <h3 className="font-sans text-lg text-ink-900">
                           Team {teamIndex + 1}
                         </h3>
@@ -397,16 +397,16 @@ export default function RegisterPage() {
               </div>
 
               {submitStatus && !submitStatus.success && (
-                <div className="border-2 border-stamp-600 bg-stamp-100 p-3">
+                <div className="rounded-xl bg-stamp-100 p-3">
                   <p className="font-mono text-sm text-stamp-700">{submitStatus.message}</p>
                 </div>
               )}
 
-              <div className="pt-4 border-t-2 border-ink-900">
+              <div className="pt-4 border-t border-ledger-line">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`btn-press w-full flex justify-center items-center py-3.5 px-4 font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${
+                  className={`btn-press w-full flex justify-center items-center py-3.5 px-4 rounded-full shadow-stamp-glow font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${
                     isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                   }`}
                 >

@@ -51,13 +51,13 @@ export default function OtherResources() {
           </p>
         </div>
 
-        <div className="border-2 border-ink-900 divide-y divide-ink-900">
+        <div className="rounded-2xl shadow-soft divide-y divide-ledger-line overflow-hidden">
           {resources.map((resource, index) => (
             <div key={index} className="bg-ledger">
               <div className="px-6 py-5">
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="font-sans text-lg text-ink-900">{resource.name}</h3>
-                  <span className="flex-shrink-0 font-mono text-[0.625rem] font-semibold uppercase tracking-wide border border-ink-900 text-ink-700 px-2 py-0.5">
+                  <span className="flex-shrink-0 font-mono text-[0.625rem] font-semibold uppercase tracking-wide rounded-full bg-ledger-deep text-ink-700 px-2 py-0.5">
                     {resource.type}
                   </span>
                 </div>
@@ -80,7 +80,7 @@ export default function OtherResources() {
           ))}
         </div>
 
-        <div className="mt-12 border-2 border-stamp-600 bg-stamp-100 p-6">
+        <div className="mt-12 rounded-2xl bg-stamp-100 p-6">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg

@@ -63,7 +63,7 @@ export default function HowItWorksPage() {
   return (
     <div className="min-h-screen bg-ledger">
       {/* Hero Section */}
-      <section className="relative bg-ledger overflow-hidden border-b-4 border-ink-900 py-20">
+      <section className="relative bg-ledger overflow-hidden py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -87,14 +87,14 @@ export default function HowItWorksPage() {
       </section>
 
       {/* Competition Stages */}
-      <section className="py-20 bg-ledger-deep border-b border-ledger-line">
+      <section className="py-20 bg-ledger-deep">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-sans text-3xl md:text-4xl text-ink-900 mb-3">Three stages. One champion.</h2>
           <p className="text-ink-700 max-w-xl mb-12">A progressive tournament with three distinct levels of achievement.</p>
 
-          <div className="grid md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+          <div className="grid md:grid-cols-3 gap-6">
             {overview.map((stage, i) => (
-              <div key={stage.title} className="bg-ledger p-6 flex items-center gap-3">
+              <div key={stage.title} className="bg-ledger rounded-2xl shadow-soft p-6 flex items-center gap-3">
                 <BubbleNumeral n={i + 1} filled={i === 0} />
                 <div>
                   <stage.icon className="h-5 w-5 text-ink-700 mb-1" />
@@ -110,15 +110,15 @@ export default function HowItWorksPage() {
       {/* Stage Details */}
       <section className="py-20 bg-ledger">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {stages.map((stage) => (
-              <div key={stage.title} className="bg-ledger p-6 flex flex-col">
+              <div key={stage.title} className="bg-ledger rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow p-6 flex flex-col">
                 <stage.icon className="h-6 w-6 text-stamp-600 mb-4" />
                 <h3 className="font-sans text-lg text-ink-900 mb-2">{stage.title}</h3>
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {stage.tags.map((tag) => (
-                    <span key={tag} className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-0.5 text-ink-700">
+                    <span key={tag} className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700">
                       {tag}
                     </span>
                   ))}
@@ -166,7 +166,7 @@ export default function HowItWorksPage() {
             </p>
             <Link
               href="/register"
-              className="btn-press inline-flex items-center justify-center gap-2 bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
+              className="btn-press inline-flex items-center justify-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
             >
               Register your team
               <ArrowRight className="h-4 w-4" />

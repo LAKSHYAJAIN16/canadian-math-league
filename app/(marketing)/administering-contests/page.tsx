@@ -9,7 +9,7 @@ const IndividualRoundContent = () => (
     <h2 className="font-sans text-2xl text-ink-900">Individual Round</h2>
 
     {/* Requirements Section */}
-    <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+    <div className="rounded-2xl bg-stamp-100 p-4">
       <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-700 mb-3">Details</h3>
       <div className="flex flex-wrap gap-6 text-sm text-ink-700">
         <span className="flex items-center">
@@ -39,7 +39,7 @@ const IndividualRoundContent = () => (
       After the timer hits zero, a new screen will open up on each contestant&apos;s screen with the rules for the individual round
     </p>
     <div>
-      <img src="/pages/rules_ind.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Teacher login page" />
+      <img src="/pages/rules_ind.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Teacher login page" />
       <p className="text-center text-xs mt-1 text-ink-500">The rules that are on each contestant&apos;s screen.</p>
     </div>
     <p className="text-ink-700">
@@ -49,7 +49,7 @@ const IndividualRoundContent = () => (
       Eventually, the rules page will also close and the contest interface will open.
     </p>
     <div>
-      <img src="/pages/indiv.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Teacher login page" />
+      <img src="/pages/indiv.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Teacher login page" />
       <p className="text-center text-xs mt-1 text-ink-500">The contest interface for the individual round.</p>
     </div>
     <p className="text-ink-700">
@@ -60,10 +60,10 @@ const IndividualRoundContent = () => (
     </p>
 
     {/* FAQ Section */}
-    <div className="border-2 border-stamp-600 bg-stamp-100 p-6 mt-8">
+    <div className="rounded-3xl bg-stamp-100 p-6 mt-8">
       <h3 className="font-sans text-xl text-ink-900 mb-4">Frequently Asked Questions</h3>
       <div className="space-y-4">
-        <div className="border-2 border-ink-900 bg-ledger">
+        <div className="rounded-2xl bg-ledger shadow-soft">
           <details className="group">
             <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-ledger-deep">
               <h4 className="font-sans text-ink-900">If a student disconnects during the contest, will they lose their progress?</h4>
@@ -77,7 +77,7 @@ const IndividualRoundContent = () => (
           </details>
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger">
+        <div className="rounded-2xl bg-ledger shadow-soft">
           <details className="group">
             <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-ledger-deep">
               <h4 className="font-sans text-ink-900">What if our internet goes out?</h4>
@@ -91,7 +91,7 @@ const IndividualRoundContent = () => (
           </details>
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger">
+        <div className="rounded-2xl bg-ledger shadow-soft">
           <details className="group">
             <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-ledger-deep">
               <h4 className="font-sans text-ink-900">The questions aren&apos;t loading</h4>
@@ -152,7 +152,7 @@ export default function AdministeringContestsPage() {
             <h2 className="font-sans text-2xl text-ink-900">Setup</h2>
 
             {/* Requirements Section */}
-            <div className="border-2 border-stamp-600 bg-stamp-100 p-4 mb-6">
+            <div className="rounded-2xl bg-stamp-100 p-4 mb-6">
               <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-700 mb-3">Requirements</h3>
               <div className="flex flex-wrap gap-6 text-sm text-ink-700">
                 <span className="flex items-center">
@@ -177,7 +177,7 @@ export default function AdministeringContestsPage() {
             {/* Collapsible Sections */}
             <div className="space-y-4">
               {/* Teacher Login Section */}
-              <details className="group border-2 border-ink-900 bg-ledger" open>
+              <details className="group rounded-2xl bg-ledger shadow-soft" open>
                 <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-ledger-deep">
                   <h3 className="font-sans text-lg text-ink-900">Teacher Login</h3>
                   <svg className="w-5 h-5 text-ink-700 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -187,7 +187,7 @@ export default function AdministeringContestsPage() {
                 <div className="p-6 space-y-6 border-t border-ledger-line">
                   <p>Before the contest, you should have received an email with your login details.</p>
 
-                  <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+                  <div className="rounded-2xl bg-stamp-100 p-4">
                     <h4 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-700 mb-2">Can&apos;t find your login email?</h4>
                     <ol className="list-decimal list-inside space-y-1 text-ink-700 text-sm">
                       <li>Check your spam or junk folder</li>
@@ -202,14 +202,14 @@ export default function AdministeringContestsPage() {
 
                   <div className="space-y-4">
                     <div>
-                      <img src="/pages/teacher_login.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Teacher login page" />
+                      <img src="/pages/teacher_login.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Teacher login page" />
                       <p className="text-center text-xs mt-1 text-ink-500">Enter your login details on the login page.</p>
                     </div>
 
                     <p>After logging in, you will be redirected to your contest dashboard. Here, you will be able to view your teams&apos; details and edit them if any change is required.</p>
 
                     <div>
-                      <img src="/pages/teacher_dashboard.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Teacher dashboard" />
+                      <img src="/pages/teacher_dashboard.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Teacher dashboard" />
                       <p className="text-center text-xs mt-1 text-ink-500">You will be able to edit your team details in the dashboard.</p>
                     </div>
 
@@ -219,7 +219,7 @@ export default function AdministeringContestsPage() {
               </details>
 
               {/* Student Setup Section */}
-              <details className="group border-2 border-ink-900 bg-ledger">
+              <details className="group rounded-2xl bg-ledger shadow-soft">
                 <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-ledger-deep">
                   <h3 className="font-sans text-lg text-ink-900">Student Setup</h3>
                   <svg className="w-5 h-5 text-ink-700 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -230,10 +230,10 @@ export default function AdministeringContestsPage() {
                   <p>Once logged in, you&apos;ll see a tab for <strong>Student Codes</strong>. These are the unique codes that students will use to access the contest on their computers.</p>
 
                   <div>
-                    <img src="/pages/teacher_std.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Student details" />
+                    <img src="/pages/teacher_std.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Student details" />
                     <p className="text-center text-xs mt-1 text-ink-500">You will be able to see the join codes for your participants.</p>
                   </div>
-                  <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+                  <div className="rounded-2xl bg-stamp-100 p-4">
                     <h4 className="font-mono text-xs font-semibold uppercase tracking-wide text-stamp-700 mb-2">How Students Get Their Codes</h4>
                     <ul className="list-disc list-inside space-y-1 text-ink-700 text-sm">
                       <li>Codes will be automatically emailed to each student before the contest.</li>
@@ -250,14 +250,14 @@ export default function AdministeringContestsPage() {
                     {" "} and enter their code.
                   </p>
                   <div>
-                    <img src="/pages/join.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Student details" />
+                    <img src="/pages/join.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Student details" />
                     <p className="text-center text-xs mt-1 text-ink-500">The student should enter their code on the join page.</p>
                   </div>
                   <p className="text-sm text-ink-700">
                     After entering their code, they will be redirected to their competition portal.
                   </p>
                   <div>
-                    <img src="/pages/student.png" width={600} className="ml-auto mr-auto mb-0 mt-0 border-2 border-ink-900" alt="Student details" />
+                    <img src="/pages/student.png" width={600} className="ml-auto mr-auto mb-0 mt-0 rounded-2xl shadow-soft" alt="Student details" />
                     <p className="text-center text-xs mt-1 text-ink-500">The student will be redirected to their student portal.</p>
                   </div>
                   <p>
@@ -267,7 +267,7 @@ export default function AdministeringContestsPage() {
                 </div>
               </details>
 
-              <div className="border-2 border-stamp-600 bg-stamp-100 p-6">
+              <div className="rounded-3xl bg-stamp-100 p-6">
                 <h3 className="font-sans text-lg text-ink-900 mb-4">Checklist</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -306,7 +306,7 @@ export default function AdministeringContestsPage() {
               These login details will be used to sign you in so you can deliver the contest.
             </p>
             <p>Once we confirm your registration, inform your students! The more time they have to prepare, the better they&apos;ll do!</p>
-            <div className="border-2 border-stamp-600 bg-stamp-100 p-6 !mt-8">
+            <div className="rounded-3xl bg-stamp-100 p-6 !mt-8">
               <h3 className="font-sans text-lg text-ink-900 mb-4">Checklist</h3>
               <ul className="space-y-3">
                 <li className="flex items-start">
@@ -356,7 +356,7 @@ export default function AdministeringContestsPage() {
 
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger border-b-4 border-ink-900 py-16">
+      <section className="bg-ledger py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <h1 className="font-sans text-3xl md:text-5xl text-ink-900 mb-2">Administering Contests</h1>
@@ -367,7 +367,7 @@ export default function AdministeringContestsPage() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }}>
             <a
               href="/platform/login"
-              className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
+              className="btn-press inline-flex items-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
             >
               Teacher Login
             </a>
@@ -381,7 +381,7 @@ export default function AdministeringContestsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="border-2 border-ink-900 bg-ledger p-8 mb-16"
+          className="rounded-3xl shadow-soft bg-ledger p-8 mb-16"
         >
           <h2 className="font-sans text-xl text-ink-900 mb-4">A new kind of contest.</h2>
           <p className="text-lg text-ink-700">
@@ -463,7 +463,7 @@ export default function AdministeringContestsPage() {
           {/* Content Panel */}
           <div className="lg:w-10/12 mt-8 lg:mt-0">
             <div className="sticky top-8">
-              <div className="border-2 border-ink-900 bg-ledger w-full">
+              <div className="rounded-3xl shadow-soft bg-ledger w-full">
                 {renderContent()}
               </div>
             </div>
