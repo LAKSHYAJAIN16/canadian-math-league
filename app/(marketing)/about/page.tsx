@@ -13,7 +13,7 @@ const CompetitionLogo = ({ src, alt, isCanadian = false, url }: CompetitionLogoP
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className="block h-full">
       <motion.div
-        className="h-full min-h-[30px] flex flex-col items-center justify-center p-3 bg-ledger border border-ink-900 transition-all duration-200"
+        className="h-full min-h-[30px] flex flex-col items-center justify-center p-3 bg-ledger rounded-xl shadow-soft hover:shadow-soft-lg transition-all duration-200"
         whileHover={{ y: -2 }}
       >
         {src ? (
@@ -70,9 +70,9 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger py-16 border-b-4 border-ink-900">
+      <section className="bg-ledger py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-0.5 text-ink-700">
+          <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700">
             Our Mission
           </span>
           <h1 className="font-sans text-3xl md:text-4xl text-ink-900 mt-4">Dear Canadian students,</h1>
@@ -86,7 +86,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="ruled-lines border-2 border-ink-900 bg-ledger p-6 md:p-10"
+            className="ruled-lines rounded-3xl shadow-soft bg-ledger p-6 md:p-10"
           >
             <div className="text-right mb-6">
               <p className="font-mono text-xs text-ink-500">November 23, 2024</p>
@@ -102,10 +102,10 @@ export default function AboutPage() {
 
                 <div className="my-8 grid md:grid-cols-2 gap-4">
                   {/* US Competitions */}
-                  <div className="p-6 bg-ledger border-2 border-ink-900">
+                  <div className="p-6 bg-ledger rounded-2xl shadow-soft">
                     <div className="flex justify-between items-center mb-6">
                       <h3 className="font-sans text-lg text-ink-900">United States</h3>
-                      <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-0.5 text-ink-700">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700">
                         15+ Competitions
                       </span>
                     </div>
@@ -117,10 +117,10 @@ export default function AboutPage() {
                   </div>
 
                   {/* Canadian Competitions */}
-                  <div className="p-6 bg-ledger border-2 border-stamp-600">
+                  <div className="p-6 bg-stamp-100 rounded-2xl shadow-soft">
                     <div className="flex justify-between items-center mb-6">
                       <h3 className="font-sans text-lg text-stamp-700">Canada</h3>
-                      <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-stamp-600 px-2 py-0.5 text-stamp-600">
+                      <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger text-stamp-700 px-2 py-0.5">
                         3-4 Competitions
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export default function AboutPage() {
                 The future of Canadian mathematics is in your hands. We&apos;re here to help you shape it.
               </p>
 
-              <div className="mt-8 pt-6 border-t-2 border-ink-900">
+              <div className="mt-8 pt-6 border-t border-ledger-line">
                 <p className="text-ink-700">Sincerely,</p>
                 <p className="font-sans text-lg text-ink-900 mt-2">The Canadian Math League Team</p>
               </div>

@@ -139,7 +139,7 @@ const Navbar = () => {
                     >
                       {item.label}
                       {item.highlight && (
-                        <span className="border border-stamp-600 text-stamp-600 px-1.5 py-0.5 text-[0.625rem] leading-none">
+                        <span className="rounded-full bg-stamp-100 text-stamp-700 px-1.5 py-0.5 text-[0.625rem] leading-none">
                           New
                         </span>
                       )}

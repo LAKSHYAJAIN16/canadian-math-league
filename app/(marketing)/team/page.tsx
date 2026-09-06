@@ -17,7 +17,7 @@ const teamMembers: TeamMember[] = [
 export default function TeamPage() {
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger py-20 border-b-4 border-ink-900">
+      <section className="bg-ledger py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-sans text-4xl md:text-5xl text-ink-900">Our Team</h1>
           <p className="text-lg text-ink-700 mt-4">Meet the people behind the Canadian Math League.</p>
@@ -26,7 +26,7 @@ export default function TeamPage() {
 
       <section className="py-20 bg-ledger">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
@@ -34,9 +34,9 @@ export default function TeamPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-ledger p-8 text-center"
+                className="bg-ledger rounded-2xl shadow-soft p-8 text-center"
               >
-                <div className="w-20 h-20 mx-auto mb-5 border-2 border-ink-900 bg-stamp-600 flex items-center justify-center">
+                <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-stamp-600 flex items-center justify-center">
                   <span className="font-mono text-xl font-semibold text-ledger">
                     {member.name.split(' ').map((n) => n[0]).join('')}
                   </span>

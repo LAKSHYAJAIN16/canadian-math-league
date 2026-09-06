@@ -45,7 +45,7 @@ export default function SponsorsPage() {
 
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger border-b-4 border-ink-900 py-16">
+      <section className="bg-ledger py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-sans text-4xl md:text-5xl text-ink-900">Our Sponsors</h1>
           <p className="text-lg text-ink-700 mt-4">
@@ -57,13 +57,13 @@ export default function SponsorsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-ledger">
         <div className="mb-20">
           <h2 className="font-sans text-xl text-ink-900 text-center mb-8">Current Sponsors</h2>
-          <div className="border-2 border-ink-900 bg-ledger p-8 text-center max-w-xl mx-auto">
+          <div className="rounded-3xl shadow-soft bg-ledger p-8 text-center max-w-xl mx-auto">
             <p className="text-ink-700 italic">
               Our sponsor showcase is coming soon. Interested in becoming our first sponsor?
             </p>
             <Link
               href="/contact"
-              className="btn-press mt-6 inline-flex items-center gap-2 bg-stamp-600 text-ledger px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
+              className="btn-press mt-6 inline-flex items-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wide hover:bg-stamp-700"
             >
               Contact Us
             </Link>
@@ -72,10 +72,10 @@ export default function SponsorsPage() {
 
         <div className="mb-20">
           <h2 className="font-sans text-2xl md:text-3xl text-ink-900 text-center mb-8">Sponsorship Opportunities</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-ink-900 border border-ink-900">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {sponsorshipLevels.map((level) => (
-              <div key={level.name} className="bg-ledger flex flex-col">
-                <div className="p-6 border-b-2 border-ink-900">
+              <div key={level.name} className="bg-ledger rounded-2xl shadow-soft flex flex-col overflow-hidden">
+                <div className="p-6 bg-ledger-deep">
                   <h3 className="font-sans text-2xl text-center text-ink-900">{level.name}</h3>
                   <p className="text-center text-stamp-600 font-mono text-xs font-semibold uppercase tracking-wide mt-1">{level.amount}</p>
                 </div>
@@ -94,7 +94,7 @@ export default function SponsorsPage() {
           </div>
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger p-8 md:p-10 max-w-4xl mx-auto">
+        <div className="rounded-3xl shadow-soft bg-ledger p-8 md:p-10 max-w-4xl mx-auto">
           <h2 className="font-sans text-2xl md:text-3xl text-ink-900 text-center mb-8">Why Sponsor Us?</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
@@ -133,7 +133,7 @@ export default function SponsorsPage() {
           <div className="mt-10 text-center">
             <Link
               href="/contact"
-              className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
+              className="btn-press inline-flex items-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
             >
               <Mail className="h-4 w-4" />
               Contact Us About Sponsorship

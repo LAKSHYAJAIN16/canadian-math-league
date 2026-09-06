@@ -33,7 +33,7 @@ const faqs = [
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger border-b-4 border-ink-900 py-20">
+      <section className="bg-ledger py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ const ContactPage = () => {
                 </div>
               </div>
 
-              <div className="p-6 border-2 border-ink-900 bg-ledger">
+              <div className="p-6 rounded-2xl shadow-soft bg-ledger">
                 <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 mb-3">Before you write in</h3>
                 <p className="text-ink-700 text-sm">
                   Teachers: most account and roster questions are answered on the{' '}
@@ -88,29 +88,29 @@ const ContactPage = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="border-2 border-ink-900 bg-ledger p-8"
+              className="rounded-3xl shadow-soft bg-ledger p-8"
             >
               <h2 className="font-sans text-lg text-ink-900 mb-6">Send us a message</h2>
               <form className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">First Name</label>
-                    <input type="text" className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="John" />
+                    <input type="text" className="w-full px-4 py-2.5 bg-ledger-deep/60 rounded-xl text-ink-900 placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40" placeholder="John" />
                   </div>
                   <div>
                     <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Last Name</label>
-                    <input type="text" className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="Doe" />
+                    <input type="text" className="w-full px-4 py-2.5 bg-ledger-deep/60 rounded-xl text-ink-900 placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40" placeholder="Doe" />
                   </div>
                 </div>
 
                 <div>
                   <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="john.doe@email.com" />
+                  <input type="email" className="w-full px-4 py-2.5 bg-ledger-deep/60 rounded-xl text-ink-900 placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40" placeholder="john.doe@email.com" />
                 </div>
 
                 <div>
                   <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Subject</label>
-                  <select className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30">
+                  <select className="w-full px-4 py-2.5 bg-ledger-deep/60 rounded-xl text-ink-900 focus:outline-none focus:ring-2 focus:ring-stamp-600/40">
                     <option>General Inquiry</option>
                     <option>School Registration</option>
                     <option>Technical Support</option>
@@ -121,12 +121,12 @@ const ContactPage = () => {
 
                 <div>
                   <label className="block font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-2">Message</label>
-                  <textarea rows={5} className="w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 placeholder:text-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30" placeholder="Tell us how we can help you..." />
+                  <textarea rows={5} className="w-full px-4 py-2.5 bg-ledger-deep/60 rounded-xl text-ink-900 placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40" placeholder="Tell us how we can help you..." />
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-press w-full inline-flex items-center justify-center gap-2 bg-stamp-600 text-ledger py-3.5 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
+                  className="btn-press w-full inline-flex items-center justify-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger py-3.5 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
                 >
                   Send Message
                   <Send className="h-4 w-4" />
@@ -138,9 +138,9 @@ const ContactPage = () => {
           {/* FAQ Section */}
           <motion.section initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-24">
             <h2 className="font-sans text-2xl md:text-3xl text-ink-900 mb-10 text-center">Frequently asked questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-ink-900 border border-ink-900">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {faqs.map((faq) => (
-                <div key={faq.question} className="bg-ledger p-6">
+                <div key={faq.question} className="bg-ledger rounded-2xl shadow-soft p-6">
                   <h3 className="font-sans text-ink-900 mb-2 text-sm">{faq.question}</h3>
                   <p className="text-ink-700 text-sm">{faq.answer}</p>
                 </div>

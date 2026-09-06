@@ -54,7 +54,7 @@ const FAQPage = () => {
 
   return (
     <div className="min-h-screen bg-ledger">
-      <section className="bg-ledger border-b-4 border-ink-900 py-20">
+      <section className="bg-ledger py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ const FAQPage = () => {
 
       <section className="py-20 bg-ledger px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="max-w-3xl mx-auto border-2 border-ink-900 divide-y divide-ink-900"
+          className="max-w-3xl mx-auto rounded-3xl shadow-soft divide-y divide-ledger-line overflow-hidden"
           initial="hidden"
           animate="show"
           variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } }}
@@ -127,7 +127,7 @@ const FAQPage = () => {
           <p className="text-ink-700 mb-6 text-lg">Still have questions?</p>
           <Link
             href="/contact"
-            className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
+            className="btn-press inline-flex items-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger px-8 py-4 font-mono text-sm font-semibold uppercase tracking-wide hover:bg-stamp-700"
           >
             Contact Us
           </Link>

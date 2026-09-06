@@ -149,7 +149,7 @@ const FormatPage = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-0.5 text-ink-700">Rulebook</span>
+          <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700">Rulebook</span>
           <h1 className="font-sans text-4xl md:text-5xl text-ink-900 mt-3">Tournament Format</h1>
         </div>
 
@@ -159,10 +159,10 @@ const FormatPage = () => {
             <button
               key={key}
               onClick={() => setActiveTab(key as TabType)}
-              className={`btn-press px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide transition-colors border-2 ${
+              className={`btn-press rounded-full px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide transition-colors ${
                 activeTab === key
-                  ? 'bg-stamp-600 border-stamp-600 text-ledger'
-                  : 'border-ink-900 text-ink-900 hover:bg-ink-900 hover:text-ledger'
+                  ? 'bg-stamp-600 text-ledger shadow-stamp-glow'
+                  : 'bg-ledger text-ink-900 shadow-soft hover:shadow-soft-lg hover:bg-ledger-deep'
               }`}
             >
               {comp.title}
@@ -171,20 +171,20 @@ const FormatPage = () => {
         </div>
 
         {/* Current Competition Content */}
-        <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="border-2 border-ink-900 bg-ledger">
-          <div className="bg-stamp-600 p-6 text-ledger border-b-2 border-ink-900">
+        <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl shadow-soft bg-ledger overflow-hidden">
+          <div className="bg-stamp-600 p-6 text-ledger">
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <h2 className="font-sans text-2xl md:text-3xl">{currentCompetition.title}</h2>
                 <div className="mt-3 md:mt-0">
-                  <span className="inline-flex items-center border border-ledger/40 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wide">
+                  <span className="inline-flex items-center rounded-full bg-ledger/15 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wide">
                     {activeTab === 'group' ? 'Online' : activeTab === 'regional' ? 'In-Person' : 'Championship'}
                   </span>
                 </div>
               </div>
 
               {/* Competition Details */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-ledger/20">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
                 <div className="flex items-center space-x-2">
                   <Calendar className="h-4 w-4 text-ledger/70 flex-shrink-0" />
                   <span className="text-sm text-ledger/90">
@@ -221,7 +221,7 @@ const FormatPage = () => {
                   <span className="w-1.5 h-5 bg-stamp-600" />
                   Key Details
                 </h3>
-                <div className="space-y-2 pl-4 border-l-2 border-ledger-line">
+                <div className="space-y-2 pl-4">
                   {currentCompetition.details.map((detail, index) => (
                     <div key={index} className="flex items-start">
                       <ChevronRight className="h-5 w-5 text-stamp-600 mt-0.5 mr-2 flex-shrink-0" />
@@ -235,14 +235,14 @@ const FormatPage = () => {
             {activeTab === 'regional' && currentCompetition.championships && (
               <div className="mt-10">
                 <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 mb-6">Regional Championships</h3>
-                <div className="grid md:grid-cols-2 gap-px bg-ink-900 border border-ink-900">
+                <div className="grid md:grid-cols-2 gap-4">
                   {currentCompetition.championships.map((championship, index) => (
                     <motion.div
                       key={championship.title}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      className="bg-ledger p-6"
+                      className="bg-ledger rounded-2xl shadow-soft p-6"
                     >
                       <h4 className="font-sans text-ink-900 mb-2">{championship.title}</h4>
                       <div className="flex items-center text-sm text-ink-700">
@@ -262,14 +262,14 @@ const FormatPage = () => {
                   <span className="w-1.5 h-5 bg-stamp-600" />
                   {activeTab === 'group' ? 'Rounds' : 'Competition Rounds'}
                 </h3>
-                <div className="grid sm:grid-cols-2 gap-px bg-ink-900 border border-ink-900">
+                <div className="grid sm:grid-cols-2 gap-4">
                   {currentCompetition.rounds.map((round, index) => (
                     <motion.div
                       key={round.title}
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.08 }}
-                      className="bg-ledger p-5"
+                      className="bg-ledger rounded-2xl shadow-soft p-5"
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <round.icon className="h-5 w-5 text-stamp-600" />
