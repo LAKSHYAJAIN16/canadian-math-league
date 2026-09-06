@@ -1,26 +1,25 @@
 'use client'
 
 /*
-  THESIS: The homepage reads as the cover page and answer sheet of a real,
-  official math competition booklet — refusing the soft-rounded,
-  pill-button, shadow-card "friendly SaaS" arrangement (both the prior
-  Friendly Field system and the generic ed-tech default).
+  THESIS: The homepage reads as the cover page of a real, official math
+  competition booklet — a warm exam-paper ground and one institutional
+  stamp-red, bound softly with rounded cards and diffuse shadow rather than
+  hard black rule lines.
   OWN-WORLD: Warm exam-paper "ledger" ground, near-black ink, one
   institutional stamp-red reserved for official marks (seals, status
   stamps, the primary CTA, dollar figures). Alike stays the sitewide
-  display serif (a protected asset, not replaced); IBM Plex Mono carries
-  numbers, codes, and tags, echoing typewritten exam forms. Structure comes
-  from ruled hairline grids and bordered ledger panels, never soft shadows
-  or rounded cards. Scantron-style bubble numerals mark real sequence
-  (tournament stages, timeline) — never decorative section counters.
+  display serif; IBM Plex Mono carries numbers, codes, and tags, echoing
+  typewritten exam forms. Structure comes from soft shadow-lifted rounded
+  cards, not hard borders. Scantron-style bubble numerals mark real
+  sequence (tournament stages, timeline) — never decorative section
+  counters.
   STORY: A visitor understands this is a real, credible national math
   competition — not a marketing funnel — and registers their team via the
   stamped primary CTA.
-  FIRST VIEWPORT: a CMS partnership credit line above the headline, a
-  serif headline, and a dynamic registration-status stamp (open/closed,
-  computed from the real deadline).
-  FORM: "The Answer Key" — competition scoring-sheet / exam-paper world,
-  now the sitewide system (see DESIGN.md).
+  FIRST VIEWPORT: a CMS partnership credit line above the headline and a
+  serif headline.
+  FORM: "Softbound" — the exam-paper world on soft shadow and rounded
+  corners, now the sitewide system (see DESIGN.md).
 */
 
 import { motion } from 'framer-motion'
@@ -95,7 +94,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-ledger">
       {/* Hero — cover page */}
-      <section className="relative bg-ledger overflow-hidden border-b-4 border-ink-900">
+      <section className="relative bg-ledger overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
@@ -123,14 +122,14 @@ const HomePage = () => {
               <div className="flex flex-col sm:flex-row gap-3 items-start">
                 <Link
                   href="/register"
-                  className="btn-press inline-flex items-center gap-2 bg-stamp-600 text-ledger px-6 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-stamp-700"
+                  className="btn-press inline-flex items-center gap-2 rounded-full shadow-stamp-glow bg-stamp-600 text-ledger px-6 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-stamp-700"
                 >
                   Register your team
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/format"
-                  className="btn-press inline-flex items-center gap-2 border-2 border-ink-900 text-ink-900 px-6 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ink-900 hover:text-ledger"
+                  className="btn-press inline-flex items-center gap-2 rounded-full shadow-soft hover:shadow-soft-lg bg-ledger text-ink-900 px-6 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger-deep"
                 >
                   See the format
                 </Link>
@@ -141,7 +140,7 @@ const HomePage = () => {
       </section>
 
       {/* Tournament structure */}
-      <section className="py-20 bg-ledger-deep border-b border-ledger-line">
+      <section className="py-20 bg-ledger-deep">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -155,7 +154,7 @@ const HomePage = () => {
             A progressive tournament with three distinct levels of achievement.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-px bg-ink-900 border border-ink-900">
+          <div className="grid md:grid-cols-3 gap-6">
             {stages.map((stage, i) => (
               <motion.div
                 key={stage.title}
@@ -163,7 +162,7 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i }}
-                className="bg-ledger p-6"
+                className="bg-ledger rounded-2xl shadow-soft hover:shadow-soft-lg transition-shadow p-6"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <BubbleNumeral n={i + 1} filled={i === 0} />
@@ -174,7 +173,7 @@ const HomePage = () => {
                   {stage.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-0.5 text-ink-700"
+                      className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700"
                     >
                       {tag}
                     </span>
@@ -200,12 +199,12 @@ const HomePage = () => {
           </motion.h2>
           <p className="text-ink-700 mb-10">Free, online, and open to every high school in Canada.</p>
 
-          <div className="border-2 border-ink-900 p-6 md:p-8">
+          <div className="rounded-3xl shadow-soft p-6 md:p-8">
             <div className="flex flex-wrap items-center gap-3 mb-8">
-              <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-1 text-ink-900">
+              <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-stamp-100 text-stamp-700 px-2 py-1">
                 Free
               </span>
-              <span className="font-mono text-[0.625rem] uppercase tracking-wide border border-ink-900 px-2 py-1 text-ink-900">
+              <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-stamp-100 text-stamp-700 px-2 py-1">
                 Online
               </span>
               <span className="font-mono text-xs text-ink-500">
@@ -213,7 +212,7 @@ const HomePage = () => {
               </span>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 md:gap-0 md:divide-x md:divide-ink-900">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-0 md:divide-x md:divide-ledger-line">
               {[
                 {
                   title: 'Team formation',
@@ -262,7 +261,7 @@ const HomePage = () => {
       </section>
 
       {/* Prizes */}
-      <section className="py-20 bg-ledger-deep border-y border-ledger-line">
+      <section className="py-20 bg-ledger-deep">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -274,7 +273,7 @@ const HomePage = () => {
           </motion.h2>
           <p className="text-ink-700 mb-12">Compete for cash prizes, scholarships, and national recognition.</p>
 
-          <div className="grid md:grid-cols-3 border border-ink-900 divide-y md:divide-y-0 md:divide-x divide-ink-900">
+          <div className="grid md:grid-cols-3 gap-6">
             {PRIZE_TIERS.map((tier, index) => {
               const icon = [Trophy, Award, Medal][index] ?? Medal
               const Icon = icon
@@ -285,7 +284,7 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * index }}
-                  className="bg-ledger p-8 text-center"
+                  className="bg-ledger rounded-2xl shadow-soft p-8 text-center"
                 >
                   <Icon className="h-6 w-6 text-ink-700 mx-auto mb-4" />
                   <h3 className="font-mono text-xs uppercase tracking-wide text-ink-700 mb-2">{tier.title}</h3>
@@ -322,7 +321,7 @@ const HomePage = () => {
             The 2025&ndash;26 competition timeline
           </motion.h2>
 
-          <div className="border-2 border-ink-900 divide-y divide-ink-900">
+          <div className="rounded-3xl shadow-soft divide-y divide-ledger-line">
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
@@ -347,7 +346,7 @@ const HomePage = () => {
       </section>
 
       {/* Closing CTA */}
-      <section className="bg-stamp-600 text-ledger py-20 border-t-4 border-ink-900">
+      <section className="bg-stamp-600 text-ledger py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="font-sans text-3xl md:text-5xl mb-6">Ready to test your skills?</h2>
@@ -357,13 +356,13 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/register"
-                className="btn-press inline-flex items-center justify-center gap-2 bg-ledger text-stamp-600 px-8 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger-deep"
+                className="btn-press inline-flex items-center justify-center gap-2 rounded-full shadow-soft-lg bg-ledger text-stamp-600 px-8 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger-deep"
               >
                 Register now
               </Link>
               <Link
                 href="/contact"
-                className="btn-press inline-flex items-center justify-center gap-2 border-2 border-ledger text-ledger px-8 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger hover:text-stamp-600"
+                className="btn-press inline-flex items-center justify-center gap-2 rounded-full border-2 border-ledger text-ledger px-8 py-3.5 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger hover:text-stamp-600"
               >
                 Contact us
               </Link>

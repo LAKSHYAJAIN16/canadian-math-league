@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 /*
- * DESIGN SYSTEM — "The Answer Key"
- * Exam-booklet ledger stock, near-black ink, one institutional stamp red.
- * Hard 2px borders as structure, sharp corners, no shadows, no rounding
- * except the scantron-bubble/stamp-seal signature marks. Alike serif for
- * prose, uppercase-tracked IBM Plex Mono for every label and number.
- * The classes below labeled "Friendly Field" are the retired prior system;
- * they're kept only because a couple of utility class names are shared.
+ * DESIGN SYSTEM — "Softbound"
+ * Exam-booklet ledger stock, near-black ink, one institutional stamp red —
+ * same palette and Alike/Plex Mono typography as the retired "Answer Key"
+ * pass, but structure now comes from soft shadow-soft/soft-lg elevation and
+ * rounded corners instead of hard ink-900 borders. The one exception is the
+ * circular seal/stamp marks (logo, partner seal, exam-stamp, bubble
+ * numerals), which keep a thin border as an intentional stamped-seal edge.
+ * The classes below labeled "Friendly Field" are an even older retired
+ * system; they're kept only because a couple of utility class names are
+ * shared.
  */
 
 :root {
@@ -132,7 +135,7 @@ body {
   display: none;
 }
 
-/* ---- "Answer Key" world — now live sitewide. The classes above
+/* ---- "Softbound" world — now live sitewide. The classes above
    ("Friendly Field") are unused dead weight kept only in case a class name
    collides; no page references them anymore. ---------------------------- */
 

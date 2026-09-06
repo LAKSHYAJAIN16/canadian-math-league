@@ -49,10 +49,11 @@ module.exports = {
           400: '#9C8A8C',
           300: '#C9BABB',
         },
-        // "Answer Key" world — exam-booklet stock, ink, and one
-        // institutional stamp red. Now the sitewide system; redpen/graphite/
-        // paper/blueprint above are the retired Friendly Field/Blueprint
-        // tokens, kept only so old references don't 404 mid-migration.
+        // "Softbound" world (formerly "The Answer Key") — same exam-booklet
+        // stock, ink, and institutional stamp red, now built with soft
+        // shadows/rounded corners instead of hard borders. The sitewide
+        // system; redpen/graphite/paper/blueprint above are retired tokens
+        // kept only so old references don't 404 mid-migration.
         ledger: {
           DEFAULT: '#F5EFDF',
           deep: '#EDE4CC',
@@ -82,9 +83,11 @@ module.exports = {
         '4xl': '2rem',
       },
       boxShadow: {
-        soft: '0 2px 8px -2px rgba(36, 30, 31, 0.08), 0 8px 24px -8px rgba(36, 30, 31, 0.10)',
-        'soft-lg': '0 4px 16px -4px rgba(36, 30, 31, 0.10), 0 16px 40px -12px rgba(36, 30, 31, 0.14)',
-        'red-glow': '0 8px 24px -8px rgba(220, 31, 53, 0.35)',
+        // Retinted for the ink/stamp palette (was graphite-900/redpen-600
+        // from the retired Friendly Field system).
+        soft: '0 2px 8px -2px rgba(33, 28, 21, 0.08), 0 8px 24px -8px rgba(33, 28, 21, 0.10)',
+        'soft-lg': '0 4px 16px -4px rgba(33, 28, 21, 0.10), 0 16px 40px -12px rgba(33, 28, 21, 0.14)',
+        'stamp-glow': '0 8px 24px -8px rgba(156, 29, 22, 0.35)',
       },
       keyframes: {
         'redpen-draw': {
