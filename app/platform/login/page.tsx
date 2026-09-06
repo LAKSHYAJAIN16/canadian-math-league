@@ -102,7 +102,7 @@ export default function TeacherLoginPage() {
 
   return (
     <div className="min-h-screen bg-ledger flex items-center justify-center p-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-5xl border-2 border-ink-900 bg-ledger overflow-hidden flex flex-col md:flex-row">
+      <div className="w-full max-w-5xl rounded-3xl shadow-soft-lg bg-ledger overflow-hidden flex flex-col md:flex-row">
         <div className="p-8 md:p-12 flex items-center justify-center bg-ledger md:w-1/2">
           <div className="w-full max-w-xs">
             <Image
@@ -116,7 +116,7 @@ export default function TeacherLoginPage() {
           </div>
         </div>
 
-        <div className="hidden md:block border-l-2 border-ink-900"></div>
+        <div className="hidden md:block border-l border-ledger-line"></div>
 
         <div className="bg-ledger p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
           <h2 className="text-center font-sans text-2xl text-ink-900 mb-2">Teacher sign in</h2>
@@ -126,13 +126,13 @@ export default function TeacherLoginPage() {
           </p>
 
           {error && (
-            <div className="mb-6 border-2 border-stamp-600 bg-stamp-100 p-4">
+            <div className="mb-6 rounded-xl bg-stamp-100 p-4">
               <p className="font-mono text-sm text-stamp-700">{error}</p>
             </div>
           )}
 
           {linkSent ? (
-            <div className="border-2 border-ink-900 bg-ledger-deep p-4">
+            <div className="rounded-xl bg-ledger-deep p-4">
               <p className="font-mono text-sm text-ink-700">
                 Check your inbox — click the link we sent to <strong>{email}</strong> to finish
                 signing in.
@@ -150,13 +150,13 @@ export default function TeacherLoginPage() {
                   required
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  className="block w-full px-4 py-2.5 border-2 border-ink-900 bg-ledger text-ink-900 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30"
+                  className="block w-full px-4 py-2.5 bg-ledger-deep/60 rounded-xl text-ink-900 focus:outline-none focus:ring-2 focus:ring-stamp-600/40"
                 />
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`btn-press w-full flex justify-center items-center py-3.5 px-4 font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`btn-press w-full flex justify-center items-center py-3.5 px-4 rounded-full shadow-stamp-glow font-mono text-sm font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {isLoading ? 'Sending...' : 'Send sign-in link'}
               </button>

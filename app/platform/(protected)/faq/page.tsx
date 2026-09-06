@@ -39,7 +39,7 @@ export default function FAQPage() {
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="border-2 border-ink-900 overflow-hidden">
+          <div key={index} className="rounded-2xl shadow-soft overflow-hidden">
             <button
               className="w-full px-6 py-4 text-left bg-ledger hover:bg-ledger-deep focus:outline-none"
               onClick={() => toggleFAQ(index)}
@@ -64,7 +64,7 @@ export default function FAQPage() {
               </div>
             </button>
             {openIndex === index && (
-              <div className="px-6 py-4 bg-ledger border-t-2 border-ink-900">
+              <div className="px-6 py-4 bg-ledger border-t border-ledger-line">
                 <p className="text-ink-700">{faq.answer}</p>
               </div>
             )}
@@ -72,7 +72,7 @@ export default function FAQPage() {
         ))}
       </div>
 
-      <div className="mt-10 border-2 border-ink-900 bg-ledger-deep p-6">
+      <div className="mt-10 rounded-2xl shadow-soft bg-ledger-deep p-6">
         <h3 className="font-sans text-lg text-ink-900">Still need help?</h3>
         <p className="mt-2 text-ink-700">
           Contact our support team at{' '}

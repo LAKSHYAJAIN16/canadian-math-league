@@ -18,7 +18,7 @@ export default async function DashboardPage() {
 
   if (!school) {
     return (
-      <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+      <div className="rounded-xl bg-stamp-100 p-4">
         <p className="font-mono text-sm text-stamp-700">Team data not found.</p>
       </div>
     )
@@ -34,7 +34,7 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="border-2 border-ink-900 bg-ledger p-6">
+        <div className="rounded-2xl shadow-soft bg-ledger p-6">
           <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-4">School information</h2>
           <div className="space-y-2">
             <p className="text-sm text-ink-700">
@@ -46,7 +46,7 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger p-6">
+        <div className="rounded-2xl shadow-soft bg-ledger p-6">
           <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-4">Teams summary</h2>
           <div className="space-y-2">
             <p className="text-sm text-ink-700">

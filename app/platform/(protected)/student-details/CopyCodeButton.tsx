@@ -20,7 +20,7 @@ export function CopyCodeButton({ code }: { code: string }) {
     >
       <FiCopy className="w-5 h-5" />
       {copied && (
-        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-ink-900 text-ledger font-mono text-xs px-2 py-1 whitespace-nowrap">
+        <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-ink-900 text-ledger font-mono text-xs px-2 py-1 rounded-lg whitespace-nowrap">
           Copied!
         </span>
       )}

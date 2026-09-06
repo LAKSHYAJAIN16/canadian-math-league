@@ -53,7 +53,7 @@ export default async function AdminPage() {
           />
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger p-6">
+        <div className="rounded-3xl shadow-soft bg-ledger p-6">
           <p className="font-mono text-sm text-ink-700 mb-4">Total submissions: {registrations.length}</p>
 
           {registrations.length === 0 ? (
@@ -61,7 +61,7 @@ export default async function AdminPage() {
           ) : (
             <div className="space-y-6">
               {registrations.map((registration) => (
-                <div key={registration.id} className="border-2 border-ink-900 p-4">
+                <div key={registration.id} className="rounded-2xl shadow-soft p-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h3 className="font-semibold text-ink-900">School: {registration.schoolName}</h3>
@@ -72,8 +72,8 @@ export default async function AdminPage() {
                       <p className="mt-1">
                         Status:{' '}
                         <span
-                          className={`font-mono text-xs font-semibold uppercase tracking-wide ${
-                            registration.status === 'approved' ? 'text-ink-900' : 'text-stamp-600'
+                          className={`rounded-full px-2 py-0.5 font-mono text-xs font-semibold uppercase tracking-wide ${
+                            registration.status === 'approved' ? 'bg-ledger-deep text-ink-700' : 'bg-stamp-100 text-stamp-700'
                           }`}
                         >
                           {registration.status}
@@ -83,7 +83,7 @@ export default async function AdminPage() {
                     <div>
                       <h4 className="font-semibold text-ink-900">Teams:</h4>
                       {registration.teams.map((team) => (
-                        <div key={team.index} className="mt-2 pl-4 border-l-2 border-ink-900">
+                        <div key={team.index} className="mt-2 pl-4">
                           <p className="font-semibold text-ink-900">Team {team.index}</p>
                           <ul className="list-disc pl-5 text-ink-700">
                             {team.members.map((member, i) => (
@@ -96,7 +96,7 @@ export default async function AdminPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t-2 border-ink-900 flex justify-between items-center">
+                  <div className="mt-4 pt-4 border-t border-ledger-line flex justify-between items-center">
                     <div className="font-mono text-xs text-ink-500">
                       Submitted: {new Date(registration.submittedAt).toLocaleString()}
                     </div>

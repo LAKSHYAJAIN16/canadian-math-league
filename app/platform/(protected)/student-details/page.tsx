@@ -12,7 +12,7 @@ export default async function StudentDetailsPage() {
   const school = await getSchoolWithTeams(claims.schoolId)
   if (!school) {
     return (
-      <div className="border-2 border-stamp-600 bg-stamp-100 p-4">
+      <div className="rounded-xl bg-stamp-100 p-4">
         <p className="font-mono text-sm text-stamp-700">Team data not found.</p>
       </div>
     )
@@ -33,9 +33,9 @@ export default async function StudentDetailsPage() {
           team.members.map((member) => (
             <div
               key={member.id}
-              className="border-2 border-ink-900 bg-ledger p-4"
+              className="rounded-2xl shadow-soft bg-ledger p-4"
             >
-              <div className="flex items-center justify-between mb-2 p-2 bg-ledger-deep">
+              <div className="flex items-center justify-between mb-2 p-2 rounded-xl bg-ledger-deep">
                 <span className="font-mono text-ink-900 text-lg font-bold tracking-wide select-all">
                   {member.joinCode}
                 </span>
@@ -47,7 +47,7 @@ export default async function StudentDetailsPage() {
         )}
       </div>
 
-      <div className="border-2 border-ink-900 bg-ledger-deep p-6">
+      <div className="rounded-2xl shadow-soft bg-ledger-deep p-6">
         <h3 className="font-sans text-lg text-ink-900 mb-3">Confused?</h3>
         <p className="text-ink-700">
           We understand. It&apos;s a lot to take in. Click{' '}

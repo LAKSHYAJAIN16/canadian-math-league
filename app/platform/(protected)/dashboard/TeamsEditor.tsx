@@ -61,21 +61,21 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
         const members = isEditing ? editingMembers : team.members
 
         return (
-          <div key={team.id} className="border-2 border-ink-900 bg-ledger p-6">
+          <div key={team.id} className="rounded-2xl shadow-soft bg-ledger p-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-sans text-lg text-ink-900">Team {teamIndex + 1}</h3>
               {isEditing ? (
                 <div className="space-x-2">
                   <button
                     onClick={cancelEditing}
-                    className="btn-press px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 border-2 border-ink-900 hover:bg-ink-900 hover:text-ledger"
+                    className="btn-press px-4 py-1.5 rounded-full shadow-soft hover:shadow-soft-lg font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 bg-ledger hover:bg-ledger-deep"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => saveTeamChanges(team.id)}
                     disabled={isSaving}
-                    className="btn-press px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 disabled:opacity-50"
+                    className="btn-press px-4 py-1.5 rounded-full shadow-stamp-glow font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700 disabled:opacity-50"
                   >
                     {isSaving ? 'Saving...' : 'Save changes'}
                   </button>
@@ -83,7 +83,7 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
               ) : (
                 <button
                   onClick={() => startEditing(team)}
-                  className="btn-press inline-flex items-center px-4 py-1.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
+                  className="btn-press inline-flex items-center px-4 py-1.5 rounded-full shadow-stamp-glow font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
                 >
                   Edit team
                 </button>
@@ -94,7 +94,7 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
 
             <div className="space-y-3">
               {members.map((member, memberIndex) => (
-                <div key={member.id} className="p-4 bg-ledger-deep">
+                <div key={member.id} className="p-4 rounded-xl bg-ledger-deep">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-mono text-[0.625rem] font-semibold uppercase tracking-wide text-ink-700 mb-1">
@@ -105,7 +105,7 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
                           type="text"
                           value={member.name}
                           onChange={(e) => handleMemberChange(memberIndex, 'name', e.target.value)}
-                          className="w-full px-3 py-2 border-2 border-ink-900 bg-ledger focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30 text-sm"
+                          className="w-full px-3 py-2 rounded-lg bg-ledger focus:outline-none focus:ring-2 focus:ring-stamp-600/40 text-sm"
                         />
                       ) : (
                         <p className="text-sm font-semibold text-ink-900">{member.name}</p>
@@ -118,7 +118,7 @@ export function TeamsEditor({ teams }: { teams: SchoolTeam[] }) {
                           type="email"
                           value={member.email}
                           onChange={(e) => handleMemberChange(memberIndex, 'email', e.target.value)}
-                          className="w-full px-3 py-2 border-2 border-ink-900 bg-ledger focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30 text-sm"
+                          className="w-full px-3 py-2 rounded-lg bg-ledger focus:outline-none focus:ring-2 focus:ring-stamp-600/40 text-sm"
                         />
                       ) : (
                         <p className="text-sm text-ink-700">{member.email}</p>

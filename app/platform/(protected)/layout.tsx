@@ -12,7 +12,7 @@ export default async function ProtectedPlatformLayout({ children }: { children: 
 
   return (
     <div className="flex h-screen bg-ledger">
-      <div className="w-64 bg-ledger border-r-2 border-ink-900 flex flex-col">
+      <div className="w-64 bg-ledger shadow-soft flex flex-col z-10">
         <div className="p-6">
           <div className="w-40">
             <Image
@@ -41,7 +41,7 @@ export default async function ProtectedPlatformLayout({ children }: { children: 
           </NavLink>
         </nav>
 
-        <div className="p-4 border-t-2 border-ink-900">
+        <div className="p-4">
           <LogoutButton
             redirectTo="/platform/login"
             className="w-full flex items-center space-x-2 font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 hover:text-stamp-600 p-2 transition-colors"
@@ -60,7 +60,7 @@ function NavLink({ href, icon, children }: { href: string; icon: string; childre
   return (
     <Link
       href={href}
-      className="flex items-center space-x-3 px-4 py-3 font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 hover:bg-ink-900 hover:text-ledger transition-colors"
+      className="flex items-center space-x-3 px-4 py-3 rounded-xl font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 hover:bg-ledger-deep hover:text-stamp-600 transition-colors"
     >
       <span className="material-icons">{icon}</span>
       <span>{children}</span>

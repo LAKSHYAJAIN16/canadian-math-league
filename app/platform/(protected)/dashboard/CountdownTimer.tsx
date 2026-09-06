@@ -23,7 +23,7 @@ export function CountdownTimer({ targetMs }: { targetMs: number }) {
   }, [targetMs])
 
   return (
-    <div className="border-2 border-ink-900 bg-ledger p-6">
+    <div className="rounded-2xl shadow-soft bg-ledger p-6">
       <h2 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-4">Time to group stage</h2>
       {timeLeft.started ? (
         <div className="font-sans text-2xl text-stamp-600">Group Stage is live!</div>

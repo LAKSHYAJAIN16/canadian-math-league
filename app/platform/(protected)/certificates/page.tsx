@@ -34,7 +34,7 @@ export default function CertificatesPage() {
           <input
             type="text"
             aria-label="Search certificates by student name or certificate ID"
-            className="block w-full pl-10 pr-3 py-2.5 border-2 border-ink-900 bg-ledger leading-5 placeholder-ink-500 focus:outline-none focus:border-stamp-600 focus:ring-2 focus:ring-stamp-600/30 sm:text-sm"
+            className="block w-full pl-10 pr-3 py-2.5 rounded-xl bg-ledger-deep/60 leading-5 placeholder-ink-500 focus:outline-none focus:ring-2 focus:ring-stamp-600/40 sm:text-sm"
             placeholder="Search by student name or certificate ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -45,7 +45,7 @@ export default function CertificatesPage() {
             // TODO: Implement physical copy request logic
             alert('Physical copy request feature coming soon!');
           }}
-          className="btn-press inline-flex items-center px-5 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
+          className="btn-press inline-flex items-center px-5 py-2.5 rounded-full shadow-stamp-glow font-mono text-xs font-semibold uppercase tracking-wide text-ledger bg-stamp-600 hover:bg-stamp-700"
         >
           <svg
             className="-ml-1 mr-2 h-5 w-5"
@@ -70,8 +70,8 @@ export default function CertificatesPage() {
         </p>
       </div>
 
-      <div className="border-2 border-ink-900 bg-ledger overflow-x-auto">
-        <table className="min-w-full divide-y divide-ink-900">
+      <div className="rounded-2xl shadow-soft bg-ledger overflow-x-auto">
+        <table className="min-w-full divide-y divide-ledger-line">
           <thead className="bg-ledger-deep">
             <tr>
               <th scope="col" className="px-6 py-3 text-left font-mono text-[0.625rem] font-semibold text-ink-700 uppercase tracking-wider">
@@ -94,7 +94,7 @@ export default function CertificatesPage() {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-ledger divide-y divide-ink-900">
+          <tbody className="bg-ledger divide-y divide-ledger-line">
             {filteredCertificates.length > 0 ? (
               filteredCertificates.map((cert) => (
                 <tr key={cert.id}>
@@ -111,10 +111,10 @@ export default function CertificatesPage() {
                     {cert.date}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2.5 inline-flex font-mono text-[0.625rem] leading-5 font-semibold uppercase tracking-wide border-2 ${
+                    <span className={`px-2.5 inline-flex rounded-full font-mono text-[0.625rem] leading-5 font-semibold uppercase tracking-wide ${
                       cert.status === 'Available'
-                        ? 'border-stamp-600 bg-stamp-100 text-stamp-700'
-                        : 'border-ink-900 bg-ledger-deep text-ink-700'
+                        ? 'bg-stamp-100 text-stamp-700'
+                        : 'bg-ledger-deep text-ink-700'
                     }`}>
                       {cert.status}
                     </span>
@@ -145,7 +145,7 @@ export default function CertificatesPage() {
         </table>
       </div>
 
-      <div className="mt-6 border-2 border-ink-900 bg-ledger-deep p-6">
+      <div className="mt-6 rounded-2xl shadow-soft bg-ledger-deep p-6">
         <h3 className="font-sans text-lg text-ink-900">Need help with certificates?</h3>
         <p className="mt-2 text-ink-700">
           If you&apos;re missing a certificate or need assistance, please contact{' '}
