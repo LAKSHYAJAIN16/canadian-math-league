@@ -182,15 +182,15 @@ export default function CaptureTheProblemPage() {
   if (beforeStart) {
     return (
       <div className="min-h-screen bg-ledger p-4 md:p-6">
-        <div className="max-w-4xl mx-auto border-2 border-ink-900 bg-ledger p-6 md:p-8 text-center">
+        <div className="max-w-4xl mx-auto rounded-3xl shadow-soft bg-ledger p-6 md:p-8 text-center">
           <h1 className="font-sans text-2xl md:text-3xl text-ink-900 mb-4 md:mb-6">
             Welcome to Capture the Problem
           </h1>
-          <div className="bg-ledger-deep inline-flex items-center px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6">
+          <div className="bg-ledger-deep rounded-full inline-flex items-center px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6">
             <Clock className="h-4 w-4 md:h-5 md:w-5 text-ink-700 mr-2" />
             <span className="font-mono text-sm md:text-base text-ink-900">Starting in {formatTime(timing.startMs - now)}</span>
           </div>
-          <div className="border-2 border-stamp-600 bg-stamp-100 p-4 mb-6">
+          <div className="rounded-xl bg-stamp-100 p-4 mb-6">
             <h2 className="font-sans text-xl md:text-2xl text-stamp-700 mb-2">{teamName}</h2>
             <p className="font-mono text-sm text-stamp-700">{groupName}</p>
             {conference && <p className="font-mono text-sm text-stamp-600">{conference} Conference</p>}
@@ -206,8 +206,8 @@ export default function CaptureTheProblemPage() {
                 otherTeams.map((team) => (
                   <div
                     key={team.teamId}
-                    className={`flex items-center p-3 border-2 ${
-                      team.online ? 'border-stamp-500 bg-stamp-100' : 'border-ink-900 bg-ledger'
+                    className={`flex items-center p-3 rounded-xl ${
+                      team.online ? 'shadow-soft bg-stamp-100' : 'bg-ledger-deep'
                     }`}
                   >
                     <div className={`h-2.5 w-2.5 rounded-full mr-3 ${team.online ? 'bg-stamp-500' : 'bg-ink-300'}`} />
@@ -229,18 +229,18 @@ export default function CaptureTheProblemPage() {
 
   if (showingRules) {
     return (
-      <div className="max-w-4xl mx-auto border-2 border-ink-900 bg-ledger p-6 md:p-8 mt-6">
+      <div className="max-w-4xl mx-auto rounded-3xl shadow-soft bg-ledger p-6 md:p-8 mt-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-sans text-2xl md:text-3xl text-ink-900">Competition rules</h1>
-          <div className="border-2 border-stamp-600 bg-stamp-100 text-stamp-700 px-4 py-2 font-mono text-sm font-semibold uppercase tracking-wide">{teamName}</div>
+          <div className="rounded-full bg-stamp-100 text-stamp-700 px-4 py-2 font-mono text-sm font-semibold uppercase tracking-wide">{teamName}</div>
         </div>
 
-        <div className="bg-ledger-deep inline-flex items-center px-4 md:px-6 py-2 mb-6">
+        <div className="bg-ledger-deep rounded-full inline-flex items-center px-4 md:px-6 py-2 mb-6">
           <Clock className="h-4 w-4 md:h-5 md:w-5 text-ink-700 mr-2" />
           <span className="font-mono text-sm md:text-base text-ink-900">Starting in {formatTime(rulesEndMs - now)}</span>
         </div>
 
-        <div className="bg-ledger p-6 border-2 border-ink-900">
+        <div className="bg-ledger-deep rounded-2xl p-6">
           <h3 className="font-sans text-lg text-ink-900 mb-4">How it works:</h3>
           <ul className="space-y-3 text-ink-700">
             <li>You&apos;ll have {Math.round((timing.endMs - rulesEndMs) / 60000)} minutes to solve {PROBLEMS.length} problems.</li>
@@ -255,7 +255,7 @@ export default function CaptureTheProblemPage() {
 
   if (hasSubmitted) {
     return (
-      <div className="max-w-2xl mx-auto mt-20 border-2 border-ink-900 bg-ledger p-8 text-center">
+      <div className="max-w-2xl mx-auto mt-20 rounded-3xl shadow-soft bg-ledger p-8 text-center">
         <CheckCircle className="h-16 w-16 text-stamp-600 mx-auto mb-4" />
         <h1 className="font-sans text-3xl text-ink-900 mb-2">Submitted!</h1>
         {result && (
@@ -270,15 +270,15 @@ export default function CaptureTheProblemPage() {
   return (
     <div className="min-h-screen bg-ledger p-4 md:p-6">
       <div className="max-w-4xl mx-auto">
-        <div className="border-2 border-ink-900 bg-ledger overflow-hidden mb-6">
-          <div className="px-6 py-4 border-b-2 border-ink-900 bg-ledger flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div className="rounded-2xl shadow-soft bg-ledger overflow-hidden mb-6">
+          <div className="px-6 py-4 border-b border-ledger-line bg-ledger flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center mb-3 sm:mb-0">
               <h1 className="font-sans text-xl text-ink-900">Capture the Problem</h1>
-              <span className="ml-3 px-3 py-1 border-2 border-stamp-600 bg-stamp-100 text-stamp-700 font-mono text-xs font-medium uppercase tracking-wide">
+              <span className="ml-3 px-3 py-1 rounded-full bg-stamp-100 text-stamp-700 font-mono text-xs font-medium uppercase tracking-wide">
                 {conference}
               </span>
             </div>
-            <div className="scoreboard-digit bg-ledger-deep px-4 py-2 font-mono text-base sm:text-lg flex items-center text-ink-900">
+            <div className="scoreboard-digit rounded-xl bg-ledger-deep px-4 py-2 font-mono text-base sm:text-lg flex items-center text-ink-900">
               <Clock className="h-4 w-4 text-ink-700 mr-2 flex-shrink-0" />
               <span>{formatTime(timing.endMs - now)}</span>
             </div>
@@ -294,15 +294,15 @@ export default function CaptureTheProblemPage() {
                   {Object.keys(answers).length}/{PROBLEMS.length} answered
                 </span>
               </div>
-              <div className="w-full bg-ledger-deep border-2 border-ink-900 h-2">
+              <div className="w-full bg-ledger-deep rounded-full h-2">
                 <div
-                  className="bg-stamp-600 h-full transition-all duration-300"
+                  className="bg-stamp-600 rounded-full h-full transition-all duration-300"
                   style={{ width: `${(Object.keys(answers).length / PROBLEMS.length) * 100}%` }}
                 />
               </div>
             </div>
 
-            <div className="bg-ledger-deep p-6 mb-6 border-2 border-ink-900">
+            <div className="bg-ledger-deep rounded-2xl p-6 mb-6">
               <h3 className="font-sans text-xl text-ink-900 mb-4">Problem {currentProblem}</h3>
               <div className="text-lg text-ink-700">{PROBLEMS[currentProblem - 1]?.text}</div>
             </div>
@@ -314,7 +314,7 @@ export default function CaptureTheProblemPage() {
                 onChange={(e) => updateAnswer(currentProblem, e.target.value)}
                 onFocus={() => { activeProblemRef.current = currentProblem }}
                 onBlur={() => { activeProblemRef.current = null }}
-                className="w-full px-4 py-3 border-2 border-ink-900 bg-ledger focus:outline-none focus:ring-2 focus:ring-stamp-600/30 focus:border-stamp-600 text-base"
+                className="w-full px-4 py-3 rounded-xl bg-ledger-deep/60 focus:outline-none focus:ring-2 focus:ring-stamp-600/40 text-base"
                 placeholder="Type your answer here..."
                 autoFocus
               />
@@ -325,7 +325,7 @@ export default function CaptureTheProblemPage() {
                     <button
                       type="button"
                       onClick={() => goToProblem(Math.max(1, currentProblem - 1))}
-                      className="btn-press px-5 py-2.5 border-2 border-ink-900 font-mono text-xs font-semibold uppercase tracking-wide text-ink-900 hover:bg-ink-900 hover:text-ledger transition-colors"
+                      className="btn-press px-5 py-2.5 rounded-full shadow-soft hover:shadow-soft-lg font-mono text-xs font-semibold uppercase tracking-wide bg-ledger text-ink-900 hover:bg-ledger-deep transition-colors"
                     >
                       Previous
                     </button>
@@ -336,7 +336,7 @@ export default function CaptureTheProblemPage() {
                     <button
                       type="button"
                       onClick={() => goToProblem(Math.min(PROBLEMS.length, currentProblem + 1))}
-                      className="btn-press px-6 py-2.5 bg-stamp-600 hover:bg-stamp-700 text-ledger font-mono text-xs font-semibold uppercase tracking-wide transition-colors"
+                      className="btn-press px-6 py-2.5 rounded-full shadow-stamp-glow bg-stamp-600 hover:bg-stamp-700 text-ledger font-mono text-xs font-semibold uppercase tracking-wide transition-colors"
                     >
                       Next
                     </button>
@@ -344,7 +344,7 @@ export default function CaptureTheProblemPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn-press px-8 py-2.5 font-mono text-xs font-semibold uppercase tracking-wide bg-stamp-600 hover:bg-stamp-700 text-ledger transition-colors disabled:opacity-50"
+                      className="btn-press px-8 py-2.5 rounded-full shadow-stamp-glow font-mono text-xs font-semibold uppercase tracking-wide bg-stamp-600 hover:bg-stamp-700 text-ledger transition-colors disabled:opacity-50"
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit all answers'}
                     </button>
@@ -355,19 +355,19 @@ export default function CaptureTheProblemPage() {
           </div>
         </div>
 
-        <div className="border-2 border-ink-900 bg-ledger p-4 mb-6">
+        <div className="rounded-2xl shadow-soft bg-ledger p-4 mb-6">
           <h3 className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-700 mb-3">Jump to problem:</h3>
           <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
             {PROBLEMS.map((_, index) => (
               <button
                 key={index + 1}
                 onClick={() => goToProblem(index + 1)}
-                className={`w-full aspect-square flex items-center justify-center font-mono text-sm font-medium transition-colors border-2 ${
+                className={`w-full aspect-square rounded-xl flex items-center justify-center font-mono text-sm font-medium transition-colors ${
                   currentProblem === index + 1
-                    ? 'bg-stamp-600 text-ledger border-stamp-600'
+                    ? 'bg-stamp-600 text-ledger shadow-stamp-glow'
                     : answers[index + 1]
-                      ? 'bg-stamp-100 text-stamp-700 border-stamp-500 hover:bg-stamp-100/70'
-                      : 'bg-ledger-deep text-ink-700 border-ink-900 hover:bg-ledger'
+                      ? 'bg-stamp-100 text-stamp-700 shadow-soft hover:bg-stamp-100/70'
+                      : 'bg-ledger-deep text-ink-700 hover:bg-ledger'
                 }`}
               >
                 {index + 1}
