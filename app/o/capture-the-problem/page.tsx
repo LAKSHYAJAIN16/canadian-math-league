@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore'
 import { db } from '@/lib/firebase/client'
 import { useStudentSession } from '@/lib/client/useStudentSession'
@@ -35,6 +36,7 @@ function formatTime(ms: number) {
 }
 
 export default function CaptureTheProblemPage() {
+  const router = useRouter()
   const { session, loading: sessionLoading } = useStudentSession()
   const timing = useRoundTiming('capture_the_problem')
   const { teams: otherTeams, groupName, conference } = useGroupTeams(
@@ -148,13 +150,16 @@ export default function CaptureTheProblemPage() {
         const data = await response.json()
         setResult({ correctAnswers: data.correctCount ?? data.correctAnswers ?? 0, totalQuestions: data.totalQuestions ?? PROBLEMS.length })
         setHasSubmitted(true)
+        // Brief pause so the team sees their score before moving on — the
+        // next (final) round is Head to Head.
+        setTimeout(() => router.push('/o/head-to-head'), 4000)
       } catch (error) {
         console.error('Error submitting answers:', error)
       } finally {
         setIsSubmitting(false)
       }
     },
-    [hasSubmitted, flushPending]
+    [hasSubmitted, flushPending, router]
   )
 
   useEffect(() => {
@@ -259,10 +264,11 @@ export default function CaptureTheProblemPage() {
         <CheckCircle className="h-16 w-16 text-stamp-600 mx-auto mb-4" />
         <h1 className="font-sans text-3xl text-ink-900 mb-2">Submitted!</h1>
         {result && (
-          <p className="text-lg text-ink-700">
+          <p className="text-lg text-ink-700 mb-2">
             Your team got {result.correctAnswers} out of {result.totalQuestions} correct.
           </p>
         )}
+        <p className="font-mono text-sm text-ink-500">Taking you to the final round &mdash; Head to Head...</p>
       </div>
     )
   }

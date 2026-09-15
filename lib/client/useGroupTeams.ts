@@ -12,6 +12,10 @@ export interface GroupTeamStatus extends GroupTeamRef {
 /** Other teams in the same group, with live presence — reads groups/{groupId}. */
 export function useGroupTeams(groupId: string | null, ownTeamId: string | null) {
   const [teams, setTeams] = useState<GroupTeamStatus[]>([])
+  // Full roster in stored order, own team included — lets a round derive a
+  // stable pairing (e.g. Head to Head matchups) from position alone, with
+  // no separate "matchups" doc to keep in sync.
+  const [allTeams, setAllTeams] = useState<GroupTeamRef[]>([])
   const [groupName, setGroupName] = useState('')
   const [conference, setConference] = useState('')
 
@@ -28,6 +32,7 @@ export function useGroupTeams(groupId: string | null, ownTeamId: string | null) 
 
       setGroupName(group.name ?? '')
       setConference(group.conference ?? '')
+      setAllTeams(group.teams ?? [])
 
       const otherTeams = (group.teams ?? []).filter((team) => team.teamId !== ownTeamId)
       setTeams(otherTeams.map((team) => ({ ...team, online: false })))
@@ -46,5 +51,5 @@ export function useGroupTeams(groupId: string | null, ownTeamId: string | null) 
     return () => unsubscribers.forEach((unsubscribe) => unsubscribe())
   }, [groupId, ownTeamId])
 
-  return { teams, groupName, conference }
+  return { teams, allTeams, groupName, conference }
 }
