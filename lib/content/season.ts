@@ -71,6 +71,20 @@ export function isRegistrationOpen(): boolean {
   return new Date() <= new Date(`${REGISTRATION_DEADLINES.finalIso}T23:59:59`)
 }
 
+export type SeasonPhase = 'registration-open' | 'in-progress' | 'concluded'
+
+/**
+ * Where the season stands relative to today, so pages that show the
+ * schedule (not just "How it works") can stop presenting past stage dates
+ * as if they were still upcoming. 'in-progress' covers the window after
+ * registration closes but before Nationals has happened.
+ */
+export function getSeasonPhase(): SeasonPhase {
+  if (isRegistrationOpen()) return 'registration-open'
+  const seasonEnds = new Date(`${SEASON_STAGES.nationals.date}T23:59:59`)
+  return new Date() > seasonEnds ? 'concluded' : 'in-progress'
+}
+
 /** Splits a stage's ISO date into the day-number + "MON YYYY" pieces the schedule badges use. */
 export function formatDateBadge(isoDate: string): { day: string; monthYear: string } {
   const date = new Date(`${isoDate}T00:00:00`)

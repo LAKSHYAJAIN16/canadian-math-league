@@ -62,7 +62,7 @@ const Navbar = () => {
                   >
                     {item.label}
                     {item.highlight && (
-                      <span className="rounded-full bg-stamp-100 text-stamp-700 px-1.5 py-0.5 text-[0.625rem] leading-none">
+                      <span className="rounded-full bg-stamp-100 text-stamp-700 px-1.5 py-0.5 text-xs leading-none">
                         New
                       </span>
                     )}
@@ -139,7 +139,7 @@ const Navbar = () => {
                     >
                       {item.label}
                       {item.highlight && (
-                        <span className="rounded-full bg-stamp-100 text-stamp-700 px-1.5 py-0.5 text-[0.625rem] leading-none">
+                        <span className="rounded-full bg-stamp-100 text-stamp-700 px-1.5 py-0.5 text-xs leading-none">
                           New
                         </span>
                       )}

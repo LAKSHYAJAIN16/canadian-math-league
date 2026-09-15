@@ -25,7 +25,13 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Trophy, Users, Calendar, Award, CheckCircle, Medal, type LucideIcon } from 'lucide-react'
 import Link from 'next/link'
-import { SEASON_STAGES, PRIZE_TIERS, REGISTRATION_DEADLINES, isRegistrationOpen } from '@/lib/content/season'
+import {
+  SEASON_STAGES,
+  PRIZE_TIERS,
+  REGISTRATION_DEADLINES,
+  isRegistrationOpen,
+  getSeasonPhase,
+} from '@/lib/content/season'
 
 function BubbleNumeral({ n, filled }: { n: number; filled?: boolean }) {
   return (
@@ -41,6 +47,8 @@ function BubbleNumeral({ n, filled }: { n: number; filled?: boolean }) {
 
 const HomePage = () => {
   const registrationOpen = isRegistrationOpen()
+  const seasonPhase = getSeasonPhase()
+  const seasonConcluded = seasonPhase === 'concluded'
 
   const stages: Array<{ icon: LucideIcon; title: string; description: string; tags: string[] }> = [
     {
@@ -107,7 +115,7 @@ const HomePage = () => {
                   decoding="async"
                   className="h-4 w-auto object-contain"
                 />
-                <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-wide text-ink-500">
+                <span className="font-mono text-xs font-semibold uppercase tracking-wide text-ink-500">
                   In partnership with the Canadian Mathematical Society
                 </span>
               </div>
@@ -173,7 +181,7 @@ const HomePage = () => {
                   {stage.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700"
+                      className="font-mono text-xs uppercase tracking-wide rounded-full bg-ledger-deep px-2 py-0.5 text-ink-700"
                     >
                       {tag}
                     </span>
@@ -201,10 +209,10 @@ const HomePage = () => {
 
           <div className="rounded-3xl shadow-soft p-6 md:p-8">
             <div className="flex flex-wrap items-center gap-3 mb-8">
-              <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-stamp-100 text-stamp-700 px-2 py-1">
+              <span className="font-mono text-xs uppercase tracking-wide rounded-full bg-stamp-100 text-stamp-700 px-2 py-1">
                 Free
               </span>
-              <span className="font-mono text-[0.625rem] uppercase tracking-wide rounded-full bg-stamp-100 text-stamp-700 px-2 py-1">
+              <span className="font-mono text-xs uppercase tracking-wide rounded-full bg-stamp-100 text-stamp-700 px-2 py-1">
                 Online
               </span>
               <span className="font-mono text-xs text-ink-500">
@@ -260,6 +268,33 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Who's behind this */}
+      <section className="py-12 bg-ledger">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl shadow-soft bg-ledger-deep/60 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-5"
+          >
+            <div>
+              <p className="font-mono text-xs uppercase tracking-wide text-ink-500 mb-1">Who&apos;s behind this</p>
+              <p className="text-ink-700 text-sm max-w-md">
+                Run in partnership with the Canadian Mathematical Society and organized by a small,
+                named team — not an anonymous platform.
+              </p>
+            </div>
+            <Link
+              href="/team"
+              className="btn-press inline-flex items-center gap-2 rounded-full shadow-soft hover:shadow-soft-lg bg-ledger text-ink-900 px-6 py-3 text-sm font-mono font-semibold uppercase tracking-wide hover:bg-ledger-deep flex-shrink-0"
+            >
+              Meet the organizers
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Prizes */}
       <section className="py-20 bg-ledger-deep">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -311,15 +346,22 @@ const HomePage = () => {
       {/* Timeline */}
       <section className="py-20 bg-ledger">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center gap-3 font-sans text-3xl md:text-4xl text-ink-900 mb-10"
+            className="mb-10"
           >
-            <Calendar className="h-7 w-7 text-stamp-600" />
-            The 2025&ndash;26 competition timeline
-          </motion.h2>
+            <h2 className="flex items-center gap-3 font-sans text-3xl md:text-4xl text-ink-900 mb-3">
+              <Calendar className="h-7 w-7 text-stamp-600" />
+              {seasonConcluded ? 'The 2025–26 season, in review' : 'The 2025–26 competition timeline'}
+            </h2>
+            {seasonConcluded && (
+              <p className="font-mono text-xs uppercase tracking-wide text-ink-500">
+                Season concluded &mdash; next season&apos;s dates will post here once they&apos;re set.
+              </p>
+            )}
+          </motion.div>
 
           <div className="rounded-3xl shadow-soft divide-y divide-ledger-line">
             {timeline.map((item, index) => (
@@ -337,7 +379,13 @@ const HomePage = () => {
                     <div className="font-sans text-ink-900 text-sm">{item.title}</div>
                     <p className="text-ink-700 text-sm mt-0.5">{item.description}</p>
                   </div>
-                  <div className="font-mono text-sm text-stamp-600 font-semibold whitespace-nowrap">{item.date}</div>
+                  <div
+                    className={`font-mono text-sm font-semibold whitespace-nowrap ${
+                      seasonConcluded ? 'text-ink-500' : 'text-stamp-600'
+                    }`}
+                  >
+                    {item.date}
+                  </div>
                 </div>
               </motion.div>
             ))}
