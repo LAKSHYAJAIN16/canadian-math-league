@@ -1,137 +1,75 @@
 # Canadian Math League
 
-The marketing site and competition platform for the Canadian Math League — a
-free, team-based high-school math tournament run in three stages (Group
-Stage → Regionals → Nationals). Built with Next.js 14 (App Router),
-TypeScript, Tailwind CSS, and Firebase.
+This is the marketing site and competition platform for the Canadian Math League — a free, team-based high-school math tournament I run in three stages: Group Stage, then Regionals, then Nationals. Built with Next.js 14 (App Router), TypeScript, Tailwind, and Firebase.
 
-## Key Features
+## What it actually does
 
-- **Public marketing site** (`app/(marketing)/`) explaining the tournament
-  format, prizes, and how to register.
-- **School registration → admin approval pipeline**: a public, zod-validated
-  registration form provisions a teacher account, school/team/member
-  documents, and join codes once an admin approves it.
-- **Teacher portal** (`/platform/*`) for managing a roster and retrieving
-  student join codes, gated by server-verified sessions.
-- **Student competition flow** (`/join`, `/o/*`): join-code-based anonymous
-  auth into fullscreen, timed rounds — `capture-the-problem`,
-  `competition` (individual), `team-competition`, and `head-to-head` —
-  each graded server-side.
-- **Role-based auth** for admins, teachers, and students, all backed by
-  server-verified Firebase custom claims rather than client-asserted state.
+Beyond the marketing pages explaining the format and prizes, the real work is the registration → approval → competition pipeline:
 
-## Stack
+- A school registers through a public, zod-validated form. That creates a pending registration doc, and once I (or another admin) approve it from `/admin`, it provisions the teacher's account, creates the school/team/member records, and generates join codes.
+- Teachers get a portal (`/platform/*`) with passwordless email-link sign-in to manage their roster and pull student join codes.
+- Students use a join code to get an anonymous Firebase session and drop straight into a fullscreen, timed round — there are a few formats: capture-the-problem, individual competition, team competition, and head-to-head. Everything gets graded server-side.
 
-- **Next.js 14** (App Router) + TypeScript + Tailwind CSS + Framer Motion
-- **Firebase Authentication** — real accounts for admins (email/password),
-  teachers (passwordless email-link), and students (anonymous auth tagged
-  with server-verified custom claims)
-- **Firestore** — see `firestore.rules` for the schema and access model
-- **Firebase Admin SDK** — all privileged reads/writes (grading, roster
-  creation, session management) happen server-side in Route Handlers, never
-  trusting anything the client sends about its own identity
+I was pretty deliberate about not trusting the client for anything that matters. Admins, teachers, and students all get their role baked into server-verified Firebase custom claims, not something the client just asserts about itself. Grading, roster creation, session checks — all of that happens in Route Handlers using the Admin SDK.
 
-## Getting started
+Stack-wise it's Next.js 14, TypeScript, Tailwind, Framer Motion for the marketing bits, and Firebase (Auth + Firestore) for everything else — see `firestore.rules` if you want the actual data model and access rules.
 
-### 1. Install dependencies
+## Getting it running
+
+Install deps:
 
 ```bash
 npm install
 ```
 
-### 2. Set up a Firebase project
+You'll need a Firebase project with Firestore, Authentication, and both the Email Link and Anonymous sign-in providers turned on. Copy `.env.example` to `.env.local` and fill in:
 
-You need a Firebase project with **Firestore**, **Authentication**, and the
-**Email link** + **Anonymous** sign-in providers enabled (Firebase Console →
-Authentication → Sign-in method).
+- The `NEXT_PUBLIC_FIREBASE_*` values from Project Settings → Your apps. These are fine to expose client-side — the real access control is in `firestore.rules` and `lib/server/auth.ts`, not in keeping this stuff secret.
+- `GOOGLE_APPLICATION_CREDENTIALS`, pointing at a service-account JSON key (Project Settings → Service Accounts → Generate new private key). Don't commit this file or paste it anywhere — `.gitignore` already excludes `*serviceAccount*.json` and `secrets/`. On Vercel, base64-encode it instead and set `FIREBASE_SERVICE_ACCOUNT_BASE64` (see `.env.example` for the one-liner).
 
-Copy `.env.example` to `.env.local` and fill in:
-
-- `NEXT_PUBLIC_FIREBASE_*` — from Firebase Console → Project Settings →
-  General → Your apps → Web app. These are safe to expose to the browser;
-  real access control lives in `firestore.rules` and the server-side auth
-  checks in `lib/server/auth.ts`, not in keeping this config secret.
-- `GOOGLE_APPLICATION_CREDENTIALS` — path to a service-account JSON key
-  (Firebase Console → Project Settings → Service Accounts → Generate new
-  private key). **Never commit this file or paste its contents anywhere** —
-  `.gitignore` already excludes `*serviceAccount*.json` and `secrets/`.
-  On Vercel, base64-encode the same file and set
-  `FIREBASE_SERVICE_ACCOUNT_BASE64` instead (see `.env.example` for the
-  one-liner).
-
-Deploy the security rules (requires the [Firebase CLI](https://firebase.google.com/docs/cli), `firebase login`, and `firebase use <project-id>`):
+Deploy the security rules with the Firebase CLI (`firebase login`, `firebase use <project-id>`):
 
 ```bash
 firebase deploy --only firestore:rules
 ```
 
-### 3. Create your first admin account
-
-Admin accounts aren't self-service (there's no public admin sign-up page —
-that's the point). Create one via the Firebase Console (Authentication → Add
-user) and then set the custom claim with a one-off script using the Admin
-SDK, e.g.:
+There's no self-service admin sign-up on purpose — create the first admin manually via the Firebase Console (Authentication → Add user), then set their custom claim once with something like:
 
 ```ts
-// scripts/make-admin.ts (run once with `npx tsx scripts/make-admin.ts <uid>`)
+// scripts/make-admin.ts — run with `npx tsx scripts/make-admin.ts <uid>`
 import { adminAuth } from '../lib/firebase/admin'
 await adminAuth().setCustomUserClaims(process.argv[2], { role: 'admin' })
 ```
 
-### 4. Run the dev server
+Then just:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+and open `http://localhost:3000`.
 
-## How the platform fits together
+## How it fits together
 
-- **Public marketing pages** live under `app/(marketing)/` (a route group —
-  doesn't affect URLs) and share `<Navbar>`/`<Footer>` via
-  `app/(marketing)/layout.tsx`. Season dates, prize amounts, and round
-  schedules are centralized in `lib/content/season.ts` — edit dates there,
-  not per-page.
-- **Registration**: `/register` → `POST /api/registrations` (public,
-  zod-validated) creates a `registrations/{id}` doc. An admin reviews and
-  approves it from `/admin`, which provisions the teacher's Firebase Auth
-  account, creates `schools/{id}`, `teams/{id}`, and `members/{id}` docs
-  (with generated join codes), and sets the teacher's `role`/`schoolId`
-  custom claims — see `app/api/admin/registrations/[id]/approve/route.ts`.
-- **Teacher portal** (`/platform/*`): passwordless sign-in
-  (`/platform/login`), gated by `app/platform/(protected)/layout.tsx`, which
-  verifies the session server-side before rendering anything.
-- **Student competition** (`/join`, `/o/*`): a join code exchanges for an
-  anonymous Firebase Auth session tagged with `teamId`/`memberId`/`groupId`
-  custom claims (`/api/auth/join`). Round answers are written directly to
-  Firestore (scoped to the owning team by `firestore.rules`); grading
-  happens server-side in `/api/rounds/*/submit`, which derives identity from
-  the verified session — never from anything the client claims about itself.
-- **Sessions**: every role ends up with an httpOnly session cookie
-  (`/api/auth/session`), verified server-side via
-  `lib/server/auth.ts#getSessionClaims`. `middleware.ts` only does a cheap
-  cookie-presence redirect for UX — the Admin SDK can't run on the Edge
-  runtime, so the real verification happens in each protected page/route.
+- Marketing pages live under `app/(marketing)/` (a route group, so it doesn't touch the URLs) and share a nav/footer via that folder's layout. Season dates and prize amounts are centralized in `lib/content/season.ts` — that's the one place to edit them, not scattered across pages.
+- Registration flow: `/register` posts to `/api/registrations`, an admin approves from `/admin`, which is where the teacher account, school/team/member docs, and join codes actually get created (`app/api/admin/registrations/[id]/approve/route.ts` if you want to see the guts of it).
+- Teacher portal sign-in is gated in `app/platform/(protected)/layout.tsx`, which verifies the session server-side before rendering anything.
+- Student flow: a join code exchanges for an anonymous session tagged with team/member/group claims (`/api/auth/join`), round answers write to Firestore scoped to the owning team, and grading happens in `/api/rounds/*/submit` using the verified session — never anything the client says about itself.
+- Every role gets an httpOnly session cookie, verified server-side in `lib/server/auth.ts`. `middleware.ts` only does a cheap cookie-presence check for redirect UX, since the Admin SDK can't run on the Edge runtime — the actual verification happens per protected route.
 
-## Content that needs a real answer before launch
+## Things that still need real answers before launch
 
-A few things were placeholders in the original codebase and are marked
-`TODO(content owner)` in place:
+A few spots are intentionally placeholder and marked `TODO(content owner)`:
 
-- `lib/content/season.ts` — Regionals/Nationals dates had drifted across
-  different pages before this rework; confirm the real dates.
-- `lib/server/answer-keys/*.ts` — the group-stage answer keys match the
-  *sample* questions currently in `app/o/*`. Replace both together with the
-  real question sets before the competition runs.
-- `/about/sponsors` is intentionally honest that there are no sponsors yet.
+- `lib/content/season.ts` — the Regionals/Nationals dates had drifted across pages before this rework, so double-check them before relying on this file.
+- `lib/server/answer-keys/*.ts` — currently match the *sample* questions in `app/o/*`. Both need to be swapped for the real question sets together before the competition runs.
+- `/about/sponsors` is honest that there aren't sponsors yet.
 
 ## Scripts
 
 ```bash
-npm run dev      # start the dev server
-npm run build    # production build (also runs typecheck + lint)
+npm run dev      # dev server
+npm run build    # production build (also typechecks + lints)
 npm run start    # run a production build
 npm run lint     # lint only
 npx tsc --noEmit # typecheck only
@@ -139,7 +77,4 @@ npx tsc --noEmit # typecheck only
 
 ## Deployment
 
-Deploys to [Vercel](https://vercel.com) out of the box. Set the same
-environment variables from `.env.local` in the Vercel project's dashboard
-(use `FIREBASE_SERVICE_ACCOUNT_BASE64` there, not
-`GOOGLE_APPLICATION_CREDENTIALS`).
+Runs on Vercel out of the box. Set the same env vars from `.env.local` in the Vercel dashboard — use `FIREBASE_SERVICE_ACCOUNT_BASE64` there instead of `GOOGLE_APPLICATION_CREDENTIALS`.
