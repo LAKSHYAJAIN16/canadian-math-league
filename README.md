@@ -5,6 +5,22 @@ free, team-based high-school math tournament run in three stages (Group
 Stage → Regionals → Nationals). Built with Next.js 14 (App Router),
 TypeScript, Tailwind CSS, and Firebase.
 
+## Key Features
+
+- **Public marketing site** (`app/(marketing)/`) explaining the tournament
+  format, prizes, and how to register.
+- **School registration → admin approval pipeline**: a public, zod-validated
+  registration form provisions a teacher account, school/team/member
+  documents, and join codes once an admin approves it.
+- **Teacher portal** (`/platform/*`) for managing a roster and retrieving
+  student join codes, gated by server-verified sessions.
+- **Student competition flow** (`/join`, `/o/*`): join-code-based anonymous
+  auth into fullscreen, timed rounds — `capture-the-problem`,
+  `competition` (individual), `team-competition`, and `head-to-head` —
+  each graded server-side.
+- **Role-based auth** for admins, teachers, and students, all backed by
+  server-verified Firebase custom claims rather than client-asserted state.
+
 ## Stack
 
 - **Next.js 14** (App Router) + TypeScript + Tailwind CSS + Framer Motion
