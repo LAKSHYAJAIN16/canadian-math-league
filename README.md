@@ -41,17 +41,11 @@ npm run dev
 
 ## Layout
 
-- `app/(marketing)/` — public pages; season dates and prizes centralized in `lib/content/season.ts`
-- `/register` → `/api/registrations` → admin approves at `/admin` (`app/api/admin/registrations/[id]/approve/route.ts`)
-- `app/platform/(protected)/layout.tsx` — server-verified gate for the teacher portal
-- `/api/auth/join` exchanges a join code for an anonymous session; `/api/rounds/*/submit` grades server-side
-- Every role gets an httpOnly session cookie verified in `lib/server/auth.ts`; `middleware.ts` only does a cheap presence check since the Admin SDK can't run on Edge
+`app/(marketing)/` is the public site (season dates/prizes live in `lib/content/season.ts`). `/register` hits `/api/registrations`, an admin approves at `/admin`, and that provisions the teacher/team records. The teacher portal at `app/platform/(protected)/` and the round APIs are gated by an httpOnly session cookie verified server-side in `lib/server/auth.ts` — `middleware.ts` only does a cheap presence check since the Admin SDK can't run on Edge.
 
 ## Not launch-ready yet
 
-- `lib/content/season.ts` — double-check Regionals/Nationals dates
-- `lib/server/answer-keys/*.ts` — still match the sample questions in `app/o/*`, needs swapping with the real sets
-- `/about/sponsors` — no sponsors yet
+Regionals/Nationals dates in `lib/content/season.ts` need a final check, the answer keys in `lib/server/answer-keys/*.ts` still match the sample questions rather than the real sets, and `/about/sponsors` has no sponsors yet.
 
 ## Scripts
 
